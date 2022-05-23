@@ -17,10 +17,15 @@
     <!--uses and links css stylesheet-->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!--starts body / content-->
 <body>
+    <!--titles todo list-->
     <h1>Todo List: </h1>
+    <!--creates unordered list of class todoItems-->
     <ul class="todoItems">
+    <!--ejs loops length of items array-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--creates list item of class item-->
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
