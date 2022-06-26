@@ -9,40 +9,42 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body>  <!-- Main section that will be displayed on the main page -->
+    <!DOCTYPE html> <!-- Possibly typo... -->
+<html lang="en"><!-- Possibly typo... -->
+<head><!-- Possibly typo... -->
+    <meta charset="UTF-8"><!-- Possibly typo... -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- Possibly typo... -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Possibly typo... -->
+    <title>Document</title><!-- Possibly typo... -->
+</head><!-- Possibly typo... -->
 
-    <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+<body> <!-- Main section that will be displayed on the main page -->
+    <h1>Todo List: </h1> <!-- Main title displayed on page-->
+    <ul class="todoItems"> <!-- unordered list with a class called todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- ejs - a for loop -->
+        <li class="item"><!-- list item with a class of item -->
+            <% if(items[i].completed === true) {%> <!-- ejs - check if an item in an array wiht a completed property is true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- creating an inline elemtn wiht a class ;;; EJS to display the name of the task -->
+            <% }else{ %> <!-- EJS for th else clause of the if statement -->
+                <span><%= items[i].thing %></span> <!-- creating an inline element without class -->
+            <% } %>    <!-- close else statement -->
+            <span class='fa fa-trash'></span><!-- displays a trash icon -->
+        </li><!-- closes the list item -->
+    <% } %><!-- closes the for loop -->
+    </ul><!-- closes the unordered list -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <h2>Left to do: <%= left %></h2> <!-- creates h2 heading with text and displays the number of to dos left -->
+
+    <h2>Add A Todo:</h2> <!-- creates h2 heading with text -->
+
+    <form action="/addTodo" method="POST"> <!-- creates a form with an action, and a post method goes to the action (/addTodo)  -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- created an input field where text inputs can be added, with aa placeholder (text that appears inside the text box before anything is typed), and a specific name, so it can be identified when submitting -->
+        <input type="submit"> <!-- gives the form a submit button -->
+    </form> <!-- closes the form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- uses the JS script found in the source -->
+</body> <!-- closes the body -->
+</html> <!-- closes the html -->
