@@ -11,40 +11,31 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- link to css -->
 </head>
-<body> <!-- This may be a typo -->
-    <!DOCTYPE html> <!-- This may be a typo -->
-<html lang="en"> <!-- This may be a typo -->
-<head> <!-- This may be a typo -->
-    <meta charset="UTF-8"> <!-- This may be a typo -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- This may be a typo -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- This may be a typo -->
-    <title>Document</title> <!-- This may be a typo -->
-</head> <!-- This may be a typo -->
+<!-- <body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>  -->
 <body>  <!-- Main section for content displayed -->
-    <h1>Todo List: </h1>
-    <!-- page's most important hea
-    dding -->
+    <h1>Todo List: </h1><!-- page's most important headding -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-      <!-- poser javascript wooo; do a for loop for each item in array -->
+    <% for(let i=0; i < items.length; i++) {%>      <!-- poser javascript wooo; do a for loop for each item in array -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-              <!-- is it completed? do this -->
-                <span class='completed'><%= items[i].thing %></span>
-                <!-- add the class 'completed' for styling -->
-            <% }else{ %>
-              <!-- if no completed: -->
-                <span><%= items[i].thing %></span>
-                <!-- displat the items in list but dont add classes -->
+            <% if(items[i].completed === true) {%>              <!-- is it completed? do this -->
+                <span class='completed'><%= items[i].thing %></span>                <!-- add the class 'completed' for styling -->
+            <% }else{ %>              <!-- if no completed: -->
+                <span><%= items[i].thing %></span>                <!-- displat the items in list but dont add classes -->
             <% } %>
-            <span class='fa fa-trash'></span>
-            <!-- trash can icon that gets added on to each item on our list -->
+            <span class='fa fa-trash'></span>            <!-- trash can icon that gets added on to each item on our list -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
-    <!-- count out number and render incomplete tasks -->
+    <h2>Left to do: <%= left %></h2>    <!-- count out number and render incomplete tasks -->
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
