@@ -1,7 +1,8 @@
-h1{
-    color: red;
+h1{ /* select any h1 tag */
+    color: red; /* changes text color to red */
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+.completed{ /* select any items tith class of completed */
+    color: gray; /* changes text color to gray */
+    text-decoration: line-through; /* adds line-through text */
 }
