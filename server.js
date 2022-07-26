@@ -1,7 +1,7 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
+const express = require('express')//import express
+const app = express()//reassign express to variable app
+const MongoClient = require('mongodb').MongoClient//import Mongo
+const PORT = 2121//assign port
 require('dotenv').config()
 
 
