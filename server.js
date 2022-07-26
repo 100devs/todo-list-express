@@ -11,29 +11,32 @@ require('dotenv').config()
 
 
 let db,
-    //Start assigning the variable to our database (db)
+    //Start assigning the variable to our database (db)(Global assignment)
     dbConnectionStr = process.env.DB_STRING,
     // Assigning the route to the db file password to allow access
     dbName = 'todo'
     // todo is db name
 
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })  // connecting the Mongo database
+    .then(client => { // promise
+        console.log(`Connected to ${dbName} Database`) // confirmation connection to the database which is show in the Terminal
+        db = client.db(dbName) // assigment of the database (Local assignment)
     })
-    
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
 
 
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
+//SET MIDDLEWARE
+app.set('view engine', 'ejs') // creation of the index.ejs file
+app.use(express.static('public')) // route to the main.js and style.css files (client files)
+app.use(express.urlencoded({ extended: true })) // parses all URL request
+app.use(express.json()) // enable to use JSON
+
+
+// CRUD Methods:
+app.get('/',async (request, response)=>{ // reading the home page, client make the request and response is sent
+    const todoItems = await db.collection('todos').find().toArray() // creating variable(todoItems), wait for response from db.  It will find the specific object/objects and put it in an Array. 
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // creating variable(itemsLeft), wait for response from db. Count the documents in the db and run until it is completed.
+    response.render('index.ejs', { items: todoItems, left: itemsLeft }) // send the data to the index.ejs file via the variables.
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
