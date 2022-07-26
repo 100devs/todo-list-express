@@ -1,14 +1,26 @@
+<!-- Setting the document type -->
 <!DOCTYPE html>
+<!-- Setting the language -->
 <html lang="en">
 <head>
+    <!-- Setting the universal char set used -->
     <meta charset="UTF-8">
+    <!-- I dont know? -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- This sets the display to the users default viewport sizing? Without it, mobile versions on desktop dont scale -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Sets title in tab -->
     <title>Document</title>
+    <!-- Links in both fontawesome styles, and the project css file (Which would be found in public/css) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+
+<!-- Whoopsie? -->
+<!-- ********************************************************* -->
+
+
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +28,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> -->
+<!-- ********************************************************** -->
+
+
+<!-- Everything within body is what displays in the browser -->
 <body>
+    <!-- Main Title -->
     <h1>Todo List: </h1>
+    <!-- Creating an unordered list -->
     <ul class="todoItems">
+
+        <!-- EJS -->
+        <!-- Running a for loop to the length of 'items'-->
+        <!-- Populating the <li>'s -->
+            <!-- IF: the item has been completed, item.thing is displayed in the completed span -->
+            <!-- ELSE: display item.thing in a new span. -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -27,21 +51,28 @@
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- DELETE BUTTON -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- Displays the amount of todo's left to complete -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Add a todo title -->
     <h2>Add A Todo:</h2>
 
+    <!-- Here we add TODO's -->
+        <!-- Creating a form with a POST method to the /addTodo endpoint -->
     <form action="/addTodo" method="POST">
+        <!-- Input, attached to the name todoItem -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Submits, and POSTS the above information to the server -->
         <input type="submit">
     </form>
     
-
+    <!-- Plugs in the main.js scripts, which can also be found in the publics folder. -->
     <script src='js/main.js'></script>
 </body>
 </html>
