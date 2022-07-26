@@ -1,7 +1,7 @@
-const express = require('express')  //import express
+const express = require('express')  //get express
 const app = express()
-const MongoClient = require('mongodb').MongoClient  //import mongo
-const PORT = 2121 // determine port num
+const MongoClient = require('mongodb').MongoClient  //get mongo
+const PORT = 2121 // determine port num.
 require('dotenv').config()
 
 
