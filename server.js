@@ -45,6 +45,7 @@ app.get('/', async (request, response) => {
     // converts the todoItems into an array
     const todoItems = await db.collection('todos').find().toArray();
     // counts how many items still need to be done and counts them
+    // then sets their boolean completed value to false
     const itemsLeft = await db.collection('todos').countDocuments({ completed: false });
     // renders the index.ejs page and passes the parameters into that page
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
@@ -58,30 +59,39 @@ app.get('/', async (request, response) => {
     // .catch(error => console.error(error))
 })
 
+// the method to create additional items to the todo list
 app.post('/addTodo', (request, response) => {
+    // adds a new item to the todo list and sets its completed boolean to false
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
+        .then(result => {
+        // alerts via the console that the item has been added
+        // once added, the page returns to the main page with the list of items
         console.log('Todo Added')
         response.redirect('/')
     })
     .catch(error => console.error(error))
 })
 
+// with a PUT method we can update the items on the list to 
 app.put('/markComplete', (request, response) => {
+    // updates an item in your list itemFromJS
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
+            // marks the item as completed
             completed: true
           }
-    },{
-        sort: {_id: -1},
+    }, {
+        // tells the item to go to the bottom of the list
+        sort: { _id: -1 },
+        // if you don't find something, don't automatically assign something new
         upsert: false
     })
+    // console logging that it's been marked complete, and also responding back to the client in JSON saying it's been marked complete
     .then(result => {
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
     .catch(error => console.error(error))
-
 })
 
 app.put('/markUnComplete', (request, response) => {
