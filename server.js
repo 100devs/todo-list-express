@@ -1,13 +1,22 @@
 const express = require('express')
+// Allowing the code to use express
 const app = express()
+// Simplify the express function into a variable
 const MongoClient = require('mongodb').MongoClient
+// Assign the database (MongoDB) to a variable
 const PORT = 2121
+// Providing a route (homepage) for our code to run
 require('dotenv').config()
+// Implement dotenv - used for private key for database and/or port#
 
 
 let db,
+    //Start assigning the variable to our database (db)
     dbConnectionStr = process.env.DB_STRING,
+    // Assigning the route to the db file password to allow access
     dbName = 'todo'
+    // todo is db name
+
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
