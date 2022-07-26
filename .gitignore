@@ -1,2 +1,8 @@
 node_modules
 .env
+#The modules are the files and code added to the file. For uploading and sizing purposes, we add node_modules to the 
+#.gitignore to eliminate these from our final, uploaded code
+
+#.env is the individual environment file where you contain variable that override others.
+#It also contains special codes and passwords that are needed but that you also do not want
+#to share with others

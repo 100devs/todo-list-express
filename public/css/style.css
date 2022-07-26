@@ -1,7 +1,10 @@
 h1{
     color: red;
 }
+/*h1 changes the color of the heading. In this case it's the title. */
 .completed{
     color: gray;
     text-decoration: line-through;
 }
+/*When an element is marked as completed, it assigns the class completed to it.
+In this case it will change its style to color gray and crossed out.*/
