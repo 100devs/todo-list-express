@@ -68,12 +68,12 @@ app.put('/markUnComplete', (request, response) => { //Update Operation to mark t
             completed: false //set completed
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, //set the sort order newest first
+        upsert: false //update the todo but if the todo does not exist, create it.
     })
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        console.log('Marked UnComplete') // record that a todo has been marked completed in the collection on the server
+        response.json('Marked UnComplete') //return a json as a response
     })
     .catch(error => console.error(error))
 
