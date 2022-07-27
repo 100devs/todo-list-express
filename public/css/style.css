@@ -1,7 +1,7 @@
 h1{
-    color: red;
+    color: red; /* assign a color property and value of red to the most important content on our pg */
 }
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray; /* for items that were assigned a class of completed, gray the color out */
+    text-decoration: line-through; /* cross out completed tasks to visualize they are finished */
 }
