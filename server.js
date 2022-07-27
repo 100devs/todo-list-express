@@ -11,17 +11,19 @@ const PORT = 2121
 //set up dotenv -- its a dependency that load environment variables from an .env file into a process.env so that you can hide away your sensitive variables 
 require('dotenv').config()
 
-
+//setup variables for your MONGO connection string and the database name
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
+// connect to the MONGO DB client 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+
+//setup ejs amd the public folder. The public folder contains all static content so that you can reference it easily
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
