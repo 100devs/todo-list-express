@@ -71,27 +71,31 @@ app.put('/markUnComplete', (request, response) => { //This route unclicks a thin
             completed: false //Undoes what we did with markComplete - changes "completed" status to "false"
           }
     },{
-        sort: {_id: -1}, //  
+        sort: {_id: -1}, //Once a thing has been marked as completed, this removes it from the to-do list
         upsert: false
     })
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        //Assuming that everything went okay and we got a result...
+        console.log('Marked Complete') //Console logged "Marked Complete"
+        response.json('Marked Complete') //Returns response of "Marked Complete" to the fetch im main.js
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //If something broke, an error is logged to the console
 
 })
 
 app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+    //DELETE
+    db.collection('todos') //Goes into your collection
+    .deleteOne({thing: request.body.itemFromJS}) //Uses deleteOne method and find a thing that matches the name of the thing you click on
+    .then(result => { //Assuming everything went okay...
+        console.log('Todo Deleted') //Console logged "Todo Deleted"
+        response.json('Todo Deleted') //Returns response of "Todo Deleted" to the fetch in main.js
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //If something broke, an error is logged to the console
 
 })
 
 app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+    //Tells our server to listen for connections on the PORT we defined as a constant earlier OR process.env.PORT will tell the server to listen on the port of the app
+    console.log(`Server running on port ${PORT}`) //Console log the port number or server is running on
 })
