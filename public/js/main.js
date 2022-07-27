@@ -1,8 +1,8 @@
 //select all elements that match the following classes /elements
 //trashcan
 const deleteBtn = document.querySelectorAll('.fa-trash');
-//the text of the thing changed to :not(.completed)
-const item = document.querySelectorAll('.item span:not(.completed)');
+//all items on the list
+const item = document.querySelectorAll('.item span');
 //completed items
 const itemCompleted = document.querySelectorAll('.item span.completed');
 
@@ -25,7 +25,7 @@ Array.from(itemCompleted).forEach((element)=>{
 //when we click on a trashcan:
 async function deleteItem(){
     //get the 'inner text' of the second child (index 1, the span) of the container 'parent node'
-    const itemText = this.parentNode.childNodes[1].innerText; //text of the stuff next to the trashcan we clicked on
+    const itemText = this.parentNode.childNodes[5].innerText; //text of the stuff next to the trashcan we clicked on
     try{ //see if this works:
         const response = await fetch('deleteItem', { //make a request to /deleteItem
             method: 'delete', //its a delete request
@@ -36,7 +36,7 @@ async function deleteItem(){
           });
         const data = await response.json(); //data is parsed json coming back from the server 
         console.log(data); //print the response out to the browser's console
-        location.reload(); //reload the page
+        location.reload() //reloads the page
 
     }catch(err){ //if the fetch fails:
         console.log(err); //console log fetch's error
@@ -46,7 +46,7 @@ async function deleteItem(){
 //when we click on the text of an uncompleted item:
 async function markComplete(){
     //get the 'inner text' of the second child (index 1, the span) of the container 'parent node'
-    const itemText = this.parentNode.childNodes[1].innerText;
+    const itemText = this.parentNode.childNodes[5].innerText;
     try{// lets see if this fetch works:
         //fetch => mycoolapp.com/markComplete
         const response = await fetch('markComplete', { //make a request /markComplete
@@ -58,7 +58,7 @@ async function markComplete(){
           });
         const data = await response.json(); //what did we get back from the fetch "Marked Complete"
         console.log(data); //log Marked Complete to the browser
-        location.reload(); //reload the browser
+        location.reload() //reloads the page
 
     }catch(err){ //if our fetch fails:
         console.log(err) //log fetch's error to the console
@@ -68,7 +68,7 @@ async function markComplete(){
 //when we click on the text of an completed item:
 async function markUnComplete(){
     //get the 'inner text' of the second child (index 1, the span) of the container 'parent node'
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[5].innerText
     try{ //see if this fetch works:
         const response = await fetch('markUnComplete', { //make request to markUnComplete
             method: 'put', //its a put method
@@ -79,7 +79,7 @@ async function markUnComplete(){
           })
         const data = await response.json() //get 'Marked Uncomplete' from server
         console.log(data)  //log Marked uncomplete to the browser
-        location.reload() //reload the browser
+        location.reload() //reloads the page
 
     }catch(err){ //if the fetch fails
         console.log(err) //log fetch's error to the console

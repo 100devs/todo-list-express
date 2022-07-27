@@ -6,3 +6,4 @@ h1{
     color: gray;
     text-decoration: line-through;
 }
+/* toggle class to strike through and gray out completed items */

@@ -43,7 +43,6 @@ app.get('/', async (request, response) => {
     const itemsLeft = await db.collection('todos').countDocuments({ completed: false });
     //responds using ejs template - passes todoItems and itemsLeft to the browser
     response.render('index.ejs', { items: todoItems, left: itemsLeft });
-
     //callback method example:
    
     /* db.collection('todos').find().toArray()
@@ -113,8 +112,8 @@ app.put('/markUnComplete', (request, response) => {
     // responds with marked complete JSON and console logs it as well
     .then(result => {
         //marked...uncomplete?
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        console.log('Marked UnComplete')
+        response.json('Marked UnComplete')
     })
 
     // logs error in to the console if we cant update the db
