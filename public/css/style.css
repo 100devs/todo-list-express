@@ -1,7 +1,8 @@
 h1{
-    color: red;
+    color: red; /*Changes font color to red for H1 in html*/
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+.completed{ /*For the class completed*/
+    color: gray; /*Changes font color to gray for in html*/
+    text-decoration: line-through; /*Makes a line through the word for completed*/
 }

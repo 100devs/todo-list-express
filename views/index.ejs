@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Tells browser it is a html document -->
+<html lang="en">  <!-- Tells the browser the language of the info-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8"> <!--Telling the browser the type of encoding to use-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--compatibility help for IE and Edge-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Sets viewport as the size of your screen-->
+    <title>Document</title> <!--Title of document-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--Set font-->
+    <link rel="stylesheet" href="css/style.css"> <!--CSS-->
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <h1>Todo List: </h1> <!--Most important header-->
+    <ul class="todoItems"> <!--This and below is to for loop and make a li for each item in the todo list-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,16 +23,16 @@
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--Items that are not completed-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--Add a to do-->
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!--Form to add a new item with a button-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--JS to add-->
 </body>
 </html>
