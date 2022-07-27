@@ -1,12 +1,12 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
+const deleteBtn = document.querySelectorAll('.fa-trash') // delete button
 const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const itemCompleted = document.querySelectorAll('.item span.completed') // completed
 
-Array.from(deleteBtn).forEach((element)=>{
+Array.from(deleteBtn).forEach((element)=>{ // goes through the array and deleted the to do that was clicked
     element.addEventListener('click', deleteItem)
 })
 
-Array.from(item).forEach((element)=>{
+Array.from(item).forEach((element)=>{ // goes through the array and makred the completed to do
     element.addEventListener('click', markComplete)
 })
 
