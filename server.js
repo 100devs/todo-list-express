@@ -6,7 +6,7 @@ const app = express()
 //Import MongoDB library 
 const MongoClient = require('mongodb').MongoClient
 //Assign local port number
-const PORT = 2121
+const PORT = 2150
 
 //Configure .env file, so that you can import secrets 
 require('dotenv').config()

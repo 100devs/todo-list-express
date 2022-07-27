@@ -23,7 +23,7 @@ Array.from(itemCompleted).forEach((element)=>{
 
 async function deleteItem(){
     //Get the text of the to-do item associated with this delete button
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.children[0].innerText
     try{
         //Make a fetch call to the /deleteItem route on the server and send the todo item text in the body of the request  
         const response = await fetch('deleteItem', {
@@ -51,7 +51,7 @@ async function deleteItem(){
 
 async function markComplete(){
     //Get the text of the to-do item
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.children[0].innerText
     try{
         //Make a fetch call to the /markComplete route on the server and send the todo item text in the body of the request  
         const response = await fetch('markComplete', {
@@ -79,7 +79,7 @@ async function markComplete(){
 
 async function markUnComplete(){
     //Get the text of the to-do item
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.children[0].innerText
     try{
         //Make a fetch call to the /markComplete route on the server and send the todo item text in the body of the request  
         const response = await fetch('markUnComplete', {
