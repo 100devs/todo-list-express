@@ -19,25 +19,33 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- unordered list with class of todoItems -->
     <ul class="todoItems">
+        <!-- iterates through items in an array -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- for each item, create an li with a class of item -->
         <li class="item">
+            <!-- if item.completed is true, apply the 'completed class' -->
             <% if(items[i].completed === true) {%>
+                <!-- create span with 'completed' class and item text -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- else if completed is false -->
             <% }else{ %>
+                <!-- create span with item text -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- span with trash can logo(used for deleteItem function) -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- how many items are left (property passed in from root)  -->
 
     <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+<!-- form to create a new todo item -->
+    <form action="/addTodo" method="POST"> <!-- goes to /addTodo route, method : POST -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- name referenced in post request.body.todoItem -->
         <input type="submit">
     </form>
     
