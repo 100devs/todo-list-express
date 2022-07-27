@@ -1,7 +1,7 @@
 h1{
-    color: red;
+     color: red; /* color before being completed */
 }
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray;    /* color after being completed */
+    text-decoration: line-through;  /* add line through after being completed */
 }
