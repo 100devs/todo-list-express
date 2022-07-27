@@ -1,0 +1,72 @@
+<!--COPY AND PASTE -->
+<!DOCTYPE html> <!--Set Doctype -->
+<html lang="en"> <!-- Set language to english for page-->
+<head>   
+    <!-- Define charset -->
+    <meta charset="UTF-8">
+    <!-- Some kinda craziness -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Viewport settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Document title -->
+    <title>Document</title>
+    <!-- Font awesome icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+     <!-- This is a stylesheet, woop de doo-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!DOCTYPE html> <!-- Tells browser to not enter quirks mode -->
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> <!-- Does title stuff in the tab thing -->
+</head>
+<body> 
+    <h1>Todo List: </h1>
+    <ul class="todoItems">
+    <!-- ejs FOR loop, loops through the items object which was passed in from server: response.render('index.ejs', { items: todoItems, left: itemsLeft }) -->
+
+    <!-- 
+        DO NOT ADD COMMENTS IN EJS FOR LOOP BLOCK BELOW. IF YOU DO, IT CHANGES THE 
+        ORDER OF THE CHILD NODES. BAD STUFF.
+        
+        WE WILL HUNT YOU DOWN. 
+
+        WE WILL FIND YOU.
+
+        AND WE WILL .... do nothing cause we are lazy     To Do: Add a period to this sentence.
+
+        But seriously, if you add a comment, the current code will no longer work, and thousands will be put out of their jobs. For all our sakes, just don't. Thanks ♥♥
+    -->
+    <% for(let i=0; i < items.length; i++) {%> 
+        <li class="item">
+            <% if(items[i].completed === true) {%>  
+                <span class='completed'><%= items[i].thing %></span> 
+            <% }else{ %>
+                <span><%= items[i].thing %></span>
+            <% } %>
+            <span class='fa fa-trash'></span>
+        </li>
+    <% } %>
+    <!-- End of Comment Ban. Feel free to comment below -->
+    <!-- FINALLY the comment embargo is over, I can finally get all these comments off my chest -->
+    <!-- Like this one -->
+    <!-- And this one, this one was particularly heavy.-->
+    </ul>
+
+    <h2>Left to do: <%= left %></h2> <!--Display left count number from the left property -->
+
+    <h2>Add A Todo:</h2>
+
+    <form action="/addTodo" method="POST"> <!-- allow to be able to add a new item from user input-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- the name is key, needs to match the param used in the get on the server-->
+        <input type="submit">
+    </form>
+    
+
+    <script src='js/main.js'></script>
+</body>
+</html>
