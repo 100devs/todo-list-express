@@ -134,6 +134,9 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+/*
+    Have server listen on port set in the PORT variable
+*/
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${PORT}: http://localhost:${PORT}`)
 })
