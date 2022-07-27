@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Font-awesome icons  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,30 +19,43 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- A header aligned left  -->
     <h1>Todo List: </h1>
+    <!-- An unordered list with .todoItems class -->
     <ul class="todoItems">
+    <!-- A for loop, Initializing at 0, Stopping at array.length and incrementing once each iteartion  -->
+    <!-- % represents variable  -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- LI elements with item class -->
         <li class="item">
+            <!-- The item class is an array -->
+            <!-- Elements in the array with a class of .completed, have a line striked through it. -->
+            <!-- A conditional checking if elements have the .completed class -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- M.A - We are accessing an object, like we used to get in return of a fetch statement, its name is items, we are accessing the ith element of it & its .thing property -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- A font-awesome special character shaped as a trashbin -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- A heading displaying the result -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- A heading describing the form inputs -->
     <h2>Add A Todo:</h2>
-
+    <!-- Initilizing a form 
+    Action attribute - Processes the form submission.
+    Method attribute - The HTTP method to submit the form with. -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <!-- A single text field with text appearing in the input and a name for the form control. -->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!-- A submit input -->
+            <input type="submit">
+        </form>
+        <script src='main.js'></script>
+    </body>
+    </html>

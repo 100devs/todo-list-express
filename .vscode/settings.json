@@ -1,3 +1,5 @@
+// An object with key-value pairs.
+// The values effect the font-size of VSC.
 {
     "editor.fontSize": 42,
     "terminal.integrated.fontSize": 62
