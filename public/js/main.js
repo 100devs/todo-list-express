@@ -1,7 +1,9 @@
+// variables converted from css classes to let us press buttons
 const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+// array creation for all three variables
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
@@ -14,6 +16,7 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+// delete takes the item off the array
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -33,6 +36,7 @@ async function deleteItem(){
     }
 }
 
+// marks the item complete
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -52,6 +56,7 @@ async function markComplete(){
     }
 }
 
+// marks the item uncomplete
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
