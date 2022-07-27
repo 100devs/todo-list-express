@@ -1,12 +1,19 @@
+// Import express module
 const express = require('express')
+// Set express as app variable
 const app = express()
+// Import mongoDB module
 const MongoClient = require('mongodb').MongoClient
+// Set PORT for development
 const PORT = 2121
+// Import dotenv module to allow environment variables
 require('dotenv').config()
 
-
+// Declare empty variable db
 let db,
+    // Declare and assign MonogoDB url string to connect to remote DB
     dbConnectionStr = process.env.DB_STRING,
+    // Set remote databse name as todo
     dbName = 'todo'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
