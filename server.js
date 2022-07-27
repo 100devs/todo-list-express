@@ -1,7 +1,14 @@
+//setup express
 const express = require('express')
 const app = express()
+
+//set up MONGODB Client methods
 const MongoClient = require('mongodb').MongoClient
+
+//setup PORT
 const PORT = 2121
+
+//set up dotenv -- its a dependency that load environment variables from an .env file into a process.env so that you can hide away your sensitive variables 
 require('dotenv').config()
 
 
