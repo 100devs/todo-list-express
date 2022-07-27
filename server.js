@@ -98,6 +98,6 @@ app.delete('/deleteItem', (request, response) => { // delete request
 
 
 app.listen(process.env.PORT || PORT, () => { // listens for local port or environment port
-    console.log(`Server running on port ${PORT}`) // SERVER IS RUNNING, BETTER GO CATCH IT
+    console.log(`Server running on port ${PORT}`) // SERVER IS RUNNING, BETTER GO  CATCH IT
 }) 
 // 

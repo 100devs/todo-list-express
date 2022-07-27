@@ -68,7 +68,7 @@ async function markUnComplete(){  // function to mark item as complete
         console.log(data)  // logs data to console
         location.reload()  //reload window to re render items. Item clicked will be now marked as complete (class applied via EJS)
 
-    }catch(err){ // catch error
+    }catch(err){ // catch  error
         console.log(err)
     }
 }
