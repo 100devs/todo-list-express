@@ -19,29 +19,38 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- this unordered list will be our todo items -->
     <ul class="todoItems">
+    <!-- this will iterate over the items in the todo list -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- this li will be an item on our todo list -->
         <li class="item">
+            <!-- this is a conditional that will check to see if the item is marked as completed -->
             <% if(items[i].completed === true) {%>
+                <!-- the items that meet the condition will then have the span class changed to 'completed' -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- items that do not meet the condition will not have the class of 'completed' -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- this will be our trash can icon to delete todo items -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- this will be for our todo items that are left uncompleted -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- this from uses the post method which will allow the user to add a new todo item to their list -->
     <form action="/addTodo" method="POST">
+        <!-- the input will be text and have the following placeholder -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- this will be a submit button to allow the user to submit their request -->
         <input type="submit">
     </form>
     
-
+    <!-- this conects our index.ejs to our main.js file -->
     <script src='js/main.js'></script>
 </body>
 </html>
