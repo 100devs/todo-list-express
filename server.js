@@ -1,5 +1,9 @@
+// NodeJS provides the require function, which loads modules. Express is the name of the module.
 const express = require('express')
+// Calls the express function & puts new Express application inside the app variable 
+// App is a newly created object and express() is like a class.
 const app = express()
+
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
