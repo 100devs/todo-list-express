@@ -20,11 +20,18 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    
+    <!-- Using EJS, loops through all the documents in the mongoDB sent via the response.render from the GET request  -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- Conditional: if the document has the 'completed' key value of true -->
             <% if(items[i].completed === true) {%>
+                <!-- Return the item with the class 'completed' (displays a strikethrough) -->
                 <span class='completed'><%= items[i].thing %></span>
+
+            <!-- Conditional: Else - if the document is 'uncompleted' -->
             <% }else{ %>
+                <!-- Return the item with no class (does not display a strikethrough) -->
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
@@ -32,12 +39,15 @@
     <% } %>
     </ul>
 
+    <!-- Using EJS, displays the count of all 'uncompleted' documents from the .countDocuments method sent via the response.render from the GET request -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- The Form connects to server.js via the action (path) "/addTodo" and performs a POST (create) request on submit-->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- The input has a name of "todoItem" which is used to access the item from server.js (request.body.todoItem) -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> 
         <input type="submit">
     </form>
     
