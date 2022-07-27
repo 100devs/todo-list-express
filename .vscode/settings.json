@@ -1,4 +1,4 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "editor.fontSize": 42,  //workspace font size set by Leon for streaming. Reset to lower number (16) for personal workspace
+    "terminal.integrated.fontSize": 62  //terminal font size set by Leon for streaming. Reset to lower number (16) for personal workspace
 }
