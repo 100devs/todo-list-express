@@ -1,14 +1,23 @@
+<!-- Basic HTML Boiler plate-->
 <!DOCTYPE html>
+<!-- Sets the language to english-->
 <html lang="en">
 <head>
+<!-- Sets the character set to UTF-8 -->
     <meta charset="UTF-8">
+<!-- Deals with Internet Explorer users -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Handles the fact that some mobile devices will lie about their actual width and scale, this resets those values -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Populates the tab of the viewer client with a title -->
     <title>Document</title>
+<!-- Pulls in the font-awesome library remotely (as cdn) and specifies to use the minified version-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- Links to the developer created stylesheet in our public folder -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- This looks like a duplication error as it replicates the above boilerplate -->
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,31 +26,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- Begins the user viewable content -->
 <body>
+<!-- Sets the main title for the page, there should be only one! -->
     <h1>Todo List: </h1>
+<!-- Creates an unordered list and gives it a class of todoItems -->
     <ul class="todoItems">
+<!-- Uses ejs to embed some javascript 
+The items array has been passed into our index.ejs by our server.js code 
+specifically this line 63 response.render('index.ejs', { items: todoItems, left: itemsLeft });
+here we are looping through the items array
+-->
     <% for(let i=0; i < items.length; i++) {%>
+<!-- Create a list item, with class name item -->
         <li class="item">
+<!-- More javascript, if the item at index i has a completed property of true -->
             <% if(items[i].completed === true) {%>
+<!-- Populate a span with class of complete with the Name of the item at index i Name = thing -->
                 <span class='completed'><%= items[i].thing %></span>
+<!-- If it doesn't have completed === true then do this thing-->
             <% }else{ %>
+<!-- Populate a span with with the Name of the item at index i Name = thing, no class name for this element -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+<!-- End our if / else conditionals-->
+            <% } %>   
+<!-- Add a span with the trash icon, indicating a user could delete this item --> 
             <span class='fa fa-trash'></span>
+<!-- Close the list item tag from above-->
         </li>
+<!-- Close the for loop from above -->
     <% } %>
+<!-- Close the unordered list from above -->
     </ul>
-
+<!-- Create a 2nd level heading and populate with the left variable 
+passed into the index.ejs file from our server.js file
+specifically this line 63 response.render('index.ejs', { items: todoItems, left: itemsLeft }); -->
     <h2>Left to do: <%= left %></h2>
 
+<!-- Create another 2nd level heading-->
     <h2>Add A Todo:</h2>
-
+<!-- Create a form that on submit (carriage return) sends the information from the subsequent input field in the body
+to the '/addToDo' route in server.js with the POST method-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
+<!-- Indicates the type of input as submit-->
         <input type="submit">
     </form>
     
-
+<!-- Links the main.js file from our public folder-->
     <script src='js/main.js'></script>
+<!-- Indicates the end of our body and html elements from above-->
 </body>
 </html>

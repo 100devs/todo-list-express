@@ -1,2 +1,3 @@
+// tells git ignore to ignore the following places or files when committing to the repo (both local and remote)
 node_modules
 .env
