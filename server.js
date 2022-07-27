@@ -98,7 +98,8 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
-
+//DELETE
+//Deletes an item when a click event is triggered which triggers the deleteItem() function. This function will send the item in question to this express function so that the database knows which todo item to delete. We use the deleteOne method to delete the function. 
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
