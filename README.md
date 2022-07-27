@@ -16,8 +16,8 @@ Getting Started
 
 ----------------------
 Running the App 
-(Note: This technically isn't part of the assignment, but I'd like to get it working if possible...)
 ----------------------
+(Note: This technically isn't part of the assignment, but I'd like to get it working if possible...)
 1. README says to: run "npm install" - run this command from the terminal, while in your repository folder
 
 2. README says to: add DB_STRING to .env file - create a file called ".env", where you need to add the DB_STRING from MongoDB. 
