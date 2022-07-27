@@ -8,7 +8,7 @@ const PORT = 2121
 //Requires the server to use env and configures it.
 require('dotenv').config()
 
-
+//storing our database connection in a variable? 
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
@@ -45,7 +45,7 @@ HTML and that is how we can see the objects on the client side. */
 //Create part of CRUD. Runs after it hears the /addTodo form action in the index.ejs 
 app.post('/addTodo', (request, response) => {
     //Goes to database and adds a new document to the todo collection. 
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //the request body comes from the form.
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //the request body comes from the form. The "thing" will be the new list item in the form of a document in our collection.
     .then(result => {
         console.log('Todo Added') // we can see in the console if adding the item from the form was successful.
         response.redirect('/') //respond with a refresh to trigger a new get which goes to our collection and shows the new document.
