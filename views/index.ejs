@@ -1,47 +1,63 @@
+<%# lets the text editor know what type of document language this is %>
 <!DOCTYPE html>
+<%#  lets the browser know the language of the document %>
 <html lang="en">
+    <%#  the head contains meta info for the page that the browser will use such as keywords, description, character encoding, the tab/window title, and also normally contains links to reference any stylesheets used %>
 <head>
+    <%#  tells the browser what type of character sets/encoding  to use %>
     <meta charset="UTF-8">
+    <%#  the http equivalent tells the browser which version of IE to render the site as. tag should be left off now unless on twitter bootstrap %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%#  tells the browser the width of the viewable content window should be the users device width, initial scale is set to 1  %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%#  sets the title of the window %>
     <title>Document</title>
+    <%#  links the font awesome cdn for using icons %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <%#  links the style.css stylesheet for use as page loads %>
     <link rel="stylesheet" href="css/style.css">
 </head>
+<%#  the main body of the document, this holds everything shown to the user %>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <%# an h1 containing the header for our list %>
     <h1>Todo List: </h1>
+    <%# an unorderd list holding our todo item %>
     <ul class="todoItems">
+    <%# this starts a for loop and loops over everything passed into ejs under the variable of items %>
     <% for(let i=0; i < items.length; i++) {%>
+        <%# a list item with class item %>
         <li class="item">
+            <%# checks if item is marked complete, if so the following html is rendered %>
             <% if(items[i].completed === true) {%>
+                <%# places a span with completed class and text containint the thing value of item i in the list %>
                 <span class='completed'><%= items[i].thing %></span>
+             <%# if the above is false then the span is placed without the class %>
             <% }else{ %>
+            <%# places span in list without the class of completed %>
                 <span><%= items[i].thing %></span>
+            <%# ends the js if else block %>
             <% } %>    
+            <%# places a font-awesome trash icon after the list item %>
             <span class='fa fa-trash'></span>
+        <%# ends the list %>
         </li>
+        <%# ends the for loop %>
     <% } %>
+    <%# ends the list %>
     </ul>
-
+    <%# header to show how many are left unmarked by the left value passed into ejs %>
     <h2>Left to do: <%= left %></h2>
-
+    <%# header for our form %>
     <h2>Add A Todo:</h2>
-
+    <%# form that routes to /addtodo with the post method for the request %>
     <form action="/addTodo" method="POST">
+        <%# text type input with a placeholder and the name sent in the body will be todoitem %>
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <%# button that sends the form and default behaviour is to refresh the page %>
         <input type="submit">
     </form>
     
-
+    <%# pulls the javascript file into the page after page is rendered %>
     <script src='js/main.js'></script>
 </body>
 </html>
