@@ -38,7 +38,7 @@ app.get('/',async (request, response)=>{ //app.get is the READ operation in CRUD
 })
 
 //CREATE
-app.post('/addTodo', (request, response) => { //addTodo route on the client side js. 
+app.post('/addTodo', (request, response) => { //addTodo route located in FORM input in the index.ejs file
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //gets whatever was typed into the input on the client side and inserts it into the db collection as a new object document
     .then(result => { //after insertion of new document, do this
         console.log('Todo Added') //confirms the db received the newly added document or object
@@ -66,7 +66,7 @@ app.put('/markComplete', (request, response) => { //markComplete is the route on
 })
 //UPDATE
 app.put('/markUnComplete', (request, response) => {//does another update like the above to show an incomplete status instead
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //itemFromJS is the property for the object
         $set: { //sets document completion to false
             completed: false
           }
