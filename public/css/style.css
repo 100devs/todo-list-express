@@ -1,7 +1,14 @@
+/* selector targeting h1(s) with specificity of 10 */
 h1{
+/* Set color of target to red */
     color: red;
+/* Closing bracket */
 }
+/* Target Class "completed" */
 .completed{
+    /* set color gray */
     color: gray;
+    /* makes text line-trough / struck out */
     text-decoration: line-through;
+    /* closing bracket */
 }

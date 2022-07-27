@@ -1,2 +1,4 @@
+# ignore node modules -- saves space / time
 node_modules
+# ignore .env with secrets
 .env

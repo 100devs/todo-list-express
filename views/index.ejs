@@ -1,47 +1,90 @@
+<!-- Set html document type -->
 <!DOCTYPE html>
+<!-- set language -->
 <html lang="en">
+    <!-- set head -->
 <head>
+    <!-- head character set/type -->
     <meta charset="UTF-8">
+    <!-- stuff for edge  -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- set viewport width to device width at scale of 1:1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title of document -->
     <title>Document</title>
+    <!-- link to style sheet for fonts from font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- set main CSS style sheet -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- closing notation -->
 </head>
+<!-- opening body tag? No closing tag.-->
 <body>
+    <!-- saying: "it's an html document, mr. browser"; possible error of double declaration with this IN THE BODY? -->
     <!DOCTYPE html>
+    <!-- set language; possible error of double declaration with it IN THE BODY? -->
 <html lang="en">
+    <!-- set langauge; possible error of double declaration with it IN THE BODY? No closing tag-->
+
 <head>
+    <!-- redeclaration of head in body?; possible error of double declaration with a head IN THE BODY? -->
     <meta charset="UTF-8">
+    <!-- setting characters again in the body?; possible error of double declaration with a head IN THE BODY? -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- stuff for edge again IN THE BODY?; possible error of double declaration with a head IN THE BODY? -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Setting viewport again IN THE BODY?; possible error of double declaration with a head IN THE BODY? -->
     <title>Document</title>
+    <!-- setting title again in the body?; possible error of double declaration with a head IN THE BODY? -->
 </head>
+<!-- closing notation for wrongly double declared head -->
 <body>
+    <!-- actual opening body tag -->
     <h1>Todo List: </h1>
+    <!-- h1 with heading for looped content -->
     <ul class="todoItems">
+        <!-- ul list opening tag class "todoItems" -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- ejs syntax for loop -->
         <li class="item">
+            <!-- li tag with class item -->
             <% if(items[i].completed === true) {%>
+                <!-- ejs syntax if statement conditional section -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- span with class completed and content of items[i].thing -->
             <% }else{ %>
+                <!-- if statement closing bracket and else statement  -->
                 <span><%= items[i].thing %></span>
+                <!-- span with ejs syntax content of items[i].thing -->
             <% } %>    
+            <!-- ejs closing bracket -->
             <span class='fa fa-trash'></span>
+            <!-- span with classes "fa" and 'fa-trash' -->
         </li>
+        <!-- li closing tag -->
     <% } %>
+    <!-- ejs closing bracket -->
     </ul>
+    <!-- ul closing bracket -->
 
     <h2>Left to do: <%= left %></h2>
-
+    <!-- h2 with ejs content from left passed to view -->
     <h2>Add A Todo:</h2>
+    <!-- h2 tag with heading -->
 
     <form action="/addTodo" method="POST">
+        <!-- opening form tag with action and method of post -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- form input field -->
         <input type="submit">
+        <!-- form submit input/button -->
     </form>
+    <!-- form closing tag -->
     
 
     <script src='js/main.js'></script>
+    <!-- script tag to link to main.js file -->
 </body>
+<!-- closing body tag -->
 </html>
+<!-- closing html tag -->

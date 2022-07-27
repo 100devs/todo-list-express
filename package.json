@@ -1,18 +1,36 @@
+//json package information object
 {
+  //name of project (set incorrectly)
   "name": "rap-name-api",
+  //version number
   "version": "1.0.0",
+  //blank descryption
   "description": "",
+  //default file for app, set incorrectly to index.js instead of server.js
   "main": "index.js",
+  //scripts for project/npm
   "scripts": {
+    //default test/echo script
     "test": "echo \"Error: no test specified\" && exit 1"
+    //closing bracket
   },
+  //author information (blank)
   "author": "",
+  //licnese
   "license": "ISC",
+  //dependencies sub-object
   "dependencies": {
+    //cors w/version
     "cors": "^2.8.5",
+    //dot-env w/version
     "dotenv": "^8.2.0",
+    //ejs w/version
     "ejs": "^3.1.6",
+    //express w/version
     "express": "^4.17.1",
+    //mongo-db w/version
     "mongodb": "^3.6.5"
+    //closing bracket
   }
+  //closing bracket
 }
