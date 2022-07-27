@@ -7,7 +7,7 @@ require('dotenv').config() //Requiring our dotenv folder so we can hide environm
 //Declaring db variable so less typing (currently empty), connect to our database "todo"
 let db,
     dbConnectionStr = process.env.DB_STRING, //accessing DB_STRING from our environment variable
-    dbName = 'todo'
+    dbName = 'todo' // assigning our database name to be held in a data bucket
 //
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //connect to database using string above, opt in for new version of MongoDB connection (stays active) for better performance
     .then(client => { //after connectiong -> do function
