@@ -1,4 +1,8 @@
+//VS CODE settings file (json object)
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    //sets editor font size
+    "editor.fontSize": 22,
+    //sets terminal font size
+    "terminal.integrated.fontSize": 16
+     //closing notation
 }
