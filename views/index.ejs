@@ -19,10 +19,11 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- Loop through the array of items we got from the database, For items with completed property set to true add a completed class else simply display the item -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> 
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <% if(items[i].completed === true) {%> 
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
@@ -36,7 +37,7 @@
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!-- on submitting this form will make a POST request  -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
