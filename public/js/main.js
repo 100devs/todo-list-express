@@ -1,3 +1,16 @@
+/**
+ * Name: Todo List Express
+ * Description: This app allows you to
+ *  - Create todo tasks and store them in MongoDB
+ *  - Read through a collection of todo tasks and render todos to DOM
+ *  - Update completed todos, display remaining amount of tasks
+ *  - Delete completed todos
+ * 
+ * Input a collection of todo tasks. For every completed task, click on the task, to indicate the task has been completed. To remove a task, click the trashcan icon. Increase your productivity by 10x by using Todo List Express.
+ * 
+ * @author Leon Noel, Brian Schnee, Erika Teal, Bianca Togonon, Alondra Mora, Lucas Winkler, Alyssha Lewin, Jacob Asper, Dana Lee, Brenden D'Souza, Sebastian Ospina, Jesse Ranon, Alexis Aguilar, Pree 
+ */
+
 // select each element with class ".fa-trash"
 const deleteBtn = document.querySelectorAll('.fa-trash')
 // select each span within an element with class ".item"
