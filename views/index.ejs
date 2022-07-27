@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1>Todo List: </h1>
+        <ul class="todoItems">
+            <!-- A list item is generated for each item in the array of data retrieved from the database -->
+            <% for(let i=0; i < items.length; i++) {%>
+            <li class="item">
+                <!-- For each item, if the value of the "completed" field is true, the item is assigned the class of "completed," which -- if you look at the css file -- changes its color and text decoration. -->
+                <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+                <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+                <% } %>
+                <span class='fa fa-trash'></span>
+            </li>
+            <% } %>
+        </ul>
 
-    <h2>Left to do: <%= left %></h2>
+        <!-- Here EJS inserts the value that was the result of the "how many documents in this collection have "completed === false"?  query  -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
+        <!-- Here we have the form that allows us to submit a new item.  The when the submit button is activated, the client will make a POST request to "/addToDo".  The user input will be attached to the request.body object, as the value of the key "todoItem"  -->
+        <form action="/addTodo" method="POST">
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <input type="submit">
+        </form>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <script src='js/main.js'></script>
+    </body>
+
+    </html>
