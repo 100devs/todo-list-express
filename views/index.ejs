@@ -1,27 +1,32 @@
+<!--declared the file type as html-->
 <!DOCTYPE html>
+<!-- declared the langeuage as englishe-->
 <html lang="en">
+<!--head tag used for holding meta data, links to style sheets, cdn's-->
 <head>
+    <!-- text encoding-->
     <meta charset="UTF-8">
+    <!--http header for content attribute-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- defined viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title in tab of doc-->
     <title>Document</title>
+    <!-- cdn link to font awesom-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- references our style sheet-->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- body tag hold page content-->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- todo list header-->
     <h1>Todo List: </h1>
+    <!-- unordered list of todoitems-->
     <ul class="todoItems">
+    <!--ejs tag to loop over items in array -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- sets the items into the page, if array item marked complete style with class completed else dont-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -32,16 +37,18 @@
     <% } %>
     </ul>
 
+    <!-- shows the items left from db left uncompleted-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- form that hits the todo route and makes post request to add item to db-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!-- refernces the main.js file in publics folder-->
     <script src='js/main.js'></script>
 </body>
 </html>
