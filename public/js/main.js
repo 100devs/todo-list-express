@@ -34,7 +34,9 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    //this is the function that UPDATES 
     const itemText = this.parentNode.childNodes[1].innerText
+    //this 
     try{
         const response = await fetch('markComplete', {
             method: 'put',
