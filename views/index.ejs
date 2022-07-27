@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!DOCTYPE html> <!-- Notify the browser that the following document is in HTML -->
+<html lang="en"> <!-- The language is English -->
+<head> <!-- Begin information about the HTML document -->
+    <meta charset="UTF-8"> <!-- Define the encoding scheme used in the document -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Tells Microsoft browsers what version of IE to display the content for. edge is the most current version possible -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configure the viewport to equal the width of the device at 100% zoom -->
+    <title>Document</title> <!-- The title displayed in the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Pull a minified Font Awesome stylesheet from the Cloudflare CDN -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Reference the included stylesheet for styling -->
+</head> <!-- End information about the HTML document -->
+<!-- Included accidentally? -->
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +17,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+</head> -->
+<!-- End Included accidentally? -->
+<body> <!-- The main section of an HTML document -->
+    <h1>Todo List: </h1> <!-- Title for the app -->
+    <ul class="todoItems"> <!-- An unordered list -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Render each item of the items variable passed in the server's response to the client's GET request until there are no more items -->
+        <li class="item"> <!-- Begin the list item -->
+            <% if(items[i].completed === true) {%> <!-- If the item being rendered has the completed property with a true value, give it the class "completed"-->
+                <span class='completed'><%= items[i].thing %></span> <!-- Show the item description inside the span -->
+            <% }else{ %> <!-- If the item being rendered does not have the completed property with a true value -->
+                <span><%= items[i].thing %></span> <!-- Render the description without the extra class to format it -->
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span class='fa fa-trash'></span> <!-- A font awesome trashcan icon -->
+        </li> <!-- End of the list item -->
+    <% } %> <!-- Close the for loop -->
+    </ul> <!-- End unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Show the number of todo items with complete set to false, which is returned from the initial GET request to the server -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Secondary title -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- When submit is clicked, send a post request to the URL/addTodo. -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Text field in the body of the request containing todoItem: [user text] -->
+        <input type="submit"> <!-- Send the request -->
+    </form> <!-- End of form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- Apply scripts to this HTML document -->
+</body> <!-- End of the body -->
+</html> <!-- End of the HTML document -->
