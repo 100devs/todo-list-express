@@ -20,11 +20,15 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- //for loop to dynamically create li for db items -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- //if db item also has completed set to true -->
             <% if(items[i].completed === true) {%>
+                <!-- add completed to this span class and display item from db -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- display just item from db -->
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
@@ -35,7 +39,8 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- creating form to send input directly over to server -->
+    <!-- sending it to route /addTodo method is post so this is a create or edit -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
