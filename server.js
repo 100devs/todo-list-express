@@ -1,7 +1,7 @@
 const express = require('express')
-//declare a variable that requires the express 
+//Require the express module and assign it to a variable 
 const app = express()
-//delcare a variable that holds the express module for ease of use later
+//Calls the express function "express()" and puts new express application inside the 'app' variable
 const MongoClient = require('mongodb').MongoClient
 //declaring and assigning the Mongo node.js package to a variable 
 const PORT = 2121
@@ -13,16 +13,16 @@ require('dotenv').config()
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
-    //declare a set of variables that will be used for our connection to our database
+    //declare a set of variables that will be used by MongoClient for our connection to our database
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    //MongoClient.connect() is an async function call takes dbConnectionStr as an argument to access the right database
+    //MongoClient.connect() is an async function call that takes dbConnectionStr as an argument to access the right database
     .then(client => {
-    //.then() is called after the async function; 
+    //.then() is called after the async function .connect is fulfilled; 
         console.log(`Connected to ${dbName} Database`)
-        //We are connected!
+        //..console log we are connected
         db = client.db(dbName)
-        //client contains the connection credentials, which contains the giant db object/collections
+        //client contains the connection credentials, which contains the giant db object/collections, and here we are assigning it to the previously declared db variable. Later on we can access the target mongo collection by appending db.collection(dbName)
     })
     
 
@@ -34,17 +34,18 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 //Makes URL handling easier
 app.use(express.json())
-//makes syre tgat responses are in json format
+//makes sure that responses are in json format
+//.urlencoded and .json() ensure that only request made in the correct format are accepted. In this app, the main.js specifies the content-type to be 'application/json'
 
 //CRUD METHODS
 
 //Read Method (READ THE TODO LIST)
 app.get('/', async (request, response)=>{
-    //when you have a request at the root, call this async callback
+    //when you have a request at the root, call this async callback with (req,res)
     const todoItems = await db.collection('todos').find().toArray()
-    // declaring a variable that fetches the 'todos' collection from our db; .find() returns ALL (when no params) in the collection , and then put's it all in an array
+    // declaring a variable that fetches the 'todos' collection from our db; .find() returns ALL (when no params) in the collection , and then formats it all in an array
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    //countDocuments is a mongodb module which counts the objects in the 'todos' collection, in this case we are only adding them if they are 'false'(counts the documents in the collection that are not completed)
+    //countDocuments is a mongodb module which counts the objects in the 'todos' collection, in this case we are only adding them if their completed property is set to 'false'(counts the documents in the collection that are not completed)
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) //tells express to render the response as EJS
 
 
@@ -63,8 +64,8 @@ app.get('/', async (request, response)=>{
 app.post('/addTodo', (request, response) => {
     //a request at the 'addTodo' path, fires this callback (express methods are promise based)
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    // grabs the 'todos' collection and adds the users request to a document in the collection 
-    .then(result => { //the .then fires after the 
+    // grabs the 'todos' collection and adds the users request to a document in the collection (inserts one)
+    .then(result => { //the .then fires after the promise resolves
         console.log('Todo Added')
         response.redirect('/')
         //refreshes/redirects back to the root
@@ -82,6 +83,7 @@ app.put('/markComplete', (request, response) => {
         $set: {
             completed: true
           }
+          //tell mongo to change this ('set' it)
     },{
         sort: {_id: -1}, //sort the collection by ID, from most recent(?)
         upsert: false //mongo stuff (does not upsert in this case)
@@ -96,9 +98,9 @@ app.put('/markComplete', (request, response) => {
 
 //updating an item to be 'incomplete'
 app.put('/markUnComplete', (request, response) => {
-    //when the path change to ^that....
+    //an async function in the main.js changes our path to '/markUnComplete'...
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        //..we take out the 'todos' collection from our database, and update that ^
+        //..we take out the 'todos' collection from our database, and update the matching object
         $set: {
             completed: false
           }
@@ -106,7 +108,7 @@ app.put('/markUnComplete', (request, response) => {
     },{
         sort: {_id: -1},
         upsert: false
-        //mong stuff
+        //mongo stuff
     })
     .then(result => {
         console.log('Marked Un-omplete')
@@ -119,6 +121,7 @@ app.put('/markUnComplete', (request, response) => {
 
 //DELETE request, fires the callback that tells mongo to look for the item in the request body
 app.delete('/deleteItem', (request, response) => {
+    //take the todos collection, and delete the json object that matches the request specifications
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
         console.log('Todo Deleted')
