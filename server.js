@@ -35,10 +35,13 @@ app.use(express.urlencoded({ extended: true }))
 // Middleware to parse incoming payloads to the server as JSON
 app.use(express.json())
 
-
+// Handling get request on the base route
 app.get('/',async (request, response)=>{
+    // Getting all documents from the todos collection and assigning them to a variable as an array
     const todoItems = await db.collection('todos').find().toArray()
+    // Getting the number of documents from the todos collection which have been marked completed false
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    // Pass in the above variables to the EJS engine to be render into HTML files for the client.
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {
