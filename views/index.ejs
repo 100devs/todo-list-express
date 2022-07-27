@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--link to font awesome icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--link to stylesheet-->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,6 +22,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!--loops through items array and if the completed status of the item is true, then a class of completed is added else the class isn't added-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -31,17 +34,17 @@
         </li>
     <% } %>
     </ul>
-
+    <!--grabs items that are left to do-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!--form to add todo to the list, linked to addTodo route-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!--link to javascript file-->
     <script src='js/main.js'></script>
 </body>
 </html>
