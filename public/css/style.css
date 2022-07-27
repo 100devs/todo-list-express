@@ -1,7 +1,7 @@
-h1{
-    color: red;
+h1{ /*targeting the h1 only */
+    color: red; /* color of the h1 to red*/
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed{ /*targeting any element with class of 'completed' only */
+    color: gray; /* color of the element with class of complted to gray*/
+    text-decoration: line-through; /*element with class of completed has a line through it now*/
 }

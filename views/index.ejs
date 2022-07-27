@@ -1,28 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+<!DOCTYPE html> <!-- Declared the language -->
+<html lang="en"> <!-- set to english -->
+<head> <!-- start of head, is invisible on actual page -->
+    <meta charset="UTF-8"> <!-- define charset -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--http compatibility? -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- viewport settings -->
+    <title>Document</title> <!-- title of the doc (not changed)-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--font awesome icons imported -->
+    <link rel="stylesheet" href="css/style.css"> <!-- importing styles from our css file-->
+</head> <!-- end of head -->
+<body> <!-- start of body, so will render-->
+    <!DOCTYPE html> <!-- tells browser the correct mode-->
+<html lang="en"> <!--english language -->
+<head> <!-- start of head, is invisible on actual page -->
+    <meta charset="UTF-8"> <!-- define charset --> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--http compatibility? -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- viewport settings -->
+    <title>Document</title> <!-- title of the doc (not changed)-->
+</head> <!-- end of head -->
+<body> <!-- real start of body? previous one never closes-->
+    <h1>Todo List: </h1> <!-- most important thing on page -->
+    <ul class="todoItems"> <!-- unordered list with class of todoItems -->
+    <!-- <% for(let i=0; i < items.length; i++) {%>  ejs loop, loops for as many items as are in the 'items' array 
+        <li class="item">  every loop, creates a list item with class of 'item' 
+            <% if(items[i].completed === true) {%> if the item has the property of completed with value of true 
+                <span class='completed'><%= items[i].thing %></span> makes a span under the li that has class of completed  
+            <% }else{ %> if it doesnt have complted as true
+                <span><%= items[i].thing %></span> it doesnt get the class completed
+            <% } %>    
+            <span class='fa fa-trash'></span> creates a trash button inside of a span using the font awesome icon
+        </li>
+    <% } %> -->
+    <!-- adding comments breaks loop, so copied loop and commented out it above, uncommented loop is below... bit worrying that some of it doesnt look like it commented out-->
+    <% for(let i=0; i < items.length; i++) {%> 
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <% if(items[i].completed === true) {%> 
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
@@ -30,18 +41,18 @@
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
-    </ul>
+    </ul> <!-- end of list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- display the number of tasks left from the 'left' property, h2 so not first priority on page-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- h2, so not the priority of page -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- create a form with the action of addTodo using a post method, so adding content to page -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- creates am input box that receives text, has a placeholder that says "thing to do" and has name of todoItem -->
+        <input type="submit"> <!-- adds a submit button?  -->
+    </form> <!-- end of form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- loads scripts from our main.js file -->
+</body> <!-- end of body -->
+</html> <!-- end of html -->
