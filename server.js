@@ -59,6 +59,9 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+//UPDATE
+//updates the todo item based on a clickevent on the main page. This triggers a function that sends 'itemFromJS' to the database.  Based on this, the database knows which item to update to completed.
+//sort -1 will sort it backwards. 
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -76,6 +79,8 @@ app.put('/markComplete', (request, response) => {
 
 })
 
+//UPDATE
+//same as above but instead of marking something as complete, we are marking as incomplete. Same logic as above
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -92,6 +97,7 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
+
 
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
