@@ -1,3 +1,4 @@
+// Client Side server to make the requests
 // Targetting (selecting) all elements in DOM with class '.fa-trash', ; '.item span', '.item span.completed'
 const deleteBtn = document.querySelectorAll('.fa-trash');
 const item = document.querySelectorAll('.fa-check');
@@ -20,7 +21,7 @@ Array.from(itemCompleted).forEach((element) => {
 
 // Async function to delete the item it finds in the parentNode that matches the item we are deleting
 async function deleteItem() {
-  const itemText = this.parentNode.children[0].innerText;
+  const itemText = this.parentNode.children[0].innerText.trim();
   try {
     const response = await fetch('deleteItem', {
       method: 'delete',
@@ -42,7 +43,7 @@ async function deleteItem() {
 
 // Function to mark todo item complete
 async function markComplete() {
-  const itemText = this.parentNode.children[0].innerText;
+  const itemText = this.parentNode.children[0].innerText.trim();
   console.log(itemText);
   try {
     const response = await fetch('markComplete', {
@@ -63,7 +64,7 @@ async function markComplete() {
 
 // Async function to mark a completed todo item as incomplete (unstrike it)
 async function markUnComplete() {
-  const itemText = this.parentNode.children[0].innerText;
+  const itemText = this.parentNode.children[0].innerText.trim();
   try {
     const response = await fetch('markUnComplete', {
       method: 'put',

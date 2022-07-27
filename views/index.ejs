@@ -20,10 +20,10 @@
       <li class="item">
         <!-- IF item is completed, create a paragraph with class of 'completed' -->
         <% if(items[i].completed === true) {%>
-        <p class="completed"><%= items[i].thing %></p>
+        <span class="completed"><%= items[i].thing %></span>
         <% }else{ %>
         <!-- ELSE, just create the item with no class -->
-        <p><%= items[i].thing %></p>
+        <span><%= items[i].thing %></span>
         <% } %>
         <!-- Create a span that uses fontawesome trashcan -->
         <span class="fa fa-check"></span>

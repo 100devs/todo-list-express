@@ -1,3 +1,4 @@
+// Server side code to handle requests
 // Tools to be used:
 const express = require('express'); // Requiring Express
 // To make it easier to use, we assign to a variable
@@ -51,7 +52,7 @@ app.post('/addTodo', (request, response) => {
   // hitting the todo collection
   // Add an item inside
   db.collection('todos')
-    .insertOne({ thing: request.body.todoItem, completed: false }) // Adds the todo item with the status of false
+    .insertOne({ thing: request.body.todoItem.trim(), completed: false }) // Adds the todo item with the completed property set to false
     // Console loggin that the todo list item was added, then telling client to refresh the page to home '/'
     .then((result) => {
       console.log('Todo Added');
@@ -71,10 +72,8 @@ app.put('/markComplete', (request, response) => {
         },
       },
       {
-        // Sorting by oldest first
-        sort: { _id: -1 },
-        // If the document does not exist, don't create a new one
-        upsert: false,
+        sort: { _id: -1 }, // Sortin in descending order (-1 descending, 1 ascending, 0 no order)
+        upsert: false, // If the document does not exist, don't create a new one
       }
     )
     // if it works, console log Marked Complete
