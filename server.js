@@ -1,4 +1,4 @@
-//Workaround for running in Glitch.com terminal
+//Workaround for running in Glitch.com terminal 
 
 // var util= require('util');
 // var encoder = new util.TextEncoder('utf-8');
