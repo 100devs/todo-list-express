@@ -1,7 +1,10 @@
 h1{
+    /*  changes text color for header 1 to red */
     color: red;
 }
 .completed{
+    /* changes the text for the class 'completed' to gray */
     color: gray;
+    /* this creates a strike though for the text, once the task on the to-do list is completed*/
     text-decoration: line-through;
 }
