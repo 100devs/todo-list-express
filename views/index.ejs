@@ -9,34 +9,32 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <!-- for loop to iterate through each todo item  -->
+    <% for(let i=0; i < items.length; i++) {%> 
+        <!-- for each item create a span with a class of item -->
         <li class="item">
+            <!-- if item.completed is true apply completed class -->
             <% if(items[i].completed === true) {%>
+                create span with completed class 
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>   
+            <!-- add trashcan/delete button to each span  -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- how many items are left in our list that ar unComplete -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form to create a new todo item -->
+    <!-- goes to add todo route with post method -->
     <form action="/addTodo" method="POST">
+    <!-- name referenced in post req.body.todoitem -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
