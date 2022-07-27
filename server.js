@@ -18,8 +18,9 @@ let db,
 MongoClient.connect(dbConnectionStr, {
         useUnifiedTopology: true
     })
-    .then(client => { //once client info is returned from initial connection, we will log to console that we are connected and assign db to this specific db/collection
+    .then(client => { //once connection is established, which returns client info, we will log to console that we are connected and assign db to this specific db/collection
         console.log(`Connected to ${dbName} Database`)
+        console.log(`The following client info was returned on connection: ${client.json()}`)
         db = client.db(dbName)
     })
 
@@ -42,6 +43,9 @@ app.get('/', async (request, response) => {
         items: todoItems,
         left: itemsLeft
     })
+    /* 
+        How to handle request without using express 
+    */
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -52,6 +56,9 @@ app.get('/', async (request, response) => {
     // .catch(error => console.error(error))
 })
 
+/*
+    Handle requests to /addTodo
+*/
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({
             thing: request.body.todoItem,
@@ -64,6 +71,9 @@ app.post('/addTodo', (request, response) => {
         .catch(error => console.error(error))
 })
 
+/*
+    Handle requests to /markComplete
+*/
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({
             thing: request.body.itemFromJS
@@ -85,6 +95,9 @@ app.put('/markComplete', (request, response) => {
 
 })
 
+/*
+    Handle requests to /markUnComplete
+*/
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({
             thing: request.body.itemFromJS
@@ -106,6 +119,9 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+/*
+    Handle requests to /deleteItem
+*/
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({
             thing: request.body.itemFromJS
