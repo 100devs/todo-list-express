@@ -1,20 +1,20 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
+const deleteBtn = document.querySelectorAll('.fa-trash') //Declare variables so we can interact with the ejs/html later
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
-Array.from(deleteBtn).forEach((element)=>{
+Array.from(deleteBtn).forEach((element)=>{ //Makes a event listener for each item to be deleted
     element.addEventListener('click', deleteItem)
 })
 
-Array.from(item).forEach((element)=>{
+Array.from(item).forEach((element)=>{ //Makes a event listener to mark as complete
     element.addEventListener('click', markComplete)
 })
 
-Array.from(itemCompleted).forEach((element)=>{
+Array.from(itemCompleted).forEach((element)=>{ //Makes a event listener to mark as uncomplete
     element.addEventListener('click', markUnComplete)
 })
 
-async function deleteItem(){
+async function deleteItem(){ //When changed on the ejs file, tells the server waht to delete, logs data, and then reloads the page once we get a response from the server
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
@@ -33,7 +33,7 @@ async function deleteItem(){
     }
 }
 
-async function markComplete(){
+async function markComplete(){ //Sends the info from the innerText event listener to the server to update an item as completed and gets a response from the server
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('markComplete', {
@@ -52,7 +52,7 @@ async function markComplete(){
     }
 }
 
-async function markUnComplete(){
+async function markUnComplete(){ //same thing as above, but for marking as not completed
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('markUnComplete', {
