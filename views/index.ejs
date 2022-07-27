@@ -18,26 +18,26 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+    <h1>Todo List: </h1> 
+    <ul class="todoItems"> <!--creating an ul with the class of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%> <!--Initializing a for loop that cicles through the items array-->
+        <li class="item"> <!-- for each item, create an li with a class of item -->
+            <% if(items[i].completed === true) {%> <!-- if item.completed === true create an element span with the completed class and the item.thing in it -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!--else create an span with the item.thing in it-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span>  <!--creates an element span with the class of fa fa-trash (trash icon) -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--how many items are left (prop passed in from root route '/')-->
 
     <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <!--form to create a new todo item-->
+    <form action="/addTodo" method="POST">  <!--goes to /addTodo route, method : POST-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--name referenced in post req.body.todoItem-->
         <input type="submit">
     </form>
     
