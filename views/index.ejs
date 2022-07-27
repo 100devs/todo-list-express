@@ -20,19 +20,19 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%>        <!---Looping through the collection where the todos are located-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%>     <!---If the todos (documents) completed property value is true-->
+                <span class='completed'><%= items[i].thing %></span>   <!--The todo in question gets rendered with the class 'completed' which we play around with in main.js-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
+                <span><%= items[i].thing %></span>     <!--Otherwise it will render the todo in question without the class 'completed' and we'll know it ain't completed-->
+            <% } %>        <!--Nothing new here just closing the else statement-->
             <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+    <% } %>    <!--Closing the for loop  code block-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2>   <!--Renders the number of incomplete (uncompleted ahahaha) todos the left property assigned serverside using mongo's countDocuments method -->
 
     <h2>Add A Todo:</h2>
 
