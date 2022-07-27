@@ -15,13 +15,13 @@ Array.from(itemCompleted).forEach((element)=>{
 })
 
 async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[1].innerText // gets text from todo item 
     try{
-        const response = await fetch('deleteItem', {
-            method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              'itemFromJS': itemText
+        const response = await fetch('deleteItem', { // sends request to deleteItem route (deletes todo item)
+            method: 'delete', // sends delete request
+            headers: {'Content-Type': 'application/json'}, // sets content type to json
+            body: JSON.stringify({ // sends body with item text to delete item from database
+              'itemFromJS': itemText // sends item text to delete item
             })
           })
         const data = await response.json()

@@ -35,9 +35,10 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- action attribute must match route in the post request -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- name attribute attribute must match request.body property in post request -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> 
         <input type="submit">
     </form>
     
