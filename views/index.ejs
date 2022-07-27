@@ -19,23 +19,29 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+
     <ul class="todoItems">
+        //ejs is used to dynamically render info from the DB and incorporate it into the page. 
     <% for(let i=0; i < items.length; i++) {%>
+        //items is from server, items.length is how many items in the todo list from the db, you're going to run the loop for as many items on the list
         <li class="item">
+            //create a li with a span with a class of completed if the key of completed is true
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                //otherwise you're going to create a span with the task with no extra class
                 <span><%= items[i].thing %></span>
             <% } %>    
+            //and then each li will also have a trashcan that has the delete function attached
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+//the amount of tasks left, as returned from the db collection with completed keys as false
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+//form to add to do items which  then sends the object to the server endpoint addtodo
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
