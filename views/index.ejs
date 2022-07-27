@@ -10,7 +10,7 @@
 </head>
 <body>
     <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- language english -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,30 +18,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+    <h1>Todo List: </h1> <!-- header called Todo List: -->
+    <ul class="todoItems"> <!--unsorted list with the class name 'todoItems'  -->
+    <% for(let i=0; i < items.length; i++) {%> <!--for loop for the number of items -->
+        <li class="item"> <!--list item with the class name of item -->
+            <% if(items[i].completed === true) {%> <!--conditional for the items array of i that are completed -->
+                <span class='completed'><%= items[i].thing %></span> <!--what appears in this span is the items completed -->
+            <% }else{ %> 
+                <span><%= items[i].thing %></span> <!--what appears in this span is the uncompleted items -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--span with the two class names fa and fa-trash -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- header for item left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--header with the text "Add A Todo:" -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <form action="/addTodo" method="POST"> <!--form with the action that links to the page /addTodo with the post(create) method -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--textbox with placeholder text "Thing To Do" with a variable name "todoitem" -->
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--links the ejs templete to the client-side js called main.js -->
 </body>
 </html>
