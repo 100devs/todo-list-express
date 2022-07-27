@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
+    <!--Conecting to font-awesome library-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!--Linking CSS filed-->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1>Todo List:</h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+      <!--Setting up the template for our html-->
+      <% for(let i=0; i < items.length; i++) {%>
+      <li class="item">
+        <!--If the item is completed, it adds an item with the class 'completed'-->
+        <% if(items[i].completed === true) {%>
+        <span class="completed"><%= items[i].thing %></span>
+        <% }else{ %>
+        <span><%= items[i].thing %></span>
+        <% } %>
+        <!--Trash icon fontawesome library-->
+        <span class="fa fa-trash"></span>
+      </li>
+      <% } %>
     </ul>
 
+    <!--Seperate section that contains items that aren't marked as completed-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--Form to add a new item to database using POST method-->
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+      <input type="text" placeholder="Thing To Do" name="todoItem" />
+      <input type="submit" />
     </form>
-    
 
-    <script src='js/main.js'></script>
-</body>
+    <script src="js/main.js"></script>
+  </body>
 </html>
