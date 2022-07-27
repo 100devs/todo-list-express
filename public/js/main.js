@@ -2,7 +2,7 @@ const deleteBtn = document.querySelectorAll('.fa-trash') // Grab all delete icon
 const item = document.querySelectorAll('.item span') // Grab all items
 const itemCompleted = document.querySelectorAll('.item span.completed') // Grab all completed items
 
-//  Add event listeners to each delete button, item, and completed items
+//  Add event listeners to every delete button, item, and completed items
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
