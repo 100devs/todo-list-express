@@ -25,11 +25,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //Read - part of crud.
+//This .get is express doing the heavy lifting. Getting everything it knows about the request. 
 app.get('/',async (request, response)=>{
-//Turn all of these documents into an array
+//.find = finding all of these objects from the database and turning them into an array
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-//Pass the array of objects into our EJS which spits out HTML that the server responds with
+/*Pass the array of objects into our EJS template which spits out HTML that the server responds with that 
+HTML and that is how we can see the objects on the client side. */
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {
