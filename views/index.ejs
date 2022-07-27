@@ -23,9 +23,9 @@
     <ul class="todoItems">
     <!-- this will iterate over the items in the todo list -->
     <% for(let i=0; i < items.length; i++) {%>
-        <%# this li will be an item on our todo list %>
+        <%# the li will be an item on our todo list %>
         <li class="item">
-            <%# this is a conditional that will check to see if the item is marked as completed %>
+            <%# the conditional that will check to see if the item is marked as completed %>
             <% if(items[i].completed === true) {%>
                 <%# the items that meet the condition will then have the span class changed to 'completed' %>
                 <span class='completed'><%= items[i].thing %></span>
@@ -33,7 +33,7 @@
                 <%# items that do not meet the condition will not have the class of 'completed' %>
                 <span><%= items[i].thing %></span>
             <% } %>
-            <%# this will be our trash can icon to delete todo items %>
+            <%# our trash can icon to delete todo items %>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
