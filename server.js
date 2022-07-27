@@ -1,18 +1,24 @@
 const express = require('express') //this uses node module "express" to help us handle API requests
-const app = express() //creates an instance of the express module?
+const app = express() //creates an instance of the express module
 const MongoClient = require('mongodb').MongoClient //uses module "mongodb"
 const PORT = 2121 //assigning a port for our server to communicate through
-require('dotenv').config() //use node module dotenv; 
+require('dotenv').config() //use node module dotenv which allows you to load in environment variable that yo uset up in a .env file: https://www.npmjs.com/package/dotenv
 
-/*initializing and assigning variable*/
+/* 
+    Parse .env config file
+    --> returns object based on parsed keys/values 
+*/
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
+/*
+    Connect to MongoDB
+*/
 MongoClient.connect(dbConnectionStr, {
         useUnifiedTopology: true
     })
-    .then(client => {
+    .then(client => { //once client info is returned from initial connection, we will log to console that we are connected and assign db to this specific db/collection
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
@@ -24,7 +30,9 @@ app.use(express.urlencoded({
 }))
 app.use(express.json())
 
-
+/*
+    Handle requests to / (usually homepage)
+*/
 app.get('/', async (request, response) => {
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({
@@ -111,5 +119,5 @@ app.delete('/deleteItem', (request, response) => {
 })
 
 app.listen(process.env.PORT || PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}: http://localhost:${PORT}`)
 })
