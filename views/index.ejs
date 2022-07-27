@@ -18,8 +18,11 @@
     <title>Document</title>
 </head>
 <body>
+
     <h1>Todo List: </h1>
+
     <ul class="todoItems">
+        <!-- for loop to display the items based on collections in DB -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
