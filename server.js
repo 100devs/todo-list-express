@@ -42,18 +42,19 @@ HTML and that is how we can see the objects on the client side. */
     // })
     // .catch(error => console.error(error))
 })
-//Create side of CRUD
+//Create part of CRUD. Runs after it hears the /addTodo form action in the index.ejs 
 app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+    //Goes to database and adds a new document to the todo collection. 
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //the request body comes from the form.
     .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
+        console.log('Todo Added') // we can see in the console if adding the item from the form was successful.
+        response.redirect('/') //respond with a refresh to trigger a new get which goes to our collection and shows the new document.
     })
     .catch(error => console.error(error))
 })
 //Update part of CRUD.
 app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //the request body comes from the form. 
         $set: {
             completed: true
           }
@@ -70,32 +71,33 @@ app.put('/markComplete', (request, response) => {
 })
 //Update part of CRUD
 app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ 
         $set: {
             completed: false
           }
     },{
-        sort: {_id: -1},
+        sort: {_id: -1}, //sorting the uncompleted items on the list
         upsert: false
     })
     .then(result => {
-        console.log('Marked Complete')
+        console.log('Marked Complete') //tells us in the console log that the object was marked complete.
         response.json('Marked Complete')
     })
     .catch(error => console.error(error))
 
 })
 //DE-LE-TE part of CRUD
+//Smurf from our client side JavaScript Main.js listening here
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
-        console.log('Todo Deleted')
+        console.log('Todo Deleted') //tells us in the console log that the object was deleted. 
         response.json('Todo Deleted')
     })
     .catch(error => console.error(error))
 
 })
-
+//The process.env.PORT lets Heroku run our app on any server they want. The PORT is the local server defined above. 
 app.listen(process.env.PORT || PORT, ()=>{
     //This console log message will let us know the server is working properly
     console.log(`Server running on port ${PORT}`)
