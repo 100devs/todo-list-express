@@ -62,7 +62,7 @@ app.get('/', async (request, response) => {
 // the method to create additional items to the todo list
 app.post('/addTodo', (request, response) => {
     // adds a new item to the todo list and sets its completed boolean to false
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+    db.collection('todos').insertOne({thing: request.body.todoItem.trim(), completed: false})
         .then(result => {
         // alerts via the console that the item has been added
         // once added, the page returns to the main page with the list of items
@@ -121,6 +121,7 @@ app.put('/markUnComplete', (request, response) => {
 
 // responding to a DELETE request
 app.delete('/deleteItem', (request, response) => {
+    console.log(`request`, request.body)
     // deletes the item from the itemFromJS object
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
         .then(result => {

@@ -6,7 +6,7 @@ const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item p')
 // go to the DOM and store all the items that has the 'item span.completed' classes
 // store it to a NodeList
-const itemCompleted = document.querySelectorAll('.item p.completed')
+const itemCompleted = document.querySelectorAll('.fa-check')
 
 // Create an array from the Nodelist
 Array.from(deleteBtn).forEach((element) => {
@@ -29,7 +29,7 @@ Array.from(itemCompleted).forEach((element) => {
 // deletes the items from the list
 async function deleteItem() {
     // trims down the text content to isolate the p element
-    const itemText = this.parentElement.children[0].textContent.trim();
+    const itemText = this.parentNode.children[0].innerText.trim();
     try {
         // sending a DELETE request to the server
         const response = await fetch('deleteItem', {
@@ -43,8 +43,8 @@ async function deleteItem() {
         // storing the response as json
         const data = await response.json()
         console.log(data)
+        // reload the page
         location.reload()
-
     }catch(err){
         console.log(err)
     }
@@ -53,7 +53,7 @@ async function deleteItem() {
 // marks the item complete
 async function markComplete() {
         // trims down the text content to isolate the p element
-    const itemText = this.parentElement.children[0].textContent.trim();
+    const itemText = this.parentNode.children[0].innerText.trim();
     try {
         // sending a PUT request to the server
         const response = await fetch('markComplete', {
@@ -62,9 +62,11 @@ async function markComplete() {
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
-          })
+        })
+        // store the response as json in data
         const data = await response.json()
         console.log(data)
+        // reload the page
         location.reload()
 
     }catch(err){
@@ -72,18 +74,22 @@ async function markComplete() {
     }
 }
 
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
+async function markUnComplete() {
+    // trims down the text content to isolate the p element
+    const itemText = this.parentNode.children[0].innerText.trim();
+    try {
+        // sending a PUT request to the server
         const response = await fetch('markUnComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
-          })
+        })
+        // store the response as json in data
         const data = await response.json()
         console.log(data)
+        // reload the page
         location.reload()
 
     }catch(err){
