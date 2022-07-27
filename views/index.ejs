@@ -17,26 +17,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body> 
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- EJS starts below, not commenting above as its super basic -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- creates a list item for each element in the item arrat -->
         <li class="item">
             <% if(items[i].completed === true) {%>
+                <!-- if the item has the completed property, give it the completed class -->
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+            <% }else{ %> <!-- if the item doesnt have the completed property, create it normally -->
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- gives the trash can icon for deletion -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- adds the number of left to do items -->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!-- adds the form for the user to put their to do items -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
