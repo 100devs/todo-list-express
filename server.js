@@ -6,12 +6,12 @@ const PORT = 2121 //Establishes a local port on port 2121
 require('dotenv').config() //Allows you to bring in hidden environment variables
 
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+let db, //Creates database
+    dbConnectionStr = process.env.DB_STRING, //Sets dbConnectionsStr equal to address provided by MongoDB (DB_STRING is in the .env config file in line 5)
+    dbName = 'todo' //Sets database name equal to 'todo'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
+    .then(client => {›
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
@@ -52,23 +52,26 @@ app.put('/markComplete', (request, response) => {
           }
     },{
         sort: {_id: -1}, //Once a thing has been marked as completed, this removes it from the to-do list
-        upsert: false //Reduces left-to-do total by 1
+        upsert: false //Doesn't create a document for the todo if the item isn't found
     })
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        //Assuming that everything went okay and we got a result...
+        console.log('Marked Complete') //console logged "Marked Complete"
+        response.json('Marked Complete') //Returns response of "Marked Complete"
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //If something broke, an error is logged to the console
 
 })
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markUnComplete', (request, response) => { //This route unclicks a thing that you've marked as complete - will take away complete status
+    db.collection('todos')//Go into todos collection
+    .updateOne({thing: request.body.itemFromJS}, //Look for item from itemFromJS
+        {
         $set: {
-            completed: false
+            completed: false //Undoes what we did with markComplete - changes "completed" status to "false"
           }
     },{
-        sort: {_id: -1},  
+        sort: {_id: -1}, //  
         upsert: false
     })
     .then(result => {
