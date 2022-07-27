@@ -19,23 +19,27 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <ul class="todoItems"> 
+        <!-- create a list -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if condition is true create span with class completed which includes items.thing  -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- if condition is false create span without class  which includes items.thing  -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>   
+             <!--li also includes an image  -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!-- shows counter of items left to do -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- create a new to do item -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
