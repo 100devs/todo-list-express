@@ -3,22 +3,26 @@ const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
+//all the cool stuff to connect this file to express and make the back end work 
 
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
+    //creating variable names that is connected to some express magic 
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
+    //this is the process to "actually conntect this sever" 
     
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+//setting up our tools to fucntion with ejs and the folder public
 
 
 app.get('/',async (request, response)=>{
@@ -34,6 +38,9 @@ app.get('/',async (request, response)=>{
     // })
     // .catch(error => console.error(error))
 })
+//this is to return an exsting element from the server side , using the get method in express - this is returing the items in the the server
+//render it using the ejs file 
+
 
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
@@ -43,6 +50,7 @@ app.post('/addTodo', (request, response) => {
     })
     .catch(error => console.error(error))
 })
+//this is the part where it create a new element to our sever - creates a new resource 
 
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
@@ -60,6 +68,8 @@ app.put('/markComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
+//this updates a task on the todo list to complete
+
 
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
@@ -77,6 +87,7 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
+//this update the task to uncompleted
 
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
@@ -87,7 +98,9 @@ app.delete('/deleteItem', (request, response) => {
     .catch(error => console.error(error))
 
 })
+//this deletes the item from the todo list
 
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
+//this is running it on our sever via port
