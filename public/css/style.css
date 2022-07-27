@@ -1,6 +1,8 @@
+/* Makes the todo list heading red */
 h1{
     color: red;
 }
+/* for elements with the class name .completed, change the color of the text to gray and strike a line through the text */
 .completed{
     color: gray;
     text-decoration: line-through;
