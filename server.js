@@ -99,8 +99,8 @@ app.put('/markUnComplete', (request, response) => {
         upsert: false
     })
     .then(result => {
-        console.log('Marked Uncomplete')
-        response.json('Marked Uncomplete')
+        console.log('Marked UnComplete')
+        response.json('Marked UnComplete')
     })
     .catch(error => console.error(error))
 })
