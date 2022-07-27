@@ -49,39 +49,61 @@ app.get('/',async (request, response)=>{
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     // Send response: items in index.ejs fill with toDoItems, left fills itemsLeft
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
+    
     // This next section does the exact same thing, just by using promises instead of async await
+    // It is commented out, as its unnecessary.
+    
+    // This creates a promise, gets all of the items listed in todos in the database and puts them in an array
     // db.collection('todos').find().toArray()
+        // This line runs if the promise suceeds
     // .then(data => {
+        // This creates another promise, grabbing only the items in todos that haven't been completed
     //     db.collection('todos').countDocuments({completed: false})
+            // If the promise succeeds, this line runs
     //     .then(itemsLeft => {
+                // Render index.ejs as a response, with items filled with data, and left filled with itemsLeft
     //         response.render('index.ejs', { items: data, left: itemsLeft })
     //     })
     // })
+        // This line runs if a promise fails – if so, it logs the error
     // .catch(error => console.error(error))
 })
-
+// set post for the path /addToDo
 app.post('/addTodo', (request, response) => {
+    // Create a promise; add an item to todos, todoItem from request.body will be thing, completed set to false
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+    // Runs when promise suceeds
     .then(result => {
+        // log confirmation of todo added
         console.log('Todo Added')
+        // return to default path
         response.redirect('/')
     })
+    // If error, log the error
     .catch(error => console.error(error))
 })
-
+// Set put for the path /markComplete
 app.put('/markComplete', (request, response) => {
+    // Create a promise; update an item from todo, thing is gotten from request body
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        // continuing the same function, sets completed to true for item specified by thing
         $set: {
             completed: true
           }
     },{
+
         sort: {_id: -1},
+        // Prevent insertion of new document if no match is found
         upsert: false
     })
+    // If the promise succeeds, this line runs
     .then(result => {
+        // log marked complete
         console.log('Marked Complete')
+        // sends a response json containing marked complete
         response.json('Marked Complete')
     })
+    // If an error occurs, log it
     .catch(error => console.error(error))
 
 })
