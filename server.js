@@ -93,5 +93,5 @@ app.delete('/deleteItem', (request, response) => {
 })
 
 app.listen(process.env.PORT || PORT, ()=>{ //LISTEN ON A SPECFICIC PORT TO SERVE THE DATA CONTAINED IN THE PROGRAM
-    console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}`) //SEND NOTIFICATION TO CONSOLE LISTING PORT NUMBER
 })
