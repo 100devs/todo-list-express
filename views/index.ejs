@@ -1,47 +1,71 @@
+<!-- Declare doctype html -->
 <!DOCTYPE html>
+<!-- Set html language to English -->
 <html lang="en">
+<!-- Open head tag -->
 <head>
+    <!-- Set meta charset to UTF-8 -->
     <meta charset="UTF-8">
+    <!-- Support legacy browsers -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Document title -->
     <title>Document</title>
+    <!-- Link to fontawesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link to CSS stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+
+<!-- Close head tag -->
 </head>
+
+<!-- Open body tag -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Set heading (h1) of 'Todo List' -->
     <h1>Todo List: </h1>
+    <!-- Create unordered list with class 'todoItems' -->
     <ul class="todoItems">
+    <!-- Set for loop to loop through items-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Create list item with class 'item' -->
         <li class="item">
+            <!-- Conditional if the item is completed -->
             <% if(items[i].completed === true) {%>
+                <!-- Add name of item to span with class 'completed' -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- Otherwise add name of item to span with no class -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- Add span to add trash icon -->
             <span class='fa fa-trash'></span>
+        <!-- Close list item -->
         </li>
     <% } %>
+    <!-- Close unordered list -->
     </ul>
 
+    <!-- Set heading (h2) of 'Left to do:' with data from itemsLeft in server.js -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Set heading (h2) of 'Add A Todo' -->
     <h2>Add A Todo:</h2>
 
+    <!-- Add a form with /addTodo action and POST method -->
     <form action="/addTodo" method="POST">
+        <!-- Add text input type with placeholder 'Thing To Do' and name 'todoItem' -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Add submit input type -->
         <input type="submit">
+    <!-- Close form tag -->
     </form>
     
-
+    <!-- Connect to main.js file -->
     <script src='js/main.js'></script>
+
+<!-- Close body tag -->
 </body>
+
+<!-- Close html tag -->
 </html>
