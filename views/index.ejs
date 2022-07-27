@@ -1,47 +1,47 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Hi, I'm HTML! -->
+<html lang="en"> <!-- Text on this page was written in English-->
+<head> <!-- Here is information about this page -->
+    <meta charset="UTF-8"> <!-- Page uses Unicode characters -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Legacy browser support; IE should display as much content as it can & emulate Edge as much as it can-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Set the browser's viewable area to device settings; allow user to zoom as much as they please.-->
+    <title>Document</title> <!-- Print this on the browser tab & feed to any search spiders -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Please use CSS styling from this remote file-->
+    <link rel="stylesheet" href="css/style.css"> <!-- Please override the Ajax file with the CSS values found in this local file -->
+</head>
+<body>
+    <!DOCTYPE html> <!-- Not sure why document head data appears twice-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+<body> <!-- The user-visible portion of the page starts here -->
+    <h1>Todo List: </h1> <!-- On-page title; answers: What is this thing? -->
+    <ul class="todoItems"> <!-- Make a list of items-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Loop through the list-->
+        <li class="item"> <!-- Create a place for items to appear on this page-->
+            <% if(items[i].completed === true) {%> <!-- Check for items with class completed-->
+                <span class='completed'><%= items[i].thing %></span> <!-- Show any items with class completed here -->
+            <% }else{ %> <!-- If no items are marked complete, -->
+                <span><%= items[i].thing %></span> <!-- show the index of items with class thing-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- Show the Font Awesome trash icon -->
         </li>
     <% } %>
-    </ul>
+    </ul><!-- End this list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- On-page subtitle; answers: What's next?-->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- When this form is submitted, add the user input data to the Todo database -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- User input field to collect database entry data-->
+        <input type="submit"> <!-- User input field to push data to database-->
     </form>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- Connect the main.js file from the js folder-->
+</body><!-- End of user-accessible content-->
+</html> <!-- The end, for real -->
