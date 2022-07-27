@@ -1,27 +1,28 @@
+// select each element with class ".fa-trash"
 const deleteBtn = document.querySelectorAll('.fa-trash')
-// selects each li with a class of .item and the spans within it
+// select each span within an element with class ".item"
 const item = document.querySelectorAll('.item span')
-// selects each li with a class of item and the spans within that have a class "completed"
+// select each span with class ".completed" within an element with class ".item"
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
-// adds a click event to every rendered elements delete icon
+// add a click event to every rendered elements delete icon
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
-// adds a click event to every rendered element and will fire markComplete async function
+// add a click event to every rendered element's span that contains todo text
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
-// adds a click event to every element that has a class "completed"
+// add a click event to every element that has a class "completed"
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
 /**
  * Name: deleteItem
- * Description: Fires when the delete icon is clicked and will send a DELETE request to our server.
+ * Description: makes a DELETE request to server.js, which will delete a document from our db
  */
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
@@ -44,7 +45,7 @@ async function deleteItem(){
 
 /**
  * Name: markComplete
- * Description: Fires when an item from our todos is clicked and will make a PUT request to our server.
+ * Description: makes a PUT request to server.js, which will set completed property of db document to false. On page render, a class "completed" will be added to spans that contain todo text. This will add a line through the text and decrease the amount of todo's "Left to do"
  */
 async function markComplete(){
     // will select the innerText of the first span 
@@ -74,7 +75,7 @@ async function markComplete(){
 
 /**
  * Name: markUnComplete
- * Description: Fires when an item from our todos is clicked and will make a PUT request to our server.
+ * Description: makes a PUT request to server.js, which will set completed property of db document to false. This will prevent the "completed" class from being added to todo text span on page render
  */
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
