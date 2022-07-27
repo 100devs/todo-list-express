@@ -2,14 +2,13 @@
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-//we dont to assign to variable because it's not being called or used in code
-require('dotenv').config()
+const PORT = 2121 //what port to listen to on localhost
+require('dotenv').config()//we dont need to assign to variable because it's not being called or used in code
 
 //establishing the databases and assigning them to variables
 let db,
     dbConnectionStr = process.env.DB_STRING, // creates a variable that allows you to hide your db connectionstr to your .env connection file
-    dbName = 'superdevs'
+    dbName = 'todos'
 //mongoclient connection established using the db connection str 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => { //outlines how to follow once mongoclient connection is established
@@ -24,8 +23,8 @@ app.use(express.json()) //to use express.json parsing tool to process json data
 
 //READ
 app.get('/',async (request, response)=>{ //app.get is the READ operation in CRUD, async func is set to then await the data it receives 
-    const todoItems = await db.collection('superdevs').find().toArray() //goes to db collection and pulls the completed documents, turns them into an array. awaits results before putting it into var todoItems
-    const itemsLeft = await db.collection('superdevs').countDocuments({completed: false}) //goes into db collection and goes through incomplete documents and awaits results before putting it into var itemsLeft
+    const todoItems = await db.collection('todos').find().toArray() //goes to db collection and pulls the completed documents, turns them into an array. awaits results before putting it into var todoItems
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //goes into db collection and goes through incomplete documents and awaits results before putting it into var itemsLeft
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) //renders the index.ejs file with data from todoItems and itemsLeft
    
     // db.collection('todos').find().toArray()
@@ -40,7 +39,7 @@ app.get('/',async (request, response)=>{ //app.get is the READ operation in CRUD
 
 //CREATE
 app.post('/addTodo', (request, response) => { //addTodo route on the client side js. 
-    db.collection('superdevs').insertOne({thing: request.body.todoItem, completed: false}) //gets whatever was typed into the input on the client side and inserts it into the db collection as a new object document
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //gets whatever was typed into the input on the client side and inserts it into the db collection as a new object document
     .then(result => { //after insertion of new document, do this
         console.log('Todo Added') //confirms the db received the newly added document or object
         response.redirect('/') //sends you back to app.get route to do another read request to render the db collection with the new item inserted
@@ -50,7 +49,7 @@ app.post('/addTodo', (request, response) => { //addTodo route on the client side
 
 //UPDATE 
 app.put('/markComplete', (request, response) => { //markComplete is the route on the client side js.
-    db.collection('superdevs').updateOne({thing: request.body.itemFromJS},{//updates existing entry as complete
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{//updates existing entry as complete
         $set: { //update itemsLeft document from incomplete to completed thus removing it from the itemsLeft array
             completed: true
           }
@@ -67,7 +66,7 @@ app.put('/markComplete', (request, response) => { //markComplete is the route on
 })
 //UPDATE
 app.put('/markUnComplete', (request, response) => {//does another update like the above to show an incomplete status instead
-    db.collection('superdevs').updateOne({thing: request.body.itemFromJS},{
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: { //sets document completion to false
             completed: false
           }
@@ -84,7 +83,7 @@ app.put('/markUnComplete', (request, response) => {//does another update like th
 })
 //DELETE
 app.delete('/deleteItem', (request, response) => { // /deleteItem route from main.js function
-    db.collection('superdevs').deleteOne({thing: request.body.itemFromJS}) //method takes complete or incomplete item and deletes it from db collection
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //method takes complete or incomplete item and deletes it from db collection
     .then(result => {
         console.log('Todo Deleted')
         response.json('Todo Deleted') //shows user item was deleted 

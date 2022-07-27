@@ -1,4 +1,4 @@
-//learned that document.querySelectors are not js but web APIs that grab the element and assigns it to a variable
+//learned that document.querySelectors are not js but web APIs that grab the element. Assign the specific element to a variable.
 const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
@@ -17,12 +17,12 @@ Array.from(itemCompleted).forEach((element)=>{
 // async func fires off on click
 async function deleteItem(){ //grabs the item being referenced by this and puts it in a variable itemText
     const itemText = this.parentNode.childNodes[1].innerText
-    try{ // does what is in the try block,
+    try{ // do what is in the try block,
         const response = await fetch('deleteItem', { //fetch promise to await results from server.js 
-            method: 'delete', 
+            method: 'delete', //delete method to be used on item
             headers: {'Content-Type': 'application/json'}, //what type of file it is returning
             body: JSON.stringify({ //converts the db collection object into JSON
-              'itemFromJS': itemText
+              'itemFromJS': itemText //this item being referenced is the value from the object with itemFromJS being the key
             }) 
           })
         const data = await response.json() //stores the json object into data variable
@@ -33,26 +33,26 @@ async function deleteItem(){ //grabs the item being referenced by this and puts 
         console.log(err)
     }
 }
-
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
+//async function on click 
+async function markComplete(){ //async allows code to run asynchronously along with other code. 
+    const itemText = this.parentNode.childNodes[1].innerText //grabs the li and it's span. stores the innerText in itemText
+    try{ //try this
+        const response = await fetch('markComplete', { //fetch promise route is /markComplete on server.js
+            method: 'put', //update method will happen on server.js
+            headers: {'Content-Type': 'application/json'}, //content-type it is returning is json
+            body: JSON.stringify({ //grabs the document object and converts it into JSON
+                'itemFromJS': itemText  //key and value in object. itemFromJS is used on EJS file
             })
           })
         const data = await response.json()
-        console.log(data)
-        location.reload()
+        console.log(data) //data will log the specific item that was picked to be marked as complete
+        location.reload() //reloads the current page
 
-    }catch(err){
+    }catch(err){ //catch errors incase promise is rejected
         console.log(err)
     }
 }
-
+//also an update request made to the server. same as the above
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
