@@ -20,27 +20,41 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+      <!-- response.render receives an array of items here from the '/' route -->
+      <!-- and loops through from beginning to end of that array -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- for each element, check if its 'completed' property equals true -->
             <% if(items[i].completed === true) {%>
+                <!-- if so, fill this spans innerText with the value -->
+                <!-- that's present in the 'thing' property -->
+                <!-- this element has the completed class for styling -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- end of if logic, then if the property is not set to true: -->
             <% }else{ %>
+                <!-- fill this spans innertext with the value that's present -->
+                <!-- in the 'thing' property, but this element doesn't have -->
+                <!-- the completed class so it won't style the same way-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <!-- end of the else logic-->
+            <% } %>
             <span class='fa fa-trash'></span>
         </li>
+    <!-- end of the for loop logic -->
     <% } %>
     </ul>
-
+    <!-- fill the second part of this h2 with the number present in the left -->
+    <!-- field - this comes from the root '/' route in server.js -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
+        <!-- this goes to the "/addTodo" route and adds todo items to the db -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
+
 
     <script src='js/main.js'></script>
 </body>
