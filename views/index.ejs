@@ -1,42 +1,44 @@
+<!-- set doctype to HTML5 to disable quarks mode, telling browsers we are following the  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- set width to device width and make mobile responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- set bookmark/tab title in the browser -->
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- header title followed by an unordered list -->
     <h1>Todo List: </h1>
+    <!-- html attribute of class -->
     <ul class="todoItems">
+        <!-- starts the opening block for ejs once there is a closing tag it is javascript logic. here we have a for loop items is the first thing we are getting from our server. an array of mongodb documents that we are iterating over.. loop throught every mogodb document in the items array -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- create list item with a class of item back to html -->
         <li class="item">
+            <!-- if current item has a completed property that equals true..............this is js logic again carrotpercentequals means output-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- trash can icon -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!-- number of things left todo. left came from the server -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- it takes the form and will go there. form that will make a POST request to /addTOdo when submitted   -->
     <form action="/addTodo" method="POST">
+        <!-- text imput field with placeholer(gray text) of thing to do and a name of  -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
