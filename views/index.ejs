@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- rhis is what language we using-->
 <head>
+    <!-- this is for your computer-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--add iun our font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--link css-->
     <link rel="stylesheet" href="css/style.css">
-</head>
+</head><!--
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -16,32 +20,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> whoops we got extra head (heh)--> 
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+    <!-- most important item on page-->
+    <ul class="todoItems"> <!--unordered list-->
+    <% for(let i=0; i < items.length; i++) {%>  <!-- poser java script woo; do a for loop for each item in array-->
+        <li class="item"> <!--listed item-->
+            <% if(items[i].completed === true) {%><!--is it completed? do this-->
+                <span class='completed'><%= items[i].thing %></span> <!--add the class 'completed' to these guys for styling(presumably)-->
+            <% }else{ %><!-- if not completed:-->
+                <span><%= items[i].thing %></span><!--display them in list but dont add the class-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- we gonna maybe click this trash can icon at some point that gets added on to each item in our lists-->
         </li>
-    <% } %>
+    <% } %> <!-- ejs tags are weird-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- count out number of 'incomplete' tasks and shove here-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> 
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <form action="/addTodo" method="POST"> <!-- redirect once we submit-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--match to line 40 in our server-->
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script><!-- run some java scripts- put at bottom so it loads last and doesnt mess up the css/html rendering-->
 </body>
 </html>
