@@ -1,4 +1,12 @@
+<<<<<<< HEAD
+{
+    "editor.fontSize": 18,
+    "terminal.integrated.fontSize": 18
+}
+||||||| empty tree
+=======
 {
     "editor.fontSize": 42,
     "terminal.integrated.fontSize": 62
 }
+>>>>>>> 8247adf50f08bd10000a520d0c12dd01ccaa776b

@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+{
+  "name": "rap-name-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run start" 
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.5"
+  }
+}
+
+
+||||||| empty tree
+=======
 {
   "name": "rap-name-api",
   "version": "1.0.0",
@@ -16,3 +40,4 @@
     "mongodb": "^3.6.5"
   }
 }
+>>>>>>> 8247adf50f08bd10000a520d0c12dd01ccaa776b
