@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- what version of html -->
+<html lang="en"> <!-- which language -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> <!-- tab title -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- rendering css file -->
 </head>
 <body>
     <!DOCTYPE html>
@@ -18,10 +18,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <h1>Todo List: </h1> <!-- the most important title on the page -->
+    <ul class="todoItems"> <!-- for to do list -->
+    <!-- ejs loop -->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <li class="item"> //for loop 
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -29,19 +30,19 @@
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
-    <% } %>
-    </ul>
+    <% } %> <!-- end of loop -->
+    </ul> <!-- end of list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- header for left to do (from ejs file)-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- header for the form -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- where to send form -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- text area -->
+        <input type="submit"> <!-- button for submitting -->
+    </form> <!-- close the form -->
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- to run the frontend js -->
 </body>
 </html>
