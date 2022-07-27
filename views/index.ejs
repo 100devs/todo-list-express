@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--link to fontawesome stylesheet-->
+    <link rel="stylesheet" href="css/style.css"> <!--link to css stylesheet location-->
 </head>
 <body>
     <!DOCTYPE html>
@@ -20,28 +20,28 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!--EJS for loop iterates through each item in the database-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> <!--if items holds complete property as true, then display the item in the span-->
+                <span class='completed'><%= items[i].thing %></span><!--shows item with the css line-through style applied to it-->
+            <% }else{ %> 
+                <span><%= items[i].thing %></span><!--the rest of the completed span-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--fontawesome trash icon w/ event listener on click to trigger delete request-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--show items with the complete property set as false-->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!--/addTodo route to CREATE operation on server.js and the method is post-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="submit"><!--input type set to submit to send input value to form handler-->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--link to client side js-->
 </body>
 </html>
