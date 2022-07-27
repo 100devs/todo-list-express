@@ -1,7 +1,12 @@
+/* declaration block selects elements that are h1 */
 h1{
+    /* rule sets text color to red */
     color: red;
 }
+/* declaration block selecting all elements with the class of completed */
 .completed{
+    /* rule that sets the text color to grey */
     color: gray;
+    /* sets the text decaration to have a strike through */
     text-decoration: line-through;
 }
