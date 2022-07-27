@@ -1,66 +1,69 @@
-// get all the DOM elements with a class of `fa-trash` and assign the NodeList to deleteBtn
+// Assign a NodeList of all HTMLElements with a class of `fa-trash` to the constant variable `deleteBtn`
 const deleteBtn = document.querySelectorAll('.fa-trash')
-// get all of the DOM elements that are spans and descendants of elements with a class of `item`, and assign to the item variable
+// Assign a NodeList of all HTMLElements that are <span>s and descendants of elements with a class of `item` to the constant variable `item`
 const item = document.querySelectorAll('.item span')
-// get all of the DOM elements that are spans with a class of `completed` and are descendants of elements with a class of `item`, assigning them to the `itemCompleted` variable.
+// Assign a NodeList of all HTMLElements that are <span>s with a class of `completed` and descendants of elements with a class of `item` to the constant variable `itemCompleted`
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
-// convert deleteBtn NodeList to an array, then call .forEach on the array
+// Convert `deleteBtn` to an array of HTMLElements, then call `forEach` on it
 Array.from(deleteBtn).forEach((element)=>{
-    // adding the deleteItem function as a click event listener for each item in deleteBtn
+    // Add an click event listener to each element, calling `deleteItem`
     element.addEventListener('click', deleteItem)
 })
 
-//creating an array form the nodelist assigned to item. looping through it and adding an event listener to each element that will
-//'listen' for a click and passing the function "markComplete"
+// Convert `item` to an array of HTMLElements, then call `forEach` on it
 Array.from(item).forEach((element)=>{
+    // Add an click event listener to each element, calling `markComplete`
     element.addEventListener('click', markComplete)
 })
-//creating an array form the nodelist assigned to itemCompleted. looping through it and adding an event listener to each element that will
-//'listen' for a click and passing the function "markUnComplete"
+
+// Convert `itemCompleted` to an array of HTMLElements, then call `forEach` on it
 Array.from(itemCompleted).forEach((element)=>{
+    // Add an click event listener to each element, calling `markUnComplete`
     element.addEventListener('click', markUnComplete)
 })
 
-
 async function deleteItem(){
+    // From the current <span> (bound to this by the event listener), get the parentNode - the <li> - then get the 1th childNode - the <span>, then retrieve the text content of it by reading the `innerText` property
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        // Make a fetch to the relative path `deleteItem`
         const response = await fetch('deleteItem', {
+            // Set method of request to DELETE
             method: 'delete',
+            // Set header `Content-Type` to `application/json` so it knows we're sending JSON, and how to parse our data
             headers: {'Content-Type': 'application/json'},
+            // Send the object with a property of itemFromJS and value of the `itemText` of the current item as a JSON string
             body: JSON.stringify({
               'itemFromJS': itemText
             })
           })
+        // Attempt to load and parse the response body as JSON, assigning it to data
         const data = await response.json()
         console.log(data)
+        // Reload the webpage
         location.reload()
 
     }catch(err){
+        // If there are any errors, console.log them
         console.log(err)
     }
 }
 
 async function markComplete(){
-    // get the innerText of the <span>
     const itemText = this.parentNode.childNodes[1].innerText
     try{
-        // make fetch to markComplete path
+        // Make a fetch to the relative path `markComplete`
         const response = await fetch('markComplete', {
-            // set request method to PUT
+            // Set method of request to PUT
             method: 'put',
-            // set Content-Type header to application/json - so it knows we're sending JSON
             headers: {'Content-Type': 'application/json'},
-            // send the object with a property of itemFromJS and value of the itemText of the current item as a string of JSON
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
-        // attempt to load and parse the response body as JSON, assigning it to data
         const data = await response.json()
         console.log(data)
-        // reload the webpage
         location.reload()
 
     }catch(err){
@@ -72,6 +75,7 @@ async function markComplete(){
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        // Make a fetch to the relative path `markUnComplete`
         const response = await fetch('markUnComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},

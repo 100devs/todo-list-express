@@ -1,102 +1,99 @@
-// assign the express module to the imported module express
+// Assign the imported `express` module to the constant variable `express`
 const express = require('express')
-// create a new express application, assigned to the app variable
+// Assign the newly created express application to the constant variable `app`
 const app = express()
-// Require the mongodb module, to connect to the database
+// Assign the MongoClient class that's attached to the `connect` method exported by the `mongodb` module to the constant variable `MongoClient`
 const MongoClient = require('mongodb').MongoClient
-
-// set the port variable that we're giong to listen for
+// Assign the default port number `2121` to the constant variable `PORT`
 const PORT = 2121
-// import the dotenv module and call the config method, which reads from the .env file nearby and adds them all to process.env
+// Call the `config` method on the imported `dotenv` module, loading the environment variables from the `.env` file into `process.env`
 require('dotenv').config()
 
-//we are declaring three variables here: db, connectionstr and dbname and initializing two of them. 
-//dbconnectionstring holds the value of the enviroment variable we set up in .env as DB_STRING
-//dbname holds the string todo.
+
+// Declare three mutable variables, `db` to store the Db class instance, `connectionString` to store the connection string read from the `DB_STRING` environment variable, and `dbName` to store the name of the database we want to use.
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
-//we are using the connect method in the mongoclient (imported above) and passing our db string(initialized above as dbconnectionstr)
-//we are passing the useunifiedtopology (deprecated, it's default as true in newer versions of mongo) and setting it as true
-//after this connection is completed(is a promise) we are console logging to know we are actually connected (and showing the dbname with template literals)
-//finally, we are initializing the db variable
+// Call the static `connect` method on the `MongoClient` class, passing the `dbConnectionStr` and an options object with the `useUnifiedTopology` property set to `true` to use the new Server Discover and Monitoring engine.
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+    // As no callback is provided, the `connect` method returns a Promise that will resolve to a `MongoClient` instance, so use the .then method to execute our callback with the said `MongoClient`.
     .then(client => {
+        // Console log the connection string, notifying the user that we are connected to the database.
         console.log(`Connected to ${dbName} Database`)
+        // Assign the desired `Db` instance - returned by the `db` method on the `MongoClient` instance - to the `db` variable.
         db = client.db(dbName)
     })
- 
-//setting the templating engine to use ejs
+    
+// Call the `set` method of our express application, settings the default engine extension, allowing us to omit said extension when specifying view names.
 app.set('view engine', 'ejs')
-//setting the static files location to the public folder
+// Add the `serve-static` middleware to our express application, serving any files requested from the root found in the `public` directory.
 app.use(express.static('public'))
-// using express urlencoded to enable express grab data from the form element by adding it to the request body property, setting the extended option to true to allow for object & array support
+// Add the `body-parser` `urlencoded` middleware to our express application, parsing the content of any requests with a `Content-Type` of `application/x-www-form-urlencoded` to a JavaScript object assigned to the request `body` property - additionally setting the `extended` property to `true` within the options object to allow for nested objects via the `qs` module.
 app.use(express.urlencoded({ extended: true }))
-
-// this allows us to be able to use express
+// Add the `body-parser` `json` middleware to our express application, parsing the content of any requests with a `Content-Type` of `application/json` to a JavaScript object assigned to the request `body` property.
 app.use(express.json())
 
-// this is the GET request where we're going to read (get something back) the items in the todo list
-app.get('/', async (request, response)=>{
-    // access collection called 'todos' from connected database and find all documents, as an array, then await the promise, assigning the documents to todoItems
+
+// Add a custom request handler to the `GET` method of the `/` path
+app.get('/',async (request, response)=>{
+    // Access the `todos` collection from the connected database, calling `find` with no filter object to retrieve all the documents, and finally call `toArray` to turn this query into a Promise that will resolve with an array of document objects.
     const todoItems = await db.collection('todos').find().toArray()
-    // access collection named 'todos' from connected database and get the count of all documents that match the filter - have an property of completed with a value of false, awaiting this promise and assigning to itemsLeft
+    // Access the `todos` collection from the connected database, calling `countDocuments` with a filter to only include documents that have a `completed` property set to `false`.
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    // tell express to tell EJS to render index.ejs with this object - which EJS will make into variables
+    // Tell express to render the `index.ejs` view with the options of the `todoItems` and `itemsLeft` variables, which EJS will use as variables in the view.
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
-    // .then(todoItems => {
+    // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
     //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: todoItems, left: itemsLeft })
+    //         response.render('index.ejs', { items: data, left: itemsLeft })
     //     })
     // })
     // .catch(error => console.error(error))
 })
 
-
-//using POST request (create) to add items in the todo list
+// Add a custom request handler to the `POST` method of the `/addTodo` path
 app.post('/addTodo', (request, response) => {
-//selecting our collection here and indicating that we are inserting one item (obj) with the key properties "thing" and 'completed', assigning the values of the todoItem 
-//(taken from the body of the request) and the boolean false
+    // Access the `todos` collection from the connected database, calling `insertOne` with an object containing the properties `thing` and `completed` set to the values of the `request.body.todoItem` - parsed by the `urlencoded` middleware - and `false` respectively.
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-//once the previous promise is completed, we console log a message and redirect to /
+    // After the insertion is successful, redirect the user to the `/` path.
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')
     })
-//if the promise was rejected, we log the error
+    // If the insertion fails, log the error to the console.
     .catch(error => console.error(error))
 })
 
-
-//PUT request (update) to update one item in the todo list
+// Add a custom request handler to the `POST` method of the `/markComplete` path
 app.put('/markComplete', (request, response) => {
-//selecting the 'todos' collection of our db and updating one item(object: key= thing, value= itemFromJs)
+    // Access the `todos` collection from the connected database, calling `updateOne` with a filter object containing the property `thing` set to the value of the `request.body.itemFromJS` property - parsed by the `json` middleware
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-//we are using the $set operator from mongo to change the completed key to true
+        // UpdateFilter containing the `$set` Update Operator, telling MongoDB to setting the `completed` property to `true`.
         $set: {
             completed: true
           }
     },{
-//using the mongo sort method to sort by id. -1 means that we are getting the latest first (descending order)
+        // Attempt to sort the document _id's descending to get the latest document first - this works because the `_id` is a `ObjectId` and these contain the second they were created encoded within them.
         sort: {_id: -1},
-//setting the upsert (insert + update) mongo method to false (which is the default value)
+        // Disable the upsert - if the document does not exist, do not create it - this is
         upsert: false
     })
-//when this promise is completed, we console log 'marked as completed' and send the same as json. 
+    // After the update is successful, redirect the user to the `/` path.
     .then(result => {
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
-//if the promise was rejected, we log the error
+    // If the update fails, log the error to the console.
     .catch(error => console.error(error))
 
 })
 
+// Add a custom request handler to the `PUT` method of the `/markUnComplete` path
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        // UpdateFilter containing the `$set` Update Operator, telling MongoDB to setting the `completed` property to `false`.
         $set: {
             completed: false
           }
@@ -112,9 +109,9 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
-// DE-LAY-TAY handler at `/deleteItem` that deletes a todo document from the collection
+// Add a custom request handler to the `DELETE` method of the `/deleteTodo` path
 app.delete('/deleteItem', (request, response) => {
-    // accessing the 'todos' collection, delete one document that matches the filter, has an property of thing equal to itemFromJS
+    // Access the `todos` collection from the connected database, calling `deleteOne` with a filter object containing the property `thing` set to the value of the `request.body.itemFromJS` property - parsed by the `json` middleware - to delete the first document that matches the filter.
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
         console.log('Todo Deleted')
@@ -124,7 +121,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
-// listen to the port that we established in the variable or the port that is available with heroku, for example
+// Start the server listening on either the PORT provided via environment variable or the default port stored in the PORT variable.
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })

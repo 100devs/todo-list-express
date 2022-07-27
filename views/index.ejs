@@ -1,50 +1,56 @@
-<!-- set doctype to HTML5 to disable quarks mode, telling browsers we are following the HTML5 spec-->
+<!-- Declare browsers that the latest HTML specification is being followed, and not to enable quarks mode -->
 <!DOCTYPE html>
-<!-- set page language to en -->
+<!-- Declare document language as `en` -->
 <html lang="en">
 <head>
-    <!-- set character encoding to UTF-8 -->
+    <!-- Declare character encoding as `UTF-8` - the only possible value -->
     <meta charset="UTF-8">
+    <!-- Tell Microsoft browsers which version of Internet Explorer the document should be rendered as -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- set width to device width and make mobile responsive -->
+    <!-- Declare the width and initial scale (zoom level) of the viewport, as the full width of the device and 1.0 accordingly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- set bookmark/tab title of the page-->
-    <title>voice-01 Todo List App</title>
+    <!-- Declare the document title, used in the title bar, bookmarks, etc -->
+    <title>Document</title>
+    <!-- Link to Font Awesome stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link to local stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <h1>Todo List: </h1>
-    <!-- unorded list with a class of todoItems -->
+    <!-- Unordered list with a class of `todoItems` -->
     <ul class="todoItems">
-    <!-- loop through every mongodb document in the items array -->
+    <!-- Loop through every object in the `items` array -->
     <% for(let i=0; i < items.length; i++) {%>
-        <!-- create list item with class of item-->
+        <%# List item with class of `item` %>
         <li class="item">
-            <!-- if current item has a completed property that equals true, add a class of 'completed'-->
+            <%# Create span containing text of current item `thing`, with optional class of `completed` if the current item `completed` property is equal to `true` %>
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <!-- font awesome trashcan icon -->
+            <%# Font Awesome Trash icon %>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
-    <!-- output the content of left, the number of todo documents that have a completed property of false -->
+    <!-- Output the value of left into the page -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
-    <!-- form that will make a POST request to /addTodo when submitted -->
+    <!-- Form that will make a `POST` request to `/addTodo` when submitted -->
     <form action="/addTodo" method="POST">
-        <!-- text input field with placeholder (grey text) of Thing To Do and a name of todoItem, which will become the key of the request body object-->
+        <!-- Text input field with `placeholder` of `Thing To Do` and `name` of `todoItem`, which will become the key when the value is transmitted -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
-        <!-- submit button -->
+        <!-- Submit button -->
         <input type="submit">
     </form>
     
 
+    <!-- Link to local JavaScript file -->
     <script src='js/main.js'></script>
 </body>
 </html>
