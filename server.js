@@ -29,7 +29,10 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+//READ: 
+//todoItems --> find all the list items on the database put it in an array
+//itemsLeft --> counts the documents for which completed equals false
+//response.render --> template the data called 'items' and 'left' using the data from the above 2 variables
 app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
