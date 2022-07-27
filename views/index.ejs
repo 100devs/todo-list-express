@@ -1,47 +1,65 @@
 <!DOCTYPE html>
+<!-- sets doctype to html5-->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+    <!--marks the entire html file as being written in english -->
+    <head>
+        <!-- opening tag for the head, where the meta data goes -->
+        <meta charset="UTF-8" />
+        <!-- sets the charset to standard UTF-8 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- helps with responsive design, reacts to different devices-->
+        <title>Document</title>
+        <!--sets document title-->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+        <!--links to Font-Awesome for icons/css-->
+        <link rel="stylesheet" href="css/style.css" />
+        <!--links to styleshet-->
+    </head>
+    <!--closes head-->
+    <body>
+        <!-- opening tag for the Body, where everything that is visible goes -->
+        <h1>Todo List:</h1>
+        <!-- sets h1 to contain "Todo List:"-->
+        <ul class="todoItems">
+            <!--opens an unordered list with a class of todoItems-->
+            <!--   loops through items from database get request and creates list elements for each item     -->
+            <% for(let i=0; i < items.length; i++) {%>
+            <!-- loops through the items array passed to EJS-->
+            <li class="item">
+                <% if(items[i].completed === true) {%>
+                <!-- checks to see if each item in the loop has a value of completed: true  -->
+                <span class="completed"><%= items[i].thing %></span>
+                <!-- if so, adds the span class .completed and puts the item in a span  -->
+                <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+                <!-- if not, adds the item as a span by itself  -->
+                <% } %>
+                <span class="fa fa-trash"></span>
+                <!-- adds a trash can icon to the end of every element  -->
+            </li>
+            <% } %>
+            <!-- close that loop!  -->
+        </ul>
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Left to do: <%= left %></h2>
+        <!-- gives you a percentage of todo left to complete -->
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
+        <!-- adds a header for adding todo -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <form action="/addTodo" method="POST">
+            <!-- Adds a form to be able to add todos using a POST request method-->
+            <input type="text" placeholder="Thing To Do" name="todoItem" />
+            <!--first input box to add name of the todo-->
+            <input type="submit" />
+        </form>
 
-    <script src='js/main.js'></script>
-</body>
+        <script src="js/main.js"></script>
+        <!-- links to the client side javascript file -->
+    </body>
+    <!-- End tag for the Body -->
 </html>
