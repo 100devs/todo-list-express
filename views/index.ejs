@@ -9,34 +9,25 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
+    <h1>Todo List: </h1> 
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+    <% for(let i=0; i < items.length; i++) {%> <!-- <% EJS starts, we do  a for loop to itterate through each item in the list which we pulled from database-->
+        <li class="item"> <!-- it is always an li so add it-->
+            <% if(items[i].completed === true) {%> <!-- if item is ture we create the span-->
+                <span class='completed'><%= items[i].thing %></span> <!-- if it is completed aply the compelted class in this span-->
+            <% }else{ %> <!-- if the item is not completed -->
+                <span><%= items[i].thing %></span> <!-- add the item in a span with no completed class-->
+            <% } %>    <!-- end the if statement-->
+            <span class='fa fa-trash'></span> <!-- always add a trashcan logo for deleting-->
         </li>
-    <% } %>
+    <% } %> <!-- end the for loop-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- dynamically update how many items are left from from itemsLeft variable which counted the documents in the Mongo DB-->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!-- create a new to do item by submitting a form action of POST with an action of addToDo-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
