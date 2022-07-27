@@ -24,7 +24,7 @@ Array.from(itemCompleted).forEach((element)=>{
 
 //when we click on a trashcan:
 async function deleteItem(){
-    //get the 'inner text' of the second child (index 1, the span) of the container 'parent node'
+    //get the 'inner text' of the span in the container 'parent node'
     const itemText = this.parentNode.childNodes[5].innerText; //text of the stuff next to the trashcan we clicked on
     try{ //see if this works:
         const response = await fetch('deleteItem', { //make a request to /deleteItem
@@ -45,7 +45,7 @@ async function deleteItem(){
 
 //when we click on the text of an uncompleted item:
 async function markComplete(){
-    //get the 'inner text' of the second child (index 1, the span) of the container 'parent node'
+    //get the 'inner text' of the span in the container 'parent node'
     const itemText = this.parentNode.childNodes[5].innerText;
     try{// lets see if this fetch works:
         //fetch => mycoolapp.com/markComplete
@@ -67,7 +67,7 @@ async function markComplete(){
 
 //when we click on the text of an completed item:
 async function markUnComplete(){
-    //get the 'inner text' of the second child (index 1, the span) of the container 'parent node'
+    //get the 'inner text'the span in the container 'parent node'
     const itemText = this.parentNode.childNodes[5].innerText
     try{ //see if this fetch works:
         const response = await fetch('markUnComplete', { //make request to markUnComplete
