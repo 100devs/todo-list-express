@@ -14,22 +14,22 @@ Array.from(item).forEach((element)=>{
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
-//
-async function deleteItem(){
+// async func fires off on click
+async function deleteItem(){ //grabs the item being referenced by this and puts it in a variable itemText
     const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('deleteItem', {
-            method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
+    try{ // does what is in the try block,
+        const response = await fetch('deleteItem', { //fetch promise to await results from server.js 
+            method: 'delete', 
+            headers: {'Content-Type': 'application/json'}, //what type of file it is returning
+            body: JSON.stringify({ //converts the db collection object into JSON
               'itemFromJS': itemText
-            })
+            }) 
           })
-        const data = await response.json()
+        const data = await response.json() //stores the json object into data variable
         console.log(data)
-        location.reload()
+        location.reload() //reloads the page on the client side
 
-    }catch(err){
+    }catch(err){ // if the promise is rejected, it goes to catch block which console logs the error for debugging
         console.log(err)
     }
 }
