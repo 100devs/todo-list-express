@@ -19,26 +19,26 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+    <ul class="todoItems"> <!--un ordered list for our todos-->
+    <% for(let i=0; i < items.length; i++) {%> <!--for loop to iterate through the array-->
+        <li class="item"> <!--list-->
+            <% if(items[i].completed === true) {%> <!--array items completed-->
+                <span class='completed'><%= items[i].thing %></span> <!--list of items completed-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!--items not completed-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--trash icon-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--todo left count-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--h2 for adding-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!--form-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--form to grab todos-->
+        <input type="submit"> <!--button to submit-->
     </form>
     
 
