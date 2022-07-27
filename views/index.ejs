@@ -20,14 +20,21 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+
+<!-- for loop that loops through the received array list of todo from the server app.get --->
+    <% for(let i=0; i < items.length; i++) {%> 
         <li class="item">
             <% if(items[i].completed === true) {%>
+                <!-- items[i].completed  is a property of the database object -->
+                <!-- if completed is true it adds a span element with a class of completed -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- items[i].thing is a property of the database object -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
+                <!-- if completeted is not true it adds a span element with a class of completed -->
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- trash icon for each list item -->
         </li>
     <% } %>
     </ul>
@@ -35,9 +42,10 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form submits the item to be aded to the database POST method -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- input adds the name of the thing property to be added to db using the name todoItem as a reference -->
         <input type="submit">
     </form>
     
