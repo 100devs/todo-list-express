@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1>Todo List:</h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+      <!-- Running a for loop based on the number of items in the db -->
+      <% for(let i=0; i < items.length; i++) {%>
+      <!-- Creating ali for each iteration, with class 'item' -->
+      <li class="item">
+        <!-- IF item is completed, create a paragraph with class of 'completed' -->
+        <% if(items[i].completed === true) {%>
+        <p class="completed"><%= items[i].thing %></p>
+        <% }else{ %>
+        <!-- ELSE, just create the item with no class -->
+        <p><%= items[i].thing %></p>
+        <% } %>
+        <!-- Create a span that uses fontawesome trashcan -->
+        <span class="fa fa-check"></span>
+        <span class="fa fa-times"></span>
+        <span class="fa fa-trash"></span>
+      </li>
+      <% } %>
     </ul>
 
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Form that sends POST request to the route /addTodo -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+      <!-- An input field that takes the todo item, and sends it to the server udner the name of 'todoItem' -->
+      <input type="text" placeholder="Thing To Do" name="todoItem" />
+      <!-- A simple submit button -->
+      <input type="submit" />
     </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+    <!-- Linking a main.js file -->
+    <script src="js/main.js"></script>
+  </body>
 </html>
