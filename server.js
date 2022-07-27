@@ -62,8 +62,8 @@ app.put('/markComplete', (request, response) => {// Updates an existing task in 
             completed: true
           } // sets the completed action from false to true
     },{
-        sort: {_id: -1}, // sorts(pushes) task to the bottom of the list, leaving unfinished tasks at the top
-        upsert: false // default setting for upsert which is update and insert, no need to find matching documents in our db
+        sort: {_id: -1}, // sorts(pushes) task to the bottom of the list, leaving unfinished tasks at the top (descending)
+        upsert: false // default setting for upsert which is update and insert, no need to find matching documents in our db. Don't want to add the array.
     })
     .then(result => {
         console.log('Marked Complete')
@@ -74,32 +74,32 @@ app.put('/markComplete', (request, response) => {// Updates an existing task in 
 })
 
 app.put('/markUnComplete', (request, response) => { // Updates an existing task in the DB
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ // Updating the item's default from false to true.
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ // Updating the item's named "itemfromJS", and sets the completed property from false to true.
         $set: {
             completed: false
           } // sets the completed action to false
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1},  // sorts(pushes) task to the bottom of the list, leaving unfinished tasks at the top (descending)
+        upsert: false  // default setting for upsert which is update and insert, no need to find matching documents in our db. Don't want to add the array.
     })
     .then(result => {
         console.log('Marked Complete')
         response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+    })     // promise that sends confirmation message that task is completed
+    .catch(error => console.error(error))   // In case of error
 
 })
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+app.delete('/deleteItem', (request, response) => {   //  Deleting an item from the DB.
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS})  // Deleting a specific item from the DB.
     .then(result => {
         console.log('Todo Deleted')
         response.json('Todo Deleted')
-    })
-    .catch(error => console.error(error))
-
+    })      // promise that sends confirmation message that task is completed
+    .catch(error => console.error(error))     // In case of error
+ 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+app.listen(process.env.PORT || PORT, ()=>{   // Listen to the local PORT or the PORT in the dotenv file.
+    console.log(`Server running on port ${PORT}`)  // Confirms that we are connect to the database via the PORT number.
 })
