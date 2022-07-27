@@ -11,9 +11,12 @@ let db, //Creates database
     dbName = 'todo' //Sets database name equal to 'todo'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {›
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
+    .then
+    //Defines how we connect to our Mongo DB.useUnifiedTopology helps ensure that things are returned in a clean manner.
+    (client => {
+        //Responding on the client side and saying...
+        console.log(`Connected to ${dbName} Database`) //Will produce a message in the console if the client connected properly
+        db = client.db(dbName) //Defines the database as 'todo'. Works with line 15.
     })
     
 app.set('view engine', 'ejs')
