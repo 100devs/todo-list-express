@@ -1,47 +1,56 @@
+<!-- a declaration that tells the browser that the document is written in HTML5 -->
 <!DOCTYPE html>
+<!-- set lang attribute to 'en' -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- the http-equiv attribute is used by servers to gather information about a page using the HTTP header -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ontrol the width and scaling of the viewport so that it's sized correctly on all devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- setting page title to 'Document' -->
     <title>Document</title>
+    <!-- linking fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- linking css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- add an h1 that says 'Todo List:' -->
     <h1>Todo List: </h1>
+    <!-- add an unordered list with a class '.todoItems' -->
     <ul class="todoItems">
+    <!-- loop through items <response.render('index.ejs', { items: todoItems, left: itemsLeft })> from server.js -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- create an li for each item -->
         <li class="item">
+            <!-- if the 'completed' property has the value of true -->
             <% if(items[i].completed === true) {%>
+                <!-- add a span with class '.completed' that has the text of the value of 'thing' of the item  -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- else,  add a span like the above except without the class '.complated'-->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- add a fontawesome trashcan icon span with classes '.fa .fa-trash' -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- list the count of items uncompleted <response.render('index.ejs', { items: todoItems, left: itemsLeft })> from server.js -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- add h2 that says 'Add A Todo:' -->
     <h2>Add A Todo:</h2>
-
+    <!-- add a form and set the action to '/addTodo', method to 'POST' -->
     <form action="/addTodo" method="POST">
+    <!-- add an input of the type 'text' with placeholder that says 'Thing To Do', set the name to 'todoItem' to be used in main.js -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- add an input of the type 'submit' to serve as a submit button -->
         <input type="submit">
     </form>
     
-
+    <!-- linking client-side javascript -->
     <script src='js/main.js'></script>
 </body>
 </html>
