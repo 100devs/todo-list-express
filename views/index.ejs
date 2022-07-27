@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Custom font styling is loaded here. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Our own stylesheet is loaded here. -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- DOCTYPE and html tags were already included above. This is an error. -->
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +23,13 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+   <!--
+   Since Express is serving this view via ejs, all of this ejs will be replaced with html once transpiled.
+   Here, "items" is passed in as a parameter to the ejs file, which happens to be our "todoItems".
+   Each todo item is rendered as a span.
+   If the todo item is marked completed, the .completed style is added.
+   "Left" is also passed in and rendered as an h2 tag, which is the remaining number of items to be completed.
+    -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -36,12 +46,13 @@
 
     <h2>Add A Todo:</h2>
 
+    <!-- This is a form for submitting a post request to the /addTodo endpoint of our server. -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
 
+    <!-- This will load our client-side js. -->
     <script src='js/main.js'></script>
 </body>
 </html>
