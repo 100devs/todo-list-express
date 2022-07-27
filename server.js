@@ -1,7 +1,11 @@
+//Requires the server to use express
 const express = require('express')
 const app = express()
+//Requires the server to use MongoDB
 const MongoClient = require('mongodb').MongoClient
+//This is the local port
 const PORT = 2121
+//Requires the server to use env and configures it.
 require('dotenv').config()
 
 
@@ -20,7 +24,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+//Read - part of crud.
 app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
@@ -34,7 +38,7 @@ app.get('/',async (request, response)=>{
     // })
     // .catch(error => console.error(error))
 })
-
+//Create side of CRUD
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -43,7 +47,7 @@ app.post('/addTodo', (request, response) => {
     })
     .catch(error => console.error(error))
 })
-
+//Update part of CRUD.
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -60,7 +64,7 @@ app.put('/markComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+//Update part of CRUD
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -77,7 +81,7 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+//DE-LE-TE part of CRUD
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
@@ -89,5 +93,6 @@ app.delete('/deleteItem', (request, response) => {
 })
 
 app.listen(process.env.PORT || PORT, ()=>{
+    //This console log message will let us know the server is working properly
     console.log(`Server running on port ${PORT}`)
 })
