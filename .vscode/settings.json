@@ -1,3 +1,4 @@
+//change font setting unless streaming the code.
 {
     "editor.fontSize": 14,
     "terminal.integrated.fontSize": 12

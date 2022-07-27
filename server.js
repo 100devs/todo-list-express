@@ -26,8 +26,10 @@ app.use(express.json())
 
 //Read - part of crud.
 app.get('/',async (request, response)=>{
+//Turn all of these documents into an array
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+//Pass the array of objects into our EJS which spits out HTML that the server responds with
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {

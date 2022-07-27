@@ -1,7 +1,11 @@
+//Client side code.
+
+//Variables storing the selectors .fa-trash, .item, span and span.completed
 const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+//click event listeners for the delete, completed and uncompleted items in the to-do list
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
