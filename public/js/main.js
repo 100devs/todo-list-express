@@ -2,29 +2,34 @@ const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+
+//adding event listener to all tasks for delete
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
+//adding event listener to mark complete
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
+//adding event listener to mark un complete
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+//sending data to server to delete item
 async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[1].innerText //getting text
     try{
         const response = await fetch('deleteItem', {
-            method: 'delete',
+            method: 'delete', 
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
+            body: JSON.stringify({ //parsing data as JSON
               'itemFromJS': itemText
             })
           })
-        const data = await response.json()
+        const data = await response.json()  //awaiting response and proceed further
         console.log(data)
         location.reload()
 
@@ -33,6 +38,7 @@ async function deleteItem(){
     }
 }
 
+//sending data to server to mark complete
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -52,6 +58,7 @@ async function markComplete(){
     }
 }
 
+//sending data to mark uncomplete
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
