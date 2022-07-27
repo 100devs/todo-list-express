@@ -19,24 +19,24 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <ul class="todoItems"> <!-- the locatin.reload on main.js file will reload automaticlly to add any additioanl list ; change depending on how many items are on the data base-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- looping thru the list based on item length -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> <!-- condition if the itme[i] completed == true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- do this: items[i] where thing is in server.js ; this has a class of completed ; when this looks at item in the database and if it is true then a class of 'completed' will be added, when dispalyed in the browser it will add whatever CSS was added for that .completed class (either greys it out or line thru) to show its completed -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- this one does not assign the class completed on it ; so it will just display the list item with no specific Css styling (ex. greyed or line thru)-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- just adds icon of trash ;  delete option where fa-trash action is decided in main.js-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- these will be items that are 'left' as in not completed -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--  -->
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!-- form where you can add your todo items to the list-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
