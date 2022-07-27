@@ -10,9 +10,11 @@ const PORT = 2121
 require('dotenv').config()
 // MISSING CORS
 
-// declaring 3 global scope variables: db, dbConnectionStr is pulled from env file, and naming the database as 'todo'.
+// declaring 3 global scope variables: db, dbConnectionStr, and dbName
 let db,
+    //dbConnectionStr is pulled from env file,
     dbConnectionStr = process.env.DB_STRING,
+    // and naming the database as 'todo'.
     dbName = 'todo'
 
 // connecting to Mongo using our connection string and telling it how to connect
@@ -50,12 +52,15 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
-// Will add a new item to 'todos' collection with the inserted text, and will mark it as not completed.
+// if a request is made to the '/addTodo' url,
 app.post('/addTodo', (request, response) => {
+    // will go to the 'todos' collection in the database, insert one with the inserted text and mark it as not completed
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-      // After the promise is fulfilled, we will log and redirect to root url
+      // After the promise is fulfilled
       .then(result => {
+        // log in the console that a Todo was added
         console.log('Todo Added')
+        // tell the server to redirect back to the home page
         response.redirect('/')
     })
       // Will catch any error of inserting item - if the promise is rejected, we will log an error
@@ -67,7 +72,9 @@ app.post('/addTodo', (request, response) => {
 app.put('/markComplete', (request, response) => {
   // updateOne document in 'todos' that has 'thing' as request.body.itemFromJs, which is sent from main.js by a click as Complete
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        // go to the completed key in the database
         $set: {
+            // change the value to true
             completed: true
           }
     },{
@@ -76,8 +83,11 @@ app.put('/markComplete', (request, response) => {
         // do not insert new item if item does not already exist in collection
         upsert: false
     })
+    // After the promise is fulfilled
     .then(result => {
+        // log in the console that the item was marked complete
         console.log('Marked Complete')
+        // respond to the client side JS/EJS that the item was marked complete
         response.json('Marked Complete')
     })
       // Will catch any error of marking item Complete - if the promise is rejected, we will log an error
@@ -89,7 +99,9 @@ app.put('/markComplete', (request, response) => {
 app.put('/markUnComplete', (request, response) => {
     // updateOne document in 'todos' that has 'thing' as request.body.itemFromJs, which is sent from main.js by a click as UnComplete
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        // go to the completed key in the database
         $set: {
+            // change the value to false
             completed: false
           }
     },{
@@ -98,8 +110,11 @@ app.put('/markUnComplete', (request, response) => {
         // do not insert new item if item does not already exist in collection
         upsert: false
     })
+    // After the promise is fulfilled
     .then(result => {
+        // log in the console that the item was marked Uncomplete
         console.log('Marked Uncomplete')
+        // respond to the client side JS/EJS that the item was marked complete
         response.json('Marked Uncomplete')
     })
       // Will catch any error of marking item UnComplete - if the promise is rejected, we will log an error
@@ -111,8 +126,11 @@ app.put('/markUnComplete', (request, response) => {
 app.delete('/deleteItem', (request, response) => {
     // Delete the document in 'todos' that has 'thing' as request.body.itemFromJs, which is sent from main.js by a click 
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+    // After the promise is fulfilled
     .then(result => {
+        // log in the console that the item was Deleted
         console.log('Todo Deleted')
+        // respond to the client side JS/EJS that the item was deleted
         response.json('Todo Deleted')
     })
       // Will catch any error of Deleting item - if the promise is rejected, we will log an error
