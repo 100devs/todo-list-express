@@ -1,8 +1,9 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+//MODULES
+const express = require('express') //Requires that Express be imported into Node
+const app = express(); //Create an Express application
+const MongoClient = require('mongodb').MongoClient; //Requres that MongoClient library be imported
+const PORT = 2121 //Establishes a local port on port 2121
+require('dotenv').config() //Allows you to bring in hidden environment variables
 
 
 let db,
@@ -47,11 +48,11 @@ app.post('/addTodo', (request, response) => {
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
-            completed: true
+            completed: true //Add status of "completed" equal to "true" to item in our collection
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, //Once a thing has been marked as completed, this removes it from the to-do list
+        upsert: false //Reduces left-to-do total by 1
     })
     .then(result => {
         console.log('Marked Complete')
@@ -67,7 +68,7 @@ app.put('/markUnComplete', (request, response) => {
             completed: false
           }
     },{
-        sort: {_id: -1},
+        sort: {_id: -1},  
         upsert: false
     })
     .then(result => {
