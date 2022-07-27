@@ -47,6 +47,9 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+//CREATE
+//insert one document into MONGO DB taken from the data of the /addTodo form. Takes the todo value from the form and puts it into the 'thing' variable. Also adds a completed value of false
+//redirects the page back to the main page when the value has been added to MONGO DB
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
