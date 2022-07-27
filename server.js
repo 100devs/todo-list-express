@@ -41,7 +41,7 @@ app.get('/', async (request, response) => {
     const todoItems = await db.collection('todos').find().toArray();
     // How many objects that have the property of completed to false.
     const itemsLeft = await db.collection('todos').countDocuments({ completed: false });
-    //responds using ejs template
+    //responds using ejs template - passes todoItems and itemsLeft to the browser
     response.render('index.ejs', { items: todoItems, left: itemsLeft });
 
     //callback method example:

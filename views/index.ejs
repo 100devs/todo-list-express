@@ -1,47 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html> <!--describes the type of file-->
+<html lang="en"> <!--english language-->
+<head> <!--top of the file metadata and links-->
+    <meta charset="UTF-8"> <!--character set used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--IE compatibility-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--set initial zoom to 1.0--><!--set width to width of our screen, mobile responsive design.-->
+    <title>Document</title> <!--title of our page "Whats in the Tab"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--how we get our trashcans: font awesome import-->
+    <link rel="stylesheet" href="css/style.css"> <!--our stylesheet: starts in /public-->
+</head> <!--end of metadata links-->
+
+<!--the meat of our website-->
+    <!-- <!DOCTYPE html> 
+<html lang="en"> 
+<head> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+-->
+<body> <!--the meat of our website-->
+    <h1>Todo List: </h1> <!--main header drawn on the page-->
+    <ul class="todoItems"> <!--unordered list with the 'todoItems' class-->
+    <% for(let i=0; i < items.length; i++) {%>  <!--looping through the items array and adding following items for each-->
+        <li class="item"> <!--list item-->
+            <% if(items[i].completed === true) {%> <!--if our current item completed is true-->
+                <span class='completed'><%= items[i].thing %></span> <!--render a 'completed' item strikethru by setting the class to completed-->
+            <% }else{ %> <!--if its NOT completed, or any other value -->
+                <span><%= items[i].thing %></span> <!--regular, unmodified text-->
+            <% } %> <!--end of the if/else-->   
+            <span class='fa fa-trash'></span> <!--our trashcan from fontawesome-->
+        </li> <!--end our list item-->
+    <% } %><!--ends our EJS loop-->
+    </ul> <!--end our list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--header with a value from ejs-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--header for our form - add a todo-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--action is where do we send the form (which route), method is what type of request are we making (READ,CREATE,UPDATE or DELETE)-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--text field,input from the user-->
+        <input type="submit"> <!--button to submit the form-->
+    </form> <!--Close our form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--run our frontend js-->
+</body> <!--ends the meat of our website-->
+</html> 
