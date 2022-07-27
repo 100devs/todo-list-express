@@ -1,7 +1,9 @@
 h1{
+    /* makes every h1 red */
     color: red;
 }
 .completed{
+    /* grey out line through each completed to do */
     color: gray;
     text-decoration: line-through;
 }
