@@ -1,0 +1,10 @@
+/* Colors the heading 1 (h1) element red */
+h1{ 
+    color: red; 
+}
+
+/* Colors the .completed class gray and give it a text decoration of line-through. */
+.completed{
+    color: gray;
+    text-decoration: line-through;
+}
