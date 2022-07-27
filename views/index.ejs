@@ -1,15 +1,26 @@
-<!DOCTYPE html>
+<!-- type of document -->
+<!DOCTYPE html> 
+<!-- language we're speaking -->
 <html lang="en">
+<!-- stoof for computer -->
 <head>
+    <!-- character encoding for HTML -->
     <meta charset="UTF-8">
+    <!-- force IE to render on older versions -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- controls viewport shape and size for accessibility -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- name of page -->
     <title>Document</title>
+    <!-- access font awesome icons/link to stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to our css file -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+stoof for our user 
 <body>
-    <!DOCTYPE html>
+        <!-- EXTRA EXTRA READ ALL ABOUT IT -->
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +28,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body> -->
+    <!-- Most important content on page -->
     <h1>Todo List: </h1>
+    <!-- List of items, order doesnt matter -->
     <ul class="todoItems">
+        <!-- javascript for loop ; start at index 0, run the entire length of all items, increment 1 by 1 -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- list items -->
         <li class="item">
+            <!-- check if item is completed, if so do this -->
             <% if(items[i].completed === true) {%>
+                <!-- add class 'completed' to these for styling -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- if not completed -->
             <% }else{ %>
+                <!-- display in list but dont add teh class -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+
+            <% } %>
+            <!-- create class for font awesome trash icon     -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- count out number of 'incomplete' tasks and place here -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- less important content -->
     <h2>Add A Todo:</h2>
-
+    <!-- redirect once we have a submission -->
     <form action="/addTodo" method="POST">
+        <!-- match our /todo post in server.js -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit input -->
         <input type="submit">
     </form>
     
-
+    <!-- run our scripts at the end so we dont get a blink/js block and mess up our rendering -->
     <script src='js/main.js'></script>
 </body>
 </html>
