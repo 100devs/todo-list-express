@@ -1,0 +1,12 @@
+/* Selects all h1 elements */
+h1{
+    /* Makes all h1 elements red */
+    color: red;
+}
+
+/* Selects all elements with the 'completed' class */
+.completed{
+    /* Makes all elements with completed class gray and crossed out */
+    color: gray;
+    text-decoration: line-through;
+}
