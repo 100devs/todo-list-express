@@ -20,6 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Loops through all database items and displays in list. Adds class of 'completed' if item is completed. Adds delete button for each item-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,8 +33,10 @@
     <% } %>
     </ul>
 
+    <!-- Displays total of incomplete items -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Form to add a new item -->
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
