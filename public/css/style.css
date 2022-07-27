@@ -1,6 +1,9 @@
+/*styles h1 to red */
 h1{
     color: red;
 }
+
+/*styles items with class completed to gray color and line through */
 .completed{
     color: gray;
     text-decoration: line-through;
