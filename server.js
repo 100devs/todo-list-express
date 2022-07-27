@@ -94,26 +94,37 @@ app.put('/markComplete', (request, response) => {
     .catch(error => console.error(error))
 })
 
+
+// with a PUT method we can update the items on the list to 
 app.put('/markUnComplete', (request, response) => {
+    // updates an item in your list itemFromJS
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
+            // marks the item as incompleted
             completed: false
           }
-    },{
-        sort: {_id: -1},
+    }, {
+            // tells the item to go to the bottom of the list
+        sort: { _id: -1 },
+        // if you don't find something, don't automatically assign something new
         upsert: false
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        .then(result => {
+        // console logging that it's been marked complete, and also responding back to the client in JSON saying it's been marked Incomplete
+        console.log('Marked Incomplete')
+        response.json('Marked Incomplete')
     })
     .catch(error => console.error(error))
 
 })
 
+
+// responding to a DELETE request
 app.delete('/deleteItem', (request, response) => {
+    // deletes the item from the itemFromJS object
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
+        .then(result => {
+        // console logging that it's been deleted, and also responding back to the client in JSON saying it's been deleted
         console.log('Todo Deleted')
         response.json('Todo Deleted')
     })
@@ -121,6 +132,8 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+
+// tells the server which port to use, either from the .env file, or the hard-coded value at the beginning
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
