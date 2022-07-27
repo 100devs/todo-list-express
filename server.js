@@ -21,18 +21,22 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+app.get('/',async (request, response) => {
+    try{
+        const todoItems = await db.collection('todos').find().toArray()
+        const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+        response.render('index.ejs', { items: todoItems, left: itemsLeft })
+        // db.collection('todos').find().toArray()
+        // .then(data => {
+        //     db.collection('todos').countDocuments({completed: false})
+        //     .then(itemsLeft => {
+        //         response.render('index.ejs', { items: data, left: itemsLeft })
+        //     })
+        // })
+        // .catch(error => console.error(error))
+    } catch(err){
+        console.log(err)
+    }
 })
 
 app.post('/addTodo', (request, response) => {
@@ -41,7 +45,10 @@ app.post('/addTodo', (request, response) => {
         console.log('Todo Added')
         response.redirect('/')
     })
-    .catch(error => console.error(error))
+    .catch((err) => {
+        console.log(err)
+        response.status(500).json({ error: err.message, message: 'could not create new document' })
+    })
 })
 
 app.put('/markComplete', (request, response) => {
