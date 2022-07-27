@@ -20,7 +20,6 @@ MongoClient.connect(dbConnectionStr, {
     })
     .then(client => { //once connection is established, which returns client info, we will log to console that we are connected and assign db to this specific db/collection
         console.log(`Connected to ${dbName} Database`)
-        console.log(`The following client info was returned on connection: ${client.json()}`)
         db = client.db(dbName)
     })
 
