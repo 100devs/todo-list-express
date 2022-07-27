@@ -11,7 +11,7 @@ require('dotenv').config()
 //storing our database connection in a variable? 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+    dbName = 'todo' //our database name is todo
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -54,6 +54,7 @@ app.post('/addTodo', (request, response) => {
 })
 //Update part of CRUD.
 app.put('/markComplete', (request, response) => {
+    //search the database for a document that matches the item in the body. 
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //the request body comes from the form. 
         $set: {
             completed: true
@@ -62,7 +63,7 @@ app.put('/markComplete', (request, response) => {
         sort: {_id: -1},
         upsert: false
     })
-    .then(result => {
+    .then(result => { //we're going to mark the itme we found as complete.
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
@@ -70,6 +71,7 @@ app.put('/markComplete', (request, response) => {
 
 })
 //Update part of CRUD
+//seach are database or collection for a matching document from the request body
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{ 
         $set: {
@@ -79,7 +81,7 @@ app.put('/markUnComplete', (request, response) => {
         sort: {_id: -1}, //sorting the uncompleted items on the list
         upsert: false
     })
-    .then(result => {
+    .then(result => { // mark complete
         console.log('Marked Complete') //tells us in the console log that the object was marked complete.
         response.json('Marked Complete')
     })
