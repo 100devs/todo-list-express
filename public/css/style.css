@@ -1,7 +1,10 @@
 h1{
     color: red;
 }
+/* sets the font color to red */
 .completed{
-    color: gray;
+    /* sets the font color to gray */
+    color: gray;    
+    /* if the text has the class completed, it has a strike-through */
     text-decoration: line-through;
 }
