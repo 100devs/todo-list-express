@@ -35,7 +35,7 @@ app.use(express.json()) // enable to use JSON
 // CRUD Methods:
 app.get('/',async (request, response)=>{ // reading the home page, client make the request and response is sent
     const todoItems = await db.collection('todos').find().toArray() // creating variable(todoItems), wait for response from db.  It will find the specific object/objects and put it in an Array. 
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // creating variable(itemsLeft), wait for response from db. Count the documents in the db and set the default to false aka incomplete.
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // creating variable(itemsLeft), wait for response from db. Count the documents in the db that are set to false aka incomplete.
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) // send the data to the index.ejs file via the variables.
     // db.collection('todos').find().toArray()
     // .then(data => {
@@ -58,26 +58,26 @@ app.post('/addTodo', (request, response) => { // Creating a new Todo task aka a 
 
 app.put('/markComplete', (request, response) => {// Updates an existing task in the DB 
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{// Updating the item's default from false to true.
-        $set: {
+        $set: { 
             completed: true
-          }
+          } // sets the completed action from false to true
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, // sorts(pushes) task to the bottom of the list, leaving unfinished tasks at the top
+        upsert: false // default setting for upsert which is update and insert, no need to find matching documents in our db
     })
     .then(result => {
         console.log('Marked Complete')
         response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+    }) // promise that sends confirmation message that task is completed
+    .catch(error => console.error(error)) // In case of error
 
 })
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markUnComplete', (request, response) => { // Updates an existing task in the DB
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ // Updating the item's default from false to true.
         $set: {
             completed: false
-          }
+          } // sets the completed action to false
     },{
         sort: {_id: -1},
         upsert: false
