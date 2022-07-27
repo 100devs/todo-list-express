@@ -4,7 +4,7 @@ add DB_STRING to .env file
 
 Updated README:
 ---------------------
-- Getting Started -
+Getting Started 
 ---------------------
 1. Go to Leon's link above and click "Fork" on the top right. This will make your own copy of this repository to work on.
 
@@ -15,7 +15,7 @@ Updated README:
 4. Now you can work on the code. The assignment is to comment every line. Probably start with server.js, then move to index.ejs, main.js, and style.css if you want.
 
 ----------------------
-- Running the App -
+Running the App 
 (Note: This technically isn't part of the assignment, but I'd like to get it working if possible...)
 ----------------------
 1. README says to: run "npm install" - run this command from the terminal, while in your repository folder
