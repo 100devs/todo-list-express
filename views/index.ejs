@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--This is how you comment in ejs-->
+    <h1>Todo List: </h1>
+
+    <ul class="todoItems">
+    <% for(let i=0; i < items.length; i++) {%>
+        <li class="item">
+            <% if(items[i].completed === true) {%>
+                <span class='completed'><%= items[i].thing %></span> <
+            <% }else{ %>
+                <span><%= items[i].thing %></span>
+            <% } %>    
+            <span class='fa fa-trash'></span> <!-- add font awesome trash icon -->
+        </li>
+    <% } %>
+    </ul>
+    
+
+    <h2>Left to do: <%= left %></h2> <!-- Left of Items to Complete  -->
+
+    <h2>Add A Todo:</h2> <!-- Adds Todo Item -->
+
+    <form action="/addTodo" method="POST"> <!-- form for user to add a todo -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input to add a todo -->
+        <input type="submit"> <!-- button to submit todo -->
+    </form>
+    
+
+    <script src='js/main.js'></script>
+</body>
+</html>
