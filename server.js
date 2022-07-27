@@ -19,15 +19,18 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         db = client.db(dbName) //Defines the database as 'todo'. Works with line 15.
     })
     
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.set('view engine', 'ejs') //Determines how we're going to use a view engine to render ejs commands for our app
+app.use(express.static('public')) //Tells our app to use a folder names "public" for all of our static files
+app.use(express.urlencoded({ extended: true })) //Call to middleware that cleans up how things are displayed and how our server communicates with our client
+app.use(express.json()) //Tells the app to use Express's json method to take the object and turn it into a JSON string
 
-
+//ROUTES
 app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    //GET Stuff to display to users on the client side using an asynchronous function
+    const todoItems = await db.collection('todos').find().toArray() //Create a constant called "todoItems" that goes into our database, create a collection called "todos", find anything in that database, and turn it into an array of objects
+    const itemsLeft = await db //Creates a constant in our todos collection
+        .collection('todos') //Looks at documents in the collection
+        .countDocuments({completed: false}) //The countDocuments method counts the number of documents that have a completed status equal to "false" 
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {
