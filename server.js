@@ -110,6 +110,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+//setup the PORTS for listening.  First listen to the port set up the by environment, and if there is no port, then use the port declared above
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
