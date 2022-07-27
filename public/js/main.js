@@ -24,58 +24,85 @@ Array.from(itemCompleted).forEach((element)=>{
 
 // declare an async function called deleteItem
 async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    // get the innerText of the span element and assign it to the itemText variable
+    const itemText = this.parentNode.children[0].innerText
     try{
+        // make fetch to deleteItem path and assign to response variable
         const response = await fetch('deleteItem', {
+            // set request method to DELETE
             method: 'delete',
+            // set Content-Type header to application/json - so it knows we're sending JSON
             headers: {'Content-Type': 'application/json'},
+            // send the object with a property of itemFromJS and value of itemText of the current item as a string of JSON
             body: JSON.stringify({
               'itemFromJS': itemText
             })
           })
+        // attempt to load and parse the response body as JSON, assigning it to the data variable
         const data = await response.json()
+        // console log the JSON object assigned to data
         console.log(data)
+        // reload the webpage
         location.reload()
 
     }catch(err){
+        // if any errors are caught, console log them
         console.log(err)
     }
 }
 
 async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    // get the innerText of the span element
+    const itemText = this.parentNode.children[0].innerText
     try{
+        // make fetch to markComplete path
         const response = await fetch('markComplete', {
+            // set request method to PUT
             method: 'put',
+            // set Content-Type header to application/json - so it knows we're sending JSON
             headers: {'Content-Type': 'application/json'},
+            // send the object with a property of itemFromJS and value of the itemText of the current item as a string of JSON
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
+        // attempt to load and parse the response body as JSON, assigning it to the data variable
         const data = await response.json()
+        // console log the JSON object
         console.log(data)
+        // reload the webpage
         location.reload()
 
     }catch(err){
+        // if any errors are caught, console log them
         console.log(err)
     }
 }
 
 async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    // get the innerText of the span
+    const itemText = this.parentNode.children[0].innerText
     try{
+        // make fetch request to markUnComplete path
         const response = await fetch('markUnComplete', {
+            // set request method to PUT
             method: 'put',
+            // set Content-Type header to application/json - so that it knows we're sending JSON
             headers: {'Content-Type': 'application/json'},
+            // send the object with a property of itemFromJS and value of the itemText of the current item as a string of JSON
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
+        // attempt to load and parse the response body as JSON, assigning it to the data variable
         const data = await response.json()
+        // console log the JSON response
         console.log(data)
+        // reload the webpage
         location.reload()
 
     }catch(err){
+        // if any errors are caught, console log them
         console.log(err)
     }
 }
