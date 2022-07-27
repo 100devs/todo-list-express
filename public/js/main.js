@@ -8,7 +8,7 @@
  * 
  * Input a collection of todo tasks. For every completed task, click on the task, to indicate the task has been completed. To remove a task, click the trashcan icon. Increase your productivity by 10x by using Todo List Express.
  * 
- * @author Leon Noel, Brian Schnee, Erika Teal, Bianca Togonon, Alondra Mora, Lucas Winkler, Alyssha Lewin, Jacob Asper, Dana Lee, Brenden D'Souza, Sebastian Ospina, Jesse Ranon, Alexis Aguilar, Pree 
+ * @author Leon Noel, Brian Schnee, Erika Teal, Bianca Togonon, Alondra Mora, Lucas Winkler, Alyssha Lewin, Jacob Asper, Dana Lee, Brenden D'Souza, Sebastian Ospina, Jesse Ranon, Alexis Aguilar, Pree Robertson
  */
 
 // select each element with class ".fa-trash"
