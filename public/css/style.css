@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 h1{
     color: red;
 }
@@ -8,3 +9,13 @@ h1{
 }
 /*When an element is marked as completed, it assigns the class completed to it.
 In this case it will change its style to color gray and crossed out.*/
+||||||| empty tree
+=======
+h1{
+    color: red;
+}
+.completed{
+    color: gray;
+    text-decoration: line-through;
+}
+>>>>>>> 8247adf50f08bd10000a520d0c12dd01ccaa776b

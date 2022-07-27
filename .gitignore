@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules 
 .env
 
@@ -7,3 +8,8 @@ node_modules
 #.env is the individual environment file where you contain variable that override others.
 #It also contains special codes and passwords that are needed but that you also do not want
 #to share with others
+||||||| empty tree
+=======
+node_modules
+.env
+>>>>>>> 8247adf50f08bd10000a520d0c12dd01ccaa776b
