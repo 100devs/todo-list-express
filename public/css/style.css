@@ -1,7 +1,11 @@
+/* change header (h1) to red  */
 h1{
     color: red;
 }
+
+/* change color and strikethrough text for completed items */
 .completed{
+    /*change color*/
     color: gray;
     text-decoration: line-through;
 }

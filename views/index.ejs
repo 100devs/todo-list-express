@@ -1,47 +1,70 @@
+<%# specify that the browser is rendering an html file %>
 <!DOCTYPE html>
+<%# set language to english %>
 <html lang="en">
+    <%# set head block for style links and meta tags %>
 <head>
+    
+    <%# parse info as UTF-8 %>
     <meta charset="UTF-8">
+    
+    <%# apply browser settings as internet explorer %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%# allow scaling for viewport %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%# define title for tab tag %>
     <title>Document</title>
+
+    <%# link CSS stylesheets for styling %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <%# close head block %>
 </head>
+
+<%# declare block for body %>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+    <%# create header TODO list %>
     <h1>Todo List: </h1>
+    
+    <%# create unordered list %>
     <ul class="todoItems">
+    
+        <%# loop through every task item from database %>
     <% for(let i=0; i < items.length; i++) {%>
+        <%# declare list element with item class %>
         <li class="item">
+            <%# set condition for if items are completed %>
             <% if(items[i].completed === true) {%>
+                <%# create a span and plug task info into it %>
                 <span class='completed'><%= items[i].thing %></span>
+                <%# if it doesnt work %>
             <% }else{ %>
+                <%# create a span and plug task info without completed class %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <%# create span for font awesome trashcan button %>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <%# header for user input LEFT TODO %>
     <h2>Left to do: <%= left %></h2>
 
+    <%# create header for ADD todo %>
     <h2>Add A Todo:</h2>
 
+    <%# create form with post method %>
     <form action="/addTodo" method="POST">
+        <%# create text input box %>
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <%# create submit button  %>
         <input type="submit">
     </form>
     
-
+    <%# link javascript file behavior file %>
     <script src='js/main.js'></script>
 </body>
 </html>
