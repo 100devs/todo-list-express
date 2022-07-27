@@ -50,39 +50,57 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    //Get the text of the to-do item
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //Make a fetch call to the /markComplete route on the server and send the todo item text in the body of the request  
         const response = await fetch('markComplete', {
+            //use the PUT HTTP method
             method: 'put',
+            //declare the content-type of the data to be sent
             headers: {'Content-Type': 'application/json'},
+            //make a JSON object to send in the body 
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
+        //await the response from the server
         const data = await response.json()
+        //log the server response
         console.log(data)
+        //reload the page
         location.reload()
 
     }catch(err){
+        //catch and log any errors
         console.log(err)
     }
 }
 
 async function markUnComplete(){
+    //Get the text of the to-do item
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //Make a fetch call to the /markComplete route on the server and send the todo item text in the body of the request  
         const response = await fetch('markUnComplete', {
+            //use the PUT HTTP method
             method: 'put',
+            //declare the content-type of the data to be sent
             headers: {'Content-Type': 'application/json'},
+            //make a JSON object to send in the body 
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
+        //await the response from the server
         const data = await response.json()
+        //log the server response
         console.log(data)
+        //reload the page
         location.reload()
 
     }catch(err){
+        //catch and log any errors
         console.log(err)
     }
 }

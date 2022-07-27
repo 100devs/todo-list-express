@@ -67,12 +67,12 @@ app.post('/addTodo', (request, response) => {
 app.put('/markComplete', (request, response) => {
     // In the db 'todos' collection, find the document where the 'thing' value matches the item text passed in the request body and update it
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        //set the value of 'completed' to 'true'
+        //set the value of 'completed' to true
         $set: {
             completed: true
         }
     },{
-        sort: {_id: -1},   // If more than one matching document is returned, sort them in descending order by _id (so that we update the one with the lower _id value)
+        sort: {_id: -1},   // If more than one matching document is returned, sort them in descending order by _id (so that we update only the one with the lower _id value)
         upsert: false  // Doesn't create a new document if the query doesn't find a matching document
     })
     .then(result => {
@@ -81,21 +81,25 @@ app.put('/markComplete', (request, response) => {
         //I think .json() also automatically sets the HTTP status code to 200 and the content-type to application/json, which is handy
         response.json('Marked Complete')
     })
+    //catch any errors and log them
     .catch(error => console.error(error))
 })
 
 //Handle PUT (UPDATE) requests to the /markUnComplete route
+//Triggered when a completed todo list item is clicked on the front end
 //Do the opposite of the /markComplete route
 app.put('/markUnComplete', (request, response) => {
+    // In the db 'todos' collection, find the document where the 'thing' value matches the item text passed in the request body and update it
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
-            completed: false
+            completed: false  //set the value of 'completed' to false
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1},  // If more than one matching document is returned, sort them in descending order by _id (so that we update only the one with the lower _id value)
+        upsert: false  // Doesn't create a new document if the query doesn't find a matching document
     })
     .then(result => {
+        //If successful, log to the console and send 'Marked Uncomplete' response to the front end
         console.log('Marked Uncomplete')
         response.json('Marked Uncomplete')
     })
@@ -111,11 +115,13 @@ app.delete('/deleteItem', (request, response) => {
         console.log('Todo Deleted')
         response.json('Todo Deleted')
     })
+    //catch any errors and log them
     .catch(error => console.error(error))
 
 })
 
 //Set up the server to listen on our port (if it's defined in .env), or whatever the port is
 app.listen(process.env.PORT || PORT, ()=>{
+    //If successful, log message to console
     console.log(`Server running on port ${PORT}`)
 })
