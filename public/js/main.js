@@ -26,7 +26,7 @@ Array.from(itemCompleted).forEach((element)=>{
 
 //hoisting! written here but hoisted to line 1
 async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.children[1].innerText
     //give me the innerText of the first <span> element
     //// traverses the dom up to the parent (li) and gets the text inside of the first <span> element
     try{
@@ -51,7 +51,7 @@ async function deleteItem(){
 //
 async function markComplete(){
     //get the innerText of the first <span> element
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.children[1].innerText
     try{
         // make fetch to markComplete path
         const response = await fetch('markComplete', {
@@ -80,7 +80,7 @@ async function markComplete(){
 //
 async function markUnComplete(){
         //get the innerText of the first <span> element
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.children[1].innerText
     try{
             // sends a PUT request to the 'markUnComplete' endpoint, sets the headers to inform server that it is sending json content, and the itemText variable contents in the body.
 
