@@ -1,7 +1,7 @@
 Original README
 ----------------------
-npm install
-add DB_STRING to .env file
+- npm install
+- add DB_STRING to .env file
 
 ----------------------
 Updated README
