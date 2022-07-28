@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!-- Importing stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo List: </h1>
+    <ul class="todoItems">
+<!-- For every item in the 'items' object, makes a list item -->
+    <% for(let i=0; i < items.length; i++) {%>
+        <li class="item">
+<!-- If the item at a given index has a true property in its completed key, then that list item goes into a span with the completed class and text gets appended -->
+            <% if(items[i].completed === true) {%>
+                <span class='completed'><%= items[i].thing %></span>
+            <% }else{ %>
+<!-- If completed does not equal true, text gets appended without the completed class -->
+                <span><%= items[i].thing %></span>
+            <% } %>
+<!-- Every item is assigned a fa-trash class -->
+            <span class='fa fa-trash'></span>
+        </li>
+    <% } %>
+    </ul>
+<!-- Displays with the get request, gets the data in the "next" object -->
+    <h2>Left to do: <%= left %></h2>
+
+    <h2>Add A Todo:</h2>
+
+<!-- Input to add an item to the todo list via POST method -->
+    <form action="/addTodo" method="POST">
+        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <input type="submit">
+    </form>
+    
+    <script src='js/main.js'></script>
+</body>
+</html>
