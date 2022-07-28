@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>  <!--Tells the browser what is the type of the document -->
+<html lang="en"> <!--Language of the HTML -->
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> <!--Character set -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> <!--Link to a CSS stylesheet -->
 </head>
 <body>
     <!DOCTYPE html>
@@ -18,7 +18,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
+    <h1>Todo List: </h1> <!-- Main heading h1 -->
+    <!-- ul element with a class todoItems -->
+    <!-- EJS template for loop to get all the todos -->
+    <!-- If item is completed then put a line over it-->
+    <!--If it is not completed, add uncompleted item to the list -->
+    <!-- Add a span icon with a trash can near the item -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
@@ -26,22 +31,22 @@
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Heading h2 with what is left to todo -->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- Form with POST method to add /addTodo to the route -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Text box to input -->
+        <input type="submit"> <!-- Submit button to add item to the list -->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- Link to the main.js script -->
 </body>
 </html>
