@@ -1,7 +1,12 @@
-h1{
-    color: red;
+/*Selects h1 selector for styling*/
+h1 {
+  /*Assigns red as the font color*/
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+/*Selects selectors with the class of "completed" for styling*/
+.completed {
+  /*Assign gray as the font color*/
+  color: gray;
+  /*Decorates the text by striking through it*/
+  text-decoration: line-through;
 }
