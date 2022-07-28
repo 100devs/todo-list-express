@@ -1,47 +1,66 @@
-<!DOCTYPE html>
+<!-- html 5 document specified -->
+<!DOCTYPE html> 
+<!-- using english language -->
 <html lang="en">
+    <!-- head tag for html -->
 <head>
+    <!-- characters are encoded with UTF-8 -->
     <meta charset="UTF-8">
+    <!-- specify version of internet explorer page should render as -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- viewport of document is set to width of device screen, and initial scale is 1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title as it appears on web page tab is document -->
     <title>Document</title>
+
+    <!-- import style sheet css from external file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- import css from local file system -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+
+ <body>
+    
+ <!DOCTYPE html><!-- typo maybe -->
+<html lang="en"><!-- typo maybe -->
+<head><!-- typo maybe -->
+    <meta charset="UTF-8"><!-- typo maybe -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- typo maybe -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- typo maybe -->
+    <title>Document</title><!-- typo maybe -->
+</head> <!-- typo maybe -->
+
+<!-- begining of html document content -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+   
+    <h1>Todo List: </h1> <!-- h1 most important heading -->
+    
+    <ul class="todoItems"><!--  unordered list with class of todoitems-->
+    <% for(let i=0; i < items.length; i++) {%><!-- embeded javascript for loop for length of items array -->
+        <li class="item"><!-- list item inside UL with class of item -->
+            <% if(items[i].completed === true) {%> <!-- if item at index i has a property of completed set to true  -->
+                <span class='completed'><%= items[i].thing %></span><!-- span is rendered if condition is true with class of completed with inner
+                inner text from item at index i, using property of .thing value  -->
+            <% }else{ %> <!-- else in any other case -->
+                <span><%= items[i].thing %></span><!-- render span with value of item at index i using its thing property -->
+            <% } %>    <!--  end of else-->
+            <span class='fa fa-trash'></span><!-- render span with class of fa and fa-trash with not text -->
+        </li><!--  end of list item-->
+    <% } %><!--  end of for loop-->
+    </ul><!--  end of unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--  h2 header with innertext of left to do using value of left variable-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--  h2 header with add a todo test-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--  form open tag with action to addtodo route with a method of POST-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--  input text field with placeholder of thing to do. with name of todoitem used as variable to hold text-->
+        <input type="submit"><!--  input type submit button-->
+    </form><!--  end of form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--  load script from local filesystem js/main.js-->
+</body><!--  end of body content-->
+</html><!--  end of html document-->

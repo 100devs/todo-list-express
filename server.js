@@ -134,17 +134,17 @@ app.put('/markUnComplete', (request, response) => {
 
 //delete method on deletitem route
 app.delete('/deleteItem', (request, response) => {
-    //delete one object in collection
+    //delete one object in collection that has field that matches itemFromJS in body of message
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+    .then(result => {// after promis is fulfilled take value from promise and set as result variable
+        console.log('Todo Deleted') //log todo deleted
+        response.json('Todo Deleted') //respond to client with json format text todo deleted
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))//any errors during promise chain are logged to console
 
 })
 
 //express service listening on enviroment variable port or defined in file
-app.listen(process.env.PORT || PORT, ()=>{
+app.listen(process.env.PORT || PORT, ()=>{ // use port from enviroment variable if it exists or locally defined PORT
     console.log(`Server running on port ${PORT}`) //log to console port that server is listening on
 })
