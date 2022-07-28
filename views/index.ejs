@@ -9,9 +9,9 @@
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
-	<body> <!-- main section for content displayed -->
-		<h1>Todo List: </h1> <!-- main heading -->
-		<ul class="todoItems"> <!--   -->
+	<body>
+		<h1>Todo List: </h1>
+		<ul class="todoItems">
 			<% for(let i= 0; i <items.length; i++) {%>
 				<li class="item">
 					<% if(items[i].completed === true) {%>
