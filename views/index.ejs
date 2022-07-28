@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<!DOCTYPE html> <!-- Classifies this as a HTML type -->
+<html lang="en"> <!-- Sets the default language to english-->
+<head> <!-- Head, where most of the important info about the html page is kept-->
+    <meta charset="UTF-8">  <!-- Specifies the character set the html uses-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Allows compatablity with older browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- get the screensize and set the intial scale to that -->
+    <title>Document</title><!--Title of our document that appears on the tab -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- sets the stylesheet -->
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!DOCTYPE html> <!-- Classifies this as a HTML type -->
+<html lang="en"> <!-- Sets the default language to english-->
+<head> <!-- Head, where most of the important info about the html page is kept-->
+    <meta charset="UTF-8">  <!-- Specifies the character set the html uses-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Allows compatablity with older browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- get the screensize and set the intial scale to that -->
+    <title>Document</title> <!--Title of our document that appears on the tab -->
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body><!--Creates the body of the Document-->
+    <h1>Todo List: </h1> <!--Largest header possible, that says "Todo List:"-->
+    <ul class="todoItems"> <!--Create a Ordered List with the class of "TodoItems"-->
+    <% for(let i=0; i < items.length; i++) {%> <!--EJS Script that creates data on the fly. This is a for loop that adds items to the Document until variable i is equal to the items array length-->
+        <li class="item"> <!--List item with a class of item-->
+            <% if(items[i].completed === true) {%> <!-- If item is completed, put here-->
+                <span class='completed'><%= items[i].thing %></span> <!-- Completed items are filed under these spans with a class of "completed" -->
+            <% }else{ %> <!-- For everything else -->
+                <span><%= items[i].thing %></span> <!-- Put the remaining items here -->
+            <% } %> <!-- End of the else criteria -->
+            <span class='fa fa-trash'></span> <!-- Give each a trashcan, regardless of class -->
+        </li> <!-- End of the list-->
+    <% } %> <!-- End of the for loop-->
+  </ul><!-- End of the list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Print the number of items that don't have a class of completed -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Header 2 to prompt input -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+    <form action="/addTodo" method="POST"> <!-- Using post, the creation method, this form is to create new items based on... -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- ... THe task that the user inputs -->
+        <input type="submit"> <!-- The submit button-->
+    </form> <!-- End of the form-->
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+
+    <script src='js/main.js'></script> <!-- Links the main.js to the HTML -->
+</body> <!-- End of the body-->
+</html> <!-- End of the HTML-->
