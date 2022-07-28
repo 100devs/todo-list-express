@@ -14,5 +14,10 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mongodb": "^3.6.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/ejs": "^3.1.1",
+    "@types/express": "^4.17.13"
   }
 }
