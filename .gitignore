@@ -1,2 +1,3 @@
+# have git not read certain files that are either too large or contain sensitive info
 node_modules
 .env
