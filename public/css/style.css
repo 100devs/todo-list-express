@@ -1,7 +1,8 @@
-h1{
+h1{ 
     color: red;
-}
+} /* change h1 to red */
+
 .completed{
     color: gray;
     text-decoration: line-through;
-}
+} /* change completed to gray with a line through */
