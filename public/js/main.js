@@ -18,7 +18,7 @@ async function deleteItem(){ //Declares an asynchronous function
     const itemText = this.parentNode.childNodes[1].innerText //Looks inside the list item and grabs only the inner text within the list span
     try{ //Starts a TRY block to do something
         const response = await fetch('deleteItem', { //Creats a response variable that waits on a fetch to get data from the result of deleteItem
-            method: 'delete', //Sets the CRUD method for the route
+            method: 'delete', //Sets the CRUD method to delete for the route
             headers: {'Content-Type': 'application/json'}, // Sepcifies the type of content expected, which is JSON
             body: JSON.stringify({ //declare the message content being passed, and strigify that content
               'itemFromJS': itemText //Sets the content of the body to the inner text of the list item, and naming it 'itemFromJS'
@@ -37,7 +37,7 @@ async function markComplete(){ //Declares an asynchronous function
     const itemText = this.parentNode.childNodes[1].innerText //Looks inside the list item and grabs only the inner text within the list span
     try{ //Starts a TRY block to do something
         const response = await fetch('markComplete', { //Creats a response variable that waits on a fetch to get data from the result of markCompplete
-            method: 'put', //Sets the CRUD method for the route
+            method: 'put', //Sets the CRUD method to "update" for the route
             headers: {'Content-Type': 'application/json'}, // Sepcifies the type of content expected, which is JSON
             body: JSON.stringify({ //declare the message content being passed, and strigify that content
                 'itemFromJS': itemText //Sets the content of the body to the inner text of the list item, and naming it 'itemFromJS'
@@ -56,7 +56,7 @@ async function markUnComplete(){ //Declares an asynchronous function
     const itemText = this.parentNode.childNodes[1].innerText //Looks inside the list item and grabs only the inner text within the list span
     try{ //Starts a TRY block to do something
         const response = await fetch('markUnComplete', { //Creats a response variable that waits on a fetch to get data from the result of markUnCompplete
-            method: 'put', //Sets the CRUD method for the route
+            method: 'put', //Sets the CRUD method to "update" for the route
             headers: {'Content-Type': 'application/json'}, // Sepcifies the type of content expected, which is JSON
             body: JSON.stringify({ //declare the message content being passed, and strigify that content
                 'itemFromJS': itemText //Sets the content of the body to the inner text of the list item, and naming it 'itemFromJS'
