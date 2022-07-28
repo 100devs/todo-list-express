@@ -19,6 +19,7 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    /*displays each todo item from the collection on the page*/
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
@@ -27,15 +28,17 @@
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            /*displays the trash icone*/
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    /*Displays how many items are marked uncomplete*/
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    /*Form to add a todo consisting of a text box and a submit button*/
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
