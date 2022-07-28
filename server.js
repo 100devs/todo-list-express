@@ -1,24 +1,24 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') //sets variable to require use of Express
+const app = express() // sets app as variable for Express
+const MongoClient = require('mongodb').MongoClient // sets variable to require use of MongoDB
+const PORT = 2121 //sets port
+require('dotenv').config() // sets .env folder for storing secret information
 
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+let db, // declares db
+    dbConnectionStr = process.env.DB_STRING, // sets variable that tells code to go into .env folder and find DB_STRING variable
+    dbName = 'todo' // sets variable for name of db we are accessing
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
-    })
+    }) // tells to go use db connection string to go in and access the 'todo' db in mongo
     
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.set('view engine', 'ejs') //sets ejs as the template to use
+app.use(express.static('public')) // tells Express to supply content and styling components from public folder
+app.use(express.urlencoded({ extended: true })) // sets middleware to parse incoming data into more useful components
+app.use(express.json()) // tells Express to return the data as JSON
 
 
 app.get('/',async (request, response)=>{
@@ -33,7 +33,7 @@ app.get('/',async (request, response)=>{
     //     })
     // })
     // .catch(error => console.error(error))
-})
+}) // async function that goes into db, return collection as an array along with items that have not been completed, and render them to the dom as ejs. 
 
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
@@ -42,7 +42,7 @@ app.post('/addTodo', (request, response) => {
         response.redirect('/')
     })
     .catch(error => console.error(error))
-})
+}) // inserts a todo item, marks it as incomplete, console.logs confirmation, and refreshes
 
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
@@ -59,7 +59,7 @@ app.put('/markComplete', (request, response) => {
     })
     .catch(error => console.error(error))
 
-})
+}) // marks todo item as complete, drops it to bottom of list, sends confirmation to console and json.
 
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
@@ -76,7 +76,7 @@ app.put('/markUnComplete', (request, response) => {
     })
     .catch(error => console.error(error))
 
-})
+}) // Seems to do same as previous function except with a different url. Seems like a mistake. 
 
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
@@ -86,8 +86,8 @@ app.delete('/deleteItem', (request, response) => {
     })
     .catch(error => console.error(error))
 
-})
+}) // deletes todo item and sends confirmation as consolelog and json.
 
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
-})
+}) //sets port to listen to and console.logs confirmation
