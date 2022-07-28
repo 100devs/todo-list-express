@@ -1,25 +1,29 @@
+<!-- set doctype for document, declaring the version of HTML being used -->
 <!DOCTYPE html>
+<!-- set default language for the page, english -->
 <html lang="en">
 <head>
+    <!-- declare character encoding, default HTML5 encoding is UTF-8 -->
     <meta charset="UTF-8">
+    <!-- declare version of Internet Explorer the page should render as -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- set default width to 100% of viewport and default zoom to 1 (mobile optmized) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- document title, showcased in title/tab bar, bookmarks, etc. -->
     <title>Document</title>
+    <!-- link to font-awesome style sheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to external CSS style sheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- main header of page -->
     <h1>Todo List: </h1>
+    <!-- unordered list, class of 'todoItems' -->
     <ul class="todoItems">
+    <!-- ejs is a templating language that can generate HTML markup with JS -->
+    <!-- loop through objects in the 'items' array, provided by database & server on refresh -->
+    <!-- if item is "completed", render span with .completed class -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,16 +36,22 @@
     <% } %>
     </ul>
 
+    <!-- on page refresh, update value with number of tasks uncompleted -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- header for adding task item -->
     <h2>Add A Todo:</h2>
 
+    <!-- form to create a new to do task -->
+    <!-- on submit, a POST request made to server, path for request is /addTodo -->
     <form action="/addTodo" method="POST">
+        <!-- input field for adding to do task; name for each input is 'todoItem' -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit button -->
         <input type="submit">
     </form>
     
-
+    <!-- link to external JavaScript file -->
     <script src='js/main.js'></script>
 </body>
 </html>
