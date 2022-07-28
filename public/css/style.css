@@ -1,10 +1,16 @@
-/* Adding css, change h1 to red
-completed class gets gray text and a line through  */
+/* Adding css, change our title to red, tasks
+completed get gray text and a line through  */
 
+/* main header */
 h1 {
+  /* adding red text to our main header */
   color: red;
 }
+
+/* completed class */
 .completed {
+  /* adding grey text to our completed classes */
   color: gray;
+  /* adding line through are completed classes */
   text-decoration: line-through;
 }

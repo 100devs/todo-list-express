@@ -6,34 +6,35 @@ const app = express();
 const MongoClient = require("mongodb").MongoClient;
 //assign our port to 2121, localhost:
 const PORT = 2121;
-//require dotenv and config so that we can hide secrets when we push
+//require dotenv and config so that we can use secrets in this file
 require("dotenv").config();
 
-//assign our db vars
+//assign our db var
 let db,
   //set our connection string to our DB env val
   dbConnectionStr = process.env.DB_STRING,
   //assign our dbName
   dbName = "todo";
 
-//set up our DB connection
+//connect to MongoDB, and pass in our connection string
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
   //after we are connected to our DB
   .then((client) => {
     //log that we are connected and to which DB, for verification
     console.log(`Connected to ${dbName} Database`);
-    //assign db to our DB
+    //assign db to our DB client
     db = client.db(dbName);
+    //closing then
   });
 
 //Middleware
-//app set ejs so we can use ejs
+//app set ejs as what is rendered
 app.set("view engine", "ejs");
 //let's server read from public folder, css and main.js
 app.use(express.static("public"));
-//recognizes the incoming Put/Post Object as string
+//tells express to decode and encode URLs where the header matches the content. Supports arrays and objects
 app.use(express.urlencoded({ extended: true }));
-//recognizes the incoming Put/Post as JSON
+//Parses JSON content from incoming requests
 app.use(express.json());
 
 //async get request to home page
@@ -46,7 +47,7 @@ app.get("/", async (request, response) => {
     .collection("todos")
     .countDocuments({ completed: false });
   //after that's done
-  //res.render our index.ejs file, with an object of what we just stored
+  //res.render our index.ejs file, with the todo items and items left to do count
   response.render("index.ejs", { items: todoItems, left: itemsLeft });
   // db.collection('todos').find().toArray()
   // .then(data => {
@@ -56,6 +57,7 @@ app.get("/", async (request, response) => {
   //     })
   // })
   // .catch(error => console.error(error))
+  //end get
 });
 
 //post request to /addToDo
@@ -73,6 +75,7 @@ app.post("/addTodo", (request, response) => {
     })
     //if not resolved, log error
     .catch((error) => console.error(error));
+  //end post
 });
 
 //put request to /markCompleted
@@ -89,9 +92,11 @@ app.put("/markComplete", (request, response) => {
           completed: true,
         },
       },
-      //send it to the top of db
+      //reduce left to do count
       {
+        //moves item to bottom of list
         sort: { _id: -1 },
+        //prevent insertion if item does not already exist
         upsert: false,
       }
     )
@@ -104,6 +109,7 @@ app.put("/markComplete", (request, response) => {
     })
     //if not resolved, log error
     .catch((error) => console.error(error));
+  //end put
 });
 
 //put request to markUnComplete
@@ -121,8 +127,9 @@ app.put("/markUnComplete", (request, response) => {
         },
       },
       {
-        //add it to top of db
+        //moves item to bottom of list
         sort: { _id: -1 },
+        //prevent insertion if item does not already exist
         upsert: false,
       }
     )
@@ -133,7 +140,9 @@ app.put("/markUnComplete", (request, response) => {
       //res marked complete, should be uncompleted
       response.json("Marked Complete");
     })
+    //if failed, log error
     .catch((error) => console.error(error));
+  //end put
 });
 
 //delete request to /deleteItem
@@ -151,10 +160,12 @@ app.delete("/deleteItem", (request, response) => {
     })
     //if not resolved, log error
     .catch((error) => console.error(error));
+  //end delete
 });
 
 //listen to port from our env file, or whatever port is given
 app.listen(process.env.PORT || PORT, () => {
   //log which server we are running on
   console.log(`Server running on port ${PORT}`);
+  //end listen
 });

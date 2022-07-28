@@ -1,5 +1,6 @@
 //changing the fontsize in vscode and terminal
-{
-  "editor.fontSize": 16,
-  "terminal.integrated.fontSize": 62
-}
+//commented out to reduce font size
+// {
+//   "editor.fontSize": 42,
+//   "terminal.integrated.fontSize": 62
+// }
