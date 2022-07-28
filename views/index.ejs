@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body><!--main section for content-->
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +18,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+    <h1>Todo List: </h1> <!-- heading-->
+    <ul class="todoItems"> <!--unordered list, class-->
+    <% for(let i=0; i < items.length; i++) <!-- for loop in ejs-->{%>
+        <li class="item"> <!--create list item with class-->
+            <% if(items[i].completed === true) <!--check if item is completed--> {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
