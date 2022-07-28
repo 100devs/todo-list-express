@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- tells the browser that this is an html document -->
+<html lang="en"> <!-- tells the browser that the document is in English -->
+<head> <!-- The head includes the metadata and related links that the document is using -->
+    <meta charset="UTF-8"> <!-- This is the character set section. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Specifies the appropriate compatibility for Microsoft browsers. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets the WIDTH of available viewing area to the width of the device screen -->
+    <title>Document</title> <!-- Assign a title that appears on the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- This is a link to which fonts are used on the document -->
+    <link rel="stylesheet" href="css/style.css"> <!-- This is a link to the styles that are used in the document -->
+</head> <!-- Closing tag for the head element -->
+<body> <!-- Opening tag for the body element -->
+    <!DOCTYPE html> <!-- This may be a typo. Why is !DOCTYPE html in the body? -->
+<html lang="en"> <!-- This may be a typo. -->
+<head> <!-- This may be a typo. -->
+    <meta charset="UTF-8"> <!-- This may be a typo. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- This may be a typo. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- This may be a typo. -->
+    <title>Document</title> <!-- This may be a typo. -->
+</head> <!-- This may be a typo. -->
+<body> <!-- Opening tag for another body section. Noticed that the body closing tag was missing. -->
+    <h1>Todo List: </h1> <!-- h1 tag that specifiying the heading that is most important to the document. -->
+    <ul class="todoItems"> <!-- unordered list with a class selector of todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Starting a for loop using EJS syntax. -->
+        <li class="item"> <!-- list item with a class selector of item. -->
+            <% if(items[i].completed === true) {%> <!-- start of an EJS if statement that is specifying [i], which is an index array. The .completed syntax is calling on the index and the code is flagging what would happen if it were true. -->
+                <span class='completed'><%= items[i].thing %></span> <!-- The first part is a span, which is a short piece of text with a class selector called completed. Adding EJS to display the name of the task. -->
+            <% }else{ %>  <!-- EJS else statement for what happens if items[i].completed does not equal true -->
+                <span><%= items[i].thing %></span> <!-- Adding EJS to show the name of the task with NO CLASS -->
+            <% } %>    <!-- EJS to close Else Statement -->
+            <span class='fa fa-trash'></span> <!-- little text with a class selector fa fa-trash -->
+        </li> <!-- closing tag for the list items -->
+    <% } %> <!-- EJS to close the FOR loop -->
+    </ul> <!-- closing tag for the unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- h2 tag that specifies which heading is 2nd most important in context to the document. The h2 includes another ejs notation -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- h2 tag again specifying which heading is 2nd most important -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- form tag which creates a form on the document and a POST method. It includes an action attribute that sends the form to /addTodo route. -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input that comes with the form tag. It specifies the type of input as text and has a placeholder, which is what appears on the input section by default, and a name which will be useful for later reference.-->
+        <input type="submit"> <!-- input tag that gives the form a submit button. -->
+    </form> <!-- closing tag for the form element. -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- script tag that specifies the source of the javascript that is used in the document. -->
+</body> <!-- closing tag for the body -->
+</html> <!-- closing tag for the whole document -->
