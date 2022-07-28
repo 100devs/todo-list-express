@@ -46,7 +46,7 @@ app.post('/addTodo', (request, response) => {                                   
 })
 
 app.put('/markComplete', (request, response) => {                                           //UPDATE task function via URL/markComplete
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document from todos DB that matches item name from JSON sent by app.js
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document from todos DB that matches item name from JSON sent by CLIENT main.js
         $set: {                                                                             //set key value items:
             completed: true                                                                         //completed to true
           }
@@ -63,7 +63,7 @@ app.put('/markComplete', (request, response) => {                               
 })
 
 app.put('/markUnComplete', (request, response) => {                                         //UPDATE task function
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document in todos DB that matches name from JSON sent by app.js
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document in todos DB that matches name from JSON sent by CLIENT main.js
         $set: {                                                                             //set key value items:
             completed: false                                                                    //completed to false
           }
@@ -80,7 +80,7 @@ app.put('/markUnComplete', (request, response) => {                             
 })
 
 app.delete('/deleteItem', (request, response) => {                                          //DELETE task function
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})                      //delete the document in todos DB that matches name from JSON sent by app.js
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS})                      //delete the document in todos DB that matches name from JSON sent by CLIENT main.js
     .then(result => {                                                                       //then
         console.log('Todo Deleted')                                                         //console log that file was deleted
         response.json('Todo Deleted')                                                       //respond that somethings been done with the JSON file
