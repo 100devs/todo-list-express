@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<!DOCTYPE html> <!-- specifies html version to browser -->
+<html lang="en"> <!-- defines the language used on the page -->
+<head> <!-- creates section for metadata and external files -->
+    <meta charset="UTF-8"> <!-- defines what charcters will be used -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- veiwport meta tag, sets ability for user to zoom in -->
+    <title>Document</title> <!--  assigns the title of the document -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- links to font-awesome to make icons available -->
+    <link rel="stylesheet" href="css/style.css"> <!-- links to css stylesheet -->
+</head> <!-- closing the head -->
+<body> <!-- displays main section of site -->
+    <!DOCTYPE html> <!-- typo? -->
+<html lang="en"> <!-- typo? -->
+<head> <!-- typo? -->
+    <meta charset="UTF-8"> <!-- typo? -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- typo? -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- typo? -->
+    <title>Document</title> <!-- typo? -->
+</head> <!-- typo? -->
+<body> <!-- typo? -->
+    <h1>Todo List: </h1> <!-- most important info on page, main title -->
+    <ul class="todoItems"> <!-- create unordered list and assigned class -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- use ejs to start a for loop -->
+        <li class="item"> <!-- create list item and assigned class -->
+            <% if(items[i].completed === true) {%> <!-- to check if an item in an array with a completed property is true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- creating an inline element with an assigned class for completed, adding ejs to display a task from the db -->
+            <% }else{ %> <!-- ejs for the else in our if statement, if an item with a completed property is NOT true, do this -->
+                <span><%= items[i].thing %></span> <!-- adding ejs to display this task with NO class -->
+            <% } %>  <!-- ejs to close the if/else statement -->  
+            <span class='fa fa-trash'></span> <!-- font awesome icon of trashcan added as a class in an inline element -->
+        </li> <!-- closing tag for the list item -->
+    <% } %> <!-- closing the ejs for loop -->
+    </ul> <!-- closing the unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- defines a heading with slightly less importance, ejs showing the value of the variable left, showing how many tasks are left to complete -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- defines a heading /title -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- creating a form, that has a post method, that when submitted goes the the route in the action attribute, addToDo route, post method meaning it creates something -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- creating an input box, that accepts text, name gives it a unique value you can reference / access later -->
+        <input type="submit"> <!-- Gives the form a Submit button -->
+    </form> <!-- closing the form tag -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- linking to the client side JavaScript file in the public folder -->
+</body> <!-- closes the body -->
+</html> <!-- closes the html document -->
