@@ -19,25 +19,30 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- list for todo items  -->
     <ul class="todoItems">
+        <!-- for loop to generate todo list -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+             <!-- checking if item is completed  -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %> 
+            <!-- trash button    -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- list of items left to complete -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form to add a todo item -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit button -->
         <input type="submit">
     </form>
     
