@@ -1,7 +1,9 @@
 h1{
     color: red;
 }
+/*This code defines the font color as red.*/
 .completed{
     color: gray;
     text-decoration: line-through;
 }
+/*This code states that if an item is marked as complete, to put a line through it and turn it grey*/
