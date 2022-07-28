@@ -1,19 +1,21 @@
+// smurfs' selection
 const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+// smurfs
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
-
+// smurfs
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
-
+// gargamel from smurfs
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
-
+// smurfs' delete function
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -32,7 +34,7 @@ async function deleteItem(){
         console.log(err)
     }
 }
-
+// smurfs' completion function
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -51,7 +53,7 @@ async function markComplete(){
         console.log(err)
     }
 }
-
+// smurfs' uncomplete function
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
