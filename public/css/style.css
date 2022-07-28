@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /*selecting any H1 tag */
+    color: red; /*sets all h1 tag texts to red*/
+}/*closes the styling selector for h1*/
+.completed{/*selects the tags with a "completes class"*/
+    color: gray;/*sets texts to gray*/
+    text-decoration: line-through;/*puts a strikethrough the text*/
+}/*closes the styling selector*/
