@@ -73,20 +73,20 @@ app.post("/addTodo", (request, response) => {
     .catch((error) => console.error(error));
 });
 
-// PUT request to /markComplete path (update data): here, it's marking as completed
+// PUT request to /markComplete path 
 app.put("/markComplete", (request, response) => {
-  // go to db, get the 'todos' collection, go to thing, go to the body, find itemFromJS
+  // go to db, gets the 'todos' collection, finds the value of thing (itemFromJS) and updates it
   db.collection("todos")
     .updateOne(
       { thing: request.body.itemFromJS },
       {
-        // set completed to true
+        // sets completed to true
         $set: {
           completed: true,
         },
       },
       {
-        // sort by ascending order
+        // sort by descending order
         sort: { _id: -1 },
         // no update/filtering document nor adding/updating the collection with new document
         upsert: false,
@@ -94,29 +94,29 @@ app.put("/markComplete", (request, response) => {
     )
     // promise chain
     .then((result) => {
-      // logging "Marked Complete" in the terminal
+      // logs "Marked Complete" to the console
       console.log("Marked Complete");
-      // responds with "Marked Complete"
+      // responds with "Marked Complete" as JSON
       response.json("Marked Complete");
     })
-    // error handling
+    // error handling: logs any error to the console
     .catch((error) => console.error(error));
 });
 
-// PUT request /markUnComplete path to remove the line off the todo list item
+// PUT request to /markUnComplete path 
 app.put("/markUnComplete", (request, response) => {
-  // go to db, to the 'todos' collection, go to thing, go to body, and get itemFromJS
+  // go to db, gets the 'todos' collection, finds the value of thing (itemFromJS) and updates it
   db.collection("todos")
     .updateOne(
       { thing: request.body.itemFromJS },
       {
-        // set completed to false
+        // sets completed to false
         $set: {
           completed: false,
         },
       },
       {
-        // sort by ascending order
+        // sort by descending order
         sort: { _id: -1 },
         // no update/filtering document nor adding/updating the collection with new document
         upsert: false,
@@ -124,28 +124,28 @@ app.put("/markUnComplete", (request, response) => {
     )
     // promise chain
     .then((result) => {
-      // logging "Marked Complete" in the terminal
+      // logs "Marked Complete" to the console
       console.log("Marked Complete");
-      // responds with "Marked Complete"
+      // responds with "Marked Complete" as JSON
       response.json("Marked Complete");
     })
-    // error handling
+    // error handling: logs any error to the console
     .catch((error) => console.error(error));
 });
 
 // DELETE request for /deleteItem path
 app.delete("/deleteItem", (request, response) => {
-  // go to the db, go to 'todos' collection, go to thing, go to body and get itemFromJS and delete it
+  // go to the db, gets the 'todos' collection, finds the value of thing that is itemFromJS and deletes said thing
   db.collection("todos")
     .deleteOne({ thing: request.body.itemFromJS })
     // promise chain
     .then((result) => {
       // log "Todo Deleted" to console
       console.log("Todo Deleted");
-      // respond with "Todo Deleted"
+      // responds with "Todo Deleted" as JSON
       response.json("Todo Deleted");
     })
-    // error handling
+    // error handling: logs any error to the console
     .catch((error) => console.error(error));
 });
 

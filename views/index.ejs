@@ -18,28 +18,33 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- main heading for the TODO list -->
     <h1>Todo List: </h1>
+    <!-- unordered list with the class name of "todoItems" -->
     <ul class="todoItems">
-        <!-- loop through entire todo db we get from items (todoItems) -->
+        <!-- loop through all documents in the todos collection (items) -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- list with the class name of "item" -->
         <li class="item">
-            <!-- if task completed draw a line through -->
+            <!-- if a task (item) is completed -->
             <% if(items[i].completed === true) {%>
+                <!-- draw a line through the completed task -->
                 <span class='completed'><%= items[i].thing %></span>
-                <!-- if task not completed, list without strikethrough -->
+                <!-- if task (item) is not completed, do not draw a line through it -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <!-- deletes the list item -->
+            <!-- span with class name of "fa fa-trash": this provides a trash can icon that the user can use delete a given thing (list item) -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-<!-- shows number of items left todo (itemsLeft)-->
+<!-- shows the number of items left todo (i.e., that have not been marked as completed)-->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- heading for adding an item to the TODO list -->
     <h2>Add A Todo:</h2>
-<!-- form that makes a POST request with a document of todos -->
+<!-- form that is sent to /addTodo via a POST request -->
     <form action="/addTodo" method="POST">
         <!-- input the todo item -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
@@ -47,7 +52,7 @@
         <input type="submit">
     </form>
     
-
+<!-- embed client-side JavaScript -->
     <script src='js/main.js'></script>
 </body>
 </html>

@@ -1,105 +1,118 @@
-// goes to document and grabs all elements with classes with name fa-trash
+// goes to document and grabs all elements with the class name "fa-trash"
 const deleteBtn = document.querySelectorAll(".fa-trash");
-// goes to document and grabs all elements with classes of the name item span
+// goes to document and grabs all span elements and elements with the class name "item"
 const item = document.querySelectorAll(".item span");
-// goes to document grabs all elements with class item span.completed
+// goes to document grabs all elements with the class name "item" and all spans with the class name of "completed"
 const itemCompleted = document.querySelectorAll(".item span.completed");
 
-// creating an array from deleteBtn and loops through array and adds event listener to each one, triggering deleteItem on click
+// creates an array from deleteBtn (the trash can icon) and loops through the array
 Array.from(deleteBtn).forEach((element) => {
+  // adds an event listener to each element (trash can), firing the deleteItem function when element is clicked
   element.addEventListener("click", deleteItem);
 });
 
-// creating an array from item and loops through array and adds event listener to each one, triggering markComplete on click
+// creating an array from item and loops through the array
 Array.from(item).forEach((element) => {
+  // adds an event listener to each element, firing the markComplete function when element is clicked
   element.addEventListener("click", markComplete);
 });
 
-// creating an array from itemCompleted and loops through array and adds event listener to each one, triggering markUnComplete on click
-Array.from(itemCompleted).forEach((element) => {
-  element.addEventListener("click", markUnComplete);
-});
+// creating an array from itemCompleted (todos with a line through them) and loops through array
+Array.from(itemCompleted).forEach(
+  // adds event listener to each one element, firing the markUnComplete function when element is clicked
+  (element) => {
+    element.addEventListener("click", markUnComplete);
+  }
+);
 
-// DELETE request triggered by event listener
+// asynchronous function tied to an event listener
 async function deleteItem() {
-    // go to the parent of the item/task we clicked, and go to the child node and give it text
+  // go to the parent of the item/task  clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
   const itemText = this.parentNode.childNodes[1].innerText;
   try {
-    // fetch for DELETE request to /deleteItem endpoint
+    // DELETE request using fetch to deleteItem path
     const response = await fetch("deleteItem", {
-        // establishing DELETE method
+      // defining the request as a DELETE request
       method: "delete",
-      // stating the JSON will be used
+      // request/response HTTP headers will be JSON
       headers: { "Content-Type": "application/json" },
-      // convert JSON into string and set 'itemFromJS' to itemText and delete it
+      // convert JSON into string 
       body: JSON.stringify({
+        // takes the value of itemFromJS (itemText) and deletes it
         itemFromJS: itemText,
       }),
     });
-    // return data as JSON
+    // responds with data as JSON
     const data = await response.json();
-    // logging data to the console
+    // logs data to the console
     console.log(data);
-    // refreshing the page
+    // refresh the page
     location.reload();
     // error handling
   } catch (err) {
+    // logs any errors with the function to the console
     console.log(err);
   }
 }
 
-// PUT request triggered by event listener
+// asynchronous function tied to an event listener
 async function markComplete() {
-  // go to the parent of the item/task we clicked, and go to the child node and give it text
+  // go to the parent of the item/task  clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
   const itemText = this.parentNode.childNodes[1].innerText;
+  // error handling
   try {
-    // fetch for PUT request to /markComplete endpoint
+    // PUT request using fetch to the markComplete path
     const response = await fetch("markComplete", {
-        // establishing a PUT method
+      // defining the request as a PUT request
       method: "put",
-      // stating that JSON will be used
+      // request/response HTTP headers will be JSON
       headers: { "Content-Type": "application/json" },
-      // convert JSON into string and set 'itemFromJS' to itemText and update it
+      // convert JSON into string
       body: JSON.stringify({
+        // takes the value of itemFromJS and updates it to itemText
         itemFromJS: itemText,
       }),
     });
-    // return data as JSON
+    // responds with data as JSON
     const data = await response.json();
     // logs data to console
     console.log(data);
-    // refresh the main page
+    // refresh the page
     location.reload();
     // error handling
   } catch (err) {
+    // logs any errors with the function to the console
     console.log(err);
   }
 }
 
-// PUT request from event listener
+// asynchronous PUT request tied to an event listener
 async function markUnComplete() {
-     // go to the parent of the item/task we clicked, and go to the child node and give it text
+  // go to the parent of the item/task  clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
   const itemText = this.parentNode.childNodes[1].innerText;
+  // error handling
   try {
-      // fetch for PUT request to /markUNComplete endpoint
+    // PUT request using fetch to the /markUnComplete path
     const response = await fetch("markUnComplete", {
-      // establishing a PUT method
-        method: "put",
-        // stating that JSON will be used
+      // defining the request as a PUT request
+      method: "put",
+      // request/response HTTP headers will be JSON
       headers: { "Content-Type": "application/json" },
-       // convert JSON into string and set 'itemFromJS' to itemText and update it
+      // convert JSON into string 
       body: JSON.stringify({
+        // takes the value of itemFromJS and updates it to itemText
         itemFromJS: itemText,
       }),
     });
-    // return data as JSON
+    // responds with data as JSON
     const data = await response.json();
-    // logging data to console
+    // logs data to the console
     console.log(data);
-    // refresh the main page
+    // refresh the page
     location.reload();
     // error handling
   } catch (err) {
+    // logs any errors with the function to the console
     console.log(err);
   }
 }
