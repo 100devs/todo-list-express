@@ -1,23 +1,16 @@
-// requires express and setting it
-// knows where to look to use express
+//Modules and global variables
+//express module, MongoDB module, and dotenv module being used and requiring it for the app
 const express = require('express')
-// Saving the express call to the 'app' variable
 const app = express()
-// requiring MongoDB
 const MongoClient = require('mongodb').MongoClient
-// Declaring and hard-coding the port for our server
+//declaring the local port number as a variable
 const PORT = 2121
-
-// Requiring .env
 require('dotenv').config()
 
-// declaring db but leaving it undeclaring
+//declaring db, mongodb connection link, and database name as global variables
 let db,
-    // the string we're going to use to connect to the MongoDB cluster
     dbConnectionStr = process.env.DB_STRING,
-    // defining the name of the database
     dbName = 'todo'
-
 
 // connecting to the database
 // passing in the connectiong string to tell the connect method which server to connect to
