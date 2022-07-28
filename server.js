@@ -28,7 +28,7 @@ app.use(express.json())
 
 
 app.get('/',async (request, response)=>{
-    // grabbing the db information and organizing it into an array and setting any new files as false
+    // grabbing the db information and organizing it into an array and counting the amount of uncompleted files
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     // renders the todos onto the ejs and sets up the db content for the ejs list
@@ -89,7 +89,7 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
-// deletes tedo item
+// deletes todo item
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
