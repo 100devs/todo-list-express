@@ -37,66 +37,61 @@ app.get('/',async (request, response)=>{ //Starts a GET method when the root rou
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
-    })
-    .catch(error => console.error(error))
-})
+app.post('/addTodo', (request, response) => { //Starts a POST method when the add route is passed in
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //Inserts a new itm into todos collection, gives it a completed value of false by default
+    .then(result => { //If insert is successful, do something
+        console.log('Todo Added') //console log the action
+        response.redirect('/') //Gets rid of the /addTodo route and redirects to the homepage
+    }) //Closes the .thn
+    .catch(error => console.error(error)) //Catches the errors
+}) //Ends the POST
 
-app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markComplete', (request, response) => { //Starts a PUT method when the add route is passed in
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //Looks in the db for one item matching the name of the item passed in from the main.js file that was clicked on
         $set: {
-            completed: true //Add status of "completed" equal to "true" to item in our collection
+            completed: true //Sets completed status to true
           }
     },{
-        sort: {_id: -1}, //Once a thing has been marked as completed, this removes it from the to-do list
-        upsert: false //Doesn't create a document for the todo if the item isn't found
+        sort: {_id: -1}, //Moves item to the bottom of the list
+        upsert: false //Prevents insertion if item does not already exist
     })
-    .then(result => {
-        //Assuming that everything went okay and we got a result...
-        console.log('Marked Complete') //console logged "Marked Complete"
-        response.json('Marked Complete') //Returns response of "Marked Complete"
-    })
-    .catch(error => console.error(error)) //If something broke, an error is logged to the console
+    .then(result => { //Starts a then if update was successful
+        console.log('Marked Complete') //Logs successful completion
+        response.json('Marked Complete') //Sends a response back to the sender
+    }) // Closes the .then
+    .catch(error => console.error(error)) //Catches errors
 
-})
+}) //Closes PUT
 
-app.put('/markUnComplete', (request, response) => { //This route unclicks a thing that you've marked as complete - will take away complete status
-    db.collection('todos')//Go into todos collection
-    .updateOne({thing: request.body.itemFromJS}, //Look for item from itemFromJS
+app.put('/markUnComplete', (request, response) => { //Starts a PUT method when the markUncomplete route is passed in
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},  //Looks in the db for one item matching the name of the item passed in from the main.js file that was clicked on
         {
         $set: {
-            completed: false //Undoes what we did with markComplete - changes "completed" status to "false"
+            completed: false //Sets completed status to false
           }
     },{
-        sort: {_id: -1}, //Once a thing has been marked as completed, this removes it from the to-do list
-        upsert: false
+        sort: {_id: -1}, //Moves item to the bottom of the list
+        upsert: false //Prevents insertion if item does not already exist
     })
-    .then(result => {
-        //Assuming that everything went okay and we got a result...
-        console.log('Marked Complete') //Console logged "Marked Complete"
-        response.json('Marked Complete') //Returns response of "Marked Complete" to the fetch im main.js
-    })
-    .catch(error => console.error(error)) //If something broke, an error is logged to the console
+    .then(result => { //Starts a then if update was successful
+        console.log('Marked Complete') //Logs successful completion
+        response.json('Marked Complete') //Sends a response back to the sender
+    }) // Closes the .then
+    .catch(error => console.error(error)) //Catches errors
 
-})
+}) //Closes PUT
 
-app.delete('/deleteItem', (request, response) => {
-    //DELETE
+app.delete('/deleteItem', (request, response) => { //Starts a delete method
     db.collection('todos') //Goes into your collection
-    .deleteOne({thing: request.body.itemFromJS}) //Uses deleteOne method and find a thing that matches the name of the thing you click on
-    .then(result => { //Assuming everything went okay...
-        console.log('Todo Deleted') //Console logged "Todo Deleted"
-        response.json('Todo Deleted') //Returns response of "Todo Deleted" to the fetch in main.js
-    })
-    .catch(error => console.error(error)) //If something broke, an error is logged to the console
+    .deleteOne({thing: request.body.itemFromJS}) //Looks inside the todos collection for the one item that has a matching name from our JS file
+    .then(result => { //Starts a then if update was successful
+        console.log('Todo Deleted') //Logs successful completion
+        response.json('Todo Deleted') //Sends a response back to the sender
+    }) // Closes the .then
+    .catch(error => console.error(error)) //Catches errors
 
-})
+}) //Closes DELETE
 
-app.listen(process.env.PORT || PORT, ()=>{
-    //Tells our server to listen for connections on the PORT we defined as a constant earlier OR process.env.PORT will tell the server to listen on the port of the app
-    console.log(`Server running on port ${PORT}`) //Console log the port number or server is running on
-})
+app.listen(process.env.PORT || PORT, ()=>{ //Sets up which port we'll be listening on - either from the .env file or the port variable
+    console.log(`Server running on port ${PORT}`) //Console log the running port
+}) //Closes the listen 
