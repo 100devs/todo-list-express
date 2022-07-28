@@ -1,6 +1,8 @@
+/* make h1s red */
 h1{
-    color: red;
+    color: red; 
 }
+/* gray-out and strikethrough itesm with class completed */
 .completed{
     color: gray;
     text-decoration: line-through;
