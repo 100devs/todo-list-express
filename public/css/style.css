@@ -1,7 +1,7 @@
-h1{
+h1{/*selects all the h1 tags in the index.ejs file. This will make the text red */
     color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+}/*closing the h1 selector*/
+.completed{/*selects all the classes in the index.ejs file that's named completed.*/
+    color: gray; /* will set the color to all completed class items gray. */ 
+    text-decoration: line-through; /* will put a line through all the text items in the completed class items */
+} /* closes the completed class selector*/
