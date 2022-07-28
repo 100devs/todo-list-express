@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!-- Telling browser the document type -->
+<html lang="en"> <!-- Starting HTML and stating language -->
+<head> <!-- Storing metadata in head -->
+    <meta charset="UTF-8"> <!-- Character set -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Sets compatability for IE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets width of viewport to width of screen -->
+    <title>Document</title> <!-- Tab title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Links to font awesome libary-->
+    <link rel="stylesheet" href="css/style.css"> <!-- Links to local stylesheet-->
 </head>
+
+<!-- This section of code is a double up and could be removed-->
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -17,31 +19,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+<!-- -->
+
+<body> <!-- Content that is displayed -->
+    <h1>Todo List: </h1> <!-- Main heading -->
+    <ul class="todoItems"> <!-- Unordered list with class todoItems -->
+    <!-- EJS template to get todos-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Iterate through items with for loop-->
+        <li class="item"> <!-- Create a list item -->
+            <% if(items[i].completed === true) {%> <!-- Check if item is completed -->
+                <span class='completed'><%= items[i].thing %></span> <!-- If so, add completed item to list -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- Otherwise, add uncompleted item to list -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- Delete button -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Second level heading and number of todos left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Second level heading -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- Form with POST method to /addToDo route -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Text box input for todo item -->
+        <input type="submit"> <!-- Submit button to add item -->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--  Links to the main.js file in the public folder -->
 </body>
 </html>

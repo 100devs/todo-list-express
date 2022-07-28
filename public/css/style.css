@@ -1,7 +1,7 @@
-h1{
-    color: red;
+h1 { /* Targets any h1 tag */
+    color: red; /* Changes text color to red */
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed{ /* Targets tags with completed class */
+    color: gray; /* Changes color to grey */
+    text-decoration: line-through; /* Adds a line through text */
 }
