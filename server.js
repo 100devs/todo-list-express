@@ -51,8 +51,8 @@ app.post('/addTodo', (request, response) => { //adds items to the db via route/a
     .insertOne({thing: request.body.todoItem, completed: false}) //inserts one "thing" named todoItem with a status of 
     // "completed" set to false
     .then(result => { //if the promise is fulfilled
-        console.log('Todo Added') // we are logging "Todo Added"
-        response.redirect('/') // refresh the page to show new thing it's been added to the db
+        console.log('Todo Added') // loggs "Todo Added"
+        response.redirect('/') // refreshes the page to show new thing it's been added to the db
     })
     .catch(error => console.error(error)) //if we're unable to add to db, we will see an error in the console
 })

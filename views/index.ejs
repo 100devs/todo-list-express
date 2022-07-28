@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate compatibility for microsoft browsers--> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sets the width  of available viewing area to the device screen width --> 
     <title>Document</title> <!-- sets a title of the app which will appear in the browser tab--> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--adds a link to font awesome --> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--gives us acceess to the font awesome library --> 
     <link rel="stylesheet" href="css/style.css"> <!--adds a link to our CSS  --> 
 </head>
 <body> <!-- main section for content displayed-->
@@ -36,7 +36,7 @@
     tasks are left to complete--> 
 
     <h2>Add A Todo:</h2>  <!-- creates another second level heading--> 
-
+<!-- sidenote: forms have built in functions without need to specify it in main.js-->
     <form action="/addTodo" method="POST">  <!-- creates a form with a POST method that goes to the /addTodo route--> 
         <input type="text" placeholder="Thing To Do" name="todoItem">  <!-- creates an input box that accepts text with default text inside, 
         and giving a unique value for this input so we can reference it --> 
