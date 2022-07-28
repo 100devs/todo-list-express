@@ -1,6 +1,8 @@
+/* For all <h1/> elements in the document (in the current document, this will be "Todo List"), the color of the text is red. */
 h1{
     color: red;
 }
+/* For all elements with the class name "completed", the color of the text is gray, and a line will be through the said text. */
 .completed{
     color: gray;
     text-decoration: line-through;
