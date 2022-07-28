@@ -1,47 +1,62 @@
+<!--This tells browser that we are using HTML5 specifically which is the new standard-->
 <!DOCTYPE html>
+<!--Setting the language atribute to english-->
 <html lang="en">
+    <!--This shows the stuff that is hidden from the dom and will not be displayed but gives the browser extra information for rendering-->
 <head>
+    <!--this is all the up to date characters for HTML5-->
     <meta charset="UTF-8">
+    <!--This tells the browser that this webpage is compatable eith IE version edge, it is not really needed any more though and has been taken out of most modern websites-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- setting the viewport and scale so that it is easily viewable on mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--This will be displayed in the tab of the site on the browser-->
     <title>Document</title>
+    <!-- this tells the browser what file to use for the styling, it is using the font awesome so that we can access the trash bin and some other stuff-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--this links the css that will make the page look nice-->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!--everything below this is the body, which means it is the actual website that will be shown to the user-->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!--this is the most important heading as it is an h1. it will generally be the reason for the webpage, here it is announcing that this webpage is a todo list.-->
     <h1>Todo List: </h1>
+    <!--unordered list that has the class of todoItems-->
     <ul class="todoItems">
+        <!--<% %>shows that it is not html but instead javaScript. This is a for loop that will make a list for however many items are returned from the database -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--for every item taken from the database items will be a list item and given the class item-->
         <li class="item">
+            <!--more js logic that says if the database says the items are completed then assign the class of completed to the span-->
             <% if(items[i].completed === true) {%>
+                <!--the actual text of the db item is being labled completed -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!--If the item is not completed then it will be a span without the class of completed-->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!--a new span that is a trashcan icon from the linked font awesome in the head-->
             <span class='fa fa-trash'></span>
         </li>
+        <!--closing the ejs java script-->
     <% } %>
     </ul>
 
+    <!--the number of things left to do on the list which comes from the server.js in the GET response that we set to 'left'-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--less important heading that will be used as a title to display what is next on the page-->
     <h2>Add A Todo:</h2>
 
+    <!--create a form and when you hit a submit button will take the browser to '/addTodo' which we will use the POST method for-->
     <form action="/addTodo" method="POST">
+        <!--these are the things that will be sent to the form, it is a text, with the name of todoItems-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit button-->
         <input type="submit">
     </form>
     
 
+    <!--find the js script that is in the js/main.js file-->
     <script src='js/main.js'></script>
 </body>
 </html>
