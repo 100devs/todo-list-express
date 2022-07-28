@@ -24,29 +24,44 @@
     <h1>Todo List: </h1>
     <!--Un ordered list of items that is given the class name of "todoItems"-->
     <ul class="todoItems">
-    <!---->
+    <!--Loop is set to loop through items until the i is greater than the list of items length (will no longer run)-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--Starts at the beginning of the list of items; also was designated a class name of "items"-->
         <li class="item">
+            <!--Signifies to go to the next line if the item is marked as completed-->
             <% if(items[i].completed === true) {%>
+                <!--shows how it will be displayed on the UI if it is indeed marked as completed-->
                 <span class='completed'><%= items[i].thing %></span>
+                <!--Second conditional; shows how list item will be displayed on the UI if it is not marked as completed-->
             <% }else{ %>
+                <!--Don't bother list item-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+                <!--Ends the if-else statement-->
+            <% } %>
+            <!--class for trash icon-->  
             <span class='fa fa-trash'></span>
+            <!--Ends the list items-->
         </li>
+        <!--End of for loop statement-->
     <% } %>
+    <!--End of listed items-->
     </ul>
-
+    <!--Header for items that have not been marked as completed or deleted-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--Header for the items that end user adds on their own-->
     <h2>Add A Todo:</h2>
-
+    <!--Inserted a form that adds items and posts to the todo list-->
     <form action="/addTodo" method="POST">
+        <!--Space to input another item on the list: "Thing to do"; gets named as "toDoItem"-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--Space to submit the item so that it can be stored in the database and reflected with the UI-->
         <input type="submit">
+        <!--Ends the form section-->
     </form>
     
-
+    <!--Connects to js.main file which is responsible for the functionality of the application-->
     <script src='js/main.js'></script>
+    <!--Ends the body portion of the document-->
 </body>
+<!--End of the entire document-->
 </html>
