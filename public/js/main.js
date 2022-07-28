@@ -24,49 +24,56 @@ async function deleteItem(){ //  declaring an asyncronous function
               'itemFromJS': itemText // setting the content of the body to the inner text of the list item, and naming it 'itemFromJS'
             }) // closing the body
           }) // closing the object
-        const data = await response.json() // waiting on the server to repond with some JSON
+        const data = await response.json() // waiting on the server to respond with some JSON
         console.log(data) // log the result to the console
-        location.reload() // reloads the page to update what is deplayed
+        location.reload() // reloads the page to update what is deployed
 
     }catch(err){ // if an error occurs, pass the error into the catch block
         console.log(err) // log the error to the console
     }  //close the catch block
 } // end the function
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+async function markComplete(){ // declare an asynchronous function
 
-    }catch(err){
-        console.log(err)
-    }
-}
 
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    }catch(err){
-        console.log(err)
-    }
-}
+    const itemText = this.parentNode.childNodes[1].innerText // reads the inner text, of the 2nd value of childNodes(), that is inside the parentNode, of the _____ object.
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    try{// starting a try block to do something
+        const response = await fetch('markComplete', { // creates a response variable that waits for a fetch.
+            method: 'put', // setting the CRUD method to "update" for the route
+            headers: {'Content-Type': 'application/json'}, // specifying the type of content expected, which is JSON
+            body: JSON.stringify({// Declare the message content being passed, and stringify that content
+                'itemFromJS': itemText// setting the content of the body to the inner text of the list item, and naming it 'itemFromJS'
+            })// closing the body
+          })// closing the object
+        const data = await response.json() // waiting on the server to respond with some JSON
+        console.log(data) // log the result to the console
+        location.reload() // reloads the page to update what is deployed
+
+    }catch(err){ // if an error occurs, pass the error into the catch block
+        console.log(err) // log the error to the console
+    } //close the catch block
+} // end the function
+
+async function markUnComplete(){// declare an asynchronous function
+    const itemText = this.parentNode.childNodes[1].innerText // reads the inner text, of the 2nd value of childNodes(), that is inside the parentNode, of the ______ object.
+    try{ // starting a try block to do something
+        const response = await fetch('markUnComplete', { // creates a response variable that waits for a fetch.
+            method: 'put', // setting the VRUD method to "update" for the route
+            headers: {'Content-Type': 'application/json'}, // specifying the type of content expected, which is JSON
+            body: JSON.stringify({ // Declare the message content being passed, and stringify that content
+                'itemFromJS': itemText // setting the content of the body to the inner text of the list item, and naming it 'itemFromJS'
+            }) // closing the body
+          }) // closing the object
+        const data = await response.json() // waiting on the server to respond with some JSON
+        console.log(data) // log the result to the console
+        location.reload() // reloads the page to update what is deployed
+
+    }catch(err){ // if an error occurs, pass the error into the catch block
+        console.log(err) // log the error to the console
+    } //close the catch block
+} // end the function
