@@ -1,6 +1,8 @@
+/*start of declaration for the h1 header*/
 h1{
     color: red;
 }
+/*declaration for items with a "completed" class*/
 .completed{
     color: gray;
     text-decoration: line-through;
