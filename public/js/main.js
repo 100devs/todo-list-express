@@ -18,7 +18,7 @@ Array.from(itemCompleted).forEach((element)=>{//add event listener to itemComple
 async function deleteItem(){ //delete item from list 
     const itemText = this.parentNode.childNodes[1].innerText// get item from list item at this nodeList position
     try{//try to delete item
-        const response = await fetch('deleteItem', {//send item text to server
+        const response = await fetch('deleteItem', {//await promise and delete item from server
             method: 'delete',//let's server know we are using the delete method
             headers: {'Content-Type': 'application/json'},//sets content type to json
             body: JSON.stringify({//converts JS object to a JSON string
@@ -34,40 +34,40 @@ async function deleteItem(){ //delete item from list
     }
 }
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
+async function markComplete(){ //mark item complete from list
+    const itemText = this.parentNode.childNodes[1].innerText//get item from list item at this nodeList position
+    try{//try to mark complete 
+        const response = await fetch('markComplete', {//await promise, mark item as complete and send to server
+            method: 'put', //let's server know we are using PUT method
+            headers: {'Content-Type': 'application/json'}, //sets content type to JSON
+            body: JSON.stringify({//converts JS object to a JSON string
+                'itemFromJS': itemText //send item from JS to server
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json()//await promise and sends response as JSON 
+        console.log(data)//console log the data
+        location.reload()//reload the page 
 
     }catch(err){
-        console.log(err)
+        console.log(err)//if NOT OK, log the error to console
     }
 }
 
-async function markUnComplete(){
+async function markUnComplete(){//unclicks item marked complete
     const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
+    try{// try to uncheck item
+        const response = await fetch('markUnComplete', {//await promise, uncheck item and send to server as unchecked
+            method: 'put',//let's server know we are using PUT method
+            headers: {'Content-Type': 'application/json'},//sets content-type to JSON
+            body: JSON.stringify({//converts JS obj to a JSON string
+                'itemFromJS': itemText //send item from JS to server
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json()//await promise and sends response as JSON
+        console.log(data)//console log the data
+        location.reload()//reload the page
 
     }catch(err){
-        console.log(err)
+        console.log(err)//if NOT OK, log the error to console
     }
 }
