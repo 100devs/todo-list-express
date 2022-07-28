@@ -1,7 +1,16 @@
-h1{
+h1 {
+    /* selects any h1 tag in the ejs file */
     color: red;
+    /* chages text color to red */
 }
-.completed{
+
+/* closes selector */
+.completed {
+    /* selects any class with the name completed */
     color: gray;
+    /* changes color text to gray */
     text-decoration: line-through;
+    /* applies a strikethrough styling to the text */
 }
+
+/* closing our selector */
