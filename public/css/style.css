@@ -1,7 +1,12 @@
+/**this grabs all of the h1s and assigns some visual properties to them**/
 h1{
+    /** This assigns the color read to the h1, so any h1s will be red when the page is rendered**/
     color: red;
 }
+/** this grabs all of the completed class items, no matter if it is a span or heading or whatever, if it has the class of completed it takes these new nisual properties**/
 .completed{
+    /** gives the color grey **/
     color: gray;
+    /** any text that is contanted in this class will have a strike through on the webpage**/
     text-decoration: line-through;
 }
