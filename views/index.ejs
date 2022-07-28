@@ -1,47 +1,72 @@
+<!--Tells browser the kind of doc-->
 <!DOCTYPE html>
+<!--Sets language to English-->
 <html lang="en">
+<!--Opens the head tag-->
 <head>
+    <!--Denotes character set-->
     <meta charset="UTF-8">
+    <!--Sets compatability for MS browsers-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Sets width for the device screen-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Doc title, what's displayed in the tab-->
     <title>Document</title>
+    <!--Imports font awesome library-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--Imports CSS-->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
+<!--Extra head and doctype tags may be typos-->
+<body><!--Extra head and doctype tags may be typos-->
+    <!DOCTYPE html><!--Extra head and doctype tags may be typos-->
+<html lang="en"><!--Extra head and doctype tags may be typos-->
+<head><!--Extra head and doctype tags may be typos-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!--Main section for displaying the app-->
 <body>
+    <!--H1 displays the title of the page -->
     <h1>Todo List: </h1>
+    <!--UL dynamically displays the list items -->
     <ul class="todoItems">
+    <!--EJS for loop populated the UL with the items from the database -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--LI diplays each item -->
         <li class="item">
+            <!--conditional to check if an item in the Items/database array has a completed property  -->
             <% if(items[i].completed === true) {%>
+                <!--Populates the span with completed items-->
                 <span class='completed'><%= items[i].thing %></span>
+            <!--all items from the database array that are not completed are caught with this else -->
             <% }else{ %>
+                <!--Populates the span with incomplete items-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>                   
+            <!--trash can icon--> 
             <span class='fa fa-trash'></span>
         </li>
+    <!--end loop-->
     <% } %>
+    <!--end list-->
     </ul>
-
+    <!--Secondary heading and EJS to display the number of tasks left to complete-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--Secondary heading denoting where more tasks can be added-->
     <h2>Add A Todo:</h2>
-
+    <!--Form with a POST method to add an item to the database-->
     <form action="/addTodo" method="POST">
+        <!--Input field where user can input more list items to add to the database via the /addTo route-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--Submit button to submit and add to the database-->
         <input type="submit">
     </form>
     
-
+    <!--Link to the JS file-->
     <script src='js/main.js'></script>
+    <!--Closing out the HTML file/ending the page -->
 </body>
 </html>

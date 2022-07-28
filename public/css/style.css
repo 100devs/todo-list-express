@@ -1,6 +1,8 @@
+/* sets main header color to red*/
 h1{
     color: red;
 }
+/* sets completed items to appear with a strikethrough*/
 .completed{
     color: gray;
     text-decoration: line-through;
