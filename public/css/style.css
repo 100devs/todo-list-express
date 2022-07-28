@@ -1,7 +1,9 @@
 h1{
     color: red;
 }
+/*this sets the color of the h1 to red*/
 .completed{
     color: gray;
     text-decoration: line-through;
 }
+/*this changes the color to gray and strikes through items with the class completed in the DOM */
