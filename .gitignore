@@ -1,2 +1,3 @@
-node_modules
-.env
+//gitignore is stuff you do not want to push up to github 
+node_modules //too big to upload
+.env //private string for security purposes 
