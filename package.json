@@ -1,10 +1,11 @@
 {
   "name": "rap-name-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "npm install\r add DB_STRING to .env file",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,14 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mongodb": "^3.6.5"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaViSunshine/GroupProject-26-7.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MaViSunshine/GroupProject-26-7/issues"
+  },
+  "homepage": "https://github.com/MaViSunshine/GroupProject-26-7#readme"
 }

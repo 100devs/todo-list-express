@@ -20,7 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%> <!-- EJS verion  of for loop-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- EJS version of for loop-->
         <li class="item"> <!-- prints out from the mongodb collection 'todo' 1 by 1-->
             <% if(items[i].completed === true) {%> <!-- if the object has the property where completed is true, the it wil preint out the object-->
                 <span class='completed'><%= items[i].thing %></span>

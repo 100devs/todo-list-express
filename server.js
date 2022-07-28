@@ -1,11 +1,11 @@
 const express = require('express')
-// requires the express package
+// requires the express package stores it in the constant named express
 const app = express()
-// creates the express function named app
+// creates the express function and stores it in a constant named app
 const MongoClient = require('mongodb').MongoClient
-// installing the files, and defining the mongoclient
+// requiring the files, and defining the mongoclient class
 const PORT = 2121
-// storing a number to PORT
+// storing a number for the PORT
 require('dotenv').config()
 // this enables the dotenv file, i.e. secret file
 
@@ -17,7 +17,7 @@ let db, //define the dataBase variable for Mongo
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // initializing the mongoClient using the connection string we have
     .then(client => {  // Uses a promise, uses then method to connect to the client
         console.log(`Connected to ${dbName} Database`) // console to confirm the connection
-        db = client.db(dbName) // redefine db to to connect to the client db(todo == dbName)
+        db = client.db(dbName) // reassigns db to to connect to the client db method (todo == dbName)
     })
     
 app.set('view engine', 'ejs') //allows express to use ejs templates 
@@ -30,9 +30,9 @@ app.use(express.json()) // middleware to read json data
 app.get('/',async (request, response)=>{  //reading the mongoClient and printing out the mongoClient database todos
     //uses async function to send everything at the same?
     const todoItems = await db.collection('todos').find().toArray() //defines and finds the todoItems as the mongo client collection 'todos' and places them into an array
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //defined itemsLeft where you store the result, and telling it to await for the documents that aren't completed yet.
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //defined itemsLeft where you store the result, and telling it to await for the count of documents that aren't completed yet.
 
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })// this just renders the index.ejs file with the two properties of items and left
+    response.render('index.ejs', { items: todoItems, left: itemsLeft })// this just renders the index.ejs file with the two properties of items and itemsleft
 
     // db.collection('todos').find().toArray()
     // .then(data => {
@@ -44,22 +44,18 @@ app.get('/',async (request, response)=>{  //reading the mongoClient and printing
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => { //express function that creates something new using the url of 'addTodo'
+app.post('/addTodo', (request, response) => { //post method that creates a new document using the path of 'addTodo'
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})//using the mongo function/method 'insertOne' to place a new object with the properties of thing and completed
     // so from the index.ejs file, there is a form at the bottom with the action '/addTodo', thats where we get the request.body.todoItem
     .then(result => { //promise that console logs that we succesfully added an item
         console.log('Todo Added') 
         response.redirect('/') //then redirects to the homepage, which will update our todo list
     })
-    //async vs .then??
-        // async is used when there are more variables??
-        // there is no catch 
-        // leon - makes the code look more synchronous 
-        // https://stackoverflow.com/questions/54495711/async-await-vs-then-which-is-the-best-for-performance
+    
     .catch(error => console.error(error)) // consoles error 
 })
 
-app.put('/markComplete', (request, response) => { // express function that updates a todo
+app.put('/markComplete', (request, response) => { // put method updates a todo
     //Marking a task to be completed 
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         //using a mongodb method/function updateOne it updates property thing, where request.body.itemFromJs is from the main.js
@@ -69,7 +65,7 @@ app.put('/markComplete', (request, response) => { // express function that updat
             completed: true
           }
     },{//options 
-        sort: {_id: -1},// made to not overwrite the current ID of the object
+        sort: {_id: -1},// made to not overwrite the current ID of the object, puts it in descending order
         upsert: false
         // doesnt create a new document 
     })
