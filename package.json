@@ -1,10 +1,11 @@
 {
-  "name": "rap-name-api",
+  "name": "todo-list-express",
   "version": "1.0.0",
-  "description": "",
+  "description": "npm install add DB_STRING to .env file",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +18,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasoncassella/todo-list-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jasoncassella/todo-list-express/issues"
+  },
+  "homepage": "https://github.com/jasoncassella/todo-list-express#readme"
 }
