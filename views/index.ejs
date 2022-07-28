@@ -1,6 +1,9 @@
+<!-- html file always starts with a doctype declaration that lets a browser know what version or standard of html is being used -->
 <!DOCTYPE html>
+<!-- Specifies the language that the page is in -->
 <html lang="en">
 <head>
+    <!-- Head includes contents that aren't displayed on the actual page: meta information (page's properties) and links to external related files -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,30 +21,41 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- h1 is a header, most important, should only have one per page, contains text that will be displayed on the page -->
     <h1>Todo List: </h1>
+    <!-- ul is a tag for unordered list, it is assigned a class of todoItems -->
     <ul class="todoItems">
+        <!-- start of a loop inside an unordered list, that starts from a 0 element in an items array which was sent from the server JS get (read) operation -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- every item will be a separate list (li tag), and every item will be assigned a class of "item" -->
         <li class="item">
+            <!-- If/else that checks for completion condition -->
             <% if(items[i].completed === true) {%>
+                <!-- if true, inside an individual list, an item will get a class "completed" and the description of an item will be placed inside of a span tag (description we get from the server JS) -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- if item hasn't been completed, it doesn't get a class for its span description -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- every item will get a delete button which gets two classes of "fa" "fa-trash" -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- h2 is a header, second based on importance, which will contain some text and the amount of items left to do (we get that from server JS) -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- another h2 header, contains text -->
     <h2>Add A Todo:</h2>
-
+    <!-- form is a tag that provides a... form, which is how we do post (create) operation on server JS -->
+    <!-- action provides a route that will interact with server JS, method explains what operation we will be doing -->
     <form action="/addTodo" method="POST">
+        <!-- input contains a text field that we can fill out -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- input contains a submit action that we can press to send a request to a server JS so then it will interact with the specified port -->
         <input type="submit">
     </form>
     
-
+    <!-- link to a client side JS file -->
     <script src='js/main.js'></script>
 </body>
 </html>

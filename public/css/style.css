@@ -1,6 +1,8 @@
+/* provides a color property with a value of red to an h1 tag selector*/
 h1{
     color: red;
 }
+/* provides a color property with a value of gray AND text-decoration property with a value of line-through to a class of "completed" */
 .completed{
     color: gray;
     text-decoration: line-through;
