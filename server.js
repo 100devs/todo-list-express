@@ -101,6 +101,6 @@ app.delete('/deleteItem', (request, response) => {
 })
 //The process.env.PORT lets Heroku run our app on any server they want. The PORT is the local server defined above. 
 app.listen(process.env.PORT || PORT, ()=>{
-    //This console log message will let us know the server is working properly
+    //This console log message will let us know the server is working properly.
     console.log(`Server running on port ${PORT}`)
 })

@@ -2,8 +2,8 @@
 
 //Variables storing the selectors .fa-trash, .item, span and span.completed
 const deleteBtn = document.querySelectorAll('.fa-trash')//grab all the trash cans.
-const item = document.querySelectorAll('.item span') // grabs all spans (uncompleted items)
-const itemCompleted = document.querySelectorAll('.item span.completed') // grabs all the completed items
+const item = document.querySelectorAll('.item span') // grabs all spans (uncompleted items).
+const itemCompleted = document.querySelectorAll('.item span.completed') // grabs all the completed items.
 
 //click event listeners for the delete, completed and uncompleted items in the to-do list
 
@@ -60,7 +60,7 @@ async function markComplete(){
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText //clicked uncomplete, goes up to the parent and grabs the child nodes and grabs the list item text. 
     try{
-        const response = await fetch('markUnComplete', { //the markUnComplete is the route for the fetch request
+        const response = await fetch('markUnComplete', { //the markUnComplete is the route for the fetch request.
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
