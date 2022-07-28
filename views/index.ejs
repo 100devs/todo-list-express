@@ -8,40 +8,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body><!-- main section of the page-->
+    <h1>Todo List: </h1> <!-- main heading of the page-->
+    <ul class="todoItems"> <!-- unordered list that has a class of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- ejs for loop-->
+        <li class="item"> <!-- create list item with class of item-->
+            <% if(items[i].completed === true) {%> <!-- conditional: check if completed = true-->
+                <span class='completed'><%= items[i].thing %></span> <!-- create a span having thing value with a class of completed-->
+            <% }else{ %> <!-- if completed is not true then-->
+                <span><%= items[i].thing %></span> <!-- create a span having thing value -->
+            <% } %>    <!-- end conditional -->
+            <span class='fa fa-trash'></span> <!-- create span  -->
+        </li> <!-- end list item -->
+    <% } %> <!-- end ejs for loop -->
+    </ul> <!-- end unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- level 2 header showing uncompleted tasks with ejs-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- second level header  -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- begin form that will post the action on the addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input box with disappearing text called todoItem -->
+        <input type="submit"> <!--button to submit form -->
     </form>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- js file for index.js -->
+</body> <!-- close body -->
+</html> <!-- end of file, close html -->
