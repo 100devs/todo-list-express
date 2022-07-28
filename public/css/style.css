@@ -1,6 +1,9 @@
+/* styles text of every h1 element to be red */
 h1{
     color: red;
 }
+
+/* styles all text to be gray and be crossed out on elements that have a class of completed */
 .completed{
     color: gray;
     text-decoration: line-through;

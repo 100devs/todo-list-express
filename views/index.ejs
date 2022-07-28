@@ -20,10 +20,14 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!--for loop that creates a li element for each list item from items object-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!--Generates a span element that has a class of completed if the current item was completed-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+
+            <!--Generates a span element that has a class of uncompleted if the current item was uncompleted-->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -32,10 +36,12 @@
     <% } %>
     </ul>
 
+    <!--specifies how many items are left based on what is is stored in left variable-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!--form for creating and adding new list items to database-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
