@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><!--Telling browser what type of document will be shown-->
+<html lang="en"><!--Starting the HTML tag and saying the language is English-->
+<head><!--Starting the head tag to store metadata-->
+    <meta charset="UTF-8"><!--indicates what character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Sets compatability for MS-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--setting viewport width to device screen width-->
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body><!--This might be a typo?Or is it?-->
+    <!DOCTYPE html><!--This might be a typo?Or is it?-->
+<html lang="en"><!--This might be a typo?Or is it?-->
+<head><!--This might be a typo?Or is it?-->
+    <meta charset="UTF-8"><!--This might be a typo?Or is it?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--This might be a typo?Or is it?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--This might be a typo?Or is it?-->
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head><!--This might be a typo?Or is it?-->
+<body> <!--main section of our code-->
+    <h1>Todo List: </h1><!--Main title-->
+    <ul class="todoItems"><!--Create unordered list-->
+    <% for(let i=0; i < items.length; i++) {%><!--for loop using EJS to a list-->
+        <li class="item"><!--Create list item with class of item-->
+            <% if(items[i].completed === true) {%><!--EJS checking if array item with completed property is true-->
+                <span class='completed'><%= items[i].thing %></span><!--creating an inline element with a class amd adding EJS the name of the task-->
+            <% }else{ %><!--EJS for the ELSE clause of our IF statement-->
+                <span><%= items[i].thing %></span><!--adding EJS to display the name of the task with NO CLASS-->
+            <% } %>    <!--EJS closing ELSE statement-->
+            <span class='fa fa-trash'></span><!--trash can icon Font awesome-->
+        </li><!--closing our list item-->
+    <% } %><!--Ejs closing the FOR loop-->
+    </ul><!--Closing our UL-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--Creates a second lvl heading tag with text and using EJS to display a variable showing how many tasks are left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--header second lvl-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"><!--creating a form with a POST method. When submits it routes to /addToDo-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--Create an input submit box that accepts text with default text inside of it before you type anything at all.Has a unique name to call it later.-->
+        <input type="submit"><!--Gives the form a submit button-->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script><!--linking our main.JS file in our public folder-->
 </body>
 </html>
