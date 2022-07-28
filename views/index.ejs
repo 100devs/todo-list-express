@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Main webpage, landing page for app -->
     <h1>Todo List: </h1>
+    <!-- parent element class of todoItems that will hold all child li elements that have the todo items in them, populated from the server -->
     <ul class="todoItems">
     <!-- looping through our list of items -->
     <% for(let i=0; i < items.length; i++) {%>
@@ -18,27 +20,27 @@
             <% if(items[i].completed === true) {%>
                 <p class='completed'><%= items[i].thing %></p>
             <% }else{ %>
-                <!-- else create the item without the class -->
+                <!-- else render the item without the class -->
                 <p><%= items[i].thing %></p>
             <% } %>
-            <!-- Create a span with a font awesome icon of a trash can -->
+            <!-- Create a span with a font awesome icon of a checkmark -->
             <span class='fa fa-check'></span>
             <!-- Create a span with a font awesome icon of a trash can -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- after list of todo items, we also get from the server a number of items without the class 'completed' and that number is rendered here -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- section head to add to the todo list above -->
     <h2>Add A Todo:</h2>
-
+    <!-- form set of a text input and submit button input to add a todo item with the POST method(sent to server and matches the route there) and matches the /addTodo server side as well -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!-- links our client side javascript document to our ejs/html -->
     <script src='js/main.js'></script>
 </body>
 </html>
