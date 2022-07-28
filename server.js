@@ -1,33 +1,33 @@
-// enables use of express.js
+// tells server to use express.js
 const express = require('express') 
 
-// creates instance of express (shortcut)
+// tells server that the app uses an instance of express (shortcut)
 const app = express() 
 
-//enables use of MongoDB client
+// enables use of MongoDB client
 const MongoClient = require('mongodb').MongoClient
 
-//tells express which port to listen for by default
+// tells express which port to listen for by default
 const PORT = 2121
 
-//first importing env and then loading it using .config()
+// first importing env and then loading it using .config()
 require('dotenv').config()
 
-//giving db a name so we don't have to retype it; 'quality of life' variables
+// giving db a name so we don't have to retype it; 'quality of life' variables
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
-//initialize MongoDB connection -- returns a promise if you don't have a string (.then is indicator)
+// initialize MongoDB connection -- returns a promise if you don't have a string (.then is indicator)
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
 
-//handling a successfully resolved promise and printing to the console
+// handling a successfully resolved promise and printing to the console
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
-//assigning the connected client instance attached to the 'todo' collection to the 'db' variable
+// assigning the connected client instance attached to the 'todo' collection to the 'db' variable
         db = client.db(dbName)
     })
-//missed a catch
+// if the promise is rejected an error is logged 
     .catch(env => console.log(err))
 
 // telling express that we're using ejs whenever we're using a render method
@@ -43,8 +43,8 @@ app.use(express.urlencoded({ extended: true }));
 // teaching the app how to "read" JSON through express
 app.use(express.json());
 
-// start defining end points of server
-// defines a 'get' method to root directory of server 
+// these next sets of code define the end points of server
+// defines a GET method to root directory of server 
 app.get('/', async (request, response)=>{
 // telling server to find all documents inside of db collection (we're waiting) and define an array ("give me everything")
     const todoItems = await db.collection('todos').find().toArray()
@@ -62,11 +62,11 @@ app.get('/', async (request, response)=>{
     // })
     // .catch(error => console.error(error))
 })
-// making a post request that will fire when the user adds a to-do item
+// making a POST request that will fire when the user adds a to-do item
 app.post('/addTodo', (request, response) => {  
 // server takes request and bundles it into an object; will set every new item created by the user as false so it will trigger the promise from before 
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) 
-// handles returned promise by displaying a message to Heroku instance (server) and refreshing the page
+// handles returned promise by displaying a message to a Heroku instance and refreshing the page
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')
@@ -75,7 +75,7 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
-// defining an endpoint to handle a put request (what happens when the user marks a to-do item as complete) 
+// defining an endpoint to handle a PUT request (what happens when the user marks a to-do item as complete) 
 app.put('/markComplete', (request, response) => {
 // updates a record using the value received from 'itemFromJS" in the body of the subject
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
@@ -83,47 +83,53 @@ app.put('/markComplete', (request, response) => {
             completed: true
           }
     },{
-// resorts the items and puts anything new to the end of the list; if no matches don't create a new record 
+// resorts the items and puts anything new to the end of the list; if no matches it does not create a new record 
         sort: {_id: -1},
         upsert: false
     })
-// if successful, log and send the response. if not, log the error
+// if successful, the server logs and sends the response.
     .then(result => {
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
+// if not, it logs the error
     .catch(error => console.error(error))
 
 })
 
 // opposite of markComplete section -- same setup but for marking an item not complete
+// defining an endpoint to handle a PUT request when the user marks a to-do item as not complete
 app.put('/markUnComplete', (request, response) => {
+// updating a record using the value received from 'itemFromJS' in the body of the subject
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: false
           }
     },{
+// resorts the items and puts the items with new values to the end of the list. 
         sort: {_id: -1},
         upsert: false
     })
+// if the promise is successful, the server logs and sends the response. 
     .then(result => {
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
+// if not, it logs the error
     .catch(error => console.error(error))
 
 })
 
 // handles a delete request at the defined endpoint
 app.delete('/deleteItem', (request, response) => {
-// mongoDB function to delete a single todo line
+// this is a mongoDB function to delete a single todo line
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-// if successful, log and send response
+// if the promise is successful, the server logs and sends the response
     .then(result => {
         console.log('Todo Deleted')
         response.json('Todo Deleted')
     })
-// if not, log the error 
+// if not, it logs the error 
     .catch(error => console.error(error))
 
 })

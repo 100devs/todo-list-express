@@ -7,17 +7,17 @@ const item = document.querySelectorAll('.item span')
 // targeting all span tags with the 'completed' class where the parent has the 'item' class
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
-// create an array from the qsA results, loop through them all, and add a 'click' event listener that fires the 'deleteItem' function
+// create an array from the elements found in the deleteBin variable, loop through the elements, and add a 'click' event listener that fires the 'deleteItem' function
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
-// create an array from the qsA results, loop through them all, and add a 'click' event listener that fires the 'markComplete' function
+// create an array from the elements found in the item variable, loop through the elements, and add a 'click' event listener that fires the 'markComplete' function
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
-// create an array from the qsA results, loop through them all, and add a 'click' event listener that fires the 'markUncomplete' function
+// create an array from the elements found in the itemCompleted variable, loop through the elements, and add a 'click' event listener that fires the 'markUncomplete' function
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
@@ -37,10 +37,11 @@ async function deleteItem(){
           })
         // waiting for response from server and parsing JSON
         const data = await response.json()
+        // if the promise is successful/resolved, the console logs the data
         console.log(data)
-        // reload the specific page
+        // and the page is reloaded
         location.reload()
-// catches an error
+// if not, the console logs the error
     }catch(err){
         console.log(err)
     }
@@ -60,10 +61,11 @@ async function markComplete(){
           })
         // waiting for response from server and parsing JSON
         const data = await response.json()
+        // if the promise is successful, the data is logged to the console
         console.log(data)
-        // reload specific page
+        // and the page is reloaded
         location.reload()
-
+// if not, the console logs the error
     }catch(err){
         console.log(err)
     }
@@ -83,10 +85,11 @@ async function markUnComplete(){
           })
        // waiting for response from server and parsing JSON
         const data = await response.json()
+        // if the promise is successful, the data is logged to the console
         console.log(data)
-        // reload specific page
+        // and the page is reloaded
         location.reload()
-
+// if not, the console logs the error
     }catch(err){
         console.log(err)
     }

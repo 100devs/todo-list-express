@@ -1,13 +1,17 @@
+<!--start of the index.ejs file similar to that of an index.html file: document type HTML5-->
 <!DOCTYPE html>
+<!--sets the HTML language to english-->
 <html lang="en">
+<!--background information for a html/ejs file-->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> <!--title of site-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!--this is the beginning of the EJS part of the file-->
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -17,31 +21,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!--this is what will be visible to the user-->
 <body>
+<!--h1 header similar to that in an HTML file; here it serves as the title of the page-->
     <h1>Todo List: </h1>
+<!--beginning of an unordered list with the class matching that in the main.js file-->
     <ul class="todoItems">
+<!--a for loop iterating the items array matching that in the main.js file-->
     <% for(let i=0; i < items.length; i++) {%>
+<!--declaration of a list item-->
         <li class="item">
+<!--if statement about how completed items will be marked in the list-->
             <% if(items[i].completed === true) {%>
+<!--continuation of if statement; will repeat for as many times as needed-->
                 <span class='completed'><%= items[i].thing %></span>
+<!--else part of statement; accounts for not completed items-->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+<!--span to account for trash icon-->
             <span class='fa fa-trash'></span>
+<!--end of item list-->
         </li>
-    <% } %>
+<!--end of for loop-->
+        <% } %>
+<!--end of unordered list-->
     </ul>
-
+<!--h2 header similar to that in an HTML file; here it serves as the counter for how many items are left to do-->
     <h2>Left to do: <%= left %></h2>
 
+<!--h2 header similar to that in an HTML file; here it serves as the start of the "Add a Todo" section-->
     <h2>Add A Todo:</h2>
 
+<!--start of a form for adding a todo list item; action and method are taken from the server.js file-->
     <form action="/addTodo" method="POST">
+<!--creates an input type of text with a placeholder reading "Thing to Do" named "toDoItem"-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+<!--button to add a todo item to the list-->
         <input type="submit">
+<!--end of form-->
     </form>
     
-
+<!--the index.ejs takes its script from the main.js file-->
     <script src='js/main.js'></script>
+<!--end of body-->
 </body>
+<!--end of code-->
 </html>
