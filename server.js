@@ -1,29 +1,36 @@
+// loading required modules
+// declaring, initializing variables
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
-
+// declaring, initializing database variables
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
+// establishing connection to Mongo database
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+
+// declaring, initializing middleware
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+// root route for the API
 app.get('/',async (request, response)=>{
+    // retrieves data from 'todos' collections, creating an array
     const todoItems = await db.collection('todos').find().toArray()
+    // returns number of items with property {completed: false}
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    // send data to index.ejs to render HTML
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {
@@ -35,6 +42,8 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+// CREATE route
+// adding a new item to the collection, grabbed from todoItem form
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -44,12 +53,15 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+// UPDATE route
+// marks as complete
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: true
           }
     },{
+        // unsure why this is needed
         sort: {_id: -1},
         upsert: false
     })
@@ -61,6 +73,8 @@ app.put('/markComplete', (request, response) => {
 
 })
 
+// UPDATE route
+// mark as not completed
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -78,6 +92,7 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+// DELETE route
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
@@ -88,6 +103,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+// Setting the PORT
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
