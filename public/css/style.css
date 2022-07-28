@@ -1,7 +1,17 @@
-h1{
+h1 {
+    /*Selects any h1 tag in the EJS file*/
     color: red;
+    /*changing text color to red*/
 }
-.completed{
+
+/*closing the decloration*/
+
+.completed {
+    /*selecting all selectors with the class of 'complete'*/
     color: gray;
+    /*changing text color to gray*/
     text-decoration: line-through;
+    /*putting a line through the text*/
 }
+
+/*closing the decloration*/
