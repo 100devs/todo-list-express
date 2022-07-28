@@ -18,6 +18,11 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- not sure how items is dirctly tied to the app.get('/') on page load. I think somehow that object was set to items, just don't see that connection. 
+
+    Nor do I see where naming the class="todoItems" is tied to the app.get('/') on page load. I know todoItems is tied to the app.get('/') on page load, but I don't see how that is tied to the <ul class="todoItems"> 
+    
+    -->
     <h1>Todo List: </h1>
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
@@ -28,6 +33,13 @@
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- fa-trash is used in main.js to connect the button that renders to a certain method
+            -deleteBtn grabs this class and passes it to the deleteItem method in main.js
+            --which then sends the fetch request with method delete to server.js
+            --knows what line to delete becasue itemText === the inner text of the item on the row we click the delete button on
+
+            Same process for markAsCompleted and markAsUncompleted buttons, but more of an update
+            -->
         </li>
     <% } %>
     </ul>
@@ -40,6 +52,10 @@
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
+    <!-- click this submit button and somehow we get a fetch request of POST send to the server with the action /addTodo
+    --I believe this action literally just adds a fetch request right there by taking us to /addTodo from the current page
+    --in the app.post('/addTodo'.....) one of the last lines is response.redirect('/') back to the same index page, so may appear as if we did not go anywhere, but it was just very fast
+    -->
     
 
     <script src='js/main.js'></script>
