@@ -1,7 +1,10 @@
 h1{
     color: red;
 }
+/* Sets the h1 element to red */
 .completed{
     color: gray;
+    /* Makes completed tasks grey.  */
     text-decoration: line-through;
+    /* Makes completed texts strikethrough. */
 }
