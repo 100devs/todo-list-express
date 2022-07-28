@@ -20,6 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- Here we've embedded a for loop that checks for tasks being marked complete and assigns a 'completed' class to them if so.  I do not currently know where the items array that is being iterated over comes from. -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,8 +33,10 @@
     <% } %>
     </ul>
 
+    <!-- This is where the remaining items on the ToDo list stay until completed. -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- This is the form that allows the user to add items to the list.  It sends a post request to the 'addTodo' endpoint of the server, which creates a new document in the database -->
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
@@ -41,7 +44,7 @@
         <input type="submit">
     </form>
     
-
+    <!-- This attaches our main.js file to this page, giving the app its main body of instructions. -->
     <script src='js/main.js'></script>
 </body>
 </html>
