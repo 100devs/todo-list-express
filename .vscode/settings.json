@@ -1,4 +1,6 @@
-{
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
-}
+// This code sets the font size to very large.  I have commented it out for readibility in my local machine.
+
+// {
+//     "editor.fontSize": 42,
+//     "terminal.integrated.fontSize": 62
+// }
