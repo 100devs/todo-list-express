@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> <!--character set to use-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- link to font awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to css stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
+    <!DOCTYPE html> <!--typo?-->
+<html lang="en"> <!--typo?-->
+<head> <!--typo?-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+</head> <!--typo?-->
+
+<body> <!--main section-->
+    <h1>Todo List: </h1> <!--main header-->
+    <ul class="todoItems"> <!--create unordered list for to do items-->
+        <!-- EJS used to create for loop to cycle through all items -->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <li class="item"> <!--creates list item for each item -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed'><%= items[i].thing %></span> <!--add inline element with completed class if item has completed property -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <!--if item does not have completed property, add regular inline element-->
+                <span><%= items[i].thing %></span> 
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--add font awesome trash can icon-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--add a second header with number of items left to be completed, from the left variable-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--add header for form to add new to do to list-->
 
+    <!-- create a form with post method (create of CRUD) that goes to /addTodo route -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--input box that accepts text-->
+        <input type="submit"> <!--give form a submit button-->
     </form>
     
-
+    <!-- link to client side js file -->
     <script src='js/main.js'></script>
 </body>
 </html>
