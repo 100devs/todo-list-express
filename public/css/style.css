@@ -1,6 +1,9 @@
+/* Makes the headline red*/
 h1{
     color: red;
 }
+
+/* Puts a line through completed class*/
 .completed{
     color: gray;
     text-decoration: line-through;
