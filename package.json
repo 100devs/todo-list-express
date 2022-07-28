@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "comments": "echo \"JSON does not permit comments, but here's a small one I have hidden in the scripts. Why is our main point of entry listed as index.js when we have server.js? It still seems to work regardless.\" && exit 0"
   },
   "author": "",
   "license": "ISC",
