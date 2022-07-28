@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <html lang="en">
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <h1>Todo List: </h1>
+        <ul class="todoItems">
+            <% for(let i=0; i < items.length; i++) {%>
+                <!--Loops through the items collection from MongoDB to render them-->
+                <li class="item">
+                    <% if(items[i].completed===true) {%>
+                        <!---->
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                                <!--The class .completed applies -->
+                                <!--it gets placed into the itemCompleted array from the main.js-->
+                        </span>
+                        <% }else{ %>
+                            <span>
+                                <!--Without the .completed class, no styles are applied-->
+                                <%= items[i].thing %>
+                            </span>
+                            <% } %>
+                                <span class='fa fa-trash'></span>
+                                <!--clicking the trashcan invokes the deleteItem function-->
+                </li>
+                <% } %>
+        </ul>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <h2>Left to do: <%= left %>
+                <!--Displays number of remaining tasks-->
+        </h2>
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <h2>Add A Todo:</h2>
+
+        <form action="/addTodo" method="POST">
+            <!--changes the path to /addTodo, specifies the POST method-->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!--adds a document to the database, where {thing:} is set to the input value-->
+            <input type="submit">
+            <!--Executes the POST request-->
+        </form>
+
+
+        <script src='js/main.js'></script>
+    </body>
+
+    </html>
