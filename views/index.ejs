@@ -21,24 +21,34 @@
     <h1>Todo List: </h1>
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Looping through the items that was defined in the server.js which are the documents from the mongodb collection.-->
         <li class="item">
             <% if(items[i].completed === true) {%>
+                <!-- if the items that we are iterating through, are completed, then  -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- applies a style of gray if it is in the completed class.  -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
+                <!-- Otherwise, there will be a strike through, and it's not completed. -->
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- click on trashcan invokes delete from main.js -->
         </li>
     <% } %>
     </ul>
 
     <h2>Left to do: <%= left %></h2>
+    <!-- Diplays number of remaining tasks left to do from the server. -->
+
 
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
+        <!-- We defined the post method and the path the server will take to add an item/document to the database.  -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- The name todo item tells the server the request the client is making and we have declared the object as thing.  -->
         <input type="submit">
+        <!-- When the user presses submit, the document will be added to the database.  -->
     </form>
     
 
