@@ -1,27 +1,38 @@
+//initialize express package
 const express = require('express')
+//set var app to alias express()
 const app = express()
+//set var and initialize mongodb module
 const MongoClient = require('mongodb').MongoClient
+//set server's listening port
 const PORT = 2121
+//initialize environment module
 require('dotenv').config()
 
-
+//initialize db var, set db string, and name db used in mongo
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
+//establish mongodb connection
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+
+//set rendering engine to ejs    
 app.set('view engine', 'ejs')
+//set directory for static files to the public folder
 app.use(express.static('public'))
+//add ability to parse strings, arrays, and nested objects
 app.use(express.urlencoded({ extended: true }))
+//enable parsing of json
 app.use(express.json())
 
-
+//set root route
 app.get('/',async (request, response)=>{
+    //
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
