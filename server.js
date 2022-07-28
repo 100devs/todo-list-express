@@ -1,37 +1,32 @@
-//MODULES
-const express = require('express') //Requires that Express be imported into Node
-const app = express(); //Create an Express application
-const MongoClient = require('mongodb').MongoClient; //Requres that MongoClient library be imported
-const PORT = 2121 //Establishes a local port on port 2121
-require('dotenv').config() //Allows you to bring in hidden environment variables
+//Modules
+const express = require('express') //Makes it possible to use express in this file
+const app = express(); //Sets a constant and assigning it to the instance of express
+const MongoClient = require('mongodb').MongoClient; //Makes it possible to use methods associated with MongoClient and talk to our DB
+const PORT = 2121 //Sets a constant to determine the location where our server will listen
+require('dotenv').config() //Allows you to look for variables inside the .env file
 
 
-let db, //Creates database
-    dbConnectionStr = process.env.DB_STRING, //Sets dbConnectionsStr equal to address provided by MongoDB (DB_STRING is in the .env config file in line 5)
-    dbName = 'todo' //Sets database name equal to 'todo'
+let db, //Declares a variable called db
+    dbConnectionStr = process.env.DB_STRING, //Declares a variable called dbConnectionsStr and assigning our database connection string to it
+    dbName = 'todo' ////Declares a variable and assigning the name of the database to "todo"
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then
-    //Defines how we connect to our Mongo DB.useUnifiedTopology helps ensure that things are returned in a clean manner.
-    (client => {
-        //Responding on the client side and saying...
-        console.log(`Connected to ${dbName} Database`) //Will produce a message in the console if the client connected properly
-        db = client.db(dbName) //Defines the database as 'todo'. Works with line 15.
-    })
-    
-app.set('view engine', 'ejs') //Determines how we're going to use a view engine to render ejs commands for our app
-app.use(express.static('public')) //Tells our app to use a folder names "public" for all of our static files
-app.use(express.urlencoded({ extended: true })) //Call to middleware that cleans up how things are displayed and how our server communicates with our client
-app.use(express.json()) //Tells the app to use Express's json method to take the object and turn it into a JSON string
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //Creates a connection to MongoDB and passing in a connection string. Also passing in an additional property
+    .then(client => { //Waits for connection and proceeds if successful, and passing in all client information
+        console.log(`Connected to ${dbName} Database`) //Logs to the console and template literal "connected to the todo database"
+        db = client.db(dbName) //Assigns a value to previouesly declared variable that contains a db client factory method
+    }) //Closes our .then
+
+//MIDDLEWARE    
+app.set('view engine', 'ejs') //Sets ejs as the default render method
+app.use(express.static('public')) //Sets the location for static assets
+app.use(express.urlencoded({ extended: true })) //Tells express to decode and encode URLs where the header matches the content. Supports arrays and objects.
+app.use(express.json()) //Parses JSON content
 
 //ROUTES
-app.get('/',async (request, response)=>{
-    //GET Stuff to display to users on the client side using an asynchronous function
-    const todoItems = await db.collection('todos').find().toArray() //Create a constant called "todoItems" that goes into our database, create a collection called "todos", find anything in that database, and turn it into an array of objects
-    const itemsLeft = await db //Creates a constant in our todos collection
-        .collection('todos') //Looks at documents in the collection
-        .countDocuments({completed: false}) //The countDocuments method counts the number of documents that have a completed status equal to "false" 
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
+app.get('/',async (request, response)=>{ //Starts a GET method when the root route is passed in, sets up req and res parameters
+    const todoItems = await db.collection('todos').find().toArray() //Sets a variable and awaits ALL items from the todos collection
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //Sets a variable and awaits a count of uncompleted items to later display in EJS
+    response.render('index.ejs', { items: todoItems, left: itemsLeft }) //Renders the EJS file and passes through the db items and the count remaining inside of an object
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
