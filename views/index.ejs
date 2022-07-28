@@ -1,47 +1,89 @@
 <!DOCTYPE html>
+<!-- Declares document type -->
 <html lang="en">
+<!-- Declares language html is written in for browser to understand -->
 <head>
+<!-- Opening tag for the head, which isn't visible to the user, but contains metas and neccesary links for the page to function -->
     <meta charset="UTF-8">
+<!-- Declares the character set being used to write the HTML (EJS), UTF-8 has most every character anyone could use-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Compatibility tag for Microsoft Edge and old versions of internet explorer-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Automagically makes the page work on mobile and not break (width is device width so stuff isn't inaccessible) -->
     <title>Document</title>
+<!-- The title for the page, shows up in  the top bar of the browser and helps with accessibility, not in DOM -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- Hyperlinks to font awesome allowing us access to noice symbols-->
     <link rel="stylesheet" href="css/style.css">
+<!-- Links to our local stylesheet we use for styling our EJS/generated HTML-->
 </head>
+<!-- Closing tag for head, end of metas etc-->
 <body>
+<!-- Opening tag for body -- body contains the the stuff rendered and shown in the DOM-->
     <!DOCTYPE html>
+<!-- Declares doc type again -- this time for the generated HTML -->
 <html lang="en">
+<!-- Declares the language the generated HTML will be in -->
 <head>
+<!-- The opening tag for the head of the generated HTML-->
     <meta charset="UTF-8">
+<!-- Declares the character set used in the generated HTML -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Compatibility tag for Microsoft Edge and old versions of internet explorer -- for the generated HTML-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Makes page load correctly on mobile and not get cut off for generated HTML-->
     <title>Document</title>
+<!-- title for the generated HTML -- shows up in browser top bar -->
 </head>
+<!-- Closing tag for head for generated HTML -->
 <body>
+<!-- Opening tag for body of generated HTML-->
     <h1>Todo List: </h1>
+<!-- Header 1, most important header, for generated HTML-->
     <ul class="todoItems">
+<!-- Opening tag for Unordered list of to do items, with class of to do items-->
     <% for(let i=0; i < items.length; i++) {%>
+<!-- opening tag for generated HTML EJS loop that takes an object/array as input-->
         <li class="item">
+<!-- list item with class of item, contains content from loop/to do list-->
             <% if(items[i].completed === true) {%>
+<!-- if statement for generated span behavior-->
                 <span class='completed'><%= items[i].thing %></span>
+<!-- generated span if the item has the property of completed and it is true -->
             <% }else{ %>
+<!-- else statement for span behavior-->
                 <span><%= items[i].thing %></span>
+<!-- generated span if the item fails the if check -->
             <% } %>    
+<!-- closing EJS tag for else behavior-->
             <span class='fa fa-trash'></span>
+<!-- empty span with class of fa and fa-trash-->
         </li>
+<!-- closing tag for the li generated per iteration-->
     <% } %>
+<!-- closign tag for the loop-->
     </ul>
+<!-- closing tag for the unordered list containing the loop-->
 
     <h2>Left to do: <%= left %></h2>
+<!-- heading 2 less important than 1, generates number of tasks left and puts in h2-->
 
     <h2>Add A Todo:</h2>
+<!-- heading 2 for form to add a todo-->
 
     <form action="/addTodo" method="POST">
+<!-- opening tag for form to add a todo, action of /addtodo which goes to route on the server, method of POST telling us it is a create and telling server it is post with route of /todo-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+<!-- input tag with placeholder text and name which goes into the post object as a property with the value as its value -->
         <input type="submit">
+<!-- input tag telling form to submit-->
     </form>
+<!-- closing tag for form for adding todo-->
     
 
     <script src='js/main.js'></script>
+<!-- link to script for local JS behavior-->
 </body>
+<!-- closing tag for generated HTML body, end of stuff rendered in dom-->
 </html>
+<!-- closing tag for HTML, end of document-->
