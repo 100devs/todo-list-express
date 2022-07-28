@@ -1,6 +1,9 @@
+/* gives the content of the h1 tag a color of red in the ejs file */
+
 h1{
     color: red;
 }
+/* gives anything with the class of completed a color of gray with a line through its text */
 .completed{
     color: gray;
     text-decoration: line-through;

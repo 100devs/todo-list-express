@@ -1,47 +1,75 @@
+<!-- tells the browser what type of document is being shown -->
 <!DOCTYPE html>
+<!-- saying that the language is english and start of the html tag-->
 <html lang="en">
+    <!-- start of the head tag -->
 <head>
+    <!-- indicates what character set should be used -->
     <meta charset="UTF-8">
+    <!-- sets compatability with internet explorer -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- sets the width of available viewing area to the width of the device screen -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- assigns the title that appears in the browser -->
     <title>Document</title>
+    <!-- creates a link to the font awesome library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- creates a link to the local style sheet -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- end of head tag -->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<body> <!-- main section for displayed content -->
+    <!DOCTYPE html>  <!-- typo -->
+<html lang="en"> <!-- typo -->
+<head> <!-- typo -->
+    <meta charset="UTF-8"> <!-- typo -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- typo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- typo -->
+    <title>Document</title> <!-- typo -->
 </head>
-<body>
-    <h1>Todo List: </h1>
+<body> 
+    <!-- main heading -->
+    <h1>Todo List: </h1> 
+    <!-- makes unordered list and gives it a class of todoItems  -->
     <ul class="todoItems">
+         <!-- ejs syntax for using a for loop to iterate over the data from backend -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- gives a class of item to the li -->
         <li class="item">
+            <!-- conditional to check if the item in array with completed property is true -->
             <% if(items[i].completed === true) {%>
+                <!-- gives a class of completed to span and adding ejs to the display the name of the task -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- ejs for if-else block -->
             <% }else{ %>
+                <!-- no class of completed for item -->
                 <span><%= items[i].thing %></span>
+                <!-- ends the if else block for ejs -->
             <% } %>    
+            <!-- shows the trash can icon -->
             <span class='fa fa-trash'></span>
+            <!-- close off the list items -->
         </li>
+        <!-- closes the for loop -->
     <% } %>
+    <!-- ends the unordered list block -->
     </ul>
-
+    <!-- creates a second level heading tag with text and using ejs to display a variable showing how many tasks are left -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- makes a header with h2 -->
     <h2>Add A Todo:</h2>
-
+    <!-- makes a form that sends to the route of /addToDo with a method of post -->
     <form action="/addTodo" method="POST">
+        <!-- makes an input box with a default text of things to do and gives it a game to reference it later -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- gives the form a submit button -->
         <input type="submit">
+        <!-- closing the form tag -->
     </form>
     
-
+<!-- links the main.js to ejs that is located in the public folder -->
     <script src='js/main.js'></script>
+    <!-- closing the body tag -->
 </body>
+<!-- closing the html tag -->
 </html>
