@@ -1,2 +1,2 @@
-npm install
-add DB_STRING to .env file
+npm install (Done)
+add DB_STRING to .env file (Done)
