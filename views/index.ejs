@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">       <!--HTML doc in english-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">              <!--which character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!--sets compatibility for MS browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sets width of available viewing to device width-->
+    <title>Document</title>  <!--Page Title in browser-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">   <!--Fonts and icons for display-->
+    <link rel="stylesheet" href="css/style.css">                                                                <!--Link to CSS stylesheet-->
 </head>
 <body>
-    <!DOCTYPE html>
+    <!DOCTYPE html>        <!--Whole block is repeat of above without the icon library and stylesheet linkl-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,29 +19,29 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <ul class="todoItems">                                               <!--Unordered list of items. CSS class identifier of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%>                           <!--ejs code for a loop that goes through the list of items-->
+        <li class="item">                                                <!--Begin list items. CSS class of item for this to do list-->
+            <% if(items[i].completed === true) {%>                       <!--If statement: if the boolean tag of completed is true then-->
+                <span class='completed'><%= items[i].thing %></span>     <!--the CSS class of completed will be displayed for that item. Adds ejs to display the name of the task -->
+            <% }else{ %>                                                 <!--else this will happen-->                  
+                <span><%= items[i].thing %></span>                       <!--The item will be displayed without any special class-->
+            <% } %>                                                      <!--End the loop-->
+            <span class='fa fa-trash'></span>                            <!--Display the trash icon with two CSS classess fa and fa-trash-->
+        </li>                                                            <!--end list items-->
+    <% } %>                                                              <!--end ejs code for this unordered list-->
+    </ul>                                                                <!--End unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2>                                     <!--H2 tag for subheader of items left to do. EJS code for left display?-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2>                                                 <!--New header for add an item to list-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+    <form action="/addTodo" method="POST">                               <!--Form that calls action addTodo from server.js. It will POST(Create) a new item in the db-->
+        <input type="text" placeholder="Thing To Do" name="todoItem">    <!--Input box for text. The text in the box will be Thing to Do. name is todoItem-->
+        <input type="submit">                                            <!--input type is submit so information is sent-->   
+    </form>                                                              <!--end of the form-->   
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+
+    <script src='js/main.js'></script>                                   <!--Link to js-->
+</body>                                                                  <!--End of body-->               
+</html>                                                                  <!--End of html-->   

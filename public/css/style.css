@@ -1,7 +1,7 @@
-h1{
-    color: red;
+h1{                         /*selects any h1 in entire file*/
+    color: red;          /*The color of the h1 will be red*/
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed{                               /*For the class 'completed'*/
+    color: gray;                        /*Within the class, the text color will be gray*/ 
+    text-decoration: line-through;        /*and there will be a line through the item*/
 }
