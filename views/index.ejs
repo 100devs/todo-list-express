@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!DOCTYPE html> <!-- This is the default html header-->
+<html lang="en"> <!-- Sets the language of the html to english-->
+<head> <!-- Starts the head tag-->
+    <meta charset="UTF-8"> <!-- Tells the html file that it will be using UTF-8-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Defines what is compatible with this html document-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets the viewport and default scale of the page-->
+    <title>Document</title> <!-- This is the title of the document, this is what will appear on the tab of the page-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Links to the css stylesheet that has fontawesome fonts-->
+    <link rel="stylesheet" href="css/style.css"> <!-- Links to the css stylesheet for main css-->
+</head> <!-- Ending tag for head-->
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +16,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+</head> -->
+<body> <!-- This is the beginning of the body-->
+    <h1>Todo List: </h1> <!-- H1 header title-->
+    <ul class="todoItems"> <!-- Starts an unordered list-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Iterates over the number of items-->
+        <li class="item"> <!-- Each item will have a class named "item"-->
+            <% if(items[i].completed === true) {%> <!-- Each item of the ith iteration, if their completed property is set to true...-->
+                <span class='completed'><%= items[i].thing %></span> <!-- Then the class of this item will be set to "completed"-->
+            <% }else{ %> <!-- Otherwise... -->
+                <span><%= items[i].thing %></span> <!-- It will just have a regular span with no completed class assigned to it-->
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
+            <span class='fa fa-trash'></span> <!-- Then add a span with a class of trash for each line-->
+        </li> <!-- This ends the line for each ith item-->
     <% } %>
-    </ul>
+    </ul> <!-- This ends the unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- An h2 header that indicates how many items are "left" to do (marked as not complete or set to false)-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- A header for the following form-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- Creates a form with a method of "post" and an action that matches the request to use the "addTodo" route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Determines that the input will be in a text format. If nothing is typed into the form, the space will read " Thing to do" and the name of this form is "todoItem"-->
+        <input type="submit"> <!-- Adds a submit button-->
+
+    </form> <!-- ends the form here-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- Connects to main.js here-->
+</body> <!-- Ends the body-->
+</html> <!-- Ends the html -->
