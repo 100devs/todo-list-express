@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- link for font awesome, allowing the trash icon to be used -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!DOCTYPE html>
 <html lang="en">
+    <!-- we have two doctype htmls for reasons -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,28 +22,37 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- for each item in the list -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- give it a "completed" class if it's complete -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- otherwise just display it -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- add a trash icon to it -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- counter for how many items are remaining -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form to add a new item in the todo list -->
     <form action="/addTodo" method="POST">
+        <!-- you input your item in this form -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- and send it to the database with this button -->
         <input type="submit">
     </form>
-    
 
     <script src='js/main.js'></script>
 </body>
 </html>
+
+
+
+
