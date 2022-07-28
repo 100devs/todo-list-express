@@ -142,23 +142,16 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
-// go into database and delete something
-app.delete('/deleteItem', (request, response) => {
-    // delete matching database object from todos
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        // confirm deleteion was made
-        console.log('Todo Deleted')
-        // give the json to the user to confirm the deletion
-        response.json('Todo Deleted')
-    })
-    // blah blah error
-    .catch(error => console.error(error))
+app.delete('/deleteItem', (request, response) => { // starts a delete method when the delete route is passed
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) // looks inside the to do's collection for the ONE item that has a matching name from our JS file
+    .then(result => { // starts a then if delete was successful
+        console.log('Todo Deleted') // logging successful completion
+        response.json('Todo Deleted') // sending a response back to the server
+    }) // closing then
+    .catch(error => console.error(error)) // blah blah error
 
-})
+}) // ending delete
 
-// actually start the server
-app.listen(process.env.PORT || PORT, ()=>{
-    // confirm the port is running
-    console.log(`Server running on port ${PORT}`)
-})
+app.listen(process.env.PORT || PORT, ()=>{ // actually start the server
+    console.log(`Server running on port ${PORT}`) // confirm the port is running
+}) // end the listen
