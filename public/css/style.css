@@ -1,7 +1,9 @@
-h1{
-    color: red;
+/* make the h1/title red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+/* makes background gray and text have line through it*/
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
