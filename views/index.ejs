@@ -20,8 +20,10 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- create a for loop to render the list of items -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!--  -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
