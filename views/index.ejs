@@ -20,24 +20,37 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    //loops through the items sent in the get request
     <% for(let i=0; i < items.length; i++) {%>
+        //creates a li for each item
         <li class="item">
+            // if the current item's completed property is true
             <% if(items[i].completed === true) {%>
+                //make a span with class completed and put the name of the item inside
                 <span class='completed'><%= items[i].thing %></span>
+                //otherwise
             <% }else{ %>
+                //make a span with no class with the name of the item inside
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %> 
+            //creates a span for each item with a trash icon next to it   
             <span class='fa fa-trash'></span>
+        //end the li
         </li>
     <% } %>
     </ul>
 
+    // creates an h2 that tells you how many items are left to do  from the left variable passed in with the get request
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    
+    //creates a form to add more items to the todo list
+    // this form sends to the addTodo path and uses the POST method
     <form action="/addTodo" method="POST">
+        //adds an item to the form with the name todoItem that backend uses to take the name
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        //submits the form
         <input type="submit">
     </form>
     
