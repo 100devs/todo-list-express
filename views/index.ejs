@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!---->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,40 +9,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+
+<!--<body>-->
+    <!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--<title>Document</title>-->
+<!--</head>-->
+<!--<body>-->
+
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+    <!--Most important Item on page-->
+    <ul class="todoItems"><!--Unordered list-->
+
+    <% for(let i=0; i < items.length; i++) {%> <!--For loop each item in the array-->
+        <li class="item"><!--List Item-->
+            <% if(items[i].completed === true) {%<!--Is it completed? Do this-->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+                <span><%= items[i].thing %></span><!--Display them in the list but don't add the class-->
+            <% } %>
+            <span class='fa fa-trash'></span> <!--We gonna maybe click this trash can icon at some point that gets added to each
+            item on our list-->
         </li>
-    <% } %>
+    <% } %> <!--EJs closing-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Count out number of 'incomplete tasks and shove here'-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--Less important-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <form action="/addTodo" method="POST"><!--Redirect once we submit-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--Name is very important. Match to line 40-->
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--Run some Javascript-->
 </body>
 </html>
