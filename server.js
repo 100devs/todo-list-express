@@ -107,34 +107,47 @@ app.put('/markComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+// Set put for the path /markUnComplete
 app.put('/markUnComplete', (request, response) => {
+    // Create a promise; in the todos collection update one item, thing will be itemFromJS in the request body
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        // Set completed for that item to false
         $set: {
             completed: false
           }
     },{
         sort: {_id: -1},
+        // Prevent insertion of new document if no match is found
         upsert: false
     })
+    // Run if promis succeeds
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        // Log marked incomplete
+        console.log('Marked Incomplete')
+        // Responsd with json containing marked incomplete
+        response.json('Marked Incomplete')
     })
+    // If promise fails, log error
     .catch(error => console.error(error))
 
 })
-
+// Set delete for path /deleteItem
 app.delete('/deleteItem', (request, response) => {
+    // Create promise; from collection todos, delete an item, thing taken from itemFromJS in request body
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+    // Run if promise succeeds
     .then(result => {
+        // Log todo deleted
         console.log('Todo Deleted')
+        // Respond with json containing todo deleted
         response.json('Todo Deleted')
     })
+    // If promise fails, log error
     .catch(error => console.error(error))
 
 })
-
+// Setup server on port, either in .env file, or contained in port variable
 app.listen(process.env.PORT || PORT, ()=>{
+    // log that server is running on port number
     console.log(`Server running on port ${PORT}`)
 })
