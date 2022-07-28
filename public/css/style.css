@@ -1,7 +1,11 @@
-h1{
-    color: red;
+* {
+  box-sizing: border-box;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+h1 {
+  margin: 1rem;
+  color: red;
+}
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
