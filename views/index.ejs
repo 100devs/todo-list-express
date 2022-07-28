@@ -1,29 +1,36 @@
+<!-- defines this file as an html file -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- helps with using css to adjust pages based on the width of the browser -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- links to css files that have to go in the header -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
+    <!-- this looks like a typo -->
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> -->
 <body>
     <h1>Todo List: </h1>
+    <!-- loops through all items in the todo list and adds them to the html unordered list -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if item has been marked completed, add the class completed -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- if the item has not been marked completed, it is just a span without the completed class -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -31,17 +38,18 @@
         </li>
     <% } %>
     </ul>
-
+<!-- heading that pulls in the todo items that are left -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+<!-- an html form to add a todo item -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+<!-- link to javascript - put at the bottom of the file so it loads last -->
     <script src='js/main.js'></script>
 </body>
 </html>
