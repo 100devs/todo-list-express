@@ -109,3 +109,5 @@ app.listen(process.env.PORT || PORT, ()=>{
     //tells server to listen on the port set by process.env/hosting port like heroku or  we assigned earlier
     console.log(`Server running on port ${PORT}`)//console logs that the server is logging on blank port
 })
+
+//made branch and commented server.js
