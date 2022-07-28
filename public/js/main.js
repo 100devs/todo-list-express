@@ -1,19 +1,24 @@
+// Declares unchangeable variable (named 'deleteBtn') of all selectors with the class of ".fa-trash"
 const deleteBtn = document.querySelectorAll('.fa-trash')
+// Declares unchangeable variable (named 'item') of all selectors with the class names of ".item" and ".span"
 const item = document.querySelectorAll('.item span')
+// Declares unchangeable variable (named 'itemCompleted') of all selectors with the class names of ".item" and "span.completed"
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+// Creates an array of all selectors from deleteBtn variable and loops through each element whilst waiting for a click event that will delete the item if/when selected.
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
-
+// Creates an array of all selectors from item variable and loops through each element whilst waiting for a click event that will mark an item complete if/when selected.
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
-
+// Creates an array of all selectors from itemCompleted variable and loops through each element whilst waiting for a click event that will mark an item not complete if/when selected.
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+//
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
