@@ -20,8 +20,10 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+<!--This loop will run for every object in our database in the todoItems collection-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+<!--i will be 0 the first time it runs and it will pull the object at array index 1-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -35,7 +37,7 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!--Our API is setup to hear a post from the /addTodo route. When it hears that it runs our code. -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
