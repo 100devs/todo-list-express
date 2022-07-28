@@ -1,47 +1,69 @@
+<!--Declares document type for rendering as HTML-->
 <!DOCTYPE html>
+<!--Sets language to English-->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Declares head block (information invisible to client-side but used for rendering and search engines)-->
+  <head>
+    <!--Sets the character encoding for the document as Unicode Transformation Format - 8-bit-->
+    <meta charset="UTF-8" />
+    <!--Sets which version of Internet Explorer the page should be rendered as-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--Sets display width and scale to automatically adapt to different devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Sets document title for tab in browser as well as search engine optimization-->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
+    <!--Links an external stylesheet for internal use of classes and ids for specific fonts and icons-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!--Links internal stylesheet to style page basics-->
+    <link rel="stylesheet" href="css/style.css" />
+    <!--Ends head block-->
+  </head>
+  <!--Delcares body block (content of the page)-->
+  <body>
+    <!--Sets "Todo List: " as the most important header on the page-->
+    <h1>Todo List:</h1>
+    <!--Begins an unordered list with the class of "todoItems"-->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+      <!--Initiates a for loop that runs once for each item in the items array until the incrementer "i" is no longer less than the length of the items array-->
+      <% for(let i=0; i < items.length; i++) {%>
+      <!--Begins the list item and assigns the class "item" to each list item that is created in the for loop-->
+      <li class="item">
+        <!--If the item at index i has a completed status of true in the database, continue to the next line...-->
+        <% if(items[i].completed === true) {%>
+        <!--...Add the class of "completed" to the list item so the CSS can style it the way the class "completed" is styled; display in the DOM the list item-->
+        <span class="completed"><%= items[i].thing %></span>
+        <!--If the item at index i does not have a completed status of true in the database, continue to the next line...-->
+        <% }else{ %>
+        <!--...display in the DOM the list item as is.-->
+        <span><%= items[i].thing %></span>
+        <!--Ends else-->
+        <% } %>
+        <!--Adds the classes "fa" and "fa-trash" to the list item so the icons can be rendered there based on the CSS styling-->
+        <span class="fa fa-trash"></span>
+        <!--Ends the list item-->
+      </li>
+      <!--Ends for loop-->
+      <% } %>
+      <!--Ends unordered list-->
     </ul>
-
+    <!--Sets "Left to do" as a header of secondary importance and pulls the key "left" from the server.js file-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--Sets "Add a Todo" as a header of secondary importance-->
     <h2>Add A Todo:</h2>
-
+    <!--Begins a form; the action specifies the file/page that the form is submitted to and using the method of "POST"-->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+      <!--Creates a box into which the user can input information; this box accepts, via "type", only text; the words "Thing To Do" appear in the box as a placeholder until overwritten by the user; and the name of the box is set to "todoItem" so that the input receives that string as its variable name-->
+      <input type="text" placeholder="Thing To Do" name="todoItem" />
+      <!--Creates a button to submit the form information via the main.js event listener added to the button-->
+      <input type="submit" />
+      <!--Ends the form-->
     </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+    <!--Links the javascript file to apply action and functionality to the page-->
+    <script src="js/main.js"></script>
+    <!--Ends the body block-->
+  </body>
+  <!--Ends the document-->
 </html>
