@@ -1,6 +1,8 @@
 h1{
     color: red;
-}
+} 
+/*  sets all h1s to a color of red */
+/* sets the color of any completed todo to grey and marks it off */
 .completed{
     color: gray;
     text-decoration: line-through;
