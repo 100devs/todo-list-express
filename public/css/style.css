@@ -1,6 +1,7 @@
-h1{
+h1{ 
     color: red;
 }
+/* sets the h1 color to red */
 .completed{
     color: gray;
     text-decoration: line-through;
