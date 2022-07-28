@@ -4,11 +4,11 @@ const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
-
+// Declaring variables for database connection string to connect to MongoDB.
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
-
+// Connecting to MongoDB then console logging success message.
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
