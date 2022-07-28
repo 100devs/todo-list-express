@@ -11,7 +11,7 @@ require("dotenv").config();
 
 // declare the variable db
 let db,
-  // assigns the DB_STRING constant (containing the MongoDB connection string) from the .env file and assigns it to the variable dbConnectionStr
+  // takes the DB_STRING constant (containing the MongoDB connection string) from the .env file and assigns it to the variable dbConnectionStr
   dbConnectionStr = process.env.DB_STRING,
   // assign the name of the db ('todo') to the variable dbName
   dbName = "todo";
@@ -37,15 +37,15 @@ app.use(express.json());
 
 // GET request for the home page
 app.get("/", async (request, response) => {
-  // goes into 'todos' collection, finds documents therein, and puts them into an array
+  // goes into the 'todos' collection of the db, finds documents therein, and puts them into an array
   const todoItems = await db.collection("todos").find().toArray();
-  // goes into 'todos' collection, counts the number of documents where completed is false, and assigns that number to the variable named itemsLeft
+  // goes into the 'todos' collection of the db, counts the number of documents where completed is false, and assigns that number to the variable named itemsLeft
   const itemsLeft = await db
     .collection("todos")
     .countDocuments({ completed: false });
-  // transfers data (todoItems and itemsLeft) to the EJS template and responds with HTML that appears on the UI
+  // transfers data (todoItems and itemsLeft) into the EJS template and responds with HTML that appears on the UI
   response.render("index.ejs", { items: todoItems, left: itemsLeft });
-  // see above in app.get(): this is the code to get the number of items remaining on the todo list without using async/await
+  // see above in app.get(): this is the code to get the number of items remaining on the todo list; transferring data (todoItems and itemsLeft) into the EJS template and responding with HTML that appears on the UI; and logging any errors to the console, all without using async/await
 
   // db.collection('todos').find().toArray()
   // .then(data => {

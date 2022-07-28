@@ -2,7 +2,7 @@
 const deleteBtn = document.querySelectorAll(".fa-trash");
 // goes to document and grabs all span elements and elements with the class name "item"
 const item = document.querySelectorAll(".item span");
-// goes to document grabs all elements with the class name "item" and all spans with the class name of "completed"
+// goes to document and grabs all elements with the class name "item" and all spans with the class name of "completed"
 const itemCompleted = document.querySelectorAll(".item span.completed");
 
 // creates an array from deleteBtn (the trash can icon) and loops through the array
@@ -19,7 +19,7 @@ Array.from(item).forEach((element) => {
 
 // creating an array from itemCompleted (todos with a line through them) and loops through array
 Array.from(itemCompleted).forEach(
-  // adds event listener to each one element, firing the markUnComplete function when element is clicked
+  // adds event listener to each element, firing the markUnComplete function when element is clicked
   (element) => {
     element.addEventListener("click", markUnComplete);
   }
@@ -27,8 +27,9 @@ Array.from(itemCompleted).forEach(
 
 // asynchronous function tied to an event listener
 async function deleteItem() {
-  // go to the parent of the item/task  clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
+  // go to the parent of the item/task clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
   const itemText = this.parentNode.childNodes[1].innerText;
+  // error handling
   try {
     // DELETE request using fetch to deleteItem path
     const response = await fetch("deleteItem", {
@@ -38,7 +39,7 @@ async function deleteItem() {
       headers: { "Content-Type": "application/json" },
       // convert JSON into string 
       body: JSON.stringify({
-        // takes the value of itemFromJS (itemText) and deletes it
+        // the value of itemFromJS (itemText) to be deleted
         itemFromJS: itemText,
       }),
     });
@@ -46,7 +47,7 @@ async function deleteItem() {
     const data = await response.json();
     // logs data to the console
     console.log(data);
-    // refresh the page
+    // refresh the page, where the deleted information will not be included
     location.reload();
     // error handling
   } catch (err) {
@@ -57,7 +58,7 @@ async function deleteItem() {
 
 // asynchronous function tied to an event listener
 async function markComplete() {
-  // go to the parent of the item/task  clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
+  // go to the parent of the item/task clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
   const itemText = this.parentNode.childNodes[1].innerText;
   // error handling
   try {
@@ -69,7 +70,7 @@ async function markComplete() {
       headers: { "Content-Type": "application/json" },
       // convert JSON into string
       body: JSON.stringify({
-        // takes the value of itemFromJS and updates it to itemText
+        // the value of itemFromJS (itemText) to be updated
         itemFromJS: itemText,
       }),
     });
@@ -77,7 +78,7 @@ async function markComplete() {
     const data = await response.json();
     // logs data to console
     console.log(data);
-    // refresh the page
+    // refresh the page, including the updated information
     location.reload();
     // error handling
   } catch (err) {
@@ -88,7 +89,7 @@ async function markComplete() {
 
 // asynchronous PUT request tied to an event listener
 async function markUnComplete() {
-  // go to the parent of the item/task  clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
+  // go to the parent of the item/task clicked and then go to the first child node (which should be an item/task) and put the text in the DOM
   const itemText = this.parentNode.childNodes[1].innerText;
   // error handling
   try {
@@ -100,7 +101,7 @@ async function markUnComplete() {
       headers: { "Content-Type": "application/json" },
       // convert JSON into string 
       body: JSON.stringify({
-        // takes the value of itemFromJS and updates it to itemText
+        // the value of itemFromJS (itemText) to be updated
         itemFromJS: itemText,
       }),
     });
@@ -108,7 +109,7 @@ async function markUnComplete() {
     const data = await response.json();
     // logs data to the console
     console.log(data);
-    // refresh the page
+    // refresh the page, including the updated information
     location.reload();
     // error handling
   } catch (err) {
