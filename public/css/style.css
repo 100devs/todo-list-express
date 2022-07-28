@@ -1,7 +1,9 @@
 h1{
+    /* main stuff is not important */
     color: red;
 }
 .completed{
+    /* completed tasks look differrent than the incomplete stuff */
     color: gray;
     text-decoration: line-through;
 }
