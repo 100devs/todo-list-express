@@ -20,13 +20,19 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    //% means for loop. This creates a for loop to render the list of items
+    //% alone hides the for loop
+    //%= code to the show it to the client
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
+                //if it is completed it will have something denoting completion
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                //for an incomplete item
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %> 
+            //for deleting items   
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
