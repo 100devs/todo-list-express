@@ -1,7 +1,12 @@
+/* sets all h1 elements */
 h1{
+    /* to have the text color of red */
     color: red;
 }
+/* sets all elements with the completed class */
 .completed{
+    /* to have the text color of gray */
     color: gray;
+    /* to have a line through the text */
     text-decoration: line-through;
 }
