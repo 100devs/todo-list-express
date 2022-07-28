@@ -46,7 +46,7 @@ app.post('/addTodo', (request, response) => {                                   
 })
 
 app.put('/markComplete', (request, response) => {                                           //UPDATE task function via URL/markComplete
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document from todos DB that matches item name from JSON sent by app
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document from todos DB that matches item name from JSON sent by app.js
         $set: {                                                                             //set key value items:
             completed: true                                                                         //completed to true
           }
@@ -62,33 +62,33 @@ app.put('/markComplete', (request, response) => {                               
 
 })
 
-app.put('/markUnComplete', (request, response) => {                                         
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            completed: false
+app.put('/markUnComplete', (request, response) => {                                         //UPDATE task function
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document in todos DB that matches name from JSON sent by app.js
+        $set: {                                                                             //set key value items:
+            completed: false                                                                    //completed to false
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1},                                                                    //sort descending order by ID (newest first)
+        upsert: false                                                                       //will not insert new document if no match is found
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+    .then(result => {                                                                        // once complete
+        console.log('Marked Complete')                                                      // console log that task has been marked complete
+        response.json('Marked Complete')                                                    //respond to the JSON file that something has been done with it
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))                                                   //console log any errors
 
 })
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+app.delete('/deleteItem', (request, response) => {                                          //DELETE task function
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS})                      //delete the document in todos DB that matches name from JSON sent by app.js
+    .then(result => {                                                                       //then
+        console.log('Todo Deleted')                                                         //console log that file was deleted
+        response.json('Todo Deleted')                                                       //respond that somethings been done with the JSON file
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))                                                   //console log any errors
 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+app.listen(process.env.PORT || PORT, ()=>{                                                  //have app use PORT in .env file or PORT in variable if it is not set
+    console.log(`Server running on port ${PORT}`)                                           //console log that app is running on PORT
 })
