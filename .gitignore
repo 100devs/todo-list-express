@@ -1,2 +1,3 @@
+//this hides info, like passwords, when pushing code to github
 node_modules
 .env
