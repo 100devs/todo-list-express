@@ -73,8 +73,7 @@ async function markComplete(){
 }
 
 /* Callback function that finds the second element's text in the childNodes array 
-and makes an API call to /markUnComplete
-*/
+and makes an API call to /markUnComplete with 
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{

@@ -20,6 +20,18 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- 
+      Loop through array.
+      Create an li for each element in the array.
+      Check if each element's completed property is true.
+
+        If true creates a span with the class of completed and inserts the 
+        content of each item's thing value into the DOM.
+        
+        If false insert a span with the item's thing value into the DOM.
+
+      Create a span with a Font Awesome icon of trash in each loop.
+    -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
