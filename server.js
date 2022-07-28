@@ -1,4 +1,15 @@
-const express = require('express')
+//P-Parameters- Items to click on . Text box. Trash icon to click to delete.
+//R-Returns - (item click)that changes colors and strikethrough marked as done. (textbox)type into textbox new item is added. Counter increments by one. (trash icon) Removes the item from the list, decrements if item isn't completed, conditional
+//E- Examples - As seen below
+//P- Pseudocode - User facing frontend. MongoDB backend. Eventlistener to listen for event, Upon text submit task is added to mongo database creates a database entry. 
+               //in database, shows: (thing: {task created}) (completed:{true or false})
+               //upon task click, text is visually changed and the database "completed entry is marked as true or false based on initial state" .put request to update.
+               //upon trash icon click it is removed from the database. Event listener. Also sending ._id to know what task to delete. 
+               //incremental counter that shows how many tasks left incomplete.
+               //upoon refresh or changes everything unaffected stays the same because of .get request
+               //auto reload with every update
+
+const express = require('express') //
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
