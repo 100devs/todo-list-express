@@ -6,6 +6,7 @@ Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
+// adds event listener to each item to mark as complete in mongo DB
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })

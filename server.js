@@ -35,6 +35,7 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+// adds one todo list item and sets completed: false
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -44,6 +45,7 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+// updates complete todolist items in mongo collection
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -61,6 +63,7 @@ app.put('/markComplete', (request, response) => {
 
 })
 
+// updates uncomplete items in mongo DB
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -78,6 +81,7 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+//deletes item from mongo db collection
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
