@@ -1,5 +1,7 @@
-{
+/*{
     "editor.fontSize": 12,
     "terminal.integrated.fontSize": 12,
     "diffEditor.wordWrap": "on"
-}
+}*/
+
+//Commented out to reduce font size in project
