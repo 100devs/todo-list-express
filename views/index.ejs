@@ -1,15 +1,20 @@
 <!DOCTYPE html>
+<!-- this is what language we using -->
 <html lang="en">
+    <!-- we speak english -->
 <head>
+    <!-- this is for your computer -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- add in our font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +22,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body> 
+    we got an extra!!-->
     <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <!-- most important item on page -->
+    <ul class="todoItems"> 
+        <!-- unordered list -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- poser JS for loop -->
         <li class="item">
+            <!-- list item -->
             <% if(items[i].completed === true) {%>
+                <!-- is it completed? do this -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- add the class 'completed' to these guys for styling presumably -->
             <% }else{ %>
+                <!-- if not completed -->
                 <span><%= items[i].thing %></span>
+                <!-- display them in list but don't add the class -->
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- we are going to maybe click a trash can icon at some point that gets added on to each item on our list -->
         </li>
     <% } %>
     </ul>
 
     <h2>Left to do: <%= left %></h2>
+    <!-- count out number of 'incomplete' tasks and shove here -->
 
     <h2>Add A Todo:</h2>
+    <!-- less important -->
 
     <form action="/addTodo" method="POST">
+        <!-- redirect one we submit -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- match to line 40 in our server.js file -->
         <input type="submit">
     </form>
     
 
     <script src='js/main.js'></script>
+    <!-- run some javascript - put at the bottom so it loads last and doesn't mess up the CSS/html rendering -->
 </body>
 </html>
