@@ -1,17 +1,17 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const deleteBtn = document.querySelectorAll('.fa-trash') //create list of deleteBtn 
+const item = document.querySelectorAll('.item span') //create list of span items
+const itemCompleted = document.querySelectorAll('.item span.completed') //create list of span items completed
 
-Array.from(deleteBtn).forEach((element)=>{
-    element.addEventListener('click', deleteItem)
+Array.from(deleteBtn).forEach((element)=>{//create an array from the deleteBtn node list
+    element.addEventListener('click', deleteItem) //add a listener on the delete icon 
 })
 
-Array.from(item).forEach((element)=>{
-    element.addEventListener('click', markComplete)
+Array.from(item).forEach((element)=>{//create an array from the item node list
+    element.addEventListener('click', markComplete) //add a listener on the complete text
 })
 
-Array.from(itemCompleted).forEach((element)=>{
-    element.addEventListener('click', markUnComplete)
+Array.from(itemCompleted).forEach((element)=>{ //create an array from the itemCompeleted node list
+    element.addEventListener('click', markUnComplete) //add a listener on the uncomplete text
 })
 
 async function deleteItem(){
