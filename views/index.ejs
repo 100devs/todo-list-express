@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!DOCTYPE html> <!-- set the document type to html5-->
+<html lang="en"> <!-- start html, define the language as english -->
+<head> <!-- begin the head section-->
+    <meta charset="UTF-8"> <!-- set the page character encoding to UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- set the  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- define the viewport size -->
+    <title>Document</title> <!-- Give the page the title Document -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--import the font-awesome icons for the fa, and fa-trash classes-->
+    <link rel="stylesheet" href="css/style.css"> <!-- link our stylesheet -->
+</head> <!--end of the head section -->
+<!--Remove this superfluous stuff because it isn't needed --><!-- <body> 
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +16,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> -->
+<body> <!-- begin the body section -->
+    <h1>Todo List: </h1> <!-- Main header is Todo List: -->
+    <ul class="todoItems"> <!-- create unordered list with class todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- iterate over the items so we can display them eventually -->
+        <li class="item"> <!-- define a new list element with class item -->
+            <% if(items[i].completed === true) {%> <!-- if the item is complete -->
+                <span class='completed'><%= items[i].thing %></span> <!--give it the class completed and display the text in a span -->
+            <% }else{ %> <!--otherwise -->
+                <span><%= items[i].thing %></span> <!--just display it as a span inside the <li></li> -->
+            <% } %>    <!-- end of else -->
+            <span class='fa fa-trash'></span> <!-- add the trash can icon used for deleting items -->
+        </li> <!-- end the list item -->
+    <% } %><!-- end of the for loop -->
+    </ul> <!--end the unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--secondary header displyaing how many items are left-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- secondary header for adding items -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- form that makes a post request to addTodo when submitted -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--the text of the thing to do -->
+        <input type="submit"> <!--submit button -->
+    </form> <!--end of form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- embed our main.js script here so nothing blocking happens until the page is basically already finished rendering everything the user might see -->
+</body> <!--end the html body -->
+</html> <!--end of html -->
