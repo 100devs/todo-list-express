@@ -1,47 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+<!--index.ejs is for rendering HTML in the browser - allows us to render dynamic data in the browser using javascript-->
+<!--specifies to the browser that document type is html-->
+<!DOCTYPE html> 
+<!--creating the html tag, specifies to the browser that language of the page is english-->
+<html lang="en"> 
+<!--creating the head tag - contains all the metadata, content that is not displayed to the user on the webpage-->
 <head>
-    <meta charset="UTF-8">
+    <!--attribute that sets the page's character encoding type - indicates what character set should be used-->
+    <meta charset="UTF-8"> 
+    <!--tells microsoft browsers what version of internet explorer to render the page as - sets appropriate compatibility for microsoft browsers-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--setting the default viewing area for where our content will be displayed - SPECIFICALLY THE WIDTH because scrolling is a thing for the height (vertical scrolling is p standard where horizontal scrolling isn't)-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--gives the webpage a title that is viewable in the browser tab/on search engine results, etc.-->
     <title>Document</title>
+    <!--link element gives us access to fontawesome icons to be displayed on the page - links our index.ejs and fontawesome icon library-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--links index.ejs and our local css stylesheet so our css is displayed on the page-->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<body> <!--this line may be a typo-->
+    <!DOCTYPE html> <!--this line may be a typo-->
+<html lang="en"><!--this line may be a typo-->
+<head><!--this line may be a typo-->
+    <meta charset="UTF-8"><!--this line may be a typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--this line may be a typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--this line may be a typo-->
+    <title>Document</title><!--this line may be a typo-->
+</head><!--this line may be a typo-->
+<!--section for content being displayed on the page-->
+<body> 
+    <!--creating main heading - most semantically important heading displayed on page-->
     <h1>Todo List: </h1>
+    <!--creating unordered list with an assigned class of todoItems-->
     <ul class="todoItems">
+    <!--EJS syntax - initializing a for loop in js-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--creating list item with an assigned class of item-->
         <li class="item">
+            <!--ejs syntax - creating conditional if statement - checks to see if it is true that an item in an array has a completed property-->
             <% if(items[i].completed === true) {%>
+                <!--creating an inline span element with a class of completed and adding EJS to display the name of the task - pulling a specific item with a property of thing out of an array-->
                 <span class='completed'><%= items[i].thing %></span>
+            <!--EJS for else statement from the conditional if statement - if the item in an array does NOT have a completed property-->
             <% }else{ %>
+                <!--creating an inline element and adding EJS to display the name of the task - pulling a specific item with a property of thing out of an array-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <!--closing the if/else statement using EJS-->
+            <% } %>
+            <!--creating an inline span element with a class of fa fa-trash - fontawesome trash can icon-->    
             <span class='fa fa-trash'></span>
+        <!--closing list item tag-->
         </li>
+    <!--closing loop using EJS-->
     <% } %>
+    <!--closing unordered list tag-->
     </ul>
-
+    <!--creating heading 2 - second most important element semantically to display on the page - using EJS to display how many tasks are left to do/complete via variable left-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--creating heading 2 - second most important element semantically to display on the page-->
     <h2>Add A Todo:</h2>
-
+    <!--creating form element with a POST(create) method that is going to the route of the action /addTodo - this lets the server know what to do -we want to hit the point in our server that's going to handle this information in the way that we expect -->
     <form action="/addTodo" method="POST">
+        <!--creating an input element that takes in user input as text, has placeholder/default text of "Thing to do" prior to the user entering anything, and a name of todoItem to assign a unique value that we can reference later-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--creating an input element with a type of submit - acts like a submit button without having to create a submit button (form element has a built-in type that creates a submit button for you and allows you to assign methods :))) )-->
         <input type="submit">
+    <!--closing tag of the form element-->
     </form>
     
-
+    <!--link that allows the page to run javascript - links our main.js file and index.ejs file-->
     <script src='js/main.js'></script>
+<!--closing tag of the body element-->
 </body>
+<!--closing tag of the html element-->
 </html>

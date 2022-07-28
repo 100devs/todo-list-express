@@ -1,7 +1,16 @@
+/* local css file */
+/*selector that is selecting all h1 elements in index.ejs*/
 h1{
+    /*setting the text color to red*/
     color: red;
+/*closing the declaration block*/
 }
+
+/* selector that is selecting all elements with the class of completed in index.ejs */
 .completed{
+    /*setting the text color to gray*/
     color: gray;
+    /* putting a strikethrough through the text */
     text-decoration: line-through;
+    /*closing the declaration block */
 }
