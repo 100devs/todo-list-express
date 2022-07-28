@@ -4,44 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> <!--name appearing in browser tab-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"><!--links to the very sparse css-->
 </head>
 <body>
-    <!DOCTYPE html>
+    <!--ERROR: section here is duplicated. However, this doesn't seem to affect functionality at all. -->
+
+    <!DOCTYPE html> 
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
+    <!-- actual visible app content -->
     <h1>Todo List: </h1>
+    <!-- creates a parent element that wraps the list in the semantic element ul -->
     <ul class="todoItems">
+        <!-- the following EJS renders the unknown number of objects from database into visible list with listeners applied by client-side js -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- looping through array of objects -->
         <li class="item">
+            <!-- for each object, create a list item element -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+                <!-- check key-value for "completed" of object. If value is true, apply the class "completed" presumably to style it with strikethrough -->
+                <span class='completed'><%= items[i].thing %></span> <!--this as a standalone isn't super accessible so probably want an aria label -->
+            <% }else{ %> <!--if item key "completed" is false in the database, do not apply the class "completed" for styling-->
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--this may be to purely include the trash icon, with a listener applied using client-side js. Also seems pretty inacessible-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--shows a variable that will likely change based on additional inputs/user interaction with the app-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--sums up key action enabled by form-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"><!--form to create new item, sending a POST http request to the path addTodo which links the form to the server response-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--element to capture user input for custom task name or description, providing guidance using a placeholder text. 
+            It seems that screenreaders and voiceovers for Safari and Firefox browsers will read placeholders, so aria label could be redundant. Would actual <label> element also be redundant now?-->
+        <input type="submit"> <!-- typically I see this being a button element instead. Of interest - why does the button say 'submit query' while I don't even see it as the value attribute? -->
+                <!-- apparently your browser will provide a default value that CAN be 'submit query' if no value is specified for this type of input element -->
     </form>
     
 
     <script src='js/main.js'></script>
-</body>
+    <!-- links to client-side js -->
+</body> <!--closing tag for app content and elements to be rendered for this page-->
 </html>

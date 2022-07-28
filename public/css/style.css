@@ -1,7 +1,8 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
+h1{ /*select all h1*/
+    color: red; /*make all of the h1 red in color*/
+} /*closing the declaration block*/
+.completed{ /*for all elements with class of completed*/
+    color: gray; /*make them gray in color*/
+    text-decoration: line-through; /*apply styling to be crossed out*/
+    /*I still think because this has semantic significance that this needs some reinforcement by label*/
 }
