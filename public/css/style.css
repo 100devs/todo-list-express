@@ -1,7 +1,12 @@
-h1{
+h1 {
+    /* Sets the h1 element to red */
     color: red;
+    /* Red represents physical energy, lust, passion, and desire. It symbolizes action, confidence, and courage. The color red is linked to the most primitive physical, emotional, and financial needs of survival and self-preservation. There's nothing to it, but to do it. */
 }
-.completed{
+
+.completed {
+    /* Makes completed tasks grey.  */
     color: gray;
+    /* Makes completed texts strikethrough. */
     text-decoration: line-through;
 }
