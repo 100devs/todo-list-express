@@ -1,95 +1,89 @@
-// go to the DOM and store all the items that has the 'fa-trash' class
-// store it to a NodeList
+//declaring variables to hold our queryselectors from our DOM for delete button, items, and items marked completed
 const deleteBtn = document.querySelectorAll('.fa-trash')
-// go to the DOM and store all the items that has the 'item span' classes
-// store it to a NodeList
-const item = document.querySelectorAll('.item p')
-// go to the DOM and store all the items that has the 'item span.completed' classes
-// store it to a NodeList
-const itemCompleted = document.querySelectorAll('.fa-check')
+const item = document.querySelectorAll('.item span')
+const itemCompleted = document.querySelectorAll('.item span.completed')
 
-// Create an array from the Nodelist
-Array.from(deleteBtn).forEach((element) => {
-    // listen for a click event on each item
+//since we used querySelectorAll, we want an event listener on each of those selected items, so we are making an array from that set of items and putting a click event listener on each item( in this case, running the function 'deleteItem' on click)
+Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
-// Create an array from the Nodelist
-Array.from(item).forEach((element) => {
-    // listen for a click event on each item
+//since we used querySelectorAll, we want an event listener on each of those selected items, so we are making an array from that set of items and putting a click event listener on each item( in this case, running the function 'markComplete' on click)
+Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
-// Create an array from the Nodelist
-Array.from(itemCompleted).forEach((element) => {
-    // listen for a click event on each item
+//since we used querySelectorAll, we want an event listener on each of those selected items, so we are making an array from that set of items and putting a click event listener on each item( in this case, running the function 'markUnComplete' on click)
+Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
-// deletes the items from the list
-async function deleteItem() {
-    // trims down the text content to isolate the p element
-    const itemText = this.parentNode.children[0].innerText.trim();
-    try {
-        // sending a DELETE request to the server
+//declaring an asynchronous function named deleteItem
+async function deleteItem(){
+    //creating a constant variable to hold the value of the innertext of the childnode of the parentnode in the DOM of the item 'this' which is the element that had the event listener from earlier in the code
+    const itemText = this.parentNode.childNodes[1].innerText
+    //try catch block to run specific code and deal with errors
+    try{
+        //declare response variable to hold an await fetch function with route 'deleteItem', using method 'delete', with json data in the header, and taking the itemText variable from above and using it to find the matching item on the server and deleting it
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                // defining the itemFromJ to itemText
               'itemFromJS': itemText
             })
-        })
-        // storing the response as json
+          })
+        //declaring a const variable awaiting previous response to return with a json response
         const data = await response.json()
+        //console.log the above variable upon recieving it back from server, and reloading the page
         console.log(data)
-        // reload the page
         location.reload()
     }catch(err){
         console.log(err)
     }
 }
 
-// marks the item complete
-async function markComplete() {
-        // trims down the text content to isolate the p element
-    const itemText = this.parentNode.children[0].innerText.trim();
-    try {
-        // sending a PUT request to the server
+//declaring an asynchronous function named markComplete
+async function markComplete(){
+    //creating a constant variable to hold the value of the innertext of the childnode of the parentnode in the DOM of the item 'this' which is the element that had the event listener from earlier in the code
+    const itemText = this.parentNode.childNodes[1].innerText
+    //try catch block to run specific code and deal with errors
+    try{
+        //declare response variable to hold an await fetch function with route 'markComplete', using method 'put', with json data in the header, and taking the itemText variable from above and using it to find the matching item on the server and marking it as done/complete
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
-        })
-        // store the response as json in data
+          })
+        //declaring a const variable awaiting previous response to return with a json response
         const data = await response.json()
+        //console.log the above variable upon recieving it back from server, and reloading the page
         console.log(data)
-        // reload the page
         location.reload()
-
     }catch(err){
         console.log(err)
     }
 }
 
-async function markUnComplete() {
-    // trims down the text content to isolate the p element
-    const itemText = this.parentNode.children[0].innerText.trim();
-    try {
-        // sending a PUT request to the server
+//declaring an asynchronous function named markUnComplete
+async function markUnComplete(){
+    //creating a constant variable to hold the value of the innertext of the childnode of the parentnode in the DOM of the item 'this' which is the element that had the event listener from earlier in the code
+    const itemText = this.parentNode.childNodes[1].innerText
+    //try catch block to run specific code and deal with errors
+    try{
+        //declare response variable to hold an await fetch function with route 'markUnComplete', using method 'put', with json data in the header, and taking the itemText variable from above and using it to find the matching item on the server and marking it as not done/incomplete
         const response = await fetch('markUnComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
-        })
-        // store the response as json in data
+          })
+        //declaring a const variable awaiting previous response to return with a json response
         const data = await response.json()
+        //console.log the above variable upon recieving it back from server, and reloading the page
         console.log(data)
-        // reload the page
         location.reload()
 
     }catch(err){
