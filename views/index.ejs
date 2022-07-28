@@ -1,32 +1,36 @@
+<!-- set to latest HTML spec -->
 <!DOCTYPE html>
+<!-- set language to english -->
 <html lang="en">
 <head>
+    <!-- set character encoding to UTF-8 -->
     <meta charset="UTF-8">
+    <!-- when using Microsoft browswer, use 'Edge' as version for Internet Explorer -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- set scale of viewport as full width of device -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- set title of document -->
     <title>Document</title>
+    <!-- link to Font Awesome stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to css file stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     <h1>Todo List: </h1>
+    <!-- create an unordered list with class 'todoItems' -->
     <ul class="todoItems">
+    <!-- loop through each element in items array -->
     <% for(let i=0; i < items.length; i++) {%>
+        <%# list item with class 'item' %>
         <li class="item">
+            <%# if item is completed therefore it's set to true %>
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <%# create trash can icon using font-awesome with class fa fa-trash class name %>   
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
@@ -36,12 +40,16 @@
 
     <h2>Add A Todo:</h2>
 
+    <!-- create form that makes POST request to addTodo path -->
     <form action="/addTodo" method="POST">
+        <!-- add placeholder "Thing To Do" to input field of type text and name "todoItem" -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- create submit button -->
         <input type="submit">
     </form>
     
 
+    <!-- link to js file -->
     <script src='js/main.js'></script>
 </body>
 </html>

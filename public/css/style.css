@@ -1,6 +1,9 @@
+/* style h1 element with red colored text */
 h1{
     color: red;
 }
+
+/* style class 'completed' with gray text color and line-through text-decoration */
 .completed{
     color: gray;
     text-decoration: line-through;
