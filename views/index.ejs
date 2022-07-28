@@ -1,5 +1,9 @@
+<!-- commented ejs -->
+<!-- tells browser this is an html file -->
 <!DOCTYPE html>
+<!-- sets lang to English -->
 <html lang="en">
+    <!-- muy importante stuff goes in the head from meta data, title, links to stylesheets and fonts if we got them from say Google Fonts -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +12,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<!-- looks like boilerplate was copied twice. deleted second boilerplate -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- h1 -->
     <h1>Todo List: </h1>
+    <!-- unordered list -->
     <ul class="todoItems">
+        <!-- loop through array of items -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- list items -->
         <li class="item">
+            <!-- if list item at the current index is true do this -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- if not do this -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- font awesome trash can -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- h2 items left-->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- h2 add a todo -->
     <h2>Add A Todo:</h2>
-
+    <!-- form to input todo  -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+<!-- dem JS scripts -->
     <script src='js/main.js'></script>
 </body>
 </html>
