@@ -20,22 +20,29 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+	
+	<!-- running loop for as many items are in db returnd by server.js -->
+        <% for(let i=0; i < items.length; i++) {%>
+        <li class="item"> <!-- creating an li for each item-->
+            <!-- //if item status is completed, create span as completed -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+			<!-- //else create an item with no class -->
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+			<!-- //insert a font aweseome trash icon.  -->
+            <span class='fa fa-trash'></span> <!-- -->
         </li>
     <% } %>
     </ul>
-
+  <!-- // server.js returns left when we do a complete POST request. 
+  //for number of items left put it in an h2.  -->
     <h2>Left to do: <%= left %></h2>
-
+	
     <h2>Add A Todo:</h2>
-
+     <!-- Form which performs a POST to addTodo route when we want to add new to do item. 
+	 //form to submit to server.js through client side logic. name tdoItem links to our js function.  -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
