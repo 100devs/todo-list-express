@@ -1,7 +1,12 @@
 h1{
-    color: red;
+    color: red; /* makes the h1 element red to stand out*/
 }
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray; /* this makes completed tasks gray */
+    text-decoration: line-through; /* this puts a strike-through for completed tasks */
+}
+
+/*added span below so it would display inline to correspond with index.ejs */
+span{
+    display: inline;
 }

@@ -1,47 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- I Delisha Cogdell participated in Discord Voice 2 on 7/26/2022 for this project-->
+
+<!DOCTYPE html> <!--define the HTML Doc type-->
+<html lang="en"> <!--Open the html in English-->
+
+<!--below is the head tag and its necessary links and metadata-->
 <head>
+    <meta charset="UTF-8"> <!--this sets the file coding-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--this makes it show right in Edge-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--this sets the viewport-->
+    <title>Document</title> <!--this is the page title-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--this is a stylesheet (css) link to font-awesome-->
+    <link rel="stylesheet" href="css/style.css"> <!--this would link to my css-->
+</head> <!--this is the end of the head tag-->
+
+<!--<body> This body element, Doctype and Lang is repeated in Leon's code. It does not have a closing tag either. I will comment it out
+    <!DOCTYPE html> 
+<html lang="en"> -->
+
+<!--This head element below is repeated in Leon's code. It needs to be removed. I will comment it out-->
+<!--<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+</head> -->
+
+<!--Below begins the HTML body -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+    <h1>Todo List: </h1> <!--The Primary Heading for this page-->
+
+    <ul class="todoItems"> <!--Unordered list with a class of "todoItems"-->
+    <% for(let i=0; i < items.length; i++) {%> <!--EJS to loop over the items variable-->
+        <li class="item"> 
+            <% if(items[i].completed === true) {%> <!--if item is completed, render a span with class "completed"-->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!--else create the item without a class-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span>  <!--Creat a fontawesome trashcan icon-->
         </li>
     <% } %>
-    </ul>
+    </ul>  <!--closing tag for unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--h2 is a secondary heading. It displays how many "left to do" are left.-->
 
     <h2>Add A Todo:</h2>
 
+       <!--form that sends a POST request to the route /addTodo-->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--This is an input filed. It takes the "todoItem" name and sends it to the server-->
+        <input type="submit"> <!--A submit input-->
     </form>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--this is to link the main.js file-->
+</body> <!--closing body tag-->
+</html> <!--closing html tag-->
