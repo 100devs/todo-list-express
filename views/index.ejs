@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html> <!--This is mostly standard HTML, so commenting every line seems a bit overkill-->
+<html lang="en"><!--Define the page language for bots that check that-->
+<head> <!--Open header (which the users can't see, but the browser can)-->
+    <meta charset="UTF-8"> <!--Using the UTF-8 character set-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--Edge is dead but new computers are expensive so it'll still have some users-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Default viewport setup, scaling is allowed because NOT allowing scaling is a jerk move-->
+    <title>Document</title> <!--The title that goes in the tab/above the address bar-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--FontAwesome CSS link for the FontAwesome icons-->
+    <link rel="stylesheet" href="css/style.css"> <!--Link to our own CSS sheet-->
+</head> <!--close header-->
+<body> <!--open body (This is where the content the user can read begins)-->
+    <!DOCTYPE html> <!-- I don't think this should be here, actually -->
+<html lang="en"> <!-- Nor this.-->
+<head> <!--I believe a cut and paste error has been made, some I'm going to jump down to where the second body tag is opened.-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+<body> <!--I believe this is the content that was supposed to begin on line 11, and lines 12 thru 19 should be tossed-->
+    <h1>Todo List: </h1> <!--Big Fat Header for our todo list-->
+    <ul class="todoItems"> <!--Which is an unordered list-->
+    <% for(let i=0; i < items.length; i++) {%> <!--Begin EJS: For each item in our Todo list-->
+        <li class="item"> <!--Put down the name of the item-->
+            <% if(items[i].completed === true) {%> <!--If it's done-->
+                <span class='completed'><%= items[i].thing %></span> <!--Assign it the 'completed' class when placing it-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!--otherwise, no class when placing it-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--This is our delete button-->
         </li>
-    <% } %>
+    <% } %> <!--End our for loop-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--Note down how many items are left incomplete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--Header for our 'add a todo item' form-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!--Add a todo item with this form-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--So it's just write down the name of the task-->
+        <input type="submit"> <!-- And a submit button-->
     </form>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--Once the HTML is loaded in, this signals to the browser to load our JS-->
+</body> <!--Close body-->
+</html> <!--And end HTML-->
