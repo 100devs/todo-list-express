@@ -20,6 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+     // ejs is dynamically looping through the collection in mongodb
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -35,7 +36,7 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    // form with address and method to provide to server
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
