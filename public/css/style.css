@@ -1,6 +1,8 @@
+/* all h1 tags are in the color red, h1 are the most important header tags */
 h1{
     color: red;
 }
+/* any class that is named completed with be grey and the text will have a strike through them to show it has been marked off the list */
 .completed{
     color: gray;
     text-decoration: line-through;
