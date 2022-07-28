@@ -1,7 +1,7 @@
 h1{
-    color: red;
+    color: red; /*SET THE COLOR TO RED */
 }
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray; /*SET COMPLETED CLASS COLORS TO GREY */
+    text-decoration: line-through; /* STRIKE THE COMPLETED SPANS THROUGH */
 }
