@@ -1,5 +1,5 @@
 <!DOCTYPE html> <!-- renders html with embedded javascript -->
-<html lang="en">
+<html lang="en"> <!-- html starting tag and specifying language as English -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,23 +25,23 @@
             <% if(items[i].completed === true) {%> <!-- ejs conditional to see if task (item in an array) is completed (true) -->
                 <span class='completed'><%= items[i].thing %></span> <!-- span with a class of "completed" and ejs to display task -->
             <% }else{ %> <!-- ejs for else clause of if statement -->
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+                <span><%= items[i].thing %></span> <!-- ejs putting task name in span with no class specified -->
+            <% } %> <!-- ejs closing else statement -->
+            <span class='fa fa-trash'></span> <!-- span with class of trash can icon using font awesome -->
+        </li> <!-- closing tag for list item -->
+    <% } %> <!-- ejs closing for loop -->
+    </ul> <!-- closing tag for unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- second level header displaying some text and using ejs to display a variable showing number of tasks left to do -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- second level header displaying some text -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- creating a form with a POST method that goes to the /addTodo route -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input tag creates an inpute box that allows for text; placeholder is default text inside box; name for input box to easily reference it-->
+        <input type="submit"> <!-- gives the form a submit button -->
+    </form> <!-- closing tag for form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- link to javascript file located in js folder in public folder -->
+</body> <!-- closing tag for body -->
+</html> <!-- closing tag for html -->
