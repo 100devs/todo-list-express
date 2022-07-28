@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+<!DOCTYPE html> <!-- Telling Browser this is an HTML document file-->
+<html lang="en"> <!-- Starting HTML tag by selecting "english"-->
+<head> <!-- Starting the head tag and storing the metadata-->
+    <meta charset="UTF-8"> <!-- Indicates the character set used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Make this compatible with Edge and Internet Explorer -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Make the viewport width equal to the device width  -->
+    <title>Document</title> <!-- Names the Title that is seen on browser tabs to "document"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">  <!-- Linking to Font Awesome stylesheet so we can get the trash can icon  -->
+    <link rel="stylesheet" href="css/style.css"> <!-- links to stylesheet of CSS in Public folder  -->
+</head> <!-- Closing head tag -->
+<body> <!-- Opening body tag -->
+    <!DOCTYPE html> <!-- This might be a typo -->
+<html lang="en"> <!-- This might be a typo -->
+<head> <!-- This might be a typo -->
+    <meta charset="UTF-8"> <!-- This might be a typo -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- This might be a typo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- This might be a typo -->
+    <title>Document</title> <!-- This might be a typo -->
+</head> <!-- This might be a typo -->
+<body> <!-- main section for content to be displayed -->
+    <h1>Todo List: </h1> <!-- This is the main title or heading number 1 -->
+    <ul class="todoItems"> <!-- Create Unordered List with the class of "todoItems"-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Create a FOR loop in EJS that goes only as long as the length of the list -->
+        <li class="item"> <!-- Create an list item with the class "item" -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+                <span class='completed'><%= items[i].thing %></span> <!-- Creating an inline element with a class and adding EJS to display the name of the task -->
+            <% }else{ %>  <!-- EJS for the Else clause of our if statement -->
+                <span><%= items[i].thing %></span> <!--  adding EJS to display the name of the task -->
+            <% } %>     <!-- EJS to close the Else Statement-->
+            <span class='fa fa-trash'></span> <!-- Creating a span with the Font Awesome icon of a trash can inside -->
+        </li> <!-- Closing the list item -->
+    <% } %> <!-- EJS closing the FOR loop -->
+    </ul> <!-- Closing the Unordered List -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- A heading level 2 with text, EJS and a spot for where the number will be displayed of items still undone. -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Another heading level 2 with text -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- Opening form tag, putting in an action and a method to create items   -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Tells the form to have an input in text form and not numbers, etc and the placeholder inside the input says "Things to do" and links it to "todoItem" -->
+        <input type="submit"> <!-- Sets the input type to a submit inpu -->
+    </form> <!-- Closes form tag -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- Links the Javascript file -->
+</body> <!-- Closes body tag -->
+</html> <!-- Closes html tag -->
