@@ -1,8 +1,8 @@
-const express = require('express') // requires that the exporess is imported to node
+const express = require('express') // requires that the express is imported to node
 const app = express() //creates an express app 
 const MongoClient = require('mongodb').MongoClient // require that mongoclient library is imported
 const PORT = 3000 //sets my local port to 3000
-require('dotenv').config() // enables to bring in hidden environment variables - go to .gitignoree
+require('dotenv').config() // enables to bring in hidden environment variables - go to .gitignore
 
 
 let db, // creates database 
@@ -21,7 +21,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
 app.set('view engine', 'ejs') //sets the template engine we'll use, ejs 
 app.use(express.static('public')) // tells the app to use a folder public for static files
 app.use(express.urlencoded({ extended: true })) //  recognizes the incoming request object as strings or arrays
-app.use(express.json()) // it recognizes the the incoming object as a JSON Object 
+app.use(express.json()) // it recognizes the incoming object as a JSON Object 
 
 //READ  - GET 
 
