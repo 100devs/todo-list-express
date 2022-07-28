@@ -27,7 +27,7 @@ app.use(express.json()) // telling app/express to format objects as JSON
 
 app.get('/', async (request, response) => {  //promise syntax for a request from the root route
     const todoItems = await db.collection('todos').find().toArray() // a variable awating items in the database collection and creating an array
-    const itemsLeft = await db.collection('todos').countDocuments({ completed: false }) // a varraible taking I assume counting the items in the database collection
+    const itemsLeft = await db.collection('todos').countDocuments({ completed: false }) // a varraible taking I assume counting the items in the database collection with completed of false
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) //once promise is fulfilled use ejs to render a page using the previous two varriables. I believe this line is replacing what follows
     // db.collection('todos').find().toArray()
     // .then(data => {

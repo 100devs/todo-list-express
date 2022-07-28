@@ -2,20 +2,20 @@ const deleteBtn = document.querySelectorAll('.fa-trash') // setting variable usi
 const item = document.querySelectorAll('.item span') // setting variable using ".item span" as selected items querySelectorAll allows for each to be targeted
 const itemCompleted = document.querySelectorAll('.item span.completed') // setting variable using ".item span.completed" as selected items querySelectorAll allows for each to be targeted
 
-Array.from(deleteBtn).forEach((element)=>{ 
+Array.from(deleteBtn).forEach((element)=>{ //???
     element.addEventListener('click', deleteItem) // use event listener to run deleteItem function line 17 in the case of a click
 })
 
-Array.from(item).forEach((element)=>{
+Array.from(item).forEach((element)=>{//???
     element.addEventListener('click', markComplete) // use event listener to run markComplete function  line 36 in the case of a click
 })
 
-Array.from(itemCompleted).forEach((element)=>{
+Array.from(itemCompleted).forEach((element)=>{//???
     element.addEventListener('click', markUnComplete) // use event listener to run markUnComplete function line 55 in the case of a click
 })
 
 async function deleteItem(){ //async await syntax for deleteItem function called by click on line 6
-    const itemText = this.parentNode.childNodes[1].innerText // ?? creating a variable that seeks out a parent node and then the second (index [1] in an array) clild node and using it's inner text
+    const itemText = this.parentNode.childNodes[1].innerText // ?? creating a variable that seeks out a parent node and then the second (index [1] in an array) child node and using it's inner text
     try{ //first try what follows
         const response = await fetch('deleteItem', { // response to await fetching the information that follows
             method: 'delete',  // html method
@@ -34,7 +34,7 @@ async function deleteItem(){ //async await syntax for deleteItem function called
 }
 
 async function markComplete(){  // async await syntax for markComplete function called by click on line 9
-    const itemText = this.parentNode.childNodes[1].innerText // ?? creating a variable that seeks out a parent node and then the second (index [1] in an array) clild node and using it's inner text
+    const itemText = this.parentNode.childNodes[1].innerText // ?? creating a variable that seeks out a parent node and then the second (index [1] in an array) child node and using it's inner text
     try{ //first try what follows
         const response = await fetch('markComplete', { // response to await fetching the information that follows
             method: 'put', // html method for updating
@@ -53,7 +53,7 @@ async function markComplete(){  // async await syntax for markComplete function 
 }
 
 async function markUnComplete(){ // async await syntax for markUnComplete function called by click on line 13
-    const itemText = this.parentNode.childNodes[1].innerText // ?? creating a variable that seeks out a parent node and then the second (index [1] in an array) clild node and using it's inner text
+    const itemText = this.parentNode.childNodes[1].innerText // ?? creating a variable that seeks out a parent node and then the second (index [1] in an array) child node and using it's inner text
     try{ //first try what follows
         const response = await fetch('markUnComplete', { // response to await fetching the information that follows
             method: 'put', // html method for updating 
