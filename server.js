@@ -1,33 +1,34 @@
 const express = require('express') // requires that the express is imported to node
 const app = express() //creates an express app 
-const MongoClient = require('mongodb').MongoClient // require that mongoclient library is imported
-const PORT = 3000 //sets my local port to 3000
+const MongoClient = require('mongodb').MongoClient // makes it possible to use methods associated with MongoClieent and talk to our DB
+const PORT = 3000 //sets a constant to define the location where our server will be listening
 require('dotenv').config() // enables to bring in hidden environment variables - go to .gitignore
 
 
 let db, // creates database 
-    dbConnectionStr = process.env.DB_STRING, //sets dbConnectionString equal to address provided by mongo (.env config file)
-    dbName = 'todo' // 
+    dbConnectionStr = process.env.DB_STRING, //sets our dbConnectionString equal to address provided by mongo (.env config file)
+    dbName = 'todo' // declares a variable and sets the name of the databasee we'll be using
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-//defines how we conneect to mongo, and unified topology helps ensure things are returned properly
-        .then(client => {  // this get called when the promise is fulfilled
+//creates a connection to mongoDb, and passes our connection string. with unified topology which helps ensure things are returned properly
+        .then(client => {  // this get called when the promise is fulfilled. waits for the connection and proceed if successful, passing in all the client info 
         console.log(`Connected to ${dbName} Database`) //if this console log, we have successfully connected to the db
         db = client.db(dbName) //defines the 'todo' database 
     })  // .connect RETURNS A PROMISE IF NO CALLBACK IS SPECIFIED
 
-    //Middlewares 
+//Middlewares 
 
 app.set('view engine', 'ejs') //sets the template engine we'll use, ejs 
 app.use(express.static('public')) // tells the app to use a folder public for static files
-app.use(express.urlencoded({ extended: true })) //  recognizes the incoming request object as strings or arrays
+app.use(express.urlencoded({ extended: true })) // tells express to decode and encode URLs where the header matches the content.
+// recognizes the incoming request object as strings or arrays
 app.use(express.json()) // it recognizes the incoming object as a JSON Object 
 
 //READ  - GET 
 
-app.get('/',async (request, response)=>{ // GET the following to display to users on the client side
+app.get('/', async (request, response)=>{ //starts a GET method when the root route is passed in, sets up rreq and res parameters
     const todoItems = await db.collection('todos').find().toArray() // creates var todoItems which goes to the db, 
-    //create a collection called "todos", find anything in the db and turn it into an array of objects
+    //creates a collection called "todos", find anything in the db and turn it into an array of objects
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     //creates var itemsLeft, goes to the db, looks at "todos" collection and counts the number of docs which have completed
     //status of false. AKA counting how many things aren't completed; what's left to do? 
