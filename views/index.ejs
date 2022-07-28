@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<!DOCTYPE html> <!--telling the browser the doctype is html5-->
+<html lang="en"> <!--opening the html tag and setting the language to english-->
+<head> <!--opening the head tag to store stuff the computer needs but the user doesnt see-->
+    <meta charset="UTF-8"> <!--what character set to use-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--set compatability for microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sets the viewport width to the device width-->
+    <title>Document</title> <!--displays name of site on browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--links to font awesome icon library-->
+    <link rel="stylesheet" href="css/style.css"> <!--links the css file-->
+</head> <!--closes the head tag-->
+<!-- 
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> -->
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
@@ -37,11 +38,11 @@
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--Creating an input box for text and naming it-->
+        <input type="submit"> <!--gives the form the ability to submit with a button-->
+    </form> <!--closing the form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--links to the main.js file-->
+</body> <!--closing the body tag-->
+</html> <!--closing the html tag-->
