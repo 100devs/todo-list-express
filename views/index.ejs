@@ -1,47 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!-- tells the browser what type of document we'll be displaying--> 
+<html lang="en"> <!-- opens the html tag and assigns English as a default language--> 
+<head> <!-- starting the head tag to store our meta data --> 
+    <meta charset="UTF-8"> <!-- indicates what character set should be used--> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate compatibility for microsoft browsers--> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sets the width  of available viewing area to the device screen width --> 
+    <title>Document</title> <!-- sets a title of the app which will appear in the browser tab--> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--gives us acceess to the font awesome library --> 
+    <link rel="stylesheet" href="css/style.css"> <!--adds a link to our CSS  --> 
 </head>
+<body> <!-- main section for content displayed-->
+    <!DOCTYPE html> <!--This may be typo-->
+<html lang="en"> <!--This may be typo-->
+<head> <!--This may be typo-->
+    <meta charset="UTF-8"> <!--This may be typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--This may be typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--This may be typo-->
+    <title>Document</title><!--This may be typo-->
+</head><!--This may be typo-->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <h1>Todo List: </h1> <!-- main title displayed on the page-->
+    <ul class="todoItems"> <!-- create unordered list with class of "todoItems"-->
+    <% for(let i=0; i < items.length; i++) {%> <!--- use ejs to start a for loop -->
+        <li class="item"> <!-- create a list item with class "item"-->
+            <% if(items[i].completed === true) {%> <!-- use ejs and if statement to check if task is completed-->
+                <span class='completed'><%= items[i].thing %></span>  <!--create inline element with a class and adding ejs to display the name of the task -->
+            <% }else{ %> <!-- ejs for the else clause of our if statement --> 
+                <span><%= items[i].thing %></span> <!--adding EJS to display the name of the task without the class "completed" --> 
+            <% } %>     <!-- ejs close the if/else statement--> 
+            <span class='fa fa-trash'></span>  <!-- creating a span for item with class for trash can icon--> 
+        </li>  <!-- closing our list item--> 
+    <% } %>  <!-- EJS to close for loop --> 
+    </ul>  <!-- closing our unordered list--> 
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2>  <!-- creates a second level heading with text and using EJS to display a variable showing how many 
+    tasks are left to complete--> 
 
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <h2>Add A Todo:</h2>  <!-- creates another second level heading--> 
+<!-- sidenote: forms have built in functions without need to specify it in main.js-->
+    <form action="/addTodo" method="POST">  <!-- creates a form with a POST method that goes to the /addTodo route--> 
+        <input type="text" placeholder="Thing To Do" name="todoItem">  <!-- creates an input box that accepts text with default text inside, 
+        and giving a unique value for this input so we can reference it --> 
+        <input type="submit"> <!-- gives the form a submit form-->
+    </form>  <!-- closes the form tag--> 
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- links to the main.js file in the js/public folder--> 
+</body><!-- closes the body tag--> 
+</html><!--closes the HTML tag --> 
