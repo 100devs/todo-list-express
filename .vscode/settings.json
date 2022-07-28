@@ -1,4 +1,7 @@
-{
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
-}
+// {
+//     "editor.fontSize": 16, //it was 42 originally
+//     "terminal.integrated.fontSize": 62
+// }
+
+//commented out to reduce font size...for the prof since he uses like reaaaaally big displays
+//don't mess with editor.fontsize since it will change the font for other projects too. I think?? 
