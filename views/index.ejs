@@ -1,47 +1,65 @@
 <!DOCTYPE html>
+<!-- This indicates what document type the code will be, and ! important indicates the specificity of this tag-->
 <html lang="en">
+<!-- This wraps around the entire document, indicating that it is a html tag.  The lang attribute establishes the written language that will be shown on the UI, here it is set to "EN".  This only affects languages with accents or special characters-->
+
 <head>
+    <!-- This section wraps indicates how the html page will be set up, ie. the name of the website, where the style sheet goes, etc.-->
     <meta charset="UTF-8">
+    <!--Character encoding, it's a standardized character encoding-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--makes sure zoom in and out works properly-->
     <title>Document</title>
+    <!--Indicates what the title of the website is, shows on the tab-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!--Link the font awesome to css. You will be able to use font awesome -->
+    <link rel="stylesheet" href="css/style.css"> <!-- How to link to css file -->
 </head>
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Title for the page -->
     <h1>Todo List: </h1>
+    <!-- Create an area for the todo lists -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+        <!-- Loop to pick all items in the database -->
+        <% for(let i=0; i < items.length; i++) {%>
+            <!-- Create an li to hold the content and give it a class(item) -->
+            <li class="item">
+                <!-- If item is completed show here -->
+                <% if(items[i].completed===true) {%>
+                    <!-- Create a span and add a completed class -->
+                    <span class='completed'>
+                        <%= items[i].thing %>
+                    </span>
+                    <!-- Else condition-->
+                    <% }else{ %>
+                        <!-- If incomplete put it in a span -->
+                        <span>
+                            <%= items[i].thing %>
+                        </span>
+                        <% } %>
+                            <!-- Add a trash icon -->
+                            <span class='fa fa-trash'></span>
+            </li>
+            <% } %>
     </ul>
+    <!-- Displays the number of items left to complete, updated from the main.js file -->
+    <h2>Left to do: <%= left %>
+    </h2>
 
-    <h2>Left to do: <%= left %></h2>
-
+    <!-- Section to submit a post request to the server to add a new todo item to the database/list -->
     <h2>Add A Todo:</h2>
-
+    <!-- Declare a form to submit to the /addTodo endpoint and make a post request (add a new todo item) -->
     <form action="/addTodo" method="POST">
+        <!-- An input field to store the new item to be added to the database -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Submit buttont that will be the trigger to submit the post request to add a new item -->
         <input type="submit">
     </form>
-    
 
+    <!-- imports the js/main.js script from the public folder (served from the express backend) -->
     <script src='js/main.js'></script>
 </body>
+
 </html>
