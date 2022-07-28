@@ -1,47 +1,60 @@
+<!-- identifies the doctype to be expected, html 5 -->
 <!DOCTYPE html>
+<!-- establish that the language is english -->
 <html lang="en">
+<!-- container for metadata -->
 <head>
+    <!-- define what character set to utilize -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- identify device viewport size -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title of page -->
     <title>Document</title>
+    <!-- link font awsome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link static style sheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- contains all the contents of html doc -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- main heading of todo page -->
     <h1>Todo List: </h1>
+    <!-- unordered list with class of todoItems -->
     <ul class="todoItems">
+    <!-- utilize ejs templating to access data from JS & implement into HTML -->
+    <!-- loop through items variable (array of todos from the backend) -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- for each todo, create a list item with class item -->
         <li class="item">
+            <!-- if current item is completed -->
             <% if(items[i].completed === true) {%>
+                <!-- utilize this span element depicting as such -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- otherwise if item is NOT completed -->
             <% }else{ %>
+                <!-- utilize this span element reflecting so -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- add span element containing trash icon -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- secondary heading of todo page, containing # of todos left to complete -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- secondary heading denoting form to add new todos -->
     <h2>Add A Todo:</h2>
-
+    <!-- outline form element that will make a POST (create) request to endpoint '/addTodo' -->
     <form action="/addTodo" method="POST">
+        <!-- collect user input to attach to todo resource -->
+        <!-- will be accessible on the backend as part of the request body at property matching name attribute value -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit form to initiate request to create new todo -->
         <input type="submit">
     </form>
-    
 
+    <!-- define client side script associated with app -->
     <script src='js/main.js'></script>
 </body>
 </html>
