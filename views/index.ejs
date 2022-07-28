@@ -1,47 +1,83 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Telling the browser its an html5 document-->
 <html lang="en">
+<!-- starting the html tag with language set to english -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--starting the head tag to store metadata -->
+    <meta charset="UTF-8"><!-- indicating IANA MIME page character encoding to UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- Sets compatibility for Microsoft browsers-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Sets default viewing width area to match devices across board -->
+    <title>Document</title><!-- Title of the document displayed at the top of the browser tab -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <!-- link to font awesome library stylesheet-->
+    <link rel="stylesheet" href="css/style.css"> <!-- link to our css stylesheet in the public folder -->
+</head><!-- Close the head -->
+
 <body>
+    <!--  this is a typo -->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!--this is a typo -->
+    <html lang="en">
+    <!-- this is a typo -->
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <!-- this is a typo -->
+        <meta charset="UTF-8"><!-- this is a typo -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- this is a typo -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- this is a typo -->
+        <title>Document</title><!-- this is a typo -->
+    </head><!-- this is a typo -->
 
-    <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <!-- main wepage content -->
+
+    <body>
+        <h1>Todo List: </h1> <!-- Main heading -->
+        <ul class="todoItems">
+            <!-- creating the class called todo items -->
+            <!-- iterating through the items in the database and displaying them on the DOM -->
+
+            <% for(let i=0; i < items.length; i++) {%>
+                <%# use ejs to start a for loop %> 
+                <li class="item">
+                    <%# create a list item with a class of items %>
+                    <% if(items[i].completed===true) {%>
+                        <%# if statement that checks if item in an array with a completed property is true %>
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                        </span>
+                        <%# creating an inline element for the name of the task and putting it in the span element %>
+                        <% }else{ %>
+                            <%# EJS for the else part of our If statement%>
+                            <span>
+                                <%= items[i].thing %>
+                            </span>
+                            <%# creating an inline element for the name of the task and putting it in the span element with no class reference %>
+                            <% } %>
+                                <%# EJS closing else statement %>
+                                <span class='fa fa-trash'></span>
+                                <%# creating a span for font awesome icons of trash can %>
+                </li> <%# closing list item %>
+                <% } %>
+                    <!-- closing EJS for-loop-->
+        </ul> <!-- closing tag for unordered list-->
+
+        <h2>Left to do: <%= left %>
+        </h2> <%# Header for displaying the number of items in the list %>
+
+        <%# To-Do list form %>
+        <h2>Add A Todo:</h2> <%# this is the header for the second section %>
+
+        <!-- This is creating the form with the post method that is going to the addTodo route in the API-->
+        <form action="/addTodo" method="POST">
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!-- "creating an input box thst takes only text, with a reference content name of -todoItem. The placeholder 'things to do' is displayed by default in the text box" -->
+            <input type="submit"> <!-- Input box as a submit button -->
+        </form> <!-- Closing trthe form tag-->
+
+        <script src='js/main.js'></script> <!-- Connecting/linking to main.js file in the public folder-->
+    </body><!-- closing the body tag-->
+
+    </html><!-- closing the html tag-->
