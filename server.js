@@ -56,7 +56,7 @@ app.get('/', async (request, response) => {
 })
 
 /*
-    Handle requests to /addTodo
+    Handle requests to /addTodo - add item from form to the database
 */
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({
@@ -71,7 +71,7 @@ app.post('/addTodo', (request, response) => {
 })
 
 /*
-    Handle requests to /markComplete
+    Handle requests to /markComplete - update an item in the database to completed=true
 */
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({
@@ -95,7 +95,7 @@ app.put('/markComplete', (request, response) => {
 })
 
 /*
-    Handle requests to /markUnComplete
+    Handle requests to /markUnComplete - update an item in the databsae to completed=false
 */
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({
@@ -119,7 +119,7 @@ app.put('/markUnComplete', (request, response) => {
 })
 
 /*
-    Handle requests to /deleteItem
+    Handle requests to /deleteItem - delete an item from the database
 */
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({
