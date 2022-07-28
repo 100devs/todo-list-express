@@ -19,6 +19,8 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // connect to
     
 app.set('view engine', 'ejs') //establish views so that ejs can be used and index.ejs recognized
 app.use(express.static('public')) //tell express to load the files in the public directory - your CSS and client-side js. built-in method of express to serve a static file
+
+// parse body of reqs
 app.use(express.urlencoded({ extended: true })) //so that the app can handle urlencoded form data and recognize incoming data. built-in method of express
 app.use(express.json()) //so that data in json format can be handled
 
