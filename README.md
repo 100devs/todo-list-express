@@ -1,7 +1,7 @@
 npm install
 add DB_STRING to .env file
 
---forked repo from @leonnoel for 100devs HW - comments on every line
+--forked repo from @leonnoel for 100devs HW - comments on every line...except the JSON files because uh - no bueno (also package-lock.json has 1400+ lines and who has time)
 
 --legacy code review! thanks leon <3
 
