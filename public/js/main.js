@@ -3,6 +3,7 @@ const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
 Array.from(deleteBtn).forEach((element)=>{
+    //turn node list into array to use forEach
     element.addEventListener('click', deleteItem)
 })
 
@@ -16,6 +17,7 @@ Array.from(itemCompleted).forEach((element)=>{
 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
+    // roundoubout way to get inner text from this
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
