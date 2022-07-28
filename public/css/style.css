@@ -1,7 +1,12 @@
+/* Targets the h1 selector */
 h1{
+    /* makes the color red */
     color: red;
 }
+/* Targets the class completed */
 .completed{
+    /* makes the color grey */
     color: gray;
+    /* sets the text-decoration to strikethrough */
     text-decoration: line-through;
 }
