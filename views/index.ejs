@@ -1,47 +1,84 @@
+<!-- comment -->
+<!-- the document type is html -->
 <!DOCTYPE html>
+<!-- the language is set to english -->
 <html lang="en">
+<!-- header filled with stuff -->
 <head>
+    <!-- encoding standard for text -->
     <meta charset="UTF-8">
+    <!--  Webpages that are served with an HTTP header named "X-UA-Compatible-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--control the viewport's size and shape. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This times the webpage document-->
     <title>Document</title>
+    <!-- this links the css sheet-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- this links the css sheet-->
     <link rel="stylesheet" href="css/style.css">
+<!-- end of head-->
 </head>
+<!-- body section begins-->
 <body>
+    <!-- tells the body in the ejs sheet what type of document it can use -->
     <!DOCTYPE html>
+    <!-- the language is english-->
 <html lang="en">
+    <!--begining of another head-->
 <head>
+    <!-- encoding standard for text -->
     <meta charset="UTF-8">
+      <!--  Webpages that are served with an HTTP header named "X-UA-Compatible-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <!--control the viewport's size and shape. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This times the webpage document-->
     <title>Document</title>
+    <!-- end of head-->
 </head>
+<!-- beginning of body where text is put in-->
 <body>
+    <!-- header 1 most important-->
     <h1>Todo List: </h1>
+    <!-- the unlisted list has a class given to it-->
     <ul class="todoItems">
+        <!-- this is a for loop that loops through the items in the array that holds the documents from the database-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- the list has a class name item-->
         <li class="item">
+            <!-- the if condition says if the item is marked completed is truee then ...-->
             <% if(items[i].completed === true) {%>
+                <!-- then the ejs file will put up completed for that exact element in that array-->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- the else condtion in the loop will do the following-->
             <% }else{ %>
+                <!-- the ejs will show this list item as span-->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- the span class has the trash icon-->
             <span class='fa fa-trash'></span>
+            <!-- end of list-->
         </li>
     <% } %>
+    <!--new un ordered list -->
     </ul>
-
+ <!-- header 2 is second to importance. This is a varaible being passed to server.js on the get request -->
     <h2>Left to do: <%= left %></h2>
-
+<!-- header 2 -->
     <h2>Add A Todo:</h2>
-
+<!-- form for the addTodo url and it uses the post method-->
     <form action="/addTodo" method="POST">
+<!-- this tells the type of input which is text, the name is used in the server.js for POST it will add items to the document and show it in ejs-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+ <!--button -->
         <input type="submit">
+<!-- endo of form-->
     </form>
     
-
+<!--this is the script for the main js. The ejs will render it after the ejs completes.-->
     <script src='js/main.js'></script>
+<!-- end of body section-->
 </body>
+<!--- end of html-->
 </html>

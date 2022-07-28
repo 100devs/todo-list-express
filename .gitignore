@@ -1,2 +1,4 @@
+#this hides the node modules so when you push to github it doesn't take forever
 node_modules
+#we hide .env because it has database string from the public on github
 .env
