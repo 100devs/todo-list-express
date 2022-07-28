@@ -1,2 +1,4 @@
 node_modules
 .env
+
+# don't load the following into github

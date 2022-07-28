@@ -1,7 +1,9 @@
 h1{
     color: red;
+    /* Turn the h1s red */
 }
 .completed{
     color: gray;
+    /* if you have the class completed, turn it gray and put a line through it. */
     text-decoration: line-through;
 }

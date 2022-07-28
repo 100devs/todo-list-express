@@ -1,47 +1,60 @@
 <!DOCTYPE html>
+<!-- Doctype -->
 <html lang="en">
+<!-- Language is English for HTML format -->
 <head>
+    <!-- This is where all the metadata lives -->
     <meta charset="UTF-8">
+    <!-- Has to do with the letters -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- has to do with the browser -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Has to do with the view width -->
     <title>Document</title>
+    <!-- This is shown at top of browser and used for optimization -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Link the stylesheet we made -->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<!-- DELETED EXTRA STUFF -->
 <body>
     <h1>Todo List: </h1>
+    <!-- h1 is title for page -->
     <ul class="todoItems">
+    <!-- start of a list -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- EJS lets us run JS on the HTML side of things -->
         <li class="item">
+            <!-- Line Item from For Loop -->
             <% if(items[i].completed === true) {%>
+                <!-- Conditional -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- So this essentially is to pull the data into the view -->
         </li>
     <% } %>
     </ul>
 
     <h2>Left to do: <%= left %></h2>
+    <!-- Secondary title  -->
 
     <h2>Add A Todo:</h2>
+    <!-- Secondary title  -->
 
     <form action="/addTodo" method="POST">
+        <!-- Form to add to the to do list via POST method -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Where you put the text -->
         <input type="submit">
+        <!-- Button to send -->
     </form>
     
 
     <script src='js/main.js'></script>
+    <!-- Pulls in the JS code -->
 </body>
 </html>
