@@ -1,11 +1,19 @@
+<!--Tells the browser to expect an html document-->
 <!DOCTYPE html>
+<!--Tells the browser the language of the webpage is english-->
 <html lang="en">
 <head>
+    <!--Specifies the characters are using UTF-8 encoding-->
     <meta charset="UTF-8">
+    <!--Tells Internet Explorer to render the page using the latest compatibility mode-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Sets the viewport to the device's display size-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--The title-->
     <title>Document</title>
+    <!--Loads fonts from the web-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--Loads the css-->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,29 +27,38 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!--Defines unorderd list-->
     <ul class="todoItems">
+    <!--For each element in the items array returned from the DB-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--Create list item-->
         <li class="item">
+            <!--If the item is completed use the completed class-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!--If the item is not completed-->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!--Span used to delete the item-->    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!--Uses the amount of items left returned from the DB-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!--Form that adds a todo item by calling the API-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
 
+    <!--Script that runs when the page is loaded-->
     <script src='js/main.js'></script>
 </body>
 </html>
