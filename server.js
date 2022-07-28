@@ -47,6 +47,7 @@ app.post("/addTodo", (request, response) => {
 });
 
 app.put("/markComplete", (request, response) => {
+  console.log("*****", request.body.itemFromJS, "*****");
   db.collection("todos")
     .updateOne(
       { thing: request.body.itemFromJS },
