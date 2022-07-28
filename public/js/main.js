@@ -17,9 +17,10 @@ Array.from(item).forEach((element)=>{
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
-
-//
+ 
+// Creates a function named deleteItem that deletes an item from the task list and MongoDB
 async function deleteItem(){
+    //
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
