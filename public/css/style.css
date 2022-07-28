@@ -1,7 +1,11 @@
-h1{
-    color: red;
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed {
+  color: gray;
+  text-decoration: line-through;
+}
+
+p {
+  display: inline;
 }
