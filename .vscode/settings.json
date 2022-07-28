@@ -1,4 +1,4 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "editor.fontSize": 16, //changed the font size to a readable size for my laptop. It was at 42, I changed it to 16.
+    "terminal.integrated.fontSize": 16  //ditto here too. I changed it to 16.
 }
