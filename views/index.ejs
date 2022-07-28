@@ -20,10 +20,13 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Loop through the array of todos -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- add the completed items to a span with class complete -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- add uncompleted items to a span with no class -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -31,8 +34,8 @@
         </li>
     <% } %>
     </ul>
-
-    <h2>Left to do: <%= left %></h2>
+    <!-- Insert our count of todos left -->
+    <h2>Left to do: <%= left %></h2>  
 
     <h2>Add A Todo:</h2>
 
