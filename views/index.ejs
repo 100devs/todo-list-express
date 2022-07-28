@@ -2,7 +2,7 @@
 <!DOCTYPE html> 
 <!-- language we're speaking -->
 <html lang="en">
-<!-- stoof for computer -->
+<!-- stoof for computer/behind the scenes -->
 <head>
     <!-- character encoding for HTML -->
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@
     <!-- link to our css file -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<!-- stoof for our user  -->
+<!-- stoof for our user/things being displayed  -->
 <body>
         <!-- EXTRA EXTRA READ ALL ABOUT IT -->
     <!-- <!DOCTYPE html>
@@ -31,40 +31,46 @@
 <body> -->
     <!-- Most important content on page -->
     <h1>Todo List: </h1>
-    <!-- List of items, order doesnt matter -->
+    <!-- Creating a ist of items where order doesnt matter, assigning to a class -->
     <ul class="todoItems">
-        <!-- javascript for loop ; start at index 0, run the entire length of all items, increment 1 by 1 -->
+        <!-- Using EJS/javascript for loop ; start at index 0, run the entire length of all items, increment 1 by 1 -->
     <% for(let i=0; i < items.length; i++) {%>
         <!-- list items -->
         <li class="item">
-            <!-- check if item is completed, if so do this -->
+            <!-- Using EJS/check if item is completed by checking if completed property is true, if so do this -->
             <% if(items[i].completed === true) {%>
-                <!-- add class 'completed' to these for styling -->
+                <!-- add class 'completed' for styling/format - display name of the task -->
                 <span class='completed'><%= items[i].thing %></span>
-                <!-- if not completed -->
+                <!-- if not completed - EJS for the Else clause of our if statement -->
             <% }else{ %>
-                <!-- display in list but dont add teh class -->
+                <!-- display in list but dont add the class -->
                 <span><%= items[i].thing %></span>
-
+                <!-- EJS to close the else statement -->
             <% } %>
-            <!-- create class for font awesome trash icon     -->
+            <!-- create class for font awesome trash icon display -->
             <span class='fa fa-trash'></span>
+        <!-- closing our list -->
         </li>
+    <!-- EJS for closing FOR loop -->
     <% } %>
+    <!-- closing our unordered list -->
     </ul>
     <!-- count out number of 'incomplete' tasks and place here -->
     <h2>Left to do: <%= left %></h2>
     <!-- less important content -->
     <h2>Add A Todo:</h2>
-    <!-- redirect once we have a submission -->
+    <!-- Create a form to submit, redirect once we have a submission -->
     <form action="/addTodo" method="POST">
-        <!-- match our /todo post in server.js -->
+        <!-- match our /todo post in server.js with a text input box. Has default text when empty -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
-        <!-- submit input -->
+        <!-- submit input with a button -->
         <input type="submit">
+    <!-- closing our post method for adding todos -->
     </form>
     
-    <!-- run our scripts at the end so we dont get a blink/js block and mess up our rendering -->
+    <!-- run our scripts at the end so we dont get a blink/js block and mess up our rendering - access our main.js within our public folder -->
     <script src='js/main.js'></script>
+<!-- closing body tag -->
 </body>
+<!-- closing html tag -->
 </html>
