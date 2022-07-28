@@ -1,2 +1,5 @@
+//includes all the files/folders/directories that we do not want to be pushed to github
+//HIDE YO SECRETS
+
 node_modules
 .env
