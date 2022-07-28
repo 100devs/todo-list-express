@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+        <!-- Running a for loop as many times as the items inside 'items' -->
+        <% for(let i=0; i < items.length; i++) {%>
+            <!-- Creating an li for each iteration, with class 'item' -->
+            <li class="item">
+                <!-- If the item is completed, create a paragraph with class of 'completed' -->
+                <% if(items[i].completed===true) {%>
+                    <p class='completed'>
+                        <%= items[i].thing %>
+                    </p>
+                    <% }else{ %>
+                        <!-- Else, just create the item with no class -->
+                        <p>
+                            <%= items[i].thing %>
+                        </p>
+                        <% } %>
+                            <!-- Create a span that is actually a fontawesome icon of a trashcan -->
+                            <span class='fa fa-trash'></span>
+            </li>
+            <% } %>
     </ul>
-
-    <h2>Left to do: <%= left %></h2>
+    <!-- Creating an h2 to display how many todo items are left. The 'left' variable comes to EJS from the server -->
+    <h2>Left to do: <%= left %>
+    </h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Form that sends a POST request to the route /addTodo -->
     <form action="/addTodo" method="POST">
+        <!-- An input field that takes the todo item, and sends it to the server under the name of "todoItem" -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- A simple submit input -->
         <input type="submit">
     </form>
-    
 
+    <!-- Linking a main.js file -->
     <script src='js/main.js'></script>
 </body>
+
 </html>
