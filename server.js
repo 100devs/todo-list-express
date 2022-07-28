@@ -1,11 +1,15 @@
+// installing packages from npm and assigning them to variables
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
+// assigned port as a variable
 const PORT = 2121
+// stores variables in mongodb
 require('dotenv').config()
 
 
 let db,
+    // path and password string to the database for mongodb 
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
@@ -14,17 +18,21 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+
+// middleware 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+// express' read async function
 app.get('/',async (request, response)=>{
+    // turning collection into an array and storing in variables
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    // rendering ejs and data to produce html
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
+    
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -35,6 +43,7 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+// express' create function
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -44,6 +53,7 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+// express' update function
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -60,7 +70,7 @@ app.put('/markComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+// express' update function
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -77,7 +87,7 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+// express' delete function
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
@@ -87,7 +97,7 @@ app.delete('/deleteItem', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+// express' listening on PORTS and displaying in console it's running
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
