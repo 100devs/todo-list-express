@@ -22,6 +22,7 @@
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- lists out the todos from the server -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -32,7 +33,8 @@
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> 
+    <!-- displays the count of todos not yet complete from db -->
 
     <h2>Add A Todo:</h2>
 
