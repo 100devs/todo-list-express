@@ -9,39 +9,28 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
-
-    <h2>Left to do: <%= left %></h2>
-
+    <h1>Todo List: </h1> 
+    <ul class="todoItems"> <!-- -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- for loop and loop through items array -->
+        <li class="item"> <!-- for each item, create an li with a class of item -->
+            <% if(items[i].completed === true) {%> <!-- if item.completed === true, apply the 'completed class' -->
+                <span class='completed'><%= items[i].thing %></span> <!-- create span with 'completed' class and item text -->
+            <% }else{ %> <!-- else if completed is === false -->
+                <span><%= items[i].thing %></span> <!-- create span with item text -->
+            <% } %>
+            <span class='fa fa-trash'></span> <!-- span with trash can logo (used for deleteItem function) -->
+        </li> 
+    <% } %> 
+    </ul> 
+ 
+    <h2>Left to do: <%= left %></h2>  <!--  how many items are left (prop passed in from root route '/')  -->
     <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <!-- FORM to create a new todo item -->
+    <form action="/addTodo" method="POST"> <!-- goes to /addTodo route, method : POST -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- name referenced in post req.body.todoItem -->
         <input type="submit">
     </form>
     
-
     <script src='js/main.js'></script>
 </body>
 </html>
