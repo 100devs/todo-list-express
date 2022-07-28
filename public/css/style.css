@@ -1,7 +1,11 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+/*Public is served “statically”, meaning that a file is served as-is from disk or from an in-memory cache. Usually, the path of any subtree or file in public is served by applying its relative path as a suffix to the server’s host plus public subpath.*/
+
+h1 {
+  /*selects ANY h1 tag in the ejs file*/
+  color: red; /*changes the text color to red*/
+} /*closing the selector*/
+.completed {
+  /*targets any item with a CLASS of completed*/
+  color: gray; /*changes the text color to grey*/
+  text-decoration: line-through; /*applied strikethough styling to the text*/
+} /*closing the selector*/

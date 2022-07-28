@@ -1,4 +1,4 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+  "editor.fontSize": 16, //used to change the font size of the editor in vscode
+  "terminal.integrated.fontSize": 16 //used to change the font size of the terminal in vscode
 }
