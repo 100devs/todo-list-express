@@ -1,14 +1,20 @@
 <!DOCTYPE html>
+<!-- set document to HTML5 and tell browser we are following HTML5 specs -->
 <html lang="en">
+<!-- set page language to EN -->
 <head>
     <meta charset="UTF-8">
+    <!-- set character encoding to UTF-8  -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- set width to device width & make mobile responsive -->
     <title>Document</title>
+    <!-- set title of page to document -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <!-- link to sytle-sheet -->
 </head>
-<body>
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,29 +22,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> -->
 <body>
     <h1>Todo List: </h1>
+    <!-- h1 header -->
     <ul class="todoItems">
+    <!-- creates unorder list with class of todoItems -->
     <% for(let i=0; i < items.length; i++) {%>
+    <!-- loop through every mongodb document in the items array -->
         <li class="item">
+        <!-- creates liste iteme with class of item -->
             <% if(items[i].completed === true) {%>
+            <!-- if current item has completed property that equals true, then add class of 'completed' -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+            <!-- otherwise just add the item without a class -->
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- font awesome trashcan icon -->
         </li>
     <% } %>
     </ul>
 
     <h2>Left to do: <%= left %></h2>
-
+    <!-- outputs the content of left, the number of todo documents that have a compelted proeprty of false -->
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
+    <!-- form that make a post request to /addTodo when submitted -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- text input field with placeholder (grey text) of Thing To Do and a name of todoItem, which will become the key of the request body object -->
         <input type="submit">
+        <!-- submit button -->
     </form>
     
 
