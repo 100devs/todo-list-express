@@ -1,47 +1,106 @@
 <!DOCTYPE html>
+<!--telling the browser what type of document will be shown-->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--setting the language to English-->
+  <head>
+    <!--Starting the head tag to store our meta-data-->
+    <meta charset="UTF-8" />
+    <!--indicates what character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--this sets the right compatibility for Microsoft-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--sets the WIDTH of available viewing area to the width of the device screen-->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!--Sets the title that displays on the browser tab-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!--creates a link to the Font Awesome Icon library-->
+    <link rel="stylesheet" href="css/style.css" />
+    <!--Creates a link to the local stylesheet in the public folder-->
+  </head>
+  <!--closing the header tag-->
+  <body>
+    <!--typo?-->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <!--typo?-->
+    <html lang="en">
+      <!--typo?-->
+      <head>
+        <!--typo?-->
+        <meta charset="UTF-8" />
+        <!--typo?-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!--typo?-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--typo?-->
+        <title>Document</title>
+        <!--typo?--></head
+      ><!--typo?-->
+      <body>
+        <!-- main portion for our content-->
+        <h1>Todo List:</h1>
+        <!--Main heading on page-->
+        <ul class="todoItems">
+          <!--create an unordered list and assign class to list-->
+          <% for(let i=0; i < items.length; i++) {%>
+          <!--this is ejs and inside using JS to start a FOR loop-->
+          <li class="item">
+            <!--This creates a list item and assigns a class-->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <!--ejs with a conditional checking to see if an item in an array with a completed property is true-->
+            <span class="completed"><%= items[i].thing %></span>
+            <!--Creates a span tag (inline element) adding ejs to display 
+                the name of the task. Property from an array that we're pulling out and placing in a span.-->
+
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <!--ejs for the Else clause of our if statment OR RATHER if an item with a completed property ISNT true, do this-->
+            <span><%= items[i].thing %></span>
+            <!--adding ejs to display the name of the task with no class-->
+            <% } %><!-- EJS to close the else statement-->
+            <span class="fa fa-trash"></span>
+            <!--Display Font Awesome icon inside a span -->
+          </li>
+          <!--closing our list item-->
+          <% } %>
+          <!--we're having EJs close the For loop-->
+        </ul>
+        <!--closing our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Left to do: <%= left %></h2>
+        <!--This is a secondary heading tag/Heading level 2 and we're displaying text
+        and towards the end we're using EJS to display a variable showing how many tasks are left
+        to complete-->
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
+        <!--Creates a second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <form action="/addTodo" method="POST">
+          <!--Creates a form with a POST method (create) that routes to /addToDO-->
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <!--creating an input box specifying for text. Placeholder is 
+        what indicates to the user what type of information to type inside. Lastly we're naming the input box so we can reference it later-->
+          <input type="submit" />
+          <!--It gives the form a submit button. The form creates a submit button with built in methods and functions -->
+        </form>
+        <!--Closing the form tag-->
 
-    <script src='js/main.js'></script>
-</body>
+        <script src="js/main.js"></script>
+        <!--Linking to a file called main.js. That file is located in the js folder in the public folder-->
+      </body>
+      <!--Closing the body tag-->
+    </html>
+    <!--Closing HTML tag-->
+  </body>
+  <!--typo?-->
 </html>
+<!--typo?-->
+
+<!--we've created a list and started a for loop in which we created a list item. looping through an array and for each item of the array
+we're creating a item in teh list. If the item is completed then we display the item inside a span and igve
+that span a class of complted. If it does have a complted property then we do the same thing except we don't add 
+the completed class. If they have a completed porperty = true we add a completed class. If not, no completed class.
+Before we close the list item, we add a font awesome trash icon whether completed or not-->
+
+<!--Forms can't do PUT methods natively/no built in PUT method but you can do it in JS-->
