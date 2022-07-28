@@ -1,14 +1,18 @@
 <!DOCTYPE html>
+<!-- this is what language we using-->
 <html lang="en">
 <head>
+    <!-- this is for your computer-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--add access link to font awesome icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--link to css file for styling-->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +20,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> -->
+<!-- the content that the user will see goes below -->
 <body>
+    <!-- main idea of page-->
     <h1>Todo List: </h1>
+    <!--unordered list-->
     <ul class="todoItems">
+    <!-- for each document in the database collection...-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--create a new li element...-->
         <li class="item">
+            <!--if the task is completed...-->
             <% if(items[i].completed === true) {%>
+                <!--create a span with the class 'completed' for styling purposes, with the task content inside the element-->
                 <span class='completed'><%= items[i].thing %></span>
+            <!--if the task is not completed...-->
             <% }else{ %>
+                <!--create a span with the task content inside the element-->
                 <span><%= items[i].thing %></span>
             <% } %>    
+             <!-- add a trashcan icon inside of a span element to create the smurf that will listen for delete requests-->
             <span class='fa fa-trash'></span>
         </li>
+    <!-- conclude the ejs content for each db document -->
     <% } %>
+    <!-- conclude the unordered list -->
     </ul>
 
+    <!-- insert the value of the 'left' variable to show the number of 'incomplete' tasks-->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- directions for the user to add a task to the db -->
     <h2>Add A Todo:</h2>
 
+    <!-- sets up a form that redirects upon task submission-->
     <form action="/addTodo" method="POST">
+        <!--allow input from user and tag it as todoItem-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- creates submit button -->
         <input type="submit">
     </form>
     
-
+    <!-- link to the js that will run on the page, place here so it loads last-->
     <script src='js/main.js'></script>
 </body>
 </html>
