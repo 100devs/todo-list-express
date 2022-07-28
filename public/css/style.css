@@ -1,6 +1,9 @@
+/* Sets the Todo List: portion of the page to red */
 h1{
     color: red;
 }
+
+/* sets the text of completed items to be greyed out with a strikethrough on the .ejs render of the list. */
 .completed{
     color: gray;
     text-decoration: line-through;

@@ -6,42 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <%# defines the path to our css stylesheet in our folder structure %>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
 <body>
     <h1>Todo List: </h1>
+    <%# creates a ul to contain each todo item %>
     <ul class="todoItems">
+    <%# runs through the array containing all of the todo items, adding an li for each with class "item". Adds them as either completed or not completed, and adds a trash can icon next to each %>
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <%# Adds a span into each li.  If the item is already completed, gives it the class "completed", else adds it without the class "completed". %>
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <%# Adds the delete trash can icon next to each span within the li %>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <%# Keeps count of how many uncompleted tasks remain.  Calculation is done in the app.get method of server.js using countDocuments %>
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <%# Passes information contained in the form's input to the app.post method in server.js.  The text in the input gets turned into a new todo list item. %>
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <%# defines the path to the main.js file in our folder structure. %>
     <script src='js/main.js'></script>
 </body>
 </html>
