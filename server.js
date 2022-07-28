@@ -1,4 +1,6 @@
+//initialize the express dependency
 const express = require('express')
+//assign 
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
