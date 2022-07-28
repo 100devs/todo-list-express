@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <%#Tell the browser what type of document this is%>
+<html lang="en"> <%#Open HTML element and set the language to English%>
+<head> <%#Open the head element to store metadata%>
+    <meta charset="UTF-8"> <%#Specify the character set to use%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <%#Specify compatibility for Microsoft browsers%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <%#Set the width of the viewport to be equal to the width of the device screen%>
+    <title>Document</title> <%#Create a title to appear on the browser tab%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <%#Link document to the Font Awesome icon library%>
+    <link rel="stylesheet" href="css/style.css"> <%# Link document to the local stylesheet%>
+</head> <%#Close head element%>
+<body> <%#This is duplicative and may be a typo%>
+    <!DOCTYPE html> <%#This is duplicative and may be a typo%>
+<html lang="en"> <%#This is duplicative and may be a typo%>
+<head> <%#This is duplicative and may be a typo%>
+    <meta charset="UTF-8"> <%#This is duplicative and may be a typo%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <%#This is duplicative and may be a typo%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <%#This is duplicative and may be a typo%>
+    <title>Document</title> <%#This is duplicative and may be a typo%>
+</head> <%#This is duplicative and may be a typo%>
+<body> <%#Main section for content displayed on page%>
+    <h1>Todo List: </h1> <%#Main title displayed on page%>
+    <ul class="todoItems"> <%#Create unordered list with class of "todoItems"%>
+    <% for(let i=0; i < items.length; i++) {%> <%#EJS to start a FOR loop%>
+        <li class="item"> <%#Create list item with a class of "item"%>
+            <% if(items[i].completed === true) {%> <%#EJS conditional to check if an item in an array (a task) has a completed property of "true"%>
+                <span class='completed'><%= items[i].thing %></span> <%#EJS to create an inline element with a class of "completed" to display the "thing" property of the item (the name of the task)%>
+            <% }else{ %> <%#EJS for the else statement of conditional%>
+                <span><%= items[i].thing %></span> <%#EJS to create an inline element with NO class to display the "thing" property of the item (the name of the task)%>
+            <% } %> <%#EJS to close the else statement%>
+            <span class='fa fa-trash'></span> <%#Display Font Awesome trash can icon%>
+        </li> <%#Close list item%>
+    <% } %> <%#EJS to close the FOR loop%>
+    </ul> <%#Close unordered list%>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <%#Create a second-level heading and use EJS to display the "left" variable showing how many tasks are left to complete%>
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <%#Create a second-level heading%>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <%#Create a form with a POST method that goes to the /addTodo route%>
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <%#Create a text field that displays "Thing To Do" until user begins typing and assigns a name to the input%>
+        <input type="submit"> <%#Create a button to submit the form with%>
+    </form> <%#Close form%>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <%#Link to the client-side JavaScript%>
+</body> <%#Close main section of content displayed on page%>
+</html> <%#Close HTML element%>
