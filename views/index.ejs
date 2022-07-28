@@ -20,22 +20,27 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- dynamically filling list based on db documents by creating new li nodes -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- create a li for each entry in the db -->
         <li class="item">
+            <!-- if item has completed property set to true -->
             <% if(items[i].completed === true) {%>
+                <!-- has completed class if true -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- delete button     -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- display how many documents have completed property set to false -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form to submit new todo item to db -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
