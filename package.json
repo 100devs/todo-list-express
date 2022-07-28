@@ -1,8 +1,10 @@
-{
-  "name": "rap-name-api",
+{//updated name to current project
+  //this file tracks name, version, description as well as module dependendencies, author name, license, and scripts to make it quicker to run tests
+  //would also hold dev dependencies if applicable
+  "name": "todo-list-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ejs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
