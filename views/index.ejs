@@ -1,3 +1,4 @@
+<!-- html will be rendered by ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,33 +10,27 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+        <!-- ejs for loop that goes through all of the todo items and renders them as completed or uncompleted based on their completed property -->
+        <% for(let i=0; i < items.length; i++) {%>
+            <li class="item">
+                <% if(items[i].completed === true) {%>
+                    <span class='completed'><%= items[i].thing %></span>
+                <% }else{ %>
+                    <span><%= items[i].thing %></span>
+                <% } %>    
+                <span class='fa fa-trash'></span>
+            </li>
+        <% } %>
     </ul>
 
+    <!-- dynamically shows how many items are left based on count of uncompleted todo items -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- server side post route is accessed to allow users to create new todo items -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
