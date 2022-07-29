@@ -1,2 +1,3 @@
+# Gitignore will ignore the following directories / files
 node_modules
 .env
