@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- redundant -->
+    <!-- v -->
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,27 +19,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+    <!-- ^ -->
+    <!-- redundant -->
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- create for loop for across each item -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- add class to each item -->
         <li class="item">
+            <!-- if flag is true -->
             <% if(items[i].completed === true) {%>
+                <!-- add class completed and display item -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- else display item -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- add class for trash icon -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- count of todo's left -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- add form to enter new todo, with a post request -->
     <form action="/addTodo" method="POST">
+        <!-- text input -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit to request -->
         <input type="submit">
     </form>
     
