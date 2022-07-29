@@ -53,12 +53,18 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+// Handling PORT request to the /addTodo route
 app.post('/addTodo', (request, response) => {
+    // Create a new document in the todos collection passing in data from the request body
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+    // Promise chain to deal with the result returned from above
     .then(result => {
+        // Log to terminal that todo was added successfully
         console.log('Todo Added')
+        // Send client back to the base route
         response.redirect('/')
     })
+    // Handle error if the above request isn't successful. Log error to terminal.
     .catch(error => console.error(error))
 })
 
