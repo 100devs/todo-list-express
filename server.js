@@ -1,23 +1,31 @@
+// add express to program
 const express = require('express')
+// create express app
 const app = express()
+// add mongo to app
 const MongoClient = require('mongodb').MongoClient
+// add port to program
 const PORT = 2121
+// add dotenv to program
 require('dotenv').config()
 
-
+// create database and add connection string
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
-
+// connect app to database
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+// set app to use the ejs view engine    
 app.set('view engine', 'ejs')
+// add ability to render static
 app.use(express.static('public'))
+// set app to parse html
 app.use(express.urlencoded({ extended: true }))
+
 app.use(express.json())
 
 
