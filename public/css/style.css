@@ -1,9 +1,19 @@
+body {
+	text-align: center;
+	width: 25%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	display: block;
+	margin: auto;
+}
 h1 {
 	/*! says to ejs "hey, do something to the heading 1's */
 	color: red; /*! render the text color of the h1's red */
 } /*! closes the h1 tag selector */
+
 .completed {
 	/*! grabs the attention of all elements with the completed class */
 	color: gray; /*! render the text of element gray */
 	text-decoration: line-through; /*! cross out the gray text */
-} /*! close the dot completed class selector */
+} /*! close the completed class selector */
