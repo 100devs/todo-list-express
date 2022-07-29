@@ -1,14 +1,25 @@
+<!-- Set the doctype to html -->
 <!DOCTYPE html>
+<!-- Set language to English, so web crawlers etc. will know the language and be able to offer translation -->
 <html lang="en">
+<!-- Start header -->
 <head>
+    <!-- Set character set to UTF-8 (most common/standard) -->
     <meta charset="UTF-8">
+    <!-- This provides support for legacy browsers – specifically, it's setting the version of internet explorer to load -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set the initial scale for the page (and allow zooming), and check the device to set viewport width to the devices width -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set page title (will show at top of browse frame) -->
     <title>Document</title>
+    <!-- Link to font-awesome for css styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link to local stylesheet for css styles -->
     <link rel="stylesheet" href="css/style.css">
+<!-- End header -->
 </head>
-<body>
+<!-- This block is unnecessary – it repeats the above -->
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +27,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> -->
+<!-- Open body -->
 <body>
+    <!-- Main page header -->
     <h1>Todo List: </h1>
+    <!-- Open unordered list for items to be added to -->
     <ul class="todoItems">
+    <!-- Loop through items, from 0 up to items.length -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Open a list item, class item -->
         <li class="item">
+            <!-- Checks if completed is true for this item -->
             <% if(items[i].completed === true) {%>
+                <!-- If true, creates span with class completed containing that item's thing -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- If not true -->
             <% }else{ %>
+                <!-- Creates a clasless span with the the thing -->
                 <span><%= items[i].thing %></span>
+            <!-- Close out if/else -->
             <% } %>    
+            <!-- Create a trashcan icon -->
             <span class='fa fa-trash'></span>
+        <!-- Close out list item -->
         </li>
+    <!-- close out for loop -->
     <% } %>
+    <!-- close out unordered list -->
     </ul>
-
+    <!-- Header containing the number of items left to do, left is supplied by the server -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- Header labeling the form -->
     <h2>Add A Todo:</h2>
-
+    <!-- Open a form that posts an item to the path /addTodo -->
     <form action="/addTodo" method="POST">
+        <!-- Create an input taking text -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Create a button to submit the item -->
         <input type="submit">
+    <!-- Close the form -->
     </form>
     
-
+    <!-- Link to main.js for Javascript -->
     <script src='js/main.js'></script>
+<!-- Close the body -->
 </body>
+<!-- Close the html -->
 </html>

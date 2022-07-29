@@ -45,7 +45,7 @@ app.get('/',async (request, response)=>{
     // Grab all items that have been added to the todo list already and returns them as an array
     // Use an await to allow the creation of the function outside of Mongo.connect
     const todoItems = await db.collection('todos').find().toArray()
-    // Grab all items that haven't been checked off the list
+    // Grab all items that haven't been checked off the list and return the number of them
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     // Send response: items in index.ejs fill with toDoItems, left fills itemsLeft
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
