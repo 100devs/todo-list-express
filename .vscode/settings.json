@@ -1,4 +1,6 @@
-{
+/*{
     "editor.fontSize": 42,
     "terminal.integrated.fontSize": 62
-}
+}*/
+
+Commented out to reduce font size in project
