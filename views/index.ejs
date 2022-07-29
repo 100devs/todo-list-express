@@ -20,28 +20,36 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- Running a FOR loop and setting the number of iterations to the number of items in "item" -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Creating an LI for each iteration with class 'item' -->
         <li class="item">
+            <!-- If the item is completed, give it a span with a class of "completed" -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <p class='completed'><%= items[i].thing %></p>
+            <!-- Else just create the span no class -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <p><%= items[i].thing %></p>
             <% } %>    
+            <!-- Make a delete icon in a span -->
             <span class='fa fa-trash'></span>
         </li>
+        <!-- End the loop -->
     <% } %>
     </ul>
-
+<!-- LEFT signifies that it's referencing server.js -> items that were not completed. This returns a number. -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Form that adds a POST request to the route /addTodo -->
     <form action="/addTodo" method="POST">
+        <!-- An input field that takes the todo item and sends it to the server under the name of 'todoItem' -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- A simple submit input -->
         <input type="submit">
     </form>
     
-
+    <!-- Linking the js.main -->
     <script src='js/main.js'></script>
 </body>
 </html>
