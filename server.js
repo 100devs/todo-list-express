@@ -25,12 +25,14 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 // set app to parse html
 app.use(express.urlencoded({ extended: true }))
-
+// set app to render json
 app.use(express.json())
 
-
+// set up get request
 app.get('/',async (request, response)=>{
+//     find todo items in the database and create an array
     const todoItems = await db.collection('todos').find().toArray()
+//     count number of unfinished items
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
