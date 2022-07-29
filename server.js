@@ -34,6 +34,7 @@ app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
 //     count number of unfinished items
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+//     render the todo items and the items items as html
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {
@@ -45,8 +46,11 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+// set up post request
 app.post('/addTodo', (request, response) => {
+//     add a new todo todo item to the database
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+//     log Todo added to the console if sucessful or log the error
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')
@@ -54,7 +58,10 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+
+// set up a put request to mark a completed request
 app.put('/markComplete', (request, response) => {
+//     update a specific todo item to completed
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: true
@@ -63,14 +70,15 @@ app.put('/markComplete', (request, response) => {
         sort: {_id: -1},
         upsert: false
     })
+//     if sucessful, log marked completed to the console else log the error
     .then(result => {
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
     .catch(error => console.error(error))
-
 })
 
+// set up a put request to mark a uncompleted request
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -85,11 +93,13 @@ app.put('/markUnComplete', (request, response) => {
         response.json('Marked Complete')
     })
     .catch(error => console.error(error))
-
 })
 
+// set a delete request
 app.delete('/deleteItem', (request, response) => {
+//     delete a specific todo iten from the database
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+//     log todo deleted to the console if sucessfull else log the error
     .then(result => {
         console.log('Todo Deleted')
         response.json('Todo Deleted')
@@ -98,6 +108,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+// set the app to listen on a specific port
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
