@@ -1,2 +1,4 @@
+# IGNORE NODE MODULES
 node_modules
+# IGNORE THIS TOO
 .env
