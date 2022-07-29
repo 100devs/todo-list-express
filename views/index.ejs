@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<!--! the container for everything in between the tags-->
+		<!--!<!DOCTYPE html> This doesn't belong down here and only 1 is needed -->
+		<!--! <html lang="en"> dupe -- same as above ⬆️⬆-->
+		<!--! <head> dupe -- same as above ⬆️⬆ -->
+		<!--! <meta charset="UTF-8" /> -->
+		<!--! <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
+		<!-- !<meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+		<!-- !<title>Todo or Not Todo</title> -->
+		<!--! </head>  -->
+		<body>
+			<!--! dupe -- already used above -->
+			<h1>Todo List:</h1>
+			<!--! heading 1 (muy importante)-->
+			<ul class="todoItems">
+				<!--! unordered list with a class of todoItems-->
+				<% for(let i=0; i < items.length; i++) {%>
+				<!--! Via EJS (which allows us to write js in html)we gon loop the beat (loops the items array)-->
+				<li class="item">
+					<!--! list with a class of item -->
+					<% if(items[i].completed === true) {%>
+					<!--! conditional statement based on an itmes truthyness-->
+					<span class="completed"><%= items[i].thing %></span>
+					<!--! span with a class of completed followed by the result of items completed being true-->
+					<% }else{ %>
+					<!--! if completed items is false, do what's next-->
+					<span><%= items[i].thing %></span> >
+					<!--! the result of items completed being false -->
+					<% } %>
+					<!--! closing the else-->
+					<span class="fa fa-trash"></span>
+					<!--! span with a class of fa fa-trash which is font awesome trashcan icon-->
+				</li>
+				<!--! closing the list-->
+				<% } %>
+				<!--! closing the conditional-->
+			</ul>
+			<!--! closing the unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+			<h2>Left to do: <%= left %></h2>
+			<!--! heading 2 (pretty importante) which renders the html string "Left to do:". Next to that string is ejs that shows a numerical value representing the number of items left to do -->
 
-    <h2>Add A Todo:</h2>
+			<h2>Add A Todo:</h2>
+			<!--! heading 2 (pretty importante) which renders the html string "Add A Todo"-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+			<form action="/addTodo" method="POST">
+				<!--! opening form tag with an action that is a route to "/addTodo" and a method of post which sends a request-->
+				<input type="text" placeholder="Thing To Do" name="todoItem" />
+				<!--! input of the form where the user enters text, renders with placeholder text of "Thing To Do"-->
+				<input type="submit" />
+				<!--! shows a submit button which when pressed will hit the route in the opening form tag -->
+			</form>
+			<!--! closes the form -->
 
-    <script src='js/main.js'></script>
-</body>
+			<script src="js/main.js"></script>
+			<!--! tells ejs there's a script in the file main.js which is in the js folder-->
+		</body>
+		<!--! closing of the out of place/does not belong body tag -->
+		<!--! </html> closing of the dupe uneeded out of place tag -->
+	</body>
+	<!--! closes the real deal Holyfield body tag-->
 </html>
+<!--! closes the read html tag -->
