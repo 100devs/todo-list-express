@@ -1,24 +1,25 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') // making it possible to use express 
+const app = express() // setting a constant and assigning it to the instance of express 
+const MongoClient = require('mongodb').MongoClient // makes it possible to use methods associated with mongoclient to talk to our db 
+const PORT = 2121 // creating a constant and storing our port number/location where our server listens 
+require('dotenv').config() // allows us to look for variables inside of the .env file
 
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+let db, // declaring a variable called db but not assigning a value
+    dbConnectionStr = process.env.DB_STRING, // storing our DB mongoDB connection string inside variable dbConnectionStr
+    dbName = 'todo' // storing the database name that I want to access inside of variable dbName
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
-    })
-    
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // creating a connection to mongodv and passing in our connection string. Also passing in an additional property
+    .then(client => { // waiting for the connection and proceeding if successful, .then indicate this is a promise. We're passing in all the client info. 
+        console.log(`Connected to ${dbName} Database`) // consolelog that we're connected to 'todo' database
+        db = client.db(dbName) // passing in the db name from mongo db and assigning that to the db variable
+    }) // closing our .then
+
+// Middleware:   
+app.set('view engine', 'ejs') // sets ejs as the default render method
+app.use(express.static('public')) // says any of the static assets and files will be put in the public folder
+app.use(express.urlencoded({ extended: true })) // tells express to decode and encode URLs where the header matches the content, extended part supports arrays and objcts
+app.use(express.json()) // parses json content
 
 
 app.get('/',async (request, response)=>{
