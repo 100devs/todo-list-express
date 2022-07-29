@@ -22,10 +22,10 @@ app.use(express.urlencoded({ extended: true })) // tells express to decode and e
 app.use(express.json()) // parses json content
 
 
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
+app.get('/',async (request, response)=>{ // read/GET method in CRUD, route is the homepage, start an async function with req and res parameters
+    const todoItems = await db.collection('todos').find().toArray() // sets a variable and awaits the items in the todos collection, then we put them into an array
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // sets a variable and awaits the COUNT of items in the todos collection with the property of completed: false
+    response.render('index.ejs', { items: todoItems, left: itemsLeft }) // rendering the ejs file and passing through the db items and the count remaining inside of an object. 'items' and 'left' are how we reference these things in the EJS
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -36,59 +36,59 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
-    })
-    .catch(error => console.error(error))
-})
+app.post('/addTodo', (request, response) => { // starts a POST/ create method when the /addTodo route is passed in as an action, request and response parameters
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) // go into the todos collection and insert a new item. In our DB, each object has 2 keys, thing and completed. request.body.toDoItem is us getting the toDoItem from the input in EJS in our form. The completed property is false because we havent done the task yet since it's a new task.
+    .then(result => { // if insert is successful, do something 
+        console.log('Todo Added') // console log that we added an item
+        response.redirect('/') // reloading back to the homepage to GET the new data/results
+    }) // closing the then 
+    .catch(error => console.error(error)) // console log the error
+}) // closing the post
 
-app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markComplete', (request, response) => { // starts a put method when /markComplete route is passed in 
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ // Look in the db for one item matching the name of the item passed in from the main.js file that was clicked on 
         $set: {
-            completed: true
+            completed: true // sets the completed status to true
           }
     },{
-        sort: {_id: -1},
-        upsert: false
-    })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+        sort: {_id: -1}, // moves item to the bottom of the list
+        upsert: false // prevents insertion if item does not already exist, if it were true then it would insert an item if it didn't already exist 
+    }) // close the update one
+    .then(result => { // if that is successful 
+        console.log('Marked Complete') // console log 
+        response.json('Marked Complete') // sending a response back to the sender
+    }) //closing the then 
+    .catch(error => console.error(error)) // console log the error
 
-})
+}) // close the update/put
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markUnComplete', (request, response) => { // starts a put method when /markUnComplete route is passed in 
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ // Look in the db for one item matching the name of the item passed in from the main.js file that was clicked on 
         $set: {
-            completed: false
+            completed: false // sets the completed status to false
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, // moves item to bottom of list 
+        upsert: false // prevents insertion if item does not already exist, if it were true then it would insert an item if it didn't already exist  
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+    .then(result => { // if that is successful 
+        console.log('Marked Complete') // console log the completion
+        response.json('Marked Complete') // send response/ data back to sender
+    }) //closing the then 
+    .catch(error => console.error(error)) // console log the error
 
-})
+}) // close the update/put
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
-    })
-    .catch(error => console.error(error))
+app.delete('/deleteItem', (request, response) => { // starts a put method when /deleteItem route is passed in 
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) // Look in the db for one item matching the name of the item passed in from the main.js file that was clicked on
+    .then(result => { // if that delete is successful 
+        console.log('Todo Deleted') //  console log the completion
+        response.json('Todo Deleted') //send response/ data back to sender
+    }) // close the delete one
+    .catch(error => console.error(error)) // console log the error
 
-})
+}) // close the delete
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+app.listen(process.env.PORT || PORT, ()=>{ // setting up which port we will be listening on - either gets the one from our env file if one exists or uses the port variable we declared
+    console.log(`Server running on port ${PORT}`) // console log the running port 
+}) // closing the listen
