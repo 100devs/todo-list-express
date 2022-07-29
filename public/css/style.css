@@ -1,7 +1,11 @@
-h1{
+h1 {
+    /* style H1 elements with red text */
     color: red;
 }
-.completed{
+
+.completed {
+    /* style completed tasks with a gray font color */
     color: gray;
+    /* style completed tasks with a strike-through text */
     text-decoration: line-through;
 }
