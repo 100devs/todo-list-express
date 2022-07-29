@@ -8,61 +8,75 @@ const itemCompleted = document.querySelectorAll('.item span.completed')
 Array.from(deleteBtn).forEach((element)=>{
     // Add an event listener to the element that runs deleteItem
     element.addEventListener('click', deleteItem)
+// Close function
 })
 // Create an array from item and run a function on each element
 Array.from(item).forEach((element)=>{
     // Add an event listener to the element that runs markComplete
     element.addEventListener('click', markComplete)
+// Close function
 })
 // Create an array from itemCompleted and run a function on each element
 Array.from(itemCompleted).forEach((element)=>{
     // Add an event listener to the element that runs markUnComplete
     element.addEventListener('click', markUnComplete)
+// Close function
 })
-// Create async function deleteItem
+// Declare async function deleteItem
 async function deleteItem(){
     // Set itemText to the innertext of the second child of the same parent node of the clicked element
     const itemText = this.parentNode.childNodes[1].innerText
     // run this code
     try{
-        // set response to the call to deleteItem
+        // set response to a fetch call to deleteItem
         const response = await fetch('deleteItem', {
             // set method to delete
             method: 'delete',
-            // set a header to content-type of application/json
+            // set a header to content-type of application/json, this tells the api to know what kind of data to expect
             headers: {'Content-Type': 'application/json'},
-            // set itemFromJS to itemText and send in request body as json
+            // set body of request to an object converted to json string
             body: JSON.stringify({
+               // set itemFromJS to itemText
               'itemFromJS': itemText
+            // Close object
             })
+          // Close out fetch request  
           })
         // set data to result of response, converted to object
         const data = await response.json()
-        // log datqa
+        // log data
         console.log(data)
         // reload page
         location.reload()
-    // if async function fails, log error
-    }catch(err){
+        // Close the try function
+        }
+    // if async function fails, run this code
+    catch(err){
+        // Log the error
         console.log(err)
+    // Close the catch function
     }
+// Close the async function
 }
-// Create async function markComplete
+// Declare async function markComplete
 async function markComplete(){
     // Create itemText, set to text of the second child node of the parent of the clicked element
     const itemText = this.parentNode.childNodes[1].innerText
     // run this code
     try{
-        // Create response, set to the result of a call to markComplete path
+        // Create response, set to the result of a fetch call to markComplete path
         const response = await fetch('markComplete', {
             // Set method to put
             method: 'put',
             // Set content-type in header to application/json
             headers: {'Content-Type': 'application/json'},
-            // Set itemFromJS to itemText, send in request body as JSON
+            // set body of request to an object converted to json string
             body: JSON.stringify({
+                // Set itemFromJS to itemText
                 'itemFromJS': itemText
+            // Close object
             })
+          // Close fetch call
           })
         // Set data to the response to the request, converted to object
         const data = await response.json()
@@ -70,11 +84,15 @@ async function markComplete(){
         console.log(data)
         // Reload the page
         location.reload()
+        // Close try function
         }
-    // If the function fails, log the error
+    // If the function fails run this code
     catch(err){
+        // Log the error
         console.log(err)
+    // Close catch function
     }
+// Close the async function
 }
 // Create async functionmarkUnComplete
 async function markUnComplete(){
@@ -88,10 +106,13 @@ async function markUnComplete(){
             method: 'put',
             // Set the content-type in the header to application/json
             headers: {'Content-Type': 'application/json'},
-            // Add a json object to the body, setting itemFromJS to itemText
+            // Set body of request to an object converted to json string
             body: JSON.stringify({
+                // Set itemFromJS to itemText
                 'itemFromJS': itemText
+            // Close object
             })
+          // Close fetch call  
           })
         // Set data to the response converted into an object
         const data = await response.json()
@@ -99,10 +120,13 @@ async function markUnComplete(){
         console.log(data)
         // reload the page
         location.reload()
-
+    // Close try function
     }
-    // If the async function fails, log the error
+    // If the async function fails run this code
     catch(err){
+        // Log the error
         console.log(err)
+    // Close the catch function
     }
+// Close the async function
 }
