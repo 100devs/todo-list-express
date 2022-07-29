@@ -2,6 +2,7 @@
 h1{
     /* Set text color to red */
     color: red;
+/* Close h1 styles */
 }
 /* Set styles for class completed */
 .completed{
@@ -9,4 +10,5 @@ h1{
     color: gray;
     /* Add line through to text */
     text-decoration: line-through;
+/* Close styles for completed class */
 }
