@@ -1,7 +1,13 @@
+/* h1 element selector*/
 h1{
+    /*property value pair property: color and it's value: red*/
     color: red;
+    /* ending curly bracket */
 }
+/* a CLASS selector */
 .completed{
+    /*property value pair - property: color and it's value: gray*/
     color: gray;
+    /*property value pair - property: text-decoration and it's value: line-through*/
     text-decoration: line-through;
 }
