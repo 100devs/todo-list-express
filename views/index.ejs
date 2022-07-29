@@ -1,47 +1,89 @@
+<!-- tell the DTD what standards are to be applied, html in this case -->
 <!DOCTYPE html>
+<!-- declare language of the document english in this case -->
 <html lang="en">
+
+<!-- header, for links to stylesheets and various document settings -->
 <head>
+    <!-- tells the browser what character set we're using so it displays as anticipated -->
     <meta charset="UTF-8">
+    <!-- provides http header for the information of the content  -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- tells the document to respect the viewport it's displayed on -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- name of the document, today it's Document -->
     <title>Document</title>
+    <!-- links to font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to css stylesheet for pretty-fying -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- closing of head tag -->
 </head>
+<!-- body of the document -->
 <body>
+    <!-- declaring the doc type again? I'm guessing specifically for the template -->
     <!DOCTYPE html>
+    <!-- declaring the language again -->
 <html lang="en">
+<!-- repeat of the declarations in the head above -->
 <head>
+    <!-- tells browser the characterset -->
     <meta charset="UTF-8">
+    <!-- provides http header for the information/value of content -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- use the viewport size of the client device -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title of document, will appear in the top of browser -->
     <title>Document</title>
+    <!-- end of head -->
 </head>
+<!-- body of template -->
 <body>
+    <!-- heading 1. element with text of "todo list:" -->
     <h1>Todo List: </h1>
+    <!-- unordered list with class of 'todoitems' -->
     <ul class="todoItems">
+        <!-- for loop. iteration starting at 0, running as long as it's lower than items.length and going up by one each loop -->
+        <!-- looks like it runs through all the items and shows them as completed or not with a little trash can next to each item on the list -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- list item with class of item -->
         <li class="item">
+            <!-- if current item is completed status -->
             <% if(items[i].completed === true) {%>
+                <!-- assign it the completed class and list the item -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- otherwise -->
             <% }else{ %>
+                <!-- just list the item -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- little trash can logo from awesome-fonts -->
             <span class='fa fa-trash'></span>
+            <!-- end of list item -->
         </li>
+        <!-- end of for loop, when all the items are listed -->
     <% } %>
+    <!-- end of unorderd list -->
     </ul>
 
+    <!-- heading 2 element showing what is left to do -->
     <h2>Left to do: <%= left %></h2>
-
+<!-- h2 inviting you to add something to the list -->
     <h2>Add A Todo:</h2>
 
+    <!-- form for submitting new items to the list -->
+    <!-- action attribute says to go to the /addTodo part of the app using the POST method -->
     <form action="/addTodo" method="POST">
+        <!-- input box that accepts text, has a placeholder of "thing to do" and part of the group 'todoitem' -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit button -->
         <input type="submit">
+        <!-- end of form -->
     </form>
     
-
+<!-- link to the javascript so it can be fancy and responsive -->
     <script src='js/main.js'></script>
+    <!-- end of body  -->
 </body>
+<!-- end of html -->
 </html>

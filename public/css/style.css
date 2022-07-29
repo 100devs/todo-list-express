@@ -1,6 +1,8 @@
+/* h1 will have red font */
 h1{
     color: red;
 }
+/* completed tasks will be gray with a line through them */
 .completed{
     color: gray;
     text-decoration: line-through;
