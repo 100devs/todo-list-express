@@ -1,22 +1,42 @@
+
+//targeting all DOM elements with 'fa-trash' class
 const deleteBtn = document.querySelectorAll('.fa-trash')
+//targeting all <span> tags in the DOM, where the parent element has the class of 'item' 
 const item = document.querySelectorAll('.item span')
+//targeting all <span> tags in the DOM with the class 'completed', where the parent element has the class of 'item' 
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+
+//create an array from the queery selector all results, so we can loop through all of them, and add a 'click' event listener that fires the 'deleteItem' function
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
+//create an array from the queery selector all results, so we can loop through all of them, and add a 'click' event listener that fires the 'markComplete' function
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
+//create an array from the queery selector all results, so we can loop through all of them, and add a 'click' event listener that fires the 'markUnComplete' function
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+// note. -open your EJS file to help the element targeting here make more sense
+
 async function deleteItem(){
+    //a node is basically an html element, like a a span or div or li
+    //const is setting varaible itemText to the value of the deletedItem call the 
+    //'this is a cleaner way of going up to the previous sibling node above..
     const itemText = this.parentNode.childNodes[1].innerText
+    //try ... catch block is used over a staright .catch, in an async function, so that if theres an error, it just logs it and the server keeps running
+    //once that element is targeted
     try{
+        //fetch() sends a request- it's the JS equivalent of putting a URL into the address bar of your browser, but with fetch() you can tell it fmore detail about what you want to send with your request, whereas a URL is always just gonna be a GET REQUEST
+        //here we're sending a delete to the 'deleteItem' endpoint, 
+        //it sets the headers to inform the server that receives this request that it's sending JSON content....
+        //we're using fetch() to send delete request to the server, whether hosted locally or Heroku, and send it to the /delete Item
+        //if you want to understand more about 'Headers', read up on HTTP, it's something that's needed but not read, like HTML headers. Just get a basic knowledge and know the few most common ones
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
@@ -24,6 +44,7 @@ async function deleteItem(){
               'itemFromJS': itemText
             })
           })
+        //waiting response, parsing Json, and chuck that data in the console of the browser (remember main.js is all the clientside/browser )  
         const data = await response.json()
         console.log(data)
         location.reload()
@@ -34,8 +55,10 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    //traverses the DOM up to the parent <li> and gets the text inside of the first <span> element
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //sends a put request to the 'markComplete' endpoint .....
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
