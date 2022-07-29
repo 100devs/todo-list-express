@@ -1,7 +1,7 @@
 h1{
     color: red;
 }
-.completed{
+.completed{  /* used to cross off completed todo list items */
     color: gray;
     text-decoration: line-through;
 }
