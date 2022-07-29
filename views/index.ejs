@@ -1,14 +1,33 @@
+<!--Tells the broswer to expect html format -->
 <!DOCTYPE html>
+<!--tells the browser to display in the english language-->
 <html lang="en">
+<!--An html element that contains machine readable metadata about the document-->
 <head>
+    <!--Tells the browser to use "UTF-8" character encoding-->
     <meta charset="UTF-8">
+    <!--establishes the meta tag as a Pragma Directive ( an implementation-defined instruction to the compiler) 
+and allows web authors to choose what version of Internet Explorer the page should be rendered as. In this case,
+the content tag sets this to Microsoft Edge.-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--establishes, from the browser's perspective that the page's width should take up the entirety of the devices viewport or screen-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--sets the text visible in the browsers tab to Document-->
     <title>Document</title>
+    <!--allows the browser to access the stylesheet information at the web address provided (allows the browser to use font awesome)-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--allows the browser to access the stylesheet relative to the projects main folder-->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<!--the body html element-->
 <body>
+
+    <!-- 
+        
+        beginning of repeated/erroneouse content?
+    
+    -->
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,30 +37,50 @@
     <title>Document</title>
 </head>
 <body>
+        <!-- 
+        
+        End of repeated/erroneouse content?
+    
+    -->
+
+    <!--heading HTML element with content-->
     <h1>Todo List: </h1>
+    <!--Unordered list HTML element with the class "todoItems"-->
     <ul class="todoItems">
+        <!-- Javascript for loop made possible by the '< %' and ' % >' tags of the "ejs" module, a templating language that generates
+        HTML markup. This loop goes through each <li> with the "item" class -->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <!--A list item element tag with the class "item"-->
+        <li class="item"> 
+            <!--a Javascript if statement that checks if an item at it's index has the completed tag and Depedning on the 
+            outcome of the boolean statment will display one of two spans-->
             <% if(items[i].completed === true) {%>
+                <!--Displays the content inside the thing property of the item at the current index with the CSS class completed styles applied-->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!--Displays the content inside the thing property of the the item at the current index-->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!--a HTML span inline-block element with two classes:'fa' and 'fa-trash'-->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!--A second tier HTML heading element displaying text, not sure what's going on in the ejs here.-->
     <h2>Left to do: <%= left %></h2>
-
+<!--A second tier HTML heading element displaying text-->
     <h2>Add A Todo:</h2>
-
+<!--HTML form element with attributes that set the destination (/addTodo) and the HTTP request type POST-->
     <form action="/addTodo" method="POST">
+        <!--HTML input element with attributes describe a data entry field for text that displays within it the string "Thing To Do"
+        and has a name of "todoItem"-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--HTML input element with attributes describe a button that submits the data in the data field-->
         <input type="submit">
     </form>
     
-
+<!--A script HTML element tag with the source attribute telling the browser where to find the javascript file main in the js folder
+relative to the project's main folder-->
     <script src='js/main.js'></script>
 </body>
 </html>
