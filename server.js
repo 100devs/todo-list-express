@@ -28,6 +28,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         console.log(`Connected to ${dbName} Database`)
         // assign db to connected db for later use
         db = client.db(dbName)
+    // Close function
     })
 
 // Set EJS as view engine – allows dynamic creation of html based on data 
@@ -40,7 +41,7 @@ app.use(express.urlencoded({ extended: true }))
 // Use express's built-in method to recognize request object as json
 app.use(express.json())
 
-// set response for the default path
+// Set get for the path default path (/) with an async function using request and response as parameters
 app.get('/',async (request, response)=>{
     // Grab all items that have been added to the todo list already and returns them as an array
     // Use an await to allow the creation of the function outside of Mongo.connect
@@ -67,8 +68,9 @@ app.get('/',async (request, response)=>{
     // })
         // This line runs if a promise fails – if so, it logs the error
     // .catch(error => console.error(error))
+// Close the get function
 })
-// set post for the path /addToDo
+// Set post for the path /addTodo with a function using request and response as parameters
 app.post('/addTodo', (request, response) => {
     // Create a promise; add an item to todos, todoItem from request.body will be thing, completed set to false
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
@@ -78,23 +80,29 @@ app.post('/addTodo', (request, response) => {
         console.log('Todo Added')
         // return to default path
         response.redirect('/')
+    // Close then handler
     })
     // If error, log the error
     .catch(error => console.error(error))
+// Close post function
 })
-// Set put for the path /markComplete
+// Set put for the path /markComplete with a function using request and response as parameters
 app.put('/markComplete', (request, response) => {
     // Create a promise; update an item from todo, thing is gotten from request body
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        // continuing the same function, sets completed to true for item specified by thing
+        // continuing the same function, set the selected item using an object
         $set: {
+            // Set completed to true
             completed: true
+          // Close object
           }
+    // Close parameter, open next parameter
     },{
-
+        // Sorts item? Maybe? Doesn't seem to actually do anything
         sort: {_id: -1},
         // Prevent insertion of new document if no match is found
         upsert: false
+    // Close parameter/s
     })
     // If the promise succeeds, this line runs
     .then(result => {
@@ -102,36 +110,43 @@ app.put('/markComplete', (request, response) => {
         console.log('Marked Complete')
         // sends a response json containing marked complete
         response.json('Marked Complete')
+    // Close then handler
     })
     // If an error occurs, log it
     .catch(error => console.error(error))
-
+// Close put function
 })
-// Set put for the path /markUnComplete
+// Set put for the path /markUnComplete with a function using request and response as parameters
 app.put('/markUnComplete', (request, response) => {
     // Create a promise; in the todos collection update one item, thing will be itemFromJS in the request body
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        // Set completed for that item to false
+        // continuing the same function, set the selected item using an object
         $set: {
+            // Set completed to false
             completed: false
+          // Close the function
           }
+    // Close parameter, open next parameter
     },{
+        // Sorts item? Maybe? Doesn't seem to actually do anything
         sort: {_id: -1},
         // Prevent insertion of new document if no match is found
         upsert: false
+    // Close parameter/s
     })
-    // Run if promis succeeds
+    // Run if promise succeeds
     .then(result => {
         // Log marked incomplete
         console.log('Marked Incomplete')
         // Responsd with json containing marked incomplete
         response.json('Marked Incomplete')
+    // Close then handler
     })
     // If promise fails, log error
     .catch(error => console.error(error))
-
+// Close the put/function
 })
-// Set delete for path /deleteItem
+// Set delete for the path /deleteItem with a function using request and response as parameters
 app.delete('/deleteItem', (request, response) => {
     // Create promise; from collection todos, delete an item, thing taken from itemFromJS in request body
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
@@ -141,13 +156,15 @@ app.delete('/deleteItem', (request, response) => {
         console.log('Todo Deleted')
         // Respond with json containing todo deleted
         response.json('Todo Deleted')
+    // close then handler
     })
     // If promise fails, log error
     .catch(error => console.error(error))
-
+// Close delete/function
 })
-// Setup server on port, either in .env file, or contained in port variable
+// Setup server on port, either in .env file, or contained in port variable, open an annonymous function
 app.listen(process.env.PORT || PORT, ()=>{
     // log that server is running on port number
     console.log(`Server running on port ${PORT}`)
+// Close listen/ function
 })
