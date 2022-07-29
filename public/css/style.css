@@ -1,6 +1,7 @@
 h1{
     color: red;
 }
+/* once an item is labeled with the completed class, it will receive a strikethrough */
 .completed{
     color: gray;
     text-decoration: line-through;
