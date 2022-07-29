@@ -1,7 +1,14 @@
-h1{
+/* selects all h1 tags */
+h1{ 
+    /* sets all h1 text color to red */
     color: red;
+    /* end of h1 block */
 }
+/* selects all items that have the completed class */
 .completed{
+    /* sets all items with completed class text to gray */
     color: gray;
+    /* slashes text */
     text-decoration: line-through;
+    /* end of .completed block */
 }
