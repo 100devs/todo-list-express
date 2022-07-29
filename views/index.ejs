@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!--declares what type of page it is-->
+<html lang="en"> <!-- sets the default language of the page-->
+<head> <!-- meta data for the page -->
+    <meta charset="UTF-8"> <!-- sets default charater set-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- compatibility for IE/Edge-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- viewport settings for default views-->
+    <title>Document</title> <!-- page title that shows in tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- link for Font Awesome icons-->
+    <link rel="stylesheet" href="css/style.css"> <!-- link for CSS-->
+</head> <!-- closing tag for the head-->
+<body> <!-- typo?-->
+    <!DOCTYPE html> <!-- typo?-->
+<html lang="en"> <!-- typo?-->
+<head> <!-- typo?-->
+    <meta charset="UTF-8"> <!-- typo?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- typo?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- typo?-->
+    <title>Document</title> <!-- typo?-->
+</head> <!-- typo?-->
+<body> <!-- main content of page-->
+    <h1>Todo List: </h1> <!-- main heading of page-->
+    <ul class="todoItems"> <!-- begin unordered list with a class of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- EJS for a JS for loop-->
+        <li class="item"> <!-- list item with class of item-->
+            <% if(items[i].completed === true) {%> <!-- conditional EJS to check for completed flag-->
+                <span class='completed'><%= items[i].thing %></span> <!-- span with class of completed and EJS for strike through styling if item is complete-->
+            <% }else{ %> <!-- else condtional EJS-->
+                <span><%= items[i].thing %></span> <!-- span with EJS to populate LI with info-->
+            <% } %>    <!-- conditional closing tag-->
+            <span class='fa fa-trash'></span> <!--span with class of fa fa-trash for garbag can icon-->
+        </li> <!-- li closing tag-->
+    <% } %> <!-- EJS closing tag-->
+    </ul> <!-- ul closing tag-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- less impotant heading with EJS to show number of infinished tasks-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading for adding a new todo to the list-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- form to add to todo list with POST method-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- text input with place holder text and name property-->
+        <input type="submit"> <!-- submission button for adding todo-->
+    </form> <!-- form close tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- script to link main.js to page-->
+</body> <!-- body close tag-->
+</html> <!-- html close tag-->
