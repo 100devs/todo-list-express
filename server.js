@@ -14,7 +14,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-//set express's view eng to ejs   
+   
 app.set('view engine', 'ejs')
 
 // public folder
