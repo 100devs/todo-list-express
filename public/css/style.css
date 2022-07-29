@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /* h1 tag */
+    color: red; /* color property with red value*/
+} /* closing bracket*/
+.completed{ /* completed class tag*/
+    color: gray; /* color property with grey value*/
+    text-decoration: line-through; /* text decoration property with line through value*/
+} /* closing bracket*/
