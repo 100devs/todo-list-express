@@ -16,3 +16,5 @@
     "mongodb": "^3.6.5"
   }
 }
+
+//file that is tracking dependencies needed in the app. not too many!

@@ -1,15 +1,20 @@
 <!DOCTYPE html>
+<!-- this is what language the page uses -->
 <html lang="en">
+    <!-- we speak english -->
 <head>
-    <meta charset="UTF-8">
+    <!-- for your computer -->
+    <meta charset="UTF-8"> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- add in our font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to css stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +22,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    there's an extra head! -->
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+    <!-- most important item on page -->
+    <ul class="todoItems"> <!-- unordered list -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- poser JS. do a for loop for each item in an array -->
+        <li class="item"> <!-- list item -->
+            <% if(items[i].completed === true) {%> <!-- is it completed? do this! render entire completed item -->
+                <span class='completed'><%= items[i].thing %></span> <!-- add the class 'completed' to these guys for styling -->
+            <% }else{ %> <!-- if not completed -->
+                <span><%= items[i].thing %></span> <!-- display them in list but don't add the class... to be more dry, could add an empty class -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- add this trash can icon at some point to each item on our list using fontawesome. Connects to line 1 of main.js! probably better to add another trash class like js-trash so if you want to change the icon, it doesn't break your JS -->
         </li>
-    <% } %>
+    <% } %> <!-- loop ends here -->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--count out number of remaining undone tasks and stick them here-->
 
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <h2>Add A Todo:</h2> 
+<!-- this could be form action like below, or could be an event listener with fetch URL to reduce number of connections -->
+    <form action="/addTodo" method="POST"> <!-- redirect to here once you submit -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- see server.js line 40 for the match name todoItem -->
+        <input type="submit"> 
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- run some javascript! it's at the bottom so it loads last and doesn't make shit ugly because browser tries to load all JS before HTML/CSS -->
 </body>
 </html>
