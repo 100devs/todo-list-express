@@ -16,15 +16,23 @@ let db,
     // Set remote databse name as todo
     dbName = 'todo'
 
+// Connecting to remote DB and pass option parameter to use a different server discovery and monitoring engine
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+    // Promise chain and pass returned client into arrow function
     .then(client => {
+        // Log DB name to terminal if connection is successful
         console.log(`Connected to ${dbName} Database`)
+        // Set empty variable to a new/existing database on remote server
         db = client.db(dbName)
     })
-    
+
+// Setting EJS as the JS templating to use which will generate html files that are sent to the client
 app.set('view engine', 'ejs')
+// Middleware for serving files requested from the public folder
 app.use(express.static('public'))
+// Middleware which allows you to use the url query parameters and pass objects to the server from the client side
 app.use(express.urlencoded({ extended: true }))
+// Middleware to parse incoming payloads to the server as JSON
 app.use(express.json())
 
 
