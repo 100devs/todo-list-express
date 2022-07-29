@@ -1,7 +1,12 @@
+/* properties for H1 tag */
 h1{
+	/* set value red for color property */
     color: red;
 }
+/* properties for completed class */
 .completed{
+	/* set value gray for color property */	
     color: gray;
+	/* set value line-through for color property */
     text-decoration: line-through;
 }
