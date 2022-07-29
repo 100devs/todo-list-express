@@ -1,7 +1,12 @@
+/* select the heading 1 tags */
 h1{
+    /* set the text color to red */
     color: red;
 }
+/* select completed class */
 .completed{
+    /* set the font color to gray */
     color: gray;
+    /* set text to has line through it  */
     text-decoration: line-through;
 }
