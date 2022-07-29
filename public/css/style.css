@@ -1,7 +1,12 @@
-h1{
-    color: red;
+/* gives heading the color of red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+/* gives class of 'completed' if todo completed is true */
+.completed {
+  /* gray out the completed todo */
+  color: gray;
+  /* crosses out completed todo text */
+  text-decoration: line-through;
 }

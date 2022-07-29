@@ -1,47 +1,75 @@
+<!-- tells browser what version of html to use -->
 <!DOCTYPE html>
+<!-- tells browser what language to use -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- metadata that won't be displayed on the page-->
+  <head>
+    <!-- what characters set to use -->
+    <meta charset="UTF-8" />
+    <!-- sets compatibility for microsoft browsers -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- sets width of available viewing area to the device screen-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- display title in browser tab  -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!-- access to front awesome library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- connects style sheet to ejs -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- extra head
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+       -->
+      <!-- main section that is being displayed -->
+      <body>
+        <!-- main heading -->
+        <h1>Todo List:</h1>
+        <!-- create unordered list and assgin class to the list -->
+        <ul class="todoItems">
+          <!-- loops through item data -->
+          <% for(let i=0; i < items.length; i++) {%>
+            <!-- creates list item and assigns class 'item' -->
+          <li class="item">
+            <!-- inserts each item data if item is completed is true-->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+              <!-- assign class 'completed' each todo that is completed -->
+              <span class="completed"><%= items[i].thing %></span>
+              <% }else{ %>
+                <!-- if not completed, create each todo -->
+            <span><%= items[i].thing %></span>
+            <% } %>
+            <!-- trash icon, when clicked, will remove the todo -->
+            <span class="fa fa-trash"></span>
+          </li>
+          <% } %>
+        </ul>
+        <!-- displays how many todos are left -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Left to do: <%= left %></h2>
+        <!-- heading -->
+        <h2>Add A Todo:</h2>
+        <!-- add a new todo and goes to the /addTodo routes-->
+        <form action="/addTodo" method="POST">
+          <!-- where you type your todo -->
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <!-- submits todo -->
+          <input type="submit" />
+        </form>
 
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+        <!-- connects JS file to ejs -->
+        <script src="js/main.js"></script>
+      </body>
+    </html>
+  </body>
 </html>
