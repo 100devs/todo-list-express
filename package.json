@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "vite-node server.js -w"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,9 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mongodb": "^3.6.5"
+  },
+  "devDependencies": {
+    "vite": "^3.0.4",
+    "vite-node": "^0.19.1"
   }
 }

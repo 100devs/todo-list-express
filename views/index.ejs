@@ -1,47 +1,57 @@
+<!-- Tell what version of html we are using -->
 <!DOCTYPE html>
+<!-- set up language -->
 <html lang="en">
 <head>
+	<!-- set up charset -->
     <meta charset="UTF-8">
+	<!-- set up browser compatibiliity -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- set up device configuration -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- set up Application name for Seo and inform the user of the application where he is on the application -->
     <title>Document</title>
+	<!-- Link for external stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<!-- Link to internal stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+	<!-- Title -->
     <h1>Todo List: </h1>
+	<!-- List of todo item -->
     <ul class="todoItems">
+	<!-- Loop through all todos items -->
     <% for(let i=0; i < items.length; i++) {%>
+	<!-- show an item -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <!-- inform the user if the task is complete or not -->
+			<% if(items[i].completed === true) {%>
+			     <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+			<!-- delete item on click, need to be set up in js -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+	
+	<!-- Secondary title, inform the user about how many are not done -->
     <h2>Left to do: <%= left %></h2>
 
+
+	<!-- secondary title -->	
     <h2>Add A Todo:</h2>
 
+	<!-- Form to add new todo in the list -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="text" placeholder="Thing To Do" name="todoItem" role="textbox">
+		<!-- Modification: changed input to button, more meaning like this -->
+        <button type="submit" role="submit" role="button">Submit</button>
     </form>
     
-
+	<!-- link to javascript file -->
     <script src='js/main.js'></script>
 </body>
 </html>
