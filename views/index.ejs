@@ -20,28 +20,36 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- starts an ejs for loop to retrieve and display every item in the database -->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <!-- every iteration makes an li tag -->
+        <li class="item"> 
+            <!-- if the item in the current iteration has the property of completed set to true, then the span tag inside the li will have the class of 'completed' -->
             <% if(items[i].completed === true) {%>
+                <!-- displays the task with the completed class applied -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- displays the task without the completed class applied -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %> 
+            <!-- displays the trash can icon next to each of the tasks in order to delete it -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- displays the leftover number of tasks that are needed to be completed -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- gives the user a prompt to add a new task -->
     <h2>Add A Todo:</h2>
-
+    <!-- the form will take the users inputs and send a post request to the server -->
     <form action="/addTodo" method="POST">
+        <!-- the input tag lets the user type out their new task -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- the submit button will read the text from above and send it to the server as a post request -->
         <input type="submit">
     </form>
     
-
+    <!-- links our client side javascript that we use to delete tasks and toggle a task as completed or un-complete a task -->
     <script src='js/main.js'></script>
 </body>
 </html>
