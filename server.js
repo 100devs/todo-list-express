@@ -60,6 +60,7 @@ app.get("/", async (request, response) => {
     // .catch(error => console.error(error))
 });
 
+// POST(create) request using the route /addTodo, which is based on the action of the form.. used to create new items
 app.post("/addTodo", (request, response) => {
     db.collection("todos")
         .insertOne({ thing: request.body.todoItem, completed: false })
@@ -70,20 +71,26 @@ app.post("/addTodo", (request, response) => {
         .catch((error) => console.error(error));
 });
 
+// PUT(update) request to update items. eventListener put on a button in main.js hears click to mark the item complete, then "markComplete" which is an async fetch function fires
 app.put("/markComplete", (request, response) => {
+    // go to our db and find the collection named "todos"
     db.collection("todos")
+        // updates one thing.. "itemFromJS" was declared in the async function
         .updateOne(
             { thing: request.body.itemFromJS },
             {
+            // The $set operator replaces the value of a field with the specified value., in this case sets complete as true
                 $set: {
                     completed: true,
                 },
             },
+            // returns list sorted in descending order
             {
                 sort: { _id: -1 },
                 upsert: false,
             }
         )
+        // if successful, returns message. otherwise returns error
         .then((result) => {
             console.log("Marked Complete");
             response.json("Marked Complete");
@@ -91,6 +98,7 @@ app.put("/markComplete", (request, response) => {
         .catch((error) => console.error(error));
 });
 
+// Basically the same as above; PUT(update) request to update items. eventListener put on a button in main.js hears click to mark the item complete, then "markUnComplete" which is an async fetch function fires
 app.put("/markUnComplete", (request, response) => {
     db.collection("todos")
         .updateOne(
@@ -111,18 +119,22 @@ app.put("/markUnComplete", (request, response) => {
         })
         .catch((error) => console.error(error));
 });
-
+// DELETE (deletay) req with the path(route) for the "deleteIten" async function from main.js -- which is on the eventListener callback function added to the lil garbage can icon
 app.delete("/deleteItem", (request, response) => {
+    // go to our db and find the collection named "todos"
     db.collection("todos")
+        // deltes one thing.. "itemFromJS" was declared in the async function
         .deleteOne({ thing: request.body.itemFromJS })
+        // if resolves, responds/logs Todo Deleted
         .then((result) => {
             console.log("Todo Deleted");
             response.json("Todo Deleted");
         })
+        // if fails, fires .catch and responds w/error
         .catch((error) => console.error(error));
 });
-// We need to create a server that browsers can connect to. We do this by using the Express’s listen method... set to listen to environments port, or defaults to our hardcoded variable PORT
 
+// We need to create a server that browsers can connect to. We do this by using the Express’s listen method... set to listen to environments port (like if using heroku, etc.), or defaults to our hardcoded savage PORT
 app.listen(process.env.PORT || PORT, () => {
     // when server starts, console logs this message
     console.log(`Server running on port ${PORT}`);
