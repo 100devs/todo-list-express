@@ -1,25 +1,28 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') //! importing express
+const app = express() //! creating a variable app that holds the value of the express import
+const MongoClient = require('mongodb').MongoClient //! importing mongoClient
+const PORT = 2121 //! create a variable that holds the value of the port the server will run on
+require('dotenv').config() //! imports dotenv to use env variables
 
-//! database variables
-let db, //! mongodb
-	dbConnectionStr = process.env.DB_STRING, //! mongo connection seceret
-	dbName = 'todo' //! database name from mongo
+//* database variables
+let db, //! variable declaration
+	dbConnectionStr = process.env.DB_STRING, //! creates a variable wiht the value of our mongo connection url seceret
+	dbName = 'todo' //! creates a variable with the value of the database name from mongo
 
-//! connecting to db
+//* connecting to the db
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
+	//! use the MongoClient.connect method, passing the arg of our mongodb url, to connect to our db
 	(client) => {
-		console.log(`Connected to ${dbName} Database`)
-		db = client.db(dbName)
-	}
-)
+		//! once connected to db, pass data through the client
+		console.log(`Connected to ${dbName} Database`) //! log the string and variable via template literal to the console
+		db = client.db(dbName) //! sets a value to the variable declared previoulsl in line 8
+	} //! closes the action ran by connecting to the db
+) //! closes the db connection method
 
-app.set('view engine', 'ejs') //*! setting ejs the view
-app.use(express.static('public')) //*! passing static to express
-app.use(express.urlencoded({ extended: true })) //*! passing urlencoded to express
+//* passing methods to express
+app.set('view engine', 'ejs') //*! setting ejs as the view to be rendered
+app.use(express.static('public')) //*! passing to public to express.static and telling express to use it
+app.use(express.urlencoded({ extended: true })) //*! passing true to express.urlencoded and telling express to use it
 app.use(express.json()) //*! passing the json method to express
 
 //* @desc Fetch all todos
