@@ -1,7 +1,7 @@
-h1{
+h1{ /* selectes all H1 */
     color: red;
-}
-.completed{
+} /* Changes our H1 to red */
+.completed{ /* selects items with the completed class*/
     color: gray;
     text-decoration: line-through;
-}
+} /* changes our tasks to grey and puts a line through them when they are marked as completed */
