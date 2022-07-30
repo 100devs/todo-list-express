@@ -1,6 +1,9 @@
+/* Select any h1 tag within ejs file */
 h1{
     color: red;
 }
+
+/* Selects any element with attributed class of 'completed' */
 .completed{
     color: gray;
     text-decoration: line-through;
