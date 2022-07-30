@@ -1,42 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> <!--indicates what character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--sets appropriate compatibility for microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sets the width of available viewing area to width of the device screen-->
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<body> <!--main section for content displayed-->
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!--loops through for as many of items there are-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> <!--if the item completion is marked as true then this will run-->
+                <span class='completed'><%= items[i].thing %></span> <!--displaying the item and labeling its class as completed-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!--same as above but without the completion class-->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--displaying the left variable. In this case a number-->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!--submitting the input to be posted into the database-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>

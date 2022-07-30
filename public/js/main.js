@@ -1,21 +1,21 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const deleteBtn = document.querySelectorAll('.fa-trash') // storing the trash can button in the ejs file into the variable deleteBtn
+const item = document.querySelectorAll('.item span') // storing the items in spans in the variable item
+const itemCompleted = document.querySelectorAll('.item span.completed') // storing the items in the span that are also in completed classes inside the variable itemCompleted
 
-Array.from(deleteBtn).forEach((element)=>{
-    element.addEventListener('click', deleteItem)
+Array.from(deleteBtn).forEach((element)=>{ // creating an array from our selection and starting a loop
+    element.addEventListener('click', deleteItem) //adding an event listener to the current item and if it gets clicked on then it runs the function deleteItem
 })
 
-Array.from(item).forEach((element)=>{
-    element.addEventListener('click', markComplete)
+Array.from(item).forEach((element)=>{ // creating an array from our selection and starting a loop
+    element.addEventListener('click', markComplete)//adding an event listener to the current item and if it gets clicked on then it runs the function markComplete
 })
 
-Array.from(itemCompleted).forEach((element)=>{
-    element.addEventListener('click', markUnComplete)
+Array.from(itemCompleted).forEach((element)=>{ // creating an array from our selection and starting a loop
+    element.addEventListener('click', markUnComplete) //adding an event listener to the current item and if it gets clicked on then it runs the function markUncomplete
 })
 
-async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+async function deleteItem(){ //declaring asynchronous function
+    const itemText = this.parentNode.childNodes[1].innerText 
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
@@ -34,7 +34,7 @@ async function deleteItem(){
 }
 
 async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside of the list item to extract the text value only of the specified list item
     try{
         const response = await fetch('markComplete', {
             method: 'put',
