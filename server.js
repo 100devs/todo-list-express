@@ -1,19 +1,31 @@
+// import express library package the we already install it through npm
 const express = require("express");
+// fire the express ability and put it in the app variable
 const app = express();
+// import MongoClient class from mongodb library package that we already install it through npm
 const MongoClient = require("mongodb").MongoClient;
+// spedify the port which we cann access (listen) our server through
 const PORT = 2121;
+// import dotenv package specifically config method which we could use it to introduce .env file to the server then we could read the .env file here
 require("dotenv").config();
 
-let db,
-  dbConnectionStr = process.env.DB_STRING,
-  dbName = "todo";
+// declare variables
+let db,// make db variable globally available so we could use anywhere in the server the db will take values after the connection established to the mongodb database
+  dbConnectionStr = process.env.DB_STRING, // set the dbConnectionStr value to the value of the .env secret connection string 'DB_STRING'
+  dbName = "todo"; // set the name of the database that we will connect to 
 
+
+// establish a connection to the database with the connection string and with options {useUnifiedTopology: true} the connection will take time so we will receive a promise solved with then functionality
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
+  // after connection we will receive the client as a result of the connection
   (client) => {
+    // show info that we can connect to the db
     console.log(`Connected to ${dbName} Database`);
+    // update the previouse declared variable 'db' to hole the database functionality available through mongodb to our db 'todo'
     db = client.db(dbName);
   }
 );
+
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
