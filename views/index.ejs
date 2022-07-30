@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!--declare document type being html-->
+<html lang="en"> <!--declared language as english-->
+<head> <!--head of our document-->
+    <meta charset="UTF-8"> <!--indicates character set-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--makes the app compatible with microsoft systems-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--allows for actual mobile optimization layout wise-->
+    <title>Document</title><!--document of app inside browser-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--font awesome link-->
+    <link rel="stylesheet" href="css/style.css"> <!--css reference-->
 </head>
 <body>
     <!DOCTYPE html>
@@ -17,31 +17,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> <!--body-->
+    <h1>Todo List: </h1> <!--to do list items header-->
+    <ul class="todoItems"> <!--a class of to do items declared-->
+    <% for(let i=0; i < items.length; i++) {%> <!--a for loop start which goes through the items array-->
+        <li class="item"> <!--li class declared with a name of item-->
+            <% if(items[i].completed === true) {%> <!--if property completed in item is true-->
+                <span class='completed'><%= items[i].thing %></span> <!--then show the completed span class-->
+            <% }else{ %> <!--if not completed-->
+                <span><%= items[i].thing %></span> <!--show a different span class with different styling-->
+            <% } %>    <!--ejs closes the if else statement-->
+            <span class='fa fa-trash'></span> <!--a span class of a fontawesome trash-->
+        </li> <!--end of item li class-->
+    <% } %> <!--end of ejs for loop-->
+    </ul> <!--ends todoitems ul class-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--left to do heading with ejs representing the total items left to do in array-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--add a to do header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+    <form action="/addTodo" method="POST"> <!--form action declared which needs to match the route inside of server.js. declaring there to be a post method in the form-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--will only let in text. placeholder will be thing to do. the name given for later reference -->
+        <input type="submit"> <!--gives the form a submit button-->
+    </form> <!--end of form-->
+     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--includes the mainjs script in order for us to get renderings from-->
+</body> <!--end of body-->
+</html> <!--end of html-->
