@@ -79,16 +79,22 @@ app.put('/markComplete', (request, response) => {
         sort: {_id: -1},
         upsert: false
     })
+    //then prints to console that task is complete
     .then(result => {
         console.log('Marked Complete')
+        //updates in database that task is marked complete
         response.json('Marked Complete')
     })
+    //else display error
     .catch(error => console.error(error))
 
 })
 
+//designates action to update information to unmark if something is marked as complete
 app.put('/markUnComplete', (request, response) => {
+    //communicates with database in the database of 'todos'
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        //sets completed to false
         $set: {
             completed: false
           }
@@ -96,24 +102,33 @@ app.put('/markUnComplete', (request, response) => {
         sort: {_id: -1},
         upsert: false
     })
+    //then prints to console that task is complete
     .then(result => {
         console.log('Marked Complete')
+        //updates in database that task is marked complete
         response.json('Marked Complete')
     })
+     //else display error
     .catch(error => console.error(error))
 
 })
-
+//designates action to delete infromation
 app.delete('/deleteItem', (request, response) => {
+    //communicates with database to remove object form database
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
+        //prints to console/terminal deletion
         console.log('Todo Deleted')
+        //deletion in database
         response.json('Todo Deleted')
     })
+    //error message if deletion is unsuccessful
     .catch(error => console.error(error))
 
 })
 
+//runs the app on local host port or environment database
 app.listen(process.env.PORT || PORT, ()=>{
+    //prints to console/terminal where the app is running
     console.log(`Server running on port ${PORT}`)
 })
