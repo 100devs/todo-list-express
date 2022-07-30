@@ -4,19 +4,19 @@ const itemCompleted = document.querySelectorAll('.item span.completed') //all el
 
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
-})
-//for each element in the deleteBTn array, the click event listener is addded attached to the deleteItem function through the forEach loop
+})//close of our loop
+//for each element in the deleteBTn array, the click event listener is added attached to the deleteItem function through for each item in the selection
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
-})
-//for each element in the item array, the click event listener is addded attached to the markComplete function through the forEach loop
+})//close of our loop
+//for each element in the item array, the click event listener is added attached to the markComplete function through for each item in the selection
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
-})
-//for each element in the itemCompleted array, the click event listener is addded attached to the markUncomplete function through the forEach loop
+})//close of our loop
+//for each element in the itemCompleted array, the click event listener is added attached to the markUncomplete function through for each item in the selection
 
-async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+async function deleteItem(){//declare an asyncronous function
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside of the list item and grabs only the inner text within the list span
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
@@ -34,14 +34,14 @@ async function deleteItem(){
     }
 }
 //the function above is used to delete items from the todolist after they have been entered in the database
-// once the function is called a new const called ItemText
+// once the async function is initiated a new const called ItemText
 //the next operation will fetch the deleteItem from the server and using the delete method it will delete the itemText selected frm the innerText(from the index.ejs file selection)
 //the selected item will be turned into a json string itemFromJs will have the itemText assigned into it
 //after the respons executed, the resultses will be parsed into json and assigned to the data variable then the location on the ejs file will be reloaded.
 
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+async function markComplete(){//declare an asyncronous function
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside of the list item and grabs only the inner text within the list span
     try{
         const response = await fetch('markComplete', {
             method: 'put',
@@ -64,8 +64,9 @@ async function markComplete(){
 //the put method which will upadete the status of the file into the database on the field itemFromJS
 // the response will be parsed into json and asssigned into the data const and location on the index.ejs will be reloaded to show the 
 // in the event of an error, the error will be caught and displayed on the console
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+
+async function markUnComplete(){//declare an asyncronous function
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside of the list item and grabs only the inner text within the list span
     try{
         const response = await fetch('markUnComplete', {
             method: 'put',
