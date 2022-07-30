@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<!DOCTYPE html><!--browser telling what type of document will be shown-->
+<html lang="en"><!--language english and start of html tag-->
+<head><!--open header-->
+    <meta charset="UTF-8"> <!--encoding type for char???-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--appropriate compatibility which version of ID to render the page as-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--browser display width should be screen width you can scroll down-->
+    <title>Document</title><!--assign title to broswer tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--gives access to icon library-->
+    <link rel="stylesheet" href="css/style.css"><!--link to local SS-->
+</head><!--close header tag-->
+<body><!--main section for contain displayed-->
+    <!DOCTYPE html><!--maybe typo-->
+<html lang="en"><!--maybe typo-->
+<head><!--maybe typo-->
+    <meta charset="UTF-8"><!--maybe typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--maybe typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--maybe typo-->
+    <title>Document</title><!--maybe typo-->
+</head><!--maybe typo-->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
+    <%# loops through items and post  them in list on ejs  with trashcan  %>
+    <h1>Todo List: </h1><!--main header-->
+    <ul class="todoItems"><!--create unordered list and assign class to the list-->
+    <% for(let i=0; i < items.length; i++) {%><!--use ejs to start for loop-->
+        <li class="item"><!-- create list item-->
+            <% if(items[i].completed === true) {%><!--check if item is completed-->
+                <span class='completed'><%= items[i].thing %></span><!--creating an inline element with a class and adding ejs to display name of task-->
+            <% }else{ %><!--ejs for else class of if statement-->
+                <span><%= items[i].thing %></span><!--adding EJS to display the name of the task with no class-->
+            <% } %>    <!--EJS to close the Else Statement-->
+            <span class='fa fa-trash'></span><!--trash can icon-->
+        </li><!--closing list item-->
     <% } %>
-    </ul>
+    </ul><!--closing out unorder code-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--heading level 2 tag with text and variable to show how much tag to display-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--header with text-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--create form with post method create, route to addtodo route FORMs can't update they can only input.... whatwhat-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--create input flied input type text, placeholder default text, name the input box todoitem-->
+        <input type="submit"><!--button-->
+    </form><!--close form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--links to main js file in js folder in the public folder-->
+</body><!--close body-->
+</html><!--close html-->
