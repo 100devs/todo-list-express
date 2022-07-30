@@ -1,3 +1,4 @@
+//boilerplate html template
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,30 +19,44 @@
     <title>Document</title>
 </head>
 <body>
+    //defining Todo List as h1 heading
     <h1>Todo List: </h1>
+    //creating an unordered list and assigning it a class of "todoItems"
     <ul class="todoItems">
+    //ejs for embedding javascript into html
+    //creating a for loop to loop through the entire length of list of items with the class of items
     <% for(let i=0; i < items.length; i++) {%>
+        //assigning list item to class of item
         <li class="item">
+            //if/and for any item that is marked complete...
             <% if(items[i].completed === true) {%>
+                //then the text of completed will appear at that item
                 <span class='completed'><%= items[i].thing %></span>
+                //otherwise
             <% }else{ %>
+                //that item will just exist
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            //trash can icon
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    //h2 heading of "Left to Do"
     <h2>Left to do: <%= left %></h2>
-
+    //h2 heading of "Add A Todo:"
     <h2>Add A Todo:</h2>
-
+    //form with post method which allows for user to apply action towards it
     <form action="/addTodo" method="POST">
+        //defines input of type to text, with a placeholder in the form of "Thing To Do"
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        //defines the input type to submit
         <input type="submit">
+    //end of form
     </form>
     
-
+    //links javascript file to this file
     <script src='js/main.js'></script>
+//end of body
 </body>
 </html>

@@ -1,6 +1,10 @@
+
+/* targets all h1 headers and sets the color to red*/
 h1{
     color: red;
 }
+
+/* targets all elements with class of completed and sets the text color to gray with a line through the text*/
 .completed{
     color: gray;
     text-decoration: line-through;

@@ -1,3 +1,4 @@
+//lists application information as well as dependencies used
 {
   "name": "rap-name-api",
   "version": "1.0.0",
