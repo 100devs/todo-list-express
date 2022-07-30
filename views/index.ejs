@@ -8,22 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Loops through each to-do item -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if item is completed, add a class of 'completed' for each item-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+
+    <!-- or else just leave the item plus icon -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -32,16 +28,17 @@
     <% } %>
     </ul>
 
+    <!-- Shows how many items need to be done in number -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form to input a new todo list task -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+<!-- using main.js as javascript external file -->
     <script src='js/main.js'></script>
 </body>
 </html>
