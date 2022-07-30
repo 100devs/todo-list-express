@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /*selects all h1 of the document*/
+    color: red;/*sets the text color to red*/
+}/*closing the style for the h1*/
+.completed{/*selects elements with the class of completed. we know this because classes are preceded with a dot. for ids we start them with the hashtag #*/
+    color: gray;/*changing text color to grey*/
+    text-decoration: line-through;/*we're applying a strike-through style to the text*/
+}/*closing our style for the .completed class*/
