@@ -1,11 +1,10 @@
 body {
-	text-align: center;
-	width: 25%;
-	height: auto;
-	display: flex;
-	justify-content: center;
-	display: block;
-	margin: auto;
+	/*! selects the body tag to apply the styling within the curly brackets */
+	text-align: center; /*! aligns the text in the center of box */
+	width: 25%; /*! sets the body to a width of 25% of the overall html width */
+	height: auto; /*! sets the height of the body to auto, so browser decides what height is best */
+	display: block; /*! sets the display of the body to be a block level element vs inline or inline-block*/
+	margin: auto; /*! sets the margin to auto, so the browser will decide how much if any margin to apply to the body element*/
 }
 h1 {
 	/*! says to ejs "hey, do something to the heading 1's */
