@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <!-- main section for content on the screen -->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!-- typo??? -->
+    <html lang="en">
+    <!-- typo??? -->
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <!-- typo??? -->
+        <meta charset="UTF-8">
+        <!-- typo??? -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- typo??? -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- typo??? -->
+        <title>Document</title>
+        <!-- typo??? -->
+    </head>
+    <!-- typo??? -->
 
-    <h2>Add A Todo:</h2>
+    <!-- main section for content on the screen -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+    <body>
+        <!-- Main title displayed on the page -->
+        <h1>Todo List: </h1>
+        <!-- Create an unordered list and assign A class to the list -->
+        <ul class="todoItems">
+            <!-- Use EJS to start a FOR loop -->
+            <% for(let i=0; i < items.length; i++) {%>
+                <!-- create a list item with a class of item -->
+                <li class="item">
+                    <!-- Use EJS to check if an item in an array has a completed property of true -->
+                    <% if(items[i].completed === true) {%>
+                        <!-- Create a span with a class of completed; and adding EJS to display the name of the task -->
+                        <span class='completed'><%= items[i].thing %></span>
+                        <!-- EJS for the Else clause of our if statement -->
+                        <% }else{ %>
+                            <!-- Create a span and use EJS to dipslay the name of the task -->
+                            <span><%= items[i].thing %></span>
+                            <!-- EJS to close the Else statement -->
+                            <% } %>
+                                <!-- Display a font awesome icon of a trash can inside a span -->
+                                <span class='fa fa-trash'></span>
+                                <!-- Close our list item -->
+                </li>
+                <!-- Use EJS to close the FOR loop -->
+                <% } %>
+                    <!-- Use EJS to close the unordered list -->
+        </ul>
+        <!-- Create heading level 2  -->
+        <h2>Left to do:
+            <!-- Use EJS to display the amount of "left" items -->
+            <%= left %>
+                <!-- close h2 tag -->
+        </h2>
+        <!-- Create an H2 that displays "Add a Todo" header -->
+        <h2>Add A Todo:</h2>
+        <!-- Create a form  with a POST method that goes to the /addTodo route-->
+        <form action="/addTodo" method="POST">
+            <!-- Create a input tag with a type of text, a placeholder text of "Thing to do", and name of "todoItem" -->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!-- Create an input tag that -->
+            <input type="submit">
+        </form>
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+
+        <script src='js/main.js'></script>
+    </body>
+
+    </html>
