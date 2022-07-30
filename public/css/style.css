@@ -1,7 +1,7 @@
-h1{
-    color: red;
+ h1{   /* select the element h1*/
+    color: red; /*give it the color of red*/
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed{ /* select  the span with the class completed*/
+    color: gray; /* give it the color gray*/
+    text-decoration: line-through; /* give it the text decoration of line-through*/
 }
