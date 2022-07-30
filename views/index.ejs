@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!--declares type of html used-->
+<html lang="en"> <!--declares lanuage used in doc.-->
+<head><!--contains meta data abotu doc-->
+    <meta charset="UTF-8"> <!--tells browser to use utf-8 when translating machine code into himan readable text-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--ensures browser which EI its supposed to use..outdated-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--indicates screen size-->
+    <title>Document</title> <!--title of doc, in tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- link to something-->
+    <link rel="stylesheet" href="css/style.css"> <!--links the css sheet to html-->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<body><!--contains all of html-->
+    <!DOCTYPE html><!--not sure why there are two but another one-->
+<html lang="en"><!--declares lanuage used in doc.-->
+<head><!--contains meta data abotu doc-->
+    <meta charset="UTF-8"><!--tells browser to use utf-8 when translating machine code into himan readable text-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--ensures browser which EI its supposed to use..outdated-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--indicates screen size-->
+    <title>Document</title><!--title of doc, in tab-->
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+<body><!--contains all of html-->
+    <h1>Todo List: </h1><!--most important heading, not by size-->
+    <ul class="todoItems"><!--unordered list wth a class which groups things together -->
+    <% for(let i=0; i < items.length; i++) {%> <!--for loop?-->
+        <li class="item"> <!--list item with class-->
+            <% if(items[i].completed === true) {%> <!--if statement?-->
+                <span class='completed'><%= items[i].thing %></span> <!-- inline container mark of part of text-->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span><!-- inline container mark of part of text-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--2nd most imporant heading-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--2nd most imporant heading-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"><!--container for diff. types of input elements-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--text box with a text placeholder-->
+        <input type="submit"><!--submit button-->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script><!-- links js to html file-->
 </body>
 </html>
