@@ -1,7 +1,13 @@
+/* select any h1 elements in document */
 h1{
+    /* change text color to red */
     color: red;
 }
+
+/* select any elements with class of completed */
 .completed{
+    /* change text color to gray */
     color: gray;
+    /* change text to have a linethrough text */
     text-decoration: line-through;
 }
