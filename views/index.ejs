@@ -1,47 +1,75 @@
+<%# use html 5 version %>
 <!DOCTYPE html>
+<%# set the language to english %>
 <html lang="en">
+<%# place that containing meta data like title links... %>
 <head>
+	<%# charachter engoding %>
     <meta charset="UTF-8">
+	<%# setting for internet explorer and edge %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<%# set the width of the page to width of the device veiwing the page with and set the scale to 1 %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<%# app title in the browser tap %>
+	<title>Todo List App</title>
+	<%# link the font-awesome icons library%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<%# link our stylesheet %>
     <link rel="stylesheet" href="css/style.css">
 </head>
+<%# below is duplicated and should be removed %>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+<%# above is duplicated and should be removed %>
+
+<%# this is the main container of our app containing everythink displayed to the user%>
 <body>
+	<%# Main title on the page %>
     <h1>Todo List: </h1>
+	<%# unordered list with style as detaild in todoItems class inside our stylesheet %>
     <ul class="todoItems">
+	<%# ejs special tag that do the same of for loop in javascript %><%# it loops through the items array received when rendering the page from the server (todoItems) %>
     <% for(let i=0; i < items.length; i++) {%>
+		<%# unordered list item styled by item class for each todo item in the items array %>
         <li class="item">
+			<%# ejs special tag that do the same as if statement in javascript %><%# it test each item to see if the completed property is true or false %><%# based on that it add a class completed to the true ones so its has the styles for the completed with the line-through and grey color %>
             <% if(items[i].completed === true) {%>
+				<%# span tag is to include inline text that could be targeted by class to style text seperately inline  %><%# another special ejs tag to display a variable data text (item detail) %>
                 <span class='completed'><%= items[i].thing %></span>
+			<%# ejs special tag that do the same as else statement in javascript %>
             <% }else{ %>
+				<%# special ejs tag to display a variable data text (item detail) %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+			<%# special ejs tag to close the for loop statement %>
+            <% } %>
+			<%# we use font awesome to display trashcan icon for delete %>
             <span class='fa fa-trash'></span>
         </li>
+	<%# special ejs tag to close the for loop statement %>
     <% } %>
     </ul>
-
+	<%# secondary title to display the total amoutn of left todos and it has the special tag of ejs to display the variable (left) recieved when this page rendered from the server response (itemsLeft) %>
     <h2>Left to do: <%= left %></h2>
 
+	<%# secondary title %>
     <h2>Add A Todo:</h2>
-
+	<%# a form that has an action '/addTodo' that will be handled by the server: %>  <%# it has the keys action containing the endpoint and the method POST so it interpreted to: %>  <%# app.post("/addTodo".... %>
     <form action="/addTodo" method="POST">
+		<%# text input that will hold the todo title entered by the user %>  <%# the name tag inform the body to include {todoItem: ...the text from the user} %>  <%# that property will be catched in the server by: req.body.todoItem %>
         <input type="text" placeholder="Thing To Do" name="todoItem">
+		<%# when this button pressed it will fire up the action of post to server as mentioned on form details above %>
         <input type="submit">
     </form>
     
 
+	<%# this is to connect main javascript file on js folder with this view file that will add event listeners for each item so make each todo item dynamic and accept events like mark an item as completed and vice versa also add delete ability  %>
     <script src='js/main.js'></script>
 </body>
 </html>
