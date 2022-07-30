@@ -1,2 +1,4 @@
+
+//when pushing to github, these files are hidden for space or privacy concerns
 node_modules
 .env
