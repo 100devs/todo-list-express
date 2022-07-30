@@ -1,7 +1,7 @@
-h1{
-    color: red;
+h1{  /* using the h1 element to style it*/
+    color: red; /* color is for the font colour*/
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed{ /* id */
+    color: gray; /* font colour*/
+    text-decoration: line-through; /* puts a line through the text*/
 }
