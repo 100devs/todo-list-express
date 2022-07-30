@@ -24,27 +24,35 @@
     <% for(let i=0; i < items.length; i++) {%>
         <!-- create a list item with a class of item -->
         <li class="item"> 
-            <!-- more ejs, conditional -->
+            <!-- more ejs to check if item in an array with a completed property is true -->
             <% if(items[i].completed === true) {%>
+                <!-- create an inline element with a class and adding ejs to display the name of the task -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- ejs for the else clause of our if statement -->
             <% }else{ %>
+                <!-- adding ejs to display the name of the task without class  -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+                <!-- ejs to close the else statement -->
+            <% } %>
+            <!-- display font awesome icon of trash can inside a span --> 
             <span class='fa fa-trash'></span>
+            <!-- closing list item -->
         </li>
-    <% } %> <!-- end of loop -->
-    </ul> <!-- end of list -->
+    <!-- closing for loop -->
+    <% } %> 
+    <!-- closing unordered list -->
+    </ul> 
+    
+    <h2>Left to do: <%= left %></h2> <!-- header for left to do and usign ejs to display a variable showing how many tasks are left to complete-->
 
-    <h2>Left to do: <%= left %></h2> <!-- header for left to do (from ejs file)-->
+    <h2>Add A Todo:</h2> <!-- header for add to do -->
 
-    <h2>Add A Todo:</h2> <!-- header for the form -->
-
-    <form action="/addTodo" method="POST"> <!-- where to send form -->
-        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- text area -->
-        <input type="submit"> <!-- button for submitting -->
-    </form> <!-- close the form -->
+    <form action="/addTodo" method="POST"> <!-- create a form with a post method that goes to the /addTodo route -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- text area with default text inside of it before you type anything. the input box is given a name for later reference -->
+        <input type="submit"> <!-- gives the form a  submit button -->
+    </form> <!-- close the form tag -->
     
 
-    <script src='js/main.js'></script> <!-- to run the frontend js -->
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- links to the main.js file in the js folder in the public folder -->
+</body> <!-- closing  the body tag -->
+</html> <!-- closing the html tag -->
