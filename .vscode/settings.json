@@ -1,4 +1,5 @@
+// CONTROLS FONT SIZE IN EDITOR. MOVED EDITOR FROM 42 TO 18 & TERM 62 TO 16.
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "editor.fontSize": 18,
+    "terminal.integrated.fontSize": 16
 }
