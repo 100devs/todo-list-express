@@ -1,15 +1,26 @@
+<!-- the main page of the app EJS lets us do additional thing to normal HTML its embedded Javascript -->
 <!DOCTYPE html>
+<!-- sets doucment to html -->
 <html lang="en">
+    <!-- sets language to english -->
 <head>
     <meta charset="UTF-8">
+    <!-- whar character set shoud be used -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- sets what version of explorer microsodt browsers should use -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fixed to device width -->
     <title>Document</title>
+    <!-- page title -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- linking font awesome icon library -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- links style sheet and location -->
 </head>
+<!-- closes the head -->
 <body>
-    <!DOCTYPE html>
+    <!-- <!DOCTYPE html>  this is duplicated, possibly a typo
+    
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +28,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body> -->
     <h1>Todo List: </h1>
+    <!-- main title -->
     <ul class="todoItems">
+        <!-- created ul an assigns a class to it -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- use EJS to stat a for loop -->
         <li class="item">
+            <!-- list item created wit ta class of item -->
             <% if(items[i].completed === true) {%>
+                <!-- list items content, another EJS for loop in the next  -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- li content with a compteted tag, if element in the array is true this syntax will run -->
             <% }else{ %>
+                <!-- else this following thing will run -->
                 <span><%= items[i].thing %></span>
+                <!-- ejs code that will run if the statement is false -->
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- font awesome image of trashcan -->
         </li>
+        <!-- closing li tage, everything else was contained within the list -->
     <% } %>
+    <!-- ejs to closing else tag -->
     </ul>
+    <!-- closing ul tag -->
 
     <h2>Left to do: <%= left %></h2>
+    <!-- sub heading for next part of the page, how many items are let to do -->
 
     <h2>Add A Todo:</h2>
+    <!-- sub heading for the to do section -->
 
     <form action="/addTodo" method="POST">
+        <!-- CREATE a todo form with a post method the goes to the /add Todo route-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- placeholder and inner text for the form -->
         <input type="submit">
+        <!-- submit button -->
     </form>
+<!-- closing form -->
     
 
     <script src='js/main.js'></script>
+    <!-- linking JS to our page -->
 </body>
+<!-- closing body tag -->
 </html>
+<!-- closing HTML  -->
