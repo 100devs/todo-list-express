@@ -29,20 +29,20 @@ app.use(express.json()) //*! passing the json method to express
 //* @route GET /api
 //* @access Public
 app.get('/', async (request, response) => {
-	const todoItems = await db.collection('todos').find().toArray() //*! creates an array todo itmes from the db called todoItems
+	//! get request to the root, passes req and res to the async function
+	const todoItems = await db.collection('todos').find().toArray() //*! creates an array todoItmes from the db called todoItems assigned to the todoItems variable
 
-	const itemsLeft = await db
-		.collection('todos')
-		.countDocuments({ completed: false }) //*! variable to hold the value of todos that are not completed
+	const itemsLeft = await db //! assigns a variable
+		.collection('todos') //! sets the value of the variable to the db collection todos
+		.countDocuments({ completed: false }) //*! counts the todos and assigns the variable to hold the Number value of todos that are not completed
 
-	response.render('index.ejs', { items: todoItems, left: itemsLeft }) //*! the response of the api call is to render ejs
+	response.render('index.ejs', { items: todoItems, left: itemsLeft }) //*! the response of the api call is to render ejs todoItmes and itemsLeft
 
 	//*! grabs the todo data from the db and feeds it to be rendered based on completed or not
 	db.collection('todos') //! connects to the todos collection in the db
 		.find() //! grabs all of the todo items
 		.toArray() //! make an array out of todo items
 		.then((data) => {
-			//! send it to server
 			db.collection('todos')
 				.countDocuments({ completed: false })
 				.then((itemsLeft) => {
@@ -130,7 +130,7 @@ app.delete('/deleteItem', (request, response) => {
 		.catch((error) => console.error(error))
 })
 
-//*!using an env variable, this tells express what port to listen for the server on and then console logs the string + the variable
+//*!using an env variable and file, this tells express what port to listen for the server on and then console logs the string + the variable
 app.listen(process.env.PORT || PORT, () => {
 	console.log(`Server running on port ${PORT}`)
 })
