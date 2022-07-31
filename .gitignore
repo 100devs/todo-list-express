@@ -1,2 +1,3 @@
+# don't include node modules or contents of .env file (database string containing username and password) as part of git version control/uploading to github
 node_modules
 .env

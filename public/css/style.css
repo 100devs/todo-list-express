@@ -1,6 +1,8 @@
+/* style the h1 with the font color red */
 h1{
     color: red;
 }
+/* style item(s) with a class of 'completed' with font color gray and text decoration 'line-through' */
 .completed{
     color: gray;
     text-decoration: line-through;
