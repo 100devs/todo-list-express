@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<!--Display main section content-->
+
 <body>
-    <!DOCTYPE html>
+
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +22,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body> -->
+
+    <!-- Main Title Heading displayed on page -->
     <h1>Todo List: </h1>
+    <!-- unordered list group with class todoItems that contains list -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+        <!-- embembed javascript for loop, that loops items.length times -->
+        <% for(let i=0; i < items.length; i++) {%>
+            <!-- create a list item with a class of item -->
+            <li class="item">
+                <!-- ejs conditional that checks if an item in an array with a property completed with value equal to true it should do something -->
+                <% if(items[i].completed===true) {%>
+                    <!-- if its true create a span with a class completed that has ejs to display the item with a property of thing value -->
+                    <span class='completed'>
+                        <%= items[i].thing %>
+                    </span>
+                    <!-- else if its not true remove the class of completed from the span -->
+                    <% }else{ %>
+                        <span>
+                            <%= items[i].thing %>
+                        </span>
+                        <!-- closing if condition ejs -->
+                        <% } %>
+                            <!-- create a span with a class of fa fa-tash delete icon -->
+                            <span class='fa fa-trash'></span>
+                            <!-- closing list tag -->
+            </li>
+            <!-- closing for loop ejs -->
+            <% } %>
+                <!-- closing ul tag -->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
-
+    <!-- create a h2 heading with ejs to display a variable -->
+    <h2>Left to do: <%= left %>
+    </h2>
+    <!-- create a h2 heading to show where to add todo -->
     <h2>Add A Todo:</h2>
-
+    <!--create a form element with a POST method that goes to the route action /addTodo  -->
     <form action="/addTodo" method="POST">
+        <!-- create an input with attribute type with a value of text and placeholder thing to do -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- create a button -->
         <input type="submit">
+        <!-- end form tag -->
     </form>
-    
 
+    <!-- link javascript file with smurfs -->
     <script src='js/main.js'></script>
 </body>
+
 </html>
