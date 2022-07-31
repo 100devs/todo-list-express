@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html><!--telling the browser what type of document we are displaying-->
+<html lang="en"><!--starting the html tag telling the browser what language the html is in-->
+<head><!--starting the head tag to store meta data-->
+    <meta charset="UTF-8"><!--indicates what charater type should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--sets compatibility for microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--setting the browser view area (width) to device screen-->
+    <title>Document</title><!--sets title and shows it in the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--sets URL for special fonts-->
+    <link rel="stylesheet" href="css/style.css"><!--links to css file (in public folder)-->
+</head><!--closes head element-->
+<body> <!--main section for content being displayed-->
+    <h1>Todo List: </h1> <!--Main title displayed-->
+    <ul class="todoItems"> <!--Unordered list w/ class -->
+    <% for(let i=0; i < items.length; i++) {%><!--EJS FOR loop that goes through all items in the list based on length of list -->
+        <li class="item"><!--List item with a class of item -->
+            <% if(items[i].completed === true) {%><!--EJS IF statement checking if an item in an array with a completed property is true -->
+                <span class='completed'><%= items[i].thing %></span><!--small inline element w/ class completed adding EJS to display the name of the task -->
+            <% }else{ %> <!--EJS for else clause of if statement -->
+                <span><%= items[i].thing %></span><!--span element containing the task element without a class -->
+            <% } %>    <!--cosing of EJS else statement -->
+            <span class='fa fa-trash'></span><!--adding trash icon -->
+        </li><!--close list element -->
+    <% } %><!--close EJS FOR loop -->
+    </ul><!--close unordered list html element -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--header 2 with text and EJS displaying the variable remaining left -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--header 2 text -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--adds form with a post method that goes to route /addtodo (post is the "c" in crud) -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--adds text field in form with placeholder text and a name to the input box to reference later-->
+        <input type="submit"><!--adds a submit field (button) -->
+    </form><!--closes form field -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--adds source script for JS (public folder) -->
+</body><!--closes body tag-->
+</html><!--clcosts html tag-->
