@@ -22,13 +22,14 @@ app.use(express.urlencoded({ extended: true })) //tells express to decode and en
 app.use(express.json()) //Parses JSON content from incoming requests.
 
 //starts a GET method when the root route is passed in and sets up req and res params.
+//sets a variable and awaits ALL items from the todos collection
+//sets a var and awaits count of uncomplete items to display in ejs file
 app.get("/", async (request, response) => {
-  const todoItems = await db
+  const todoItems = await db.collection("todos").find().toArray()
+  const itemsLeft = await db
     .collection("todos")
-    .find()
-    .toArray() //sets a variable and awaits ALL items from the todos collection
-    .collection("todos")
-    .countDocuments({ completed: false }) //sets a var and awaits count of uncomplete items to display in ejs file
+    .countDocuments({ completed: false })
+
   response.render("index.ejs", { items: todoItems, left: itemsLeft })
   // db.collection('todos').find().toArray()
   // .then(data => {
