@@ -97,7 +97,7 @@ app.put('/markComplete', (request, response) => {
 })
 
 //Update (Put) - Updates Mongodb to change status of Item to Uncomplete
-app.put('/markIncomplete', (request, response) => {
+app.put('/markUnComplete', (request, response) => {
     //updating items status completed or not  
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -111,8 +111,8 @@ app.put('/markIncomplete', (request, response) => {
     })
     .then(result => {
         // console log if item has been completed
-        console.log('Marked Incomplete')
-        response.json('Marked Incomplete')
+        console.log('Marked UnComplete')
+        response.json('Marked UnComplete')
     })
     .catch(error => console.error(error))
 
