@@ -1,156 +1,90 @@
-//requires express to be imported to node
-const express = require('express')
-//creates express application
-const app = express()
-//loading mongodb library into node
-const MongoClient = require('mongodb').MongoClient
-//running on localhost can use this port to look at app
-const PORT = 2121
-//allows you to bring in hidden env variables to use without showing it publically
-require('dotenv').config()
+const express = require('express') //making it possible to use express in this file
+const app = express() //setting a variable and assigning it to the instances of express
+const MongoClient = require('mongodb').MongoClient //makes it possible to use methods associated with MongoClient and talk to our DB
+const PORT = 2121 //setting a variable to determine the location where our server will be listening
+require('dotenv').config() //allows us to look for variables inside .env file
 
-//creates database
-let db,
-    //db_string is what you get from mongodb to get the url it needs to get to database
-    //process.env lets you use url provided by mongodb
-    dbConnectionStr = process.env.DB_STRING,
-    //sets database name to 'todo'
-    dbName = 'todo'
-//defines how we connect to MongoDB
-//useUnifiedTopology makes sure that things are returned in a clean manner
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    //responding on client side
-    .then(client => {
-        //logging in console the message that we successfully connected to database
-        console.log(`Connected to ${dbName} Database`)
-        //defines the database as whatever you said it was
-        db = client.db(dbName)
-    })
+let db, //declaring variable called db but not assign a value
+    dbConnectionStr = process.env.DB_STRING, //declaring a variable and assigning our database connection string to it
+    dbName = 'todo' //declaring a variable and assigning the name of the database we'll be using
 
-//express is determining how are we gonna use a view (template) engine to render
-//ejs (embedded JS) commands for our app
-app.set('view engine', 'ejs')
-//tells app to use folder named "public" for all of our static files (images, CSS)
-app.use(express.static('public'))
-//call to middleware that cleans up how things are displayed and how our server
-//communicates with our client (similar to useUnifiedTopology)
-app.use(express.urlencoded({ extended: true }))
-//tell app to use express's json method to take object and turn into json string so that
-//we can read it
-app.use(express.json())
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //Creating a connection to MongoDv, and passing in our connection string. Also passing in an additional property
+    .then(client => { //waiting for connection and proceeding if successful, and passing in all the client information
+        console.log(`Connected to ${dbName} Database`) //logging in console the message that we successfully connected to database
+        db = client.db(dbName) //assigning a value to previously declared db variable that contains a db client factory method
+    }) //closing our .then
 
-//GET stuff to display to use on client side (index.ejs) using async function
-app.get('/',async (request, response)=>{
-    //create a constant "todoItems" that goes into database, going to create
-    //collection "todos", finding anything in that database, and turn it into 
-    //array of objects
-    const todoItems = await db.collection('todos').find().toArray()
-    //create another constant in todos collection, look at documents in collection,
-    //use countDocuments method to count number of documents that are in criteria of false
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    //send response that renders number of documents in our collection and number of items 
-    //left (items that don't have "true" for "completed") in index.ejs
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
+//middleware
+app.set('view engine', 'ejs') //sets ejs as default render method
+app.use(express.static('public')) //tells app to use folder named "public" for all of our static files (images, CSS), sets location for static assets
+app.use(express.urlencoded({ extended: true })) //Tells express to decode and encode URLs where the header matches the content. Supports arrays and objects
+app.use(express.json()) //Parses JSON content
+
+app.get('/',async (request, response)=>{ //starts a GET method when the root route is passed in, sets up req and res parameters
+    const todoItems = await db.collection('todos').find().toArray() //sets a variable and awaits ALL items from the todos collection
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //sets the varable and awaits a count of uncompleted items to later display in EJS
+    response.render('index.ejs', { items: todoItems, left: itemsLeft }) //rendering the EJS file and passing through the db items and the count remaining inside of an object
+    // db.collection('todos').find().toArray() 
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
     //     .then(itemsLeft => {
     //         response.render('index.ejs', { items: data, left: itemsLeft })
     //     })
     // })
-    // .catch(error => console.error(error))
-})
+    // .catch(error => console.error(error)) 
+}) //ending GET
 
-//adding element to database via addTodo
-app.post('/addTodo', (request, response) => {
-    //server will go into collection called "todos", insert one thing named 'todoItem'
-    //gonna get a status completed: false
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        //print "todo added" to console
-        console.log('Todo Added')
-        //refresh ejs page and show the new thing we added to database
-        response.redirect('/')
-    })
-    //assume something didn't work and didn't go to database, print error to console
-    .catch(error => console.error(error))
-})
+app.post('/addTodo', (request, response) => { //starts a POST method when the addTodo route is passed in, sets up req and res parameters
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //inserts a new item into todos collection, gives it a completed value of false by default
+    .then(result => { //if insert is successful, do something
+        console.log('Todo Added') //log "todo added" to console
+        response.redirect('/') //get rid of /addTodos route, and redirects back to homepage
+    }) //close .then
+    .catch(error => console.error(error)) //catching errors
+}) //ending POST
 
-//UPDATE method, click something on client side
-app.put('/markComplete', (request, response) => {
-    //go in todos collection and go to one thing and update status completed: true
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markComplete', (request, response) => { //starts a PUT method when markComplete route is passed in
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //look into db for one item matching the name of the item passed in from main.js file that was clicked on
         $set: {
-            completed: true
+            completed: true //sets complated status to true
         }
     },{
-        //once a thing has been marked completed: true, it removes from left todo list and
-        //adds it to completed list
-        sort: {_id: -1},
-        //reduce left todo total by 1, on ui it's grayed out todo item
-        //upsert will update db if note is found and insert a new note if not found
-        upsert: false
+        sort: {_id: -1}, //moves item to the bottom of the list
+        upsert: false //prevents insertion if item doesn't already exist
     })
-    //assuming that everyting went ok and we got result
-    .then(result => {
-        //print marked completed in console
-        console.log('Marked Complete')
-        //send back to response  "marked complete"
-        response.json('Marked Complete')
+    .then(result => { //starts a then if update was successful
+        console.log('Marked Complete') //log marked completed in console
+        response.json('Marked Complete') //send back to response "marked complete"
     })
-    //if something broke where it couldn't return a response, log error in console
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //catching errors
+}) //close PUT
 
-})
-
-//this route unclicks a thing that you've marked as completed - will take away completed
-//status
 app.put('/markUnComplete', (request, response) => {
-    //go into todo collections and look for an item from itemFromJS
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        //undo what we did with markCompleted -changes completed: true to false
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //look into db for one item matching the name of the item passed in from main.js file that was clicked on
         $set: {
-            completed: false
+            completed: false //set complated status to false
         }
     },{
-        //one a thing is been marked and Uncomplated, this sorts the array by 
-        //descending order
-        sort: {_id: -1},
-        //doesn't create a document for todo if item isn't found
-        upsert: false
+        sort: {_id: -1}, //moves item to the bottom of the list
+        upsert: false //prevents insertion if item doesn't already exist
     })
-    .then(result => {
-        //console log marked completed
-        console.log('Marked Complete')
-        //return response of marked completed to the fetch
-        response.json('Marked Complete')
+    .then(result => { //starts a then if update was successful
+        console.log('Marked Complete') //console log marked completed
+        response.json('Marked Complete') //return response of marked completed to the fetch
     })
-    //if something broke, error is logged
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //catching error
+}) //close PUT
 
-})
-
-//DELETE method
-//req, res is the other half of async await in main.js
-app.delete('/deleteItem', (request, response) => {
-    //go into collection todos and find a thing that matches the name of the thing you
-    //clicked on and run deleteOne to delete it
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    //assuming everything went ok
-    .then(result => {
-        //log once item is deleted
-        console.log('Todo Deleted')
-        //send confirmation is deleted where const data await is waiting for response
-        response.json('Todo Deleted')
+app.delete('/deleteItem', (request, response) => { //starts a delete method when delete route is passed
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //look inside the todos collection for the ONE item thas has a matching name from JS file
+    .then(result => { //starts a then if delete was successful
+        console.log('Todo Deleted') //log once item is deleted
+        response.json('Todo Deleted') //send response back to sender
     })
-    //if then block can't run, then  catch will log an error message
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //catch errors
 
-})
+}) //ending delete
 
-//tells server to listen for connect on the PORT we define as constant earlier in code
-//or uses the app's PORT
-app.listen(process.env.PORT || PORT, ()=>{
-    //prints what PORT our server is running on
-    console.log(`Server running on port ${PORT}`)
-})
+app.listen(process.env.PORT || PORT, ()=>{ //setting which port we will be listening on - either port from .env or port variable we set
+    console.log(`Server running on port ${PORT}`) //log running port to console
+}) //end the listen method
