@@ -43,6 +43,7 @@ app.get('/', async (request, response) => {
 		.find() //! grabs all of the todo items
 		.toArray() //! make an array out of todo items
 		.then((data) => {
+			//! passes the todo collection as data
 			db.collection('todos')
 				.countDocuments({ completed: false })
 				.then((itemsLeft) => {
@@ -57,22 +58,26 @@ app.get('/', async (request, response) => {
 //* @access Public
 //! post request to the addTodo route
 app.post('/addTodo', (request, response) => {
-	db.collection('todos')
-		.insertOne({ thing: request.body.todoItem, completed: false })
+	//! post request the /addToDo route, passes req and res to the request
+	db.collection('todos') //! calls the database collection named todos
+		.insertOne({ thing: request.body.todoItem, completed: false }) //! adds an individual incomplete todo to the db
 		.then((result) => {
-			console.log('Todo Added')
-			response.redirect('/')
+			//! what to do after insertingOne
+			console.log('Todo Added') //! log the string to the console
+			response.redirect('/') //! redirect to the root as a response
 		})
-		.catch((error) => console.error(error))
-})
+		.catch((error) => console.error(error)) //! catch any errors and show them in the console
+}) //! close the post request
 
 //* @desc update the db that a todo is completed
 //* @route /api/markComplete
 //* @access Public
 //! put request the markComplete route
 app.put('/markComplete', (request, response) => {
-	db.collection('todos')
+	//! put request on the markComplete route, passing req and res to the server response
+	db.collection('todos') //! calls the database collection todos
 		.updateOne(
+			//! updates an individual item in the todos collection
 			{ thing: request.body.itemFromJS },
 			{
 				$set: {
