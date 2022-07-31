@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run start" 
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,20 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mongodb": "^3.6.5"
+
   }
 }
+
+
+
+
+"_comment": "This section contains the dependencies we are using in the app & their version. This also
+contains the name of the app(line 2) as well as the main file (line 5)connected to the app."
+
+
+YES I CAN.
+Thank you!  Also, what's your github name?
+
+https://github.com/ChavGill
+
+okay we 

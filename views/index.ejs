@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!DOCTYPE html> <!-- regular things to do in each html file: define doctype, html, head and body  This line tells the browser which kind of document is shown-->
+<html lang="en"> <!-- starts the html tag and defines english as the language -->
+<head> <!-- the head stores metadata and important information -->
+    <meta charset="UTF-8"> <!-- defines the charset to be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets the compatibility for Microsoft browser -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- defines the width of the page to the width of the device where it is rendered -->
+    <title>Document</title>  <!-- title for the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Allows access to icons-->
     <link rel="stylesheet" href="css/style.css">
+    <!-- link to add font awesome and the stylesheet -->
 </head>
 <body>
-    <!DOCTYPE html>
+<!-- why is it 2 times?     <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +18,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
+<body> -->
+    <!--This is how you comment in ejs-->
+    <h1>Todo List: </h1> <!-- heading 1, the most important -->
+
     <ul class="todoItems">
+        <!--add each item from the database using a for loop  -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> <!-- If the items are completed, then it adds them with the class completed -->
+                <span class='completed'><%= items[i].thing %></span> <!-- Displays completed items-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- Displays Uncompleted items (like school in july: no class). -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- add font awesome trash icon that is used as a way to delete todo -->
         </li>
     <% } %>
     </ul>
+    
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Left of Items to Complete  -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Adds Todo Item -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- form for user to add a todo. This is a post, meaning a Create which is described in the server.js -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input to add a todo -->
+        <input type="submit"> <!-- button to submit todo -->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- Links to js scripts and closing tags -->
 </body>
 </html>
