@@ -1,27 +1,27 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') //loads the express modules allowing for our app to use express
+const app = express() // puts the express functions into a variable which can be used later
+const MongoClient = require('mongodb').MongoClient // loads the mongobd functions 
+const PORT = 2121 //initial port to run the app on 
+require('dotenv').config() //allows the app to use the data from the .env file so that the sensitive data can stay hiddden
 
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+let db, //creates a db variable
+    dbConnectionStr = process.env.DB_STRING, //assigns the dbConnectionString variable the value from the DB_String in the env file
+    dbName = 'todo' //variable for the name of the database to pull the data from 
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //this is how we send data and connect to the mongo database
+    .then(client => { // after the client has connected to the database, these things should happen
+        console.log(`Connected to ${dbName} Database`) //this lets the user know that there was a successful connection to the database
+        db = client.db(dbName) //assigns variable db to the 
     })
     
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.set('view engine', 'ejs') //middleware to allow our app to use view and ejs
+app.use(express.static('public')) //express will use the public folder in order to serve up the main js file and css files
+app.use(express.urlencoded({ extended: true })) //not sure 
+app.use(express.json()) //parses data into json
 
 
-app.get('/',async (request, response)=>{
+app.get('/',async (request, response)=>{ //root endpoint for the app. async function
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
