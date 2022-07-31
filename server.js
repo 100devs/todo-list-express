@@ -32,6 +32,8 @@ app.get("/", async (request, response) => {
     .countDocuments({ completed: false });
   // countDocuments returns count of the # of documents in the collection
   response.render("index.ejs", { items: todoItems, left: itemsLeft }); // sends two arrays to ejs, one named items and one named left. items contains the todoItems array, left contains the itemsLeft doc count
+
+  // The commented out code below is an example of the same method constructed WITHOUT using async/await syntax.
   // db.collection('todos').find().toArray()
   // .then(data => {
   //     db.collection('todos').countDocuments({completed: false})
