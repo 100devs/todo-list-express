@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html> <!--Tell browser this is HTML5-->
+<html lang="en"> <!--File and contents are in English-->
+<head> <!--metadata inside this tag-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+</head> <!--Close head tag-->
+<body> <!--Open the body, where content is placed-->
+    <!DOCTYPE html> <!--typo-->
+<html lang="en"> <!--typo-->
+<head> <!--typo-->
+    <meta charset="UTF-8"> <!--typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--typo-->
+    <title>Document</title> <!--typo-->
+</head> <!--typo-->
+<body> <!--typo-->
+    <h1>Todo List: </h1> <!--Most important thing: title of following content-->
+    <ul class="todoItems"> <!--Unordered list of items-->
+        <!--EJS will loop through todoItems, dropping completed class on spans that need it-->
+    <% for(let i=0; i < items.length; i++) {%> 
+        <li class="item"> 
+            <% if(items[i].completed === true) {%> 
+                <span class='completed'><%= items[i].thing %></span> 
+            <% }else{ %> 
+                <span><%= items[i].thing %></span> 
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span class='fa fa-trash'></span> 
+        </li> 
+    <% } %> 
+    </ul> <!--Close the UL-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--Use EJS to dynamically add how many items (documents) are within the collection-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--Next most important title-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--Form hits route /addTodo with a POST method to add it as a document-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--Take text input with the name todoItem-->
+        <input type="submit"> <!--Send the info on its way-->
+    </form> <!--Close form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--Talk to main.js after loading page-->
+</body> <!--End of content-->
+</html> <!--End of HTML on page-->
