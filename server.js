@@ -1,10 +1,12 @@
+
+//SETUP CONNECTIONS
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
-
+//CONNECT TO DATABASE
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
@@ -15,12 +17,13 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         db = client.db(dbName)
     })
     
+    //MIDDLEWARE
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+//GET REQUEST
 app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
@@ -34,7 +37,7 @@ app.get('/',async (request, response)=>{
     // })
     // .catch(error => console.error(error))
 })
-
+//POST REQUEST
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -43,7 +46,7 @@ app.post('/addTodo', (request, response) => {
     })
     .catch(error => console.error(error))
 })
-
+//PUT REQUEST
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -77,7 +80,7 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+// DELETE REQUEST
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
@@ -87,7 +90,7 @@ app.delete('/deleteItem', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+//CONNECT TO SERVER
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
