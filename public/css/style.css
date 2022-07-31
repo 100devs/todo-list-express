@@ -1,7 +1,7 @@
 h1{
     color: red;
 }
-/*h1 changes the color of the heading. In this case it's the title. */
+/*h1 (selector) and color:red (attribute and value) change the color of the heading. In this case it's the title. */
 .completed{
     color: gray;
     text-decoration: line-through;
