@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html><!--Tell browser what type of document will be shown-->
+<html lang="en"><!--Starts html tag. Language is English-->
+<head><!--Starts head tag to store metadata-->
+    <meta charset="UTF-8"><!--Indicates character set to be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Sets compatibility for Microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Sets width of viewing area to device width-->
+    <title>Document</title><!--Assign title that appears on browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Creates link to Font Awesome library-->
+    <link rel="stylesheet" href="css/style.css"><!--Creates link to local stylesheet-->
+</head><!--Closes head tag-->
+<body><!--Typo?-->
+    <!DOCTYPE html><!--Typo?-->
+<html lang="en"><!--Typo?-->
+<head><!--Typo?-->
+    <meta charset="UTF-8"><!--Typo?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Typo?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Typo?-->
+    <title>Document</title><!--Typo?-->
+</head><!--Typo?-->
+<body><!--Main section for content displayed-->
+    <h1>Todo List: </h1><!--Main title-->
+    <ul class="todoItems"><!--Create unordered list and assigned class as todoItem-->
+    <% for(let i=0; i < items.length; i++) {%><!--Use EJS to start a FOR loop-->
+        <li class="item"><!--Create a list item and assigned class of item-->
+            <% if(items[i].completed === true) {%><!--EJS check if the item has the completed property-->
+                <span class='completed'><%= items[i].thing %></span><!--Create an inline element with assigned class of completed. EJS to display name of task-->
+            <% }else{ %><!--EJS ELSE clause of FOR statement-->
+                <span><%= items[i].thing %></span><!--Add EJS to display the name of the task with no class-->
+            <% } %>  <!--EJS closes ELSE statement-->  
+            <span class='fa fa-trash'></span><!--Display trash icon-->
+        </li><!--Closes list item-->
+    <% } %><!--EJS closes FOR loop-->
+    </ul><!--Closes unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--Creates second level header with text and uses EJS to display a variable showing how many tasks are left-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--Creates second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--Create form with a POST method that goes to /addToDo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--Create an input box that accepts text with default text inside form. Given name for later reference-->
+        <input type="submit"><!--Gives the form a submit button-->
+    </form><!--Closes form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--links to main.js file-->
+</body><!--Closes body tag-->
+</html><!--Closes html tag-->
