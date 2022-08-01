@@ -18,7 +18,7 @@ Array.from(itemCompleted).forEach((element)=>{ // since itemCompleted is a nodel
 
 })  //close our loop
 
-async function deleteItem(){  /*delcare an asyc function
+async function deleteItem(){  /*declare an asyc function
  wait on some info to come in before running this async function; force it to wait*/
     const itemText = this.parentNode.childNodes[1].innerText //looks inside the list item (li), element 0 would be the indent so we select 1 instead, extract the text value (innertext)
     //comments may be ruining this parentNode childnode relationship
