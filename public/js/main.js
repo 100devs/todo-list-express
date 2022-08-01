@@ -14,24 +14,24 @@ Array.from(itemCompleted).forEach((element)=>{ // creating an array from complet
     element.addEventListener('click', markUnComplete) // add event listener to only completed items; listens for a click and calls a function called markUnComplete
 })
 
-async function deleteItem(){ // declare an asynchronous function (change flow of function - allow for other tasks to run)
+async function deleteItem(){ // declare an asynchronous function (change flow of execution - allow for other tasks to run)
     const itemText = this.parentNode.childNodes[1].innerText // looks inside of the list item to extract the text value only of the specified list item
-    try{
-        const response = await fetch('deleteItem', {
-            method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              'itemFromJS': itemText
-            })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+    try{ // starting a try block to do something
+        const response = await fetch('deleteItem', { // creates a response variable that waits on a fetch to get data from the result of deleteItem route
+            method: 'delete', // sets the CRUD method for the route
+            headers: {'Content-Type': 'application/json'}, // specifying the type of content expected which is JSON
+            body: JSON.stringify({ // declare the message content being passed and stringify that content
+              'itemFromJS': itemText // setting the content of the body to the inner text of the list item and naming it itemFromJS
+            }) // closing the body
+          }) //closing the object
+        const data = await response.json() // waiting on JSON from the response to be converted
+        console.log(data) // log data to the console
+        location.reload() // refreshes page to update what is displayed
 
-    }catch(err){
-        console.log(err)
-    }
-}
+    }catch(err){ // if an error occurs, pass the error into the catch block
+        console.log(err) // log error to the console
+    } // close catch block
+} // end the function
 
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
