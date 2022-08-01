@@ -128,9 +128,9 @@ app.put('/markUnComplete', (request, response) => {
     // Promise chain to deal with the result
     .then((result) => {
       // Log marked complete to terminal
-      console.log('Marked Complete');
+      console.log('Marked Uncomplete');
       // respond to client with marked complete JSON
-      response.json('Marked Complete');
+      response.json('Marked Uncomplete');
     })
     // Deal with error if operation is not successful, log error to terminal
     .catch((error) => console.error(error));
