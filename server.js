@@ -102,24 +102,37 @@ app.put('/markComplete', (request, response) => {
     .catch((error) => console.error(error));
 });
 
+// Handling PUT request to route /markUnComplete
 app.put('/markUnComplete', (request, response) => {
+  // Access the todos collection
   db.collection('todos')
+    //   update one document from the collection
     .updateOne(
+      // document to update is found via itemFromJS from the request body
       { thing: request.body.itemFromJS },
+
       {
+        // Using set operator to update item
         $set: {
+          // Change item to 'uncomplete'
           completed: false,
         },
       },
       {
+        // sort all documents in collection in descending order by id
         sort: { _id: -1 },
+        // If document is not found it will not be created if upsert is set to false
         upsert: false,
       }
     )
+    // Promise chain to deal with the result
     .then((result) => {
+      // Log marked complete to terminal
       console.log('Marked Complete');
+      // respond to client with marked complete JSON
       response.json('Marked Complete');
     })
+    // Deal with error if operation is not successful, log error to terminal
     .catch((error) => console.error(error));
 });
 
