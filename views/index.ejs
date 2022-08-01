@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+<!DOCTYPE html><!--what type of doc we are displaying -->
+<html lang="en"><!--starting html tag and telling what language to use-->
+<head><!--opening head to store meta data-->
+    <meta charset="UTF-8"><!--indicates what character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--sets appropriate compatability for microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--sets WIDTH of available veiwing area to width of the device screen-->
+    <title>Document</title><!--assigning title in browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--creates a link to the font awsome icon libraray-->
+    <link rel="stylesheet" href="css/style.css"><!--creates link to stylesheet in public folder-->
+</head><!--closing header-->
+<body><!--typo-->
+    <!DOCTYPE html><!--typo-->
+<html lang="en"><!--typo-->
+<head><!--typo-->
+    <meta charset="UTF-8"><!--typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--typo-->
+    <title>Document</title><!--typo-->
+</head><!--typo-->
+<body><!--main section for the displayed app-->
+    <h1>Todo List: </h1><!--main title on page-->
+    <ul class="todoItems"><!--create an unordered list and assign class to the list -->
+    <% for(let i=0; i < items.length; i++) {%><!--use ejs to create for loop -->
+        <li class="item"><!--create a list item with a class for the item -->
+            <% if(items[i].completed === true) {%><!--ejs to check if an item in array with completed property is true-->
+                <span class='completed'><%= items[i].thing %></span><!--creating inline element with a class and adding ejs to display the name of the task-->
+            <% }else{ %><!--ejs for else of our if statement-->
+                <span><%= items[i].thing %></span> <!-- else display with no class-->
+            <% } %>    <!-- ejs to close the else statment-->
+            <span class='fa fa-trash'></span><!--display font icon of trash can inside of span-->
         </li>
-    <% } %>
-    </ul>
+    <% } %><!--ejs to close the for loop-->
+    </ul><!--closing unorderlist-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!-- creates second level heading tag with text and using ejs to display number to show how many tasks are "left"-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--adding anothe secondle lvl heading -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--creating a form with a post method when submitted will  route to /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--creating an input box that accepts texts with default text inside of it before typing. the input box is given a name for later reference-->
+        <input type="submit"><!--gives the form a submit button-->
+    </form><!--closing form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--linking to main.js file in the js folder in the fublic folder-->
+</body><!--close body-->
+</html><!--close html tag-->
