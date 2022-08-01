@@ -1,47 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
-
-    <h2>Left to do: <%= left %></h2>
-
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+<!DOCTYPE html> <!----stating that this is a html 5 document-->
+<html lang="en"> <!----starting the html tag and stating that the language is english--->
+<head> <!--- start of the head section, will not be displayed, storing our metadata-->
+    <meta charset="UTF-8"> <!----indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!---helps with compatability/ tells MSFT browsers which version of IE to render the page as----->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!----allows for content decisions/screen resizing. Allows the display to be the same size of the device width, like a mobile phone ect. Don't care about the height because you can easily scroll down-->
+    <title>Document</title> <!----title of the webpage shown in search results, shown in the browser tab--->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!----gives us access to font-awesome icon library, like the trash can icons-->
+    <link rel="stylesheet" href="css/style.css"> <!----links the ejs to the local css styling sheet in the public folder, to allow for styling to the page-->
     
+</head> <!---closing tag for head-->
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+<body> <!------what is the body tag doing?
+    its our main section for content displayed-->
+
+
+
+    <!DOCTYPE html> <!----this might be a typo-->
+<html lang="en"> <!----this might be a typo-->
+<head> <!----this might be a typo-->
+    <meta charset="UTF-8"> <!----this might be a typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!----this might be a typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!----this might be a typo-->
+    <title>Document</title> <!----this might be a typo-->
+</head> <!----this might be a typo-->
+
+<body>
+
+    <h1>Todo List: </h1> <!----what is this line doing? its a main heading/title displayed on page-->
+    <ul class="todoItems"><!-----unordered list thats assigning a class todoItems to the list---->
+    <% for(let i=0; i < items.length; i++) {%> <!-------use EJS to start a for loop-->
+        <li class="item"> <!----created a list item with a class of item-->
+            <% if(items[i].completed === true) {%> <!--Using EJS to do an if else statement, check if the item in an array is flagged as completed/true------->
+                <span class='completed'><%= items[i].thing %></span> <!---creating an inline element with a class of completed, insideof this span is some EJS to dislay the name of the task. Class of completed will lead to the item being crossed out--->
+            <% }else{ %> <!----EJS for the else clause of if statement---->
+                <span><%= items[i].thing %></span> <!--- if it isn't true then do this. list the item WITHOUT the class of completed----->
+            <% } %>    <!----EJS to close else statement-->
+            <span class='fa fa-trash'></span> <!---span for the trash icon so we can delete the item, display font awesomeicon of trash can inside a span.Part where we click on the trash can and it gets deleted will be written out in our javascript file-->
+        </li> <!----closing our list item-->
+    <% } %> <!-----closing the EJS for the for loop-->
+    </ul> <!----closing the unordered list-->
+
+
+    <h2>Left to do: <%= left %></h2> <!----heading level 2 with EJS that displays how many tasks are left to complete-->
+
+    <h2>Add A Todo:</h2> <!---- second level heading that says add a todo-->
+
+    <form action="/addTodo" method="POST"><!---creating a form with a POST method that when submitted goes to the route /addTodo. Post means to create, its the C in CRUD.
+        
+        why do we care about the route? the rouse is defined in our server, so the server knows what to do. Want to hit the point in the server where it will know what to do, make sure the right puzzle piece matches our puzzle piece in the server---->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!------creating a text input field which allows text, 
+            placeholder is the text that appears when the form is empty, 
+            name for input box so we can reference it later--->
+        <input type="submit"> <!------gives the form a submit button, before we'd have to use a button tag but the form naturally gives us this submit button. Forms lets you have built in ways to toss info to servers, so its handy to use, doesn't break seperation of concerns---->
+    </form>
+<!----in CRUD what time would you use a button instead of form? form can't update natively, no put in  method with forms-->    
+
+    <script src='js/main.js'></script> <!------links to the main js file in the js folder in the public folder, didn't have to spell out public/js ect-->
+</body> <!-----closing tag for body-->
+</html> <!----closing tag for html-->
