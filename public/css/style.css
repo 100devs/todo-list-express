@@ -1,7 +1,13 @@
-h1{
+/* Add h1 css styling */
+
+h1 {
     color: red;
 }
-.completed{
+
+
+/* Add completed class styling */
+
+.completed {
     color: gray;
     text-decoration: line-through;
 }
