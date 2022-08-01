@@ -1,47 +1,57 @@
-<!DOCTYPE html>
+<!-- Tells browser this is a HTML5 page -->
+<!DOCTYPE html> 
+<!-- Language is English. This is used by screen readers and for multilingual websites -->
 <html lang="en">
+    <!-- Head contains metadata not displayed in the page body -->
 <head>
+    <!-- UTF-8 character set -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title shown at the top of the browser -->
     <title>Document</title>
+    <!-- Links to font-awesome stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Links to our CSS file -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- Things shown in the browser window: -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Title/heading -->
     <h1>Todo List: </h1>
+    <!-- List of todo items, class 'todoItems' -->
     <ul class="todoItems">
+        <!-- EJS code - loop through 'items', which will be passed in when the page is rendered by the server -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Individual list item, class 'item'-->
         <li class="item">
+            <!-- Switch based on whether item is completed or not -->
             <% if(items[i].completed === true) {%>
+                <!-- If completed, show span with class 'completed' -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- If not, show span with no classes -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- Trash button (font-awesome) -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- Subheading - shown number of items left to do -->
     <h2>Left to do: <%= left %></h2>
-
+<!-- Heading for form -->
     <h2>Add A Todo:</h2>
-
+<!-- Form for adding new items -->
     <form action="/addTodo" method="POST">
+        <!-- Text input for new item -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Submit button -->
         <input type="submit">
     </form>
     
-
+<!-- Link in js/main.js -->
     <script src='js/main.js'></script>
 </body>
 </html>
