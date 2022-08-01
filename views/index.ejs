@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><!--Telling the browser what type of document will be done -->
+<html lang="en"><!-- setting the language to english and START HTML Tag -->
+<head><!--Start header TAG to store our meta data -->
+    <meta charset="UTF-8"><!-- indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Sets approp. compatibility for microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--width of content should be the width of device -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!-- font awesome icon library-->
+    <link rel="stylesheet" href="css/style.css"><!-- creates a link to the local stylesheet -->
+</head><!-- This may be a Type-->
+<body><!-- main section for content displayed-->
     <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title>Document</title><!-- This may be a typo-->
+</head><!-- This may be a Type-->
+<!-- main section for content displayed-->
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+    <h1>Todo List: </h1> <!--Main title displayed on page -->
+    <ul class="todoItems"><!-- Create unordered list and assign class to the list-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- use ejs to start a for loop-->
+        <li class="item"><!--create a list item with a class of item -->
+            <% if(items[i].completed === true) {%> <!-- EJS to check if an item in an array with a completed property is true-->
+                <span class='completed'><%= items[i].thing %></span> <!-- Creating an inline element w/ a class and adding EJS to display the name of the task -->
+            <% }else{ %> <!-- adding EJS to display the name of the task with no class -->
+                <span><%= items[i].thing %></span> <!-- EJS to close the ELSE statement-->
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span class='fa fa-trash'></span><!-- display font awesome icon of trash can inside a span-->
+        </li><!-- closing our list item-->
+    <% } %><!-- ejs to close our FOR loop-->
+    </ul><!-- closing our unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!-- Creates a second level heading tag w/ text and using EJS to display a variable showing how many tasks are left to complete -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--Create a second level header -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--Create a form w/ a POST method that goes to the /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--Create an Input box that accepts text  -->
+        <input type="submit"><!-- Gives the form a submit Button-->
+    </form><!--Close the form tag -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--Link to main.JS File in  -->
+</body><!--Close body tag  -->
+</html><!--Close HTML TAG  -->
