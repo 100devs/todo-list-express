@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express') // making it possible to use express in this file
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
