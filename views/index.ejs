@@ -1,43 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><!--Tells browser what type of document we are using-->
+<html lang="en"><!--Setting language to english-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8"><!--indicates what caector se should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--Sets approprite compatabilty for microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Sets the width of avalible viewing area for the device screen-->
+    <title>Document</title><!--Assigns a title that appeas on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--creates a link to the font awesome libary-->
+    <link rel="stylesheet" href="css/style.css"><!--Creates a link to the local stylesheet-->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
+<body><!--main section for content being displayed-->
+    <!DOCTYPE html><!--this may be a typo-->
+<html lang="en"><!--this may be a typo-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8"><!--this may be a typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--this may be a typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--this may be a typo-->
+    <title>Document</title><!--this may be a typo-->
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+<body><!--main section for content being displayed-->
+    <h1>Todo List: </h1><!--main heading-->
+    <ul class="todoItems"> <!--Create unordered list and assign class to the list-->
+        <!--Running a loop with EJS as many times as the items inside 'items'-->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+        <li class="item"><!--Created a list item-->
+            <!--Creating an li for each iteration, with class 'item'-->
+            <% if(items[i].completed === true) {%><!--EJS to check if an item in array witha compleaed property is true-->
+                <span class='completed'><%= items[i].thing %></span><!--Creating an inline element with a class and adding EJS to display the name of the task-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
+                <!--Else, just create the item with class complete stes-->
+                <p><%= items[i].thing %></p>
+            <% } %>  
+            <!--Create a span that is actually a font awesome icon of a trashcan-->  
             <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+    <% } %><!--EJS to close FOR loop-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--Creates a  second level heading tag with text and using EJS to display a varible showing how many tasks are left to complete-->
 
-    <h2>Add A Todo:</h2>
-
+    <h2>Add A Todo:</h2><!--Create a second level header-->
+<!--Form that sends a POST request to the route //addTodo-->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--An input field that takes the todo item, and sends it to the server under the name todoItems-->
+        <!-- A simple do Item-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--create an input box that accepd text with defualt text-->       
         <input type="submit">
     </form>
     
