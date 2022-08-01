@@ -20,7 +20,10 @@ app.use(express.static("public")); // sets the folder that holds the static file
 app.use(express.urlencoded({ extended: true })); // built in middleware  to  recognise incoming requests objects as strings or arrays
 app.use(express.json()); // by default express parses incoming requests with JSON payloads and is based upon the bodyparser.
 
+//app.get handles all the get request on this route at the address specified as the first argument
+
 app.get("/", async (request, response) => {
+  // purpose of the call back is to handle the request and response object
   const todoItems = await db.collection("todos").find().toArray();
   const itemsLeft = await db
     .collection("todos")
