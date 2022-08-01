@@ -44,40 +44,50 @@ async function deleteItem(){  /*delcare an asyc function
     } //close the catch block
 } // end the function
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+async function markComplete(){ //ONLY THING DIFFERENT IS A DIFFERENT ROUTE AND DIFFERENT METHOD
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside the list item (li), element 0 would be the indent so we select 1 instead, extract the text value (innertext)
+    try{/* starting a try block to do something */
+        const response = await fetch('markComplete', {  //creates a response variable that waits on a fetch to get data from the result of the markComplete route
+            method: 'put', //this is a put/update request, sets the CRUD method for the route
+            headers: {'Content-Type': 'application/json'}, //states the content will be a json string, what type of content to expect
+            body: JSON.stringify({ //declare the message content being passed and stringify that content
+                'itemFromJS': itemText //will be passed inside the body, itemText variable was declared earlier // setting the content of thebody to the inner tet of the list item, and namin it 'itemFromJS'
+            }) //closing the body
+          }) //closing the object
+        const data = await response.json() //waiting on the server to respond with json and storing it in the data variable
+        //waiting on the JSOn from the responseto be converted
+        console.log(data) //log the result to the console
+        location.reload() //reloads the page to update what is displayed
 
-    }catch(err){
-        console.log(err)
-    }
-}
+    }catch(err){ //if an error occurs, pass the error into the catch block
+        console.log(err)  //log the error to the console
+    }  //close the catch block
+}// end the function
 
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
 
-    }catch(err){
-        console.log(err)
-    }
-}
+//next function is the SAME as above, just a different route
+async function markUnComplete(){ // declare an asynchronous function
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside the list item (li), element 0 would be the indent so we select 1 instead, extract the text value (innertext)
+    try{ /* starting a try block to do something */
+        const response = await fetch('markUnComplete', { //creates a response variable that waits on a fetch to get data from the result of the markUnComplete route
+            method: 'put', //this is a put/update request, sets the CRUD method for the route
+            headers: {'Content-Type': 'application/json'}, //states the content will be a json string, what type of content to expect
+            body: JSON.stringify({  //declare the message content being passed and stringify that content
+                'itemFromJS': itemText //will be passed inside the body, itemText variable was declared earlier // setting the content of thebody to the inner tet of the list item, and namin it 'itemFromJS'
+
+            })  //closing the body
+          }) //closing the object
+        const data = await response.json()  //waiting on the server to respond with json and storing it in the data variable
+        //waiting on the JSOn from the responseto be converted
+        console.log(data) //log the result to the console
+        location.reload() //reloads the page to update what is displayed
+
+    }catch(err){ //if an error occurs, pass the error into the catch block
+        console.log(err) //log the error to the console
+    } //close the catch block
+}// end the function
+
+
+//combination of our css styling and EJS results in completed things being crossed out and grey instead of this javascript document
+//this main.js is basically just a launchpad to send requests to the server
+//ejs isn't violating seperation of concerns because EJS is literally embedded javascript, it is its own language. 3 JavaScript kids in an HTML trenchcoat
