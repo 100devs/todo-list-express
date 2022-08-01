@@ -24,11 +24,11 @@ app.use(express.json()); // by default express parses incoming requests with JSO
 
 app.get("/", async (request, response) => {
   // purpose of the call back is to handle the request and response object
-  const todoItems = await db.collection("todos").find().toArray();
+  const todoItems = await db.collection("todos").find().toArray(); //queries the database and converts the results to an array
   const itemsLeft = await db
     .collection("todos")
-    .countDocuments({ completed: false });
-  response.render("index.ejs", { items: todoItems, left: itemsLeft });
+    .countDocuments({ completed: false }); //countDocuments queries the database and counts documents  with the
+  response.render("index.ejs", { items: todoItems, left: itemsLeft }); // sends back the respnse
   // db.collection('todos').find().toArray()
   // .then(data => {
   //     db.collection('todos').countDocuments({completed: false})
