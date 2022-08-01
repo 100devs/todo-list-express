@@ -1,6 +1,8 @@
+/* changes the main header color to red*/
 h1{
     color: red;
 }
+/*targets the "completed" class and changes the color to gray and gives it a text decoration of "strikethrough" (line through)*/ 
 .completed{
     color: gray;
     text-decoration: line-through;
