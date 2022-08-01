@@ -15,7 +15,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
   }
 );
 /* This batch sets the middleware  that the express application uses ,between reciving the req and res */
-app.set("view engine", "ejs");
+app.set("view engine", "ejs"); //sets ejs as the views engine, creates templates for server side rendered html
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
