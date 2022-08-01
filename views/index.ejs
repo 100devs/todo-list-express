@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!--opening/initiating our html file/document-->
+  <html lang="en"> <!--this shows the language that is used on the whole page, while starting the html tag-->
+<head> <!--we are starting the head tag to store our metadata -->
+    <meta charset="UTF-8"> <!--it declares the encoding type for the page characters-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--sets compatibility for microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sets the width of the available  viewing area to the width of the device screen-->
+    <title>Document</title>  <!--the title here shows on the top of the tab when the file has been loaded-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- this link is associated with the font of the whole document-->
+    <link rel="stylesheet" href="css/style.css"> <!--Here we link the local styling done on the stylesheet (style.css file)-->
 </head>
+<body> <!--main section for content display-->
+    <!DOCTYPE html> <!--Here i dont know why there are two doctype declarations-->
+<html lang="en"> <!--this may be a structure typo-->
+<head> <!--this may be a structure typo-->
+    <meta charset="UTF-8"> <!--this may be a structure typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--this may be a structure typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--this may be a structure typo-->
+    <title>Document</title><!--this may be a structure typo--> 
+</head> <!--this may be a structure typo--> 
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+    <h1>Todo List: </h1> <!--the section will display all todo list entries-->
+    <ul class="todoItems"> <!--createa unordered list and assign the class to the list-->
+    <% for(let i=0; i < items.length; i++) {%> <!--the items will be listed based on the criteria within the EJS for loop based on the number of items in the list of entered to-dolist items--> 
+        <li class="item"> <!--create a list item with a class of item-->>
+            <% if(items[i].completed === true) {%> <!--all completed items will have to meet this condition to be marketed as completed else they will be displayed next-->
+                <span class='completed'><%= items[i].thing %></span> <!--All completed items will be displayed by this operation-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!--adding EJS to display the name of the task with no class-->
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span class='fa fa-trash'></span> <!--this is the trash icon that will delete the entries selected-->
+        </li> <!--closing our list item-->
+    <% } %> <!--closing our for loop-->
+    </ul> <!--closing our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--the heading will display the number of tasks not marked as completed directly from the database through EJS rendering-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--create the header for the adding to list section-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--this form is where all to do task are entered into the database and submited using the post method to the 'addToDo' route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--this is where we enter our input text and giving it a unique input box name for referencing-->
+        <input type="submit"> <!--this will submit the input which will create the entry into our database-->
+    </form> <!--the end of the form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--links to the main.js folder in the the public flder-->
+</body> <!--closing our body tag-->
+</html> <!--closing our html tag-->
