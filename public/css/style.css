@@ -1,7 +1,8 @@
-h1{
+h1{/*selects every h1 in the html doc and turns the element red*/
     color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+
+.completed{ /*targets any item with a class of completed and applies style elements*/
+    color: gray;/* sets text of targeted class to gray */
+    text-decoration: line-through; /* sets text style of targeted class to be struck through */
+}/* closing the selector */
