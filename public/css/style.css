@@ -1,7 +1,7 @@
-h1{
+h1{ /* selecting any h1 and giving it the property of color red */
     color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed{ /*Targets an item with a CLASS of completed */
+    color: gray;/* Changes text color to grey */
+    text-decoration: line-through; /*Changes text decoration to apply strikethrough */
 }
