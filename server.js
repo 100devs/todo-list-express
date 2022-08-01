@@ -136,16 +136,25 @@ app.put('/markUnComplete', (request, response) => {
     .catch((error) => console.error(error));
 });
 
+// Handle DELETE request on the /deleteItem route
 app.delete('/deleteItem', (request, response) => {
+  // Access the todos collection
   db.collection('todos')
+    //   Delete one document from the collection, find it via the itemFromJS passed in the request body
     .deleteOne({ thing: request.body.itemFromJS })
+    // Promise chain and handle the result
     .then((result) => {
+      // Log todo deleted to terminal
       console.log('Todo Deleted');
+      // respond to client with todo deleted JSON
       response.json('Todo Deleted');
     })
+    // Deal with error if operation is not successful, log error to terminal
     .catch((error) => console.error(error));
 });
 
+// listen on environment variable defined PORT or development PORT for request
 app.listen(process.env.PORT || PORT, () => {
+  // Log to terminal that server is running when the server is up and listening
   console.log(`Server running on port ${PORT}`);
 });
