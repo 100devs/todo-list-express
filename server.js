@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }))
 // Causes server to recognize the incoming POST or PUT as a JSON object
 app.use(express.json())
 
-// The application starts from the root (or base) with an async function
+// The application starts from the root (or base) with an async function; parameters include "request" and "response"
 app.get('/',async (request, response)=>{
     // Declares a variable named "todoItems" which contains awaited responses and stores collection to do items as an array.
     const todoItems = await db.collection('todos').find().toArray()
@@ -53,59 +53,93 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+// The application continues from the route of "/addTodo" whenever a post needs to be added; parameters include "request" and "response"
 app.post('/addTodo', (request, response) => {
+    // Calls on MongoDB collection called "Todos" and inserts a doc with a key called "thing" from the form in the index.ejs file; this takes place whenever an item is NOT completed (ergo the "completed: false")
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+    // The result is passed as a parameter
     .then(result => {
+        // When added successfully, "Todo Added" will appear in the console
         console.log('Todo Added')
+        // Will take users back home to the main (root) directory 
         response.redirect('/')
     })
+    // If an error were to appear, it is checked for and message containing an error will appear in the console
     .catch(error => console.error(error))
 })
 
+// The application continues from the route of "/markComplete" whenever a post needs to be marked as complete; parameters include "request" and "response"
 app.put('/markComplete', (request, response) => {
+     // Calls on MongoDB collection called "Todos" and updates the corresponding doc with the key called "thing" from the form in the index.ejs file; this takes place whenever an item IS completed.
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        // sets
         $set: {
+            // the completed item to "true" (which will mark it off of the list)
             completed: true
           }
     },{
+        // sorts the collections docs by their individual IDs in descending order
         sort: {_id: -1},
+        // This makes sure that the doc is NOT updated and there is not another doc that is inserted.
         upsert: false
     })
+    // Once the request is completed, "result" is passed as a parameter 
     .then(result => {
+        // Prints to console that item in question has been marked as completed
         console.log('Marked Complete')
+        // Shows task that has been marked as completed in JSON form.
         response.json('Marked Complete')
     })
+     // If an error were to appear, it is checked for and message containing an error will appear in the console
     .catch(error => console.error(error))
 
 })
 
+// The application continues from the route of "/markUnComplete" whenever a post needs to be marked as incomplete; parameters include "request" and "response"
 app.put('/markUnComplete', (request, response) => {
+    //  Calls on MongoDB collection called "Todos" and updates the corresponding doc with the key called "thing" from the form in the index.ejs file; this takes place whenever an item IS NOT completed.
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        // sets
         $set: {
+            // the completed item to "false" (which will keep it on the list as it is NOT complete)
             completed: false
           }
     },{
+        // sorts the collections docs by their individual IDs in descending order
         sort: {_id: -1},
+        // This makes sure that the doc is NOT updated and there is not another doc that is inserted.
         upsert: false
     })
+    // Once the request is marked as NOT completed, "result" is passed as a parameter 
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        // Prints to console that item in question has been marked as incomplete
+        console.log('Marked Incomplete')
+        // Shows task that has been marked as incomplete in JSON form
+        response.json('Marked Incomplete')
     })
+     // If an error were to appear, it is checked for and message containing an error will appear in the console
     .catch(error => console.error(error))
 
 })
 
+// The application continues from the route of "/deleteItem" whenever a post needs to be deleted; parameters include "request" and "response"
 app.delete('/deleteItem', (request, response) => {
+    //  Calls on MongoDB collection called "Todos" and deletes the corresponding doc with the key called "thing" from the form in the index.ejs file; this takes place whenever an item needs to be removed.
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+     // Once the request is marked for deletion, "result" is passed as a parameter
     .then(result => {
+        //  Prints to console that item in question has been marked for deletion
         console.log('Todo Deleted')
+        // Shows task that has been marked for deletion in JSON form
         response.json('Todo Deleted')
     })
+    // If an error were to appear, it is checked for and message containing an error will appear in the console
     .catch(error => console.error(error))
 
 })
 
+// Application listens for either the port number that the computer chooses or the port number that has been supplied within the code.
 app.listen(process.env.PORT || PORT, ()=>{
+    // Prints message to the console: `Server running on port ${PORT}`; the port that application is running on appears within the curly braces.
     console.log(`Server running on port ${PORT}`)
 })
