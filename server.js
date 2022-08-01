@@ -89,6 +89,7 @@ app.delete('/deleteItem', (request, response) => { // Calls an asynchronous func
     .catch(error => console.error(error)) // If something doesn't work return an error
 }) // End of the async function
 
+
 app.listen(process.env.PORT || PORT, ()=>{ // start the express server and check for the Port in the env file or default to the variable set
     console.log(`Server running on port ${PORT}`) // confirm the sever is running and on what port by console logging it
 }) // End of the listen function

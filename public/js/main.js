@@ -65,7 +65,6 @@ async function markUnComplete(){ // Declares an asynchronous function called mar
         const data = await response.json() // Creates and assigns a variable of data to an await response promise with a json body to be converted
         console.log(data) // console logging the value of data
         location.reload() // reloads the current page to update what is displayed
-
     }catch(err){ // a catch for errors as part of the try block if an error occurs
         console.log(err) // console logging the error
     } // Ends the catch
