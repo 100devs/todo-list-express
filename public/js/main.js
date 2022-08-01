@@ -1,83 +1,87 @@
-const deleteBtn = document.querySelectorAll(".fa-trash") // creates a variable containing everything with the .fa-trash class applied to it
-const item = document.querySelectorAll(".item span") // creates a variable for all spans within the .item class
-const itemCompleted = document.querySelectorAll(".item span.completed") // creates a variable for the spans that belong to the .completed class within the .item class
+const deleteBtn = document.querySelectorAll(".fa-trash") // creates a variable and assigning it to a selection of all elements with a class of "fa-trash"
+const item = document.querySelectorAll(".item span") // creates a variable and assigns it to a selection of all span tags inside of a parent that has a class of item
+const itemCompleted = document.querySelectorAll(".item span.completed") // creates a variable and assigns it to a selection of all span tags with a class of completed that are inside a parent with a class of item
 
 Array.from(deleteBtn).forEach(element => {
-    // loops through all delete button elements
-    element.addEventListener("click", deleteItem) // adds smurfs to listen for clicks and run deleteItem function
-})
+    // creates an array from our selection that was a node list and starts a loop with forEach
+    element.addEventListener("click", deleteItem) // add an event listener to the current item that waits for a click and then calls a function called deleteItem
+}) // close our loop
 
 Array.from(item).forEach(element => {
-    // loops through all item span elements
-    element.addEventListener("click", markComplete) // adds smurfs to listen for clicks and run markComplete function
-})
+    // creates an array from our selection that was a node list and starts a loop with forEach
+    element.addEventListener("click", markComplete) // add an event listener to the current item that waits for a click and then calls a function called markComplete
+}) // close our loop
 
 Array.from(itemCompleted).forEach(element => {
-    // loops through all item spans that are complete
-    element.addEventListener("click", markUnComplete) // adds smurfs to listen for clicks and run markUnComplete function
-})
+    // creates an array from our selection that was a node list and starts a loop with forEach
+    element.addEventListener("click", markUnComplete) // add an event listener to only completed items that waits for a click and then calls a function called markUnComplete
+}) // close our loop
 
 async function deleteItem() {
-    const itemText = this.parentNode.childNodes[1].innerText //assigns the todo to the itemText variable dynamically
+    // declaring an asynchronous function called deleteItem
+    const itemText = this.parentNode.childNodes[1].innerText // looks inside of the list item and grabs only the inner text within the list span
     try {
-        //try block if promise is fulfilled
+        // starting a try block to do something
         const response = await fetch("deleteItem", {
-            //uses FETCH API to delete todos
-            method: "delete", //sets the method type to delete
-            headers: { "Content-Type": "application/json" }, //tells server that JSON data will be sent over
+            // creates a response variable that waits on a fetch to get data from the result of deleteItem route and also starting an object
+            method: "delete", // sets the CRUD method for the route
+            headers: { "Content-Type": "application/json" }, // specifying the type of content expected, which is json
             body: JSON.stringify({
-                itemFromJS: itemText, //converts todo item into JSON to send to the server
-            }),
-        })
-        const data = await response.json() // awaits the resolution of response.json(), then assigns the result to const data
-        console.log(data) //console logs the json response
-        location.reload() // refreshes the page
+                // declare the message body being passed, and stringify that content
+                itemFromJS: itemText, // setting the content of the body to the inner text of the list item and naming it 'itemFromJS'
+            }), // closing the body
+        }) // closing the object
+        const data = await response.json() // waiting on JSON from the response to be converted
+        console.log(data) // log the result to the console
+        location.reload() // reloads the page to update what is displayed
     } catch (err) {
-        // catches any errors
-        console.log(err) // console logs the error
-    }
-}
+        // if an error occurs, pass the error into the catch block
+        console.log(err) // log the error to the console
+    } // close the catch block
+} // end the function
 
 async function markComplete() {
-    // allows for async/await syntax inside of markComplete() function
-    const itemText = this.parentNode.childNodes[1].innerText //assigns the todo to the itemText variable dynamically
+    // declaring an asynchronous function called markComplete
+    const itemText = this.parentNode.childNodes[1].innerText // looks inside of the list item and grabs only the inner text within the list span
     try {
-        // try block for if the promise is fulfilled
+        // starting a try block to do something
         const response = await fetch("markComplete", {
-            //uses Fetch API to update task to completed
-            method: "put", // sets the method to put
-            headers: { "Content-Type": "application/json" }, //tells server that JSON data will be sent over
+            // creates a response variable that waits on a fetch to get data from the result of markComplete route and also starting an object
+            method: "put", // setting the CRUD method to UPDATE for the route
+            headers: { "Content-Type": "application/json" }, // specifying the type of content expected, which is json
             body: JSON.stringify({
-                itemFromJS: itemText, //converts data into JSON-string to be readable to the server
-            }),
-        })
-        const data = await response.json() // awaits the resolution of response.json(), then assigns the result to const data
-        console.log(data) // console logs the data variable
-        location.reload() // refreshes the page
+                // declare the message body being passed, and stringify that content
+                itemFromJS: itemText, // setting the content of the body to the inner text of the list item and naming it 'itemFromJS'
+            }), // closing the body
+        }) // closing the object
+        const data = await response.json() // waiting on JSON from the response to be converted
+        console.log(data) // log the result to the console
+        location.reload() // reloads the page to update what is displayed
     } catch (err) {
-        // catches any errors
-        console.log(err) // console logs the error
-    }
-}
+        // if an error occurs, pass the error into the catch block
+        console.log(err) // log the error to the console
+    } // close the catch block
+} // end the function
 
 async function markUnComplete() {
-    // async function to mark a task an not complete
-    const itemText = this.parentNode.childNodes[1].innerText //assigns the todo to the itemText variable dynamically
+    // declaring an asynchronous function called markUnComplete
+    const itemText = this.parentNode.childNodes[1].innerText // looks inside of the list item and grabs only the inner text within the list span
     try {
-        // try block for if the promise is fulfilled
+        /// starting a try block to do something
         const response = await fetch("markUnComplete", {
-            //uses Fetch API to update task to incomplete
-            method: "put", //sets method to put
-            headers: { "Content-Type": "application/json" }, //tells server that JSON data will be sent over
+            // creates a response variable that waits on a fetch to get data from the result of markUnComplete route and also starting an object
+            method: "put", // setting the CRUD method to UPDATE for the route
+            headers: { "Content-Type": "application/json" }, // specifying the type of content expected, which is json
             body: JSON.stringify({
-                itemFromJS: itemText, //converts todo item into JSON-string to send to the server
-            }),
-        })
-        const data = await response.json() // await the response data in json format and save it to the variable data
-        console.log(data) // console log the data variable
-        location.reload() // refreshes the page
+                // declare the message body being passed, and stringify that content
+                itemFromJS: itemText, // setting the content of the body to the inner text of the list item and naming it 'itemFromJS'
+            }), // closing the body
+        }) // closing the object
+        const data = await response.json() // waiting on JSON from the response to be converted
+        console.log(data) // log the result to the console
+        location.reload() // reloads the page to update what is displayed
     } catch (err) {
-        // catch block for if the promise is rejected
-        console.log(err) // console log the error
-    }
-}
+        // if an error occurs, pass the error into the catch block
+        console.log(err) // log the error to the console
+    } // close the catch block
+} // end the function

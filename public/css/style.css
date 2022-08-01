@@ -1,10 +1,13 @@
-h1{
-    color: red  
-/*   above line makes text color red     */
-}
-.completed{
-    color: gray;
-/*  above line makes the text color gray  */
-    text-decoration: line-through;
-/*  above line puts a line through a completed task  */
-}
+h1 {  /* selects any h1 tag in the ejs file */
+    color: red  /*  changes text color to red  */
+}  /* Closing our block, selector  */
+
+
+.completed {  /* targets any item with a class of completed */
+    color: gray;  /*  changes the text color to gray  */
+    text-decoration: line-through; /* applies strikethrough styling to text  */
+}  /* Closing our block, selector  */
+
+.item:hover {  /* selects any element with item class but only when it is hovered over due to the pseudo class  */
+    cursor: pointer;  /*  changes the cursor to a pointer when hover over this class  */
+}  /* Closing our block, selector  */

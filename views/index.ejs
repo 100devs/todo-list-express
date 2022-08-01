@@ -1,65 +1,74 @@
+<!-- This file is the main page of the application, rendering html in browser -->
 <!DOCTYPE html>
-<!-- sets doctype to html5-->
+<!-- sets doctype to html5, telling the browser what type of document will be shown-->
 <html lang="en">
-    <!--marks the entire html file as being written in english -->
+    <!-- sets the entire html file as being written in english and starts the html tag -->
     <head>
-        <!-- opening tag for the head, where the meta data goes -->
+        <!-- opening tag for the head, stores our meta data -->
         <meta charset="UTF-8" />
-        <!-- sets the charset to standard UTF-8 -->
+        <!-- sets the charset to standard UTF-8, its our encoding type for our characters, what set of characters we should use -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Sets appropriate compatability for microsoft browsers -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- helps with responsive design, reacts to different devices-->
+        <!-- sets the width of avaialable viewing area to the width of the device screen, helps with responsive design, reacts to different devices-->
         <title>Document</title>
-        <!--sets document title-->
+        <!--sets document title, it is displayed on the browser tab-->
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         />
-        <!--links to Font-Awesome for icons/css-->
+        <!--links to Font-Awesome for stylesheet which gives us access to icons/css library-->
         <link rel="stylesheet" href="css/style.css" />
-        <!--links to styleshet-->
+        <!--links to local stylesheet that is found in our public folder-->
     </head>
-    <!--closes head-->
+    <!--closes head tag-->
     <body>
-        <!-- opening tag for the Body, where everything that is visible goes -->
+        <!-- opening tag for the body, where everything that is visible goes, main section for content displayed -->
         <h1>Todo List:</h1>
-        <!-- sets h1 to contain "Todo List:"-->
+        <!-- main title displayed on page, sets h1 to contain "Todo List:"-->
         <ul class="todoItems">
-            <!--opens an unordered list with a class of todoItems-->
-            <!--   loops through items from database get request and creates list elements for each item     -->
+            <!--creates an unordered list with a class of todoItems-->
             <% for(let i=0; i < items.length; i++) {%>
-            <!-- loops through the items array passed to EJS-->
+            <!--   use ejs to start a for loop, loops through items from database get request and creates list elements for each item, loops through the items array passed to EJS    -->
             <li class="item">
+                <!-- Create a list item with a class of item -->
                 <% if(items[i].completed === true) {%>
-                <!-- checks to see if each item in the loop has a value of completed: true  -->
+                <!-- EJS that checks to see if each item in an array has a value of completed: true  -->
                 <span class="completed"><%= items[i].thing %></span>
-                <!-- if so, adds the span class .completed and puts the item in a span  -->
+                <!-- if so, creates an inline element with a class of completed and adds EJS to display the name of the task  -->
                 <% }else{ %>
+                <!-- EJS for the else clause of our if statement -->
                 <span><%= items[i].thing %></span>
-                <!-- if not, adds the item as a span by itself  -->
+                <!-- if not, adds EJS to display the name of the task with NO CLASS  -->
                 <% } %>
+                <!-- EJS to close the else statement -->
                 <span class="fa fa-trash"></span>
-                <!-- adds a trash can icon to the end of every element  -->
+                <!-- Display Font Awesome Icon of trash can inside a span to the end of every element  -->
             </li>
+            <!-- Closes list item -->
             <% } %>
-            <!-- close that loop!  -->
+            <!-- EJS to close that for loop!  -->
         </ul>
+        <!-- Closes our unordered list -->
 
         <h2>Left to do: <%= left %></h2>
-        <!-- gives you a percentage of todo left to complete -->
+        <!-- Creates a second level heading tag with text and using EJS display a variable showing how many tasks are left to complete -->
 
         <h2>Add A Todo:</h2>
-        <!-- adds a header for adding todo -->
+        <!-- adds a header level two for adding todo -->
 
         <form action="/addTodo" method="POST">
-            <!-- Adds a form to be able to add todos using a POST request method-->
+            <!-- Creates a form to be able to add todos using a POST method, it is routed to the "/addTodo" route -->
             <input type="text" placeholder="Thing To Do" name="todoItem" />
-            <!--first input box to add name of the todo-->
+            <!--input tag to create text input box to add name of the todo, placeholder attribute is the text that appears when the box is empty, the input box is given a name for later reference -->
             <input type="submit" />
+            <!-- Gives the form a submit button -->
         </form>
+        <!-- Closes the form tag -->
 
         <script src="js/main.js"></script>
-        <!-- links to the client side javascript file -->
+        <!-- links to the client side javascript file called main.js that is located in the public folder -->
     </body>
-    <!-- End tag for the Body -->
+    <!-- Closes the body tag -->
 </html>
+<!-- Closes the html tag -->
