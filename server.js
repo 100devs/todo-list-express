@@ -16,9 +16,9 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
 );
 /* This batch sets the middleware  that the express application uses ,between reciving the req and res */
 app.set("view engine", "ejs"); //sets ejs as the views engine, creates templates for server side rendered html
-app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.static("public")); // sets the folder that holds the static files. in this case the public folder holds such files as css html and frintend JSuy
+app.use(express.urlencoded({ extended: true })); // built in middleware  to  recognise incoming requests objects as strings or arrays
+app.use(express.json()); // by default express parses incoming requests with JSON payloads and is based upon the bodyparser.
 
 app.get("/", async (request, response) => {
   const todoItems = await db.collection("todos").find().toArray();
