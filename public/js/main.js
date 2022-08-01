@@ -42,7 +42,7 @@ async function deleteItem() {
                 body: JSON.stringify({
                     // Set the content of the body to the inner text of the list item, and namit it 'itemFromJS'
                     'itemFromJS': itemText
-                        // CLose the Object
+
                 })
             })
             // Waiting on JSON from the response
@@ -60,13 +60,21 @@ async function deleteItem() {
     // Close the delete item function
 }
 
+// Declare an asynchronous function
 async function markComplete() {
-    const itemText = this.parentNode.childNodes[1].innerText
+    // Looks inside the list item and grabs only the inner text within the list span
+    const itemText = this.parentNode.childNodes[1].innerText;
+    // Start a try block to run some code 
     try {
+        // creates a response variable that waits on a fetch to get data from the result of the markComplete route
         const response = await fetch('markComplete', {
+            // Set the CRUD method for the route to PUT
             method: 'put',
+            // Set the content type to json
             headers: { 'Content-Type': 'application/json' },
+            // Declares the message content being passed, and turn it into a string
             body: JSON.stringify({
+                // Set the content of the body to the inner text of the list item, and namit it 'itemFromJS'
                 'itemFromJS': itemText
             })
         })
@@ -79,6 +87,7 @@ async function markComplete() {
     }
 }
 
+// Declare and asynchronous function
 async function markUnComplete() {
     const itemText = this.parentNode.childNodes[1].innerText
     try {
