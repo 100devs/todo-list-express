@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /*Selecting any h1 within html document*/
+    color: red; /*Assigns the property color with a value of red*/
+}/*closes selector*/
+.completed{ /*Selects anything with the class of completed*/
+    color: gray; /*Assigns the property color with a value of gray*/
+    text-decoration: line-through; /*Assigns the property text-decoration with a value of line-through*/
+}/*closes selector*/
