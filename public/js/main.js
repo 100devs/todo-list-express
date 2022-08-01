@@ -17,7 +17,7 @@ Array.from(itemCompleted).forEach((element)=>{
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
-        const response = await fetch('deleteItem', {
+        const response = await fetch('deleteItem', { //calling the path deleteItem form the backend and seing the delete request with the specieifed content from the front end
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -25,8 +25,8 @@ async function deleteItem(){
             })
           })
         const data = await response.json()
-        console.log(data)
-        location.reload()
+        console.log(data) // logging the response from the database
+        location.reload() // reloading the page
 
     }catch(err){
         console.log(err)
@@ -35,8 +35,9 @@ async function deleteItem(){
 
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
+    
     try{
-        const response = await fetch('markComplete', {
+        const response = await fetch('markComplete', { //calling the path markComplete form the backend and sending the a put request to update a file in our database
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
