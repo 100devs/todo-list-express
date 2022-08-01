@@ -84,7 +84,7 @@ app.put("/markUnComplete", (request, response) => {
         sort: { _id: -1 },
         upsert: false,
       }
-    )
+    ) //updates the database with the given parameter
     .then((result) => {
       console.log("Marked Complete");
       response.json("Marked Complete");
@@ -94,14 +94,15 @@ app.put("/markUnComplete", (request, response) => {
 
 app.delete("/deleteItem", (request, response) => {
   db.collection("todos")
-    .deleteOne({ thing: request.body.itemFromJS })
+    .deleteOne({ thing: request.body.itemFromJS }) // queries the database and deletes one item . item deleted is specified in the arguments
     .then((result) => {
       console.log("Todo Deleted");
-      response.json("Todo Deleted");
+      response.json("Todo Deleted"); // send response to user
     })
     .catch((error) => console.error(error));
 });
-
+/* sets up the server to listen for requests.tkaes the port number as arfuments */
 app.listen(process.env.PORT || PORT, () => {
+  // env.PoRT allows the PORt to be set by the environment
   console.log(`Server running on port ${PORT}`);
 });
