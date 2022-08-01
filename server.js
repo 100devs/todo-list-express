@@ -44,13 +44,13 @@ app.post('/addTodo', (request, response) => { //create request from the addTodo 
 })
 
 app.put('/markComplete', (request, response) => { //put (update) request using the /markComplete path
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //updates the 
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //updates the selected document specified by request.body.itemFromJS
         $set: {
-            completed: true
+            completed: true //and marks it as completed
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, //sorts the documents in descending order, the oldest at the top 
+        upsert: false //if MongoDB cannot find a matching document to update, it does NOT insert a new document 
     })
     .then(result => {
         console.log('Marked Complete')
@@ -60,7 +60,7 @@ app.put('/markComplete', (request, response) => { //put (update) request using t
 
 })
 
-app.put('/markUnComplete', (request, response) => {
+app.put('/markUnComplete', (request, response) => { //put (update) request using the markUnComplete path 
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: false
@@ -73,20 +73,20 @@ app.put('/markUnComplete', (request, response) => {
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //all of this code is the same as the block above, but changes the item from completed to not completed
 
 })
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+app.delete('/deleteItem', (request, response) => { //delete request using deleteItem path 
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //deletes the document that matches request.body.itemFromJS
     .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+        console.log('Todo Deleted') //let's us know it worked
+        response.json('Todo Deleted') 
     })
     .catch(error => console.error(error))
 
 })
 
 app.listen(process.env.PORT, ()=>{
-    console.log(`Server running on port ${process.env.PORT}`)
+    console.log(`Server running on port ${process.env.PORT}`) //sets up our port 
 })
