@@ -49,7 +49,7 @@ app.post("/addTodo", (request, response) => {
     })
     .catch((error) => console.error(error)); //catch block handles all the errors should there be any error in applying any of the above logic
 });
-
+//handles  put req on the specified route
 app.put("/markComplete", (request, response) => {
   db.collection("todos")
     .updateOne(
@@ -63,12 +63,12 @@ app.put("/markComplete", (request, response) => {
         sort: { _id: -1 },
         upsert: false,
       }
-    )
+    ) //updates the database with one file as contained in the req object
     .then((result) => {
       console.log("Marked Complete");
-      response.json("Marked Complete");
+      response.json("Marked Complete"); //send respose to the user tht the request has been fulfilled
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error)); // if there is an error it will be handled in the catch block. Prevents the program from crashing
 });
 
 app.put("/markUnComplete", (request, response) => {
