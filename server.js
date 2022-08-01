@@ -3,18 +3,18 @@ const app = express(); // initialises the express app
 const MongoClient = require("mongodb").MongoClient; //import  mongo db dependency
 const PORT = 2121; // declaration of port
 require("dotenv").config(); //enables environment variables to be read
-
+/* uses dotenv to initiliase mongo db uri which will be used */
 let db,
   dbConnectionStr = process.env.DB_STRING,
   dbName = "todo";
-
+/* Connects the application to the mongo DB database */
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
   (client) => {
     console.log(`Connected to ${dbName} Database`);
     db = client.db(dbName);
   }
 );
-
+/* This batch sets the middleware  that the express application uses ,between reciving the req and res */
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
