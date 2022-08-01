@@ -1,7 +1,20 @@
+
+/* Turn h1 red */
 h1{
     color: red;
 }
+/* Turn completed items gray w/ strikethrough */
 .completed{
     color: gray;
     text-decoration: line-through;
 }
+
+/* MY ADDITION - Dark mode */
+
+/* body {
+    background-color: #333;
+    color: white;
+}
+span {
+    color: white;
+} */
