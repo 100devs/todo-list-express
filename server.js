@@ -40,13 +40,14 @@ app.get("/", async (request, response) => {
 });
 
 app.post("/addTodo", (request, response) => {
+  // handles the post request on the/addTodo route
   db.collection("todos")
-    .insertOne({ thing: request.body.todoItem, completed: false })
+    .insertOne({ thing: request.body.todoItem, completed: false }) //insertOne updates the database with one item frim tge response object as specified
     .then((result) => {
       console.log("Todo Added");
-      response.redirect("/");
+      response.redirect("/"); // redirects the user to the home route
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error)); //catch block handles all the errors should there be any error in applying any of the above logic
 });
 
 app.put("/markComplete", (request, response) => {
