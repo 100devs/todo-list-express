@@ -1,47 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html><!--telling the browser what type of document -->
+<html lang="en"><!--setting language to English, start of html tag -->
+<head><!-- start the head to store our meta data-->
+    <meta charset="UTF-8"><!--coding type for our character -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- it tells Microsoft browser which version of browser to render for-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--responsiveness, set the viewing to the width of the display -->
+    <title>Document</title><!-- accessability, the title dah, display whats on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!-- link to stylesheet, gives access to icon library  -->
+    <link rel="stylesheet" href="css/style.css"><!-- link to stylesheet-->
+</head><!---->
+<body><!---->
+    <!DOCTYPE html>  <!--whoops double header -->
+<html lang="en"><!--whoops double header -->
+<head><!--whoops double header -->
+    <meta charset="UTF-8"><!--whoops double header -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--whoops double header -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--whoops double header -->
+    <title>Document</title><!--whoops double header -->
+</head><!--whoops double header -->
 
-    <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+<!-- the main page of the app, displacing html to render the page, would normally becalled index.html, but it's called index.ejs because we are using express JS, which allows us to embed JS -->
+<body> <!--our main section of content displayed, end user will see-->
+    <h1>Todo List: </h1><!-- header 1, main heading, most important title on page -->
+    
+    <ul class="todoItems"> <!--tag unordered list & creating class called "todoItems", for targeting later-->
+       
+    <% for(let i=0; i < items.length; i++) {%><!-- poser ejs templating, with for loop inside -->
+        
+        <li class="item"><!-- list item, creating class "item" for targeting later -->
+            
+            <% if(items[i].completed === true) {%><!-- more EJS, if true, do this,checking to see if an element in an array is truthy,  -->
+                
+                <span class='completed'><%= items[i].thing %></span><!-- creating an inline element with a class adding EJS to display the name of the task, array notation, at some point our EJS will take in an array -->
+                
+            <% }else{ %> <!--EJS for the else clause of our if statement -->
+               
+                <span><%= items[i].thing %></span><!-- adding EJS to display the name of the task, but don't add class -->
+                
+            <% } %>    <!-- scriplet, EJS close the else statement -->
+            <span class='fa fa-trash'></span><!-- show trash icon with a class for targeting Font Awesome (Nerdfont is better) icon, the ability to click on the icon is somwhere in our JS -->
+            
+        </li> <!--closing our list item-->
+    <% } %><!-- weird alient code, poser JS or EJS to close the for loop -->
+    
+    </ul><!--closing tag for our list item-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <h2>Left to do: <%= left %></h2><!--less important header, using EJS to showing how many tasks are left to complete  -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <h2>Add A Todo:</h2><!-- another less important header  -->
+    
+
+    <form action="/addTodo" method="POST"><!-- "yo, redirect to here once you make a submission", creating a form with a POST method that when submitted it goes to route called "/addTodo", POST is the C in CRUDE. We send a route so the server knows what to do, we want to hit a certain place in our server that is listening for the POST method-->
+        
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!-- creating an input box where we can input text, placeholder is the text that appears in the input box, name class is giving our input box a name or unique value so we can reference it later. This needs to match in server.js with line 40-ish, these need to match the name= -->
+        
+        <input type="submit"><!-- input tag and type class gives the form a submit button. Form tag functionality when using CRUD apps is awesome. Forms can't update natively, there is no PUT method in forms -->
+        
+    </form><!-- close tag form, you open it, you better close it -->
+    
+    
+
+    <script src='js/main.js'></script> <!-- linking to file main.js in the public folder, we put at the bottom to avoid JS tying up the the load process and putting the HTML on wait. CSS always at the top to avoid HTML blink, JS at the bottom -->
+   
+</body><!--closing body tag-->
+</html><!--closing html tag-->
