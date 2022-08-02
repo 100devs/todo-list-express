@@ -1,2 +1,5 @@
+//Included in this folder is whatever you don't want to be pushed up to github.
+
+
 node_modules
 .env
