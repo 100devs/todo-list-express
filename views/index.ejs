@@ -1,3 +1,4 @@
+<!-- BELOW: Meta Data for our EJS document that will be rendered as HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +18,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- ABOVE: Meta Data for our EJS document that will be rendered as HTML -->
 <body>
+    <!-- Header for our Todo List -->
     <h1>Todo List: </h1>
+    <!-- Unordered list that will hold 'todoItems' -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <!-- Looping through and retrieving up-to-date list of 'todoItems' -->
+    <% for(let i=0; i < items.length; i++) {%> 
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
@@ -32,16 +37,17 @@
     <% } %>
     </ul>
 
+    <!-- This header shows text for how many todoItems are left to be completed and displays the updated number -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- This is the header above where todoItems can be added -->
     <h2>Add A Todo:</h2>
-
+    <!-- The input is going to communicate with the 'addTodo' url with a method of POST (or adding) -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!-- The source for JavaScript to give this page functionality and then communicate with the server is located at this location: -->
     <script src='js/main.js'></script>
 </body>
 </html>
