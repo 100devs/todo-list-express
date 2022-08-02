@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-</head>
+</head> <!-- html header-->
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -20,28 +20,28 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!--looping through items from db-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> <!-- if completed key equals true-->
+                <span class='completed'><%= items[i].thing %></span> <!--display item in completed class span-->
+            <% }else{ %> <!-- otherwise -->
+                <span><%= items[i].thing %></span> <!--display item in plain span-->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+    <% } %> <!--end loop-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--display items left-->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <form action="/addTodo" method="POST"> <!--post request to update db with todoItem value in text input field-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> 
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- run main.js script-->
 </body>
 </html>
