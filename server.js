@@ -52,7 +52,7 @@ app.post('/addTodo', (request, response) => { //using POST = UPDATE method when 
 })
 
 app.put('/markComplete', (request, response) => { // READ METHOD -- READ goes into the database system to retrieve, search, or view existing entries
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //go into the the 'todos' collection and updateOne using the filter object prop: thing 
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //go into the the 'todos' collection and updateOne using the filter object prop: thing -- this might be adding a new "thing property"
         //key: req.body.itemFromJS = the information that is sent over from the FRONT END 
         $set: { //$set method changes the value of the key 
             completed: true //changing value of property: completed from false to true 
