@@ -1,7 +1,10 @@
-h1{
+h1{/*
+selector showing red for all h1 elements 
+    */
     color: red;
 }
 .completed{
+    /* for the class completed it is making it gray and line through for text decoration */ 
     color: gray;
     text-decoration: line-through;
 }

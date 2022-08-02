@@ -22,3 +22,16 @@ Return (What comes back?)
 
 
 
+
+When hitting submit, what needs to happen? 
+- Use an event listener to listen to click 
+- use API to handle and send it to database 
+- Once it gets to database we create database entry 
+- Then it gets appended to DOM 
+
+
+
+
+ENV FILE -> 
+
+
