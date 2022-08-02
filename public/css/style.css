@@ -1,7 +1,10 @@
-h1{
+/* STYLES H1 RED. */
+h1 {
     color: red;
 }
-.completed{
+
+/* STYLES ELEMENTS OF .COMPLETED CLASS */
+.completed {
     color: gray;
     text-decoration: line-through;
 }
