@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- tells the browser what type of content to render -->
+<html lang="en"> <!-- sets the language to english for things like screen readers, and starts the html tag -->
+<head> <!-- starts the head tag, to store metadata, like favicons, links to stylesheets, etc. -->
+    <meta charset="UTF-8"> <!-- declares page's character encoding -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets display width and initial scaling of the view area to adjust with the device used -->
+    <title>Document</title> <!-- Sets the title of the webpage to appear in the browser tab -->
+    <!-- this is also the area you would want to place a favicon (the little picture that shows up next to the title in the browser tab) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- link to the font awesome stylesheet that gives access to all of the different icons we can use, like the garbage can with our delete function  -->
+    <link rel="stylesheet" href="css/style.css"> <!-- link to the CSS stylesheet, which gives our html files some pizzazz  -->
+</head> <!-- closes the head tag -->
+<body> <!-- starts the body tag, where the main content of the page goes -->
+    <!DOCTYPE html> <!-- tells the browser what type of content to render -->
+<html lang="en"> <!-- sets the language to english for things like screen readers, and starts the html tag -->
+<head> <!-- starts the head tag, to store metadata, like favicons, links to stylesheets, etc. -->
+    <meta charset="UTF-8"> <!-- declares page's character encoding -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets display width and initial scaling of the view area to adjust with the device used -->
+    <title>Document</title> <!-- Sets the title of the webpage to appear in the browser tab -->
+</head> <!-- closes the head tag -->
+<body> <!-- starts the body tag, where the main content of the page goes -->
+    <h1>Todo List: </h1> <!-- opens and closes the h1 tag, the primary header for the page, and gives it text. -->
+    <ul class="todoItems"> <!-- starts an unorganized list and gives it the class "todoItems" -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- starts a for loop to go through the items and designate them as desired  -->
+        <li class="item"> <!-- starts an organized list and gives it the class "item" -->
+            <% if(items[i].completed === true) {%> <!-- creates an if statement where if the item has the "completed" value attached it to in the database, then do the action that follows -->
+                <span class='completed'><%= items[i].thing %></span> <!-- creates and closes a span with the "completed" class attached with the item matching the index of i -->
+            <% }else{ %> <!-- closes the first if statement and makes an else statement to be actioned if the item does not have the value of "completed" attached -->
+                <span><%= items[i].thing %></span> <!-- creates and closes a span with the item matching the index of i, that DOES NOT have the class of "completed" -->
+            <% } %>    <!-- closes the else statement-->
+            <span class='fa fa-trash'></span> <!-- creates and closes a span with the class of "fa" and "fa-trash", which adds a trash can icon to the end of every span -->
+        </li> <!-- closes the organized list -->
+    <% } %> <!-- closes the for loop -->
+    </ul> <!-- closes the unorganized list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- opens and closes an h2 tag, the second highest header, gives it the text inside, and shows how many items remain on the list -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- opens and closes an h2 tag, the second highest header, and gives it the text inside -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- creates a form tag with the addTodo route, and gives it the create method to add new items to the todo list -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- creates text only box for users to input items to add to the todo list. Also gives the box placeholder text so users can tell what the box is used for  -->
+        <input type="submit"> <!-- creats a submit button used for adding the submitted text to the todo list -->
+    </form> <!-- closes the form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- links the main JavaScript file to this file  -->
+</body> <!-- closes the body tag -->
+</html> <!-- closes the html tag -->
