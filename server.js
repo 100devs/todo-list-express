@@ -1,3 +1,4 @@
+//set express as a dependency so that it requires it
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
