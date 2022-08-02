@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,64 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <html lang="en">
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <h1>Todo List: </h1>
+        <ul class="todoItems">
+            <!--establishes an unorderded list -->
+            <% for(let i=0; i < items.length; i++) {%>
+                <!--sets up a for loop the length of the items array -->
+                <li class="item">
+                    <!--and creates an li -->
+                    <% if(items[i].completed===true) {%>
+                        <!--if the toDoItem from the data base is completed-->
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                        </span>
+                        <!--it assigns the completed class so it displays with a strikethrough-->
+                        <% }else{ %>
+                            <!--if not completed-->
+                            <span>
+                                <%= items[i].thing %>
+                            </span>
+                            <!--it displays the to do item without a strikethrough-->
+                            <% } %>
+                                <span class='fa fa-trash'></span>
+                                <!--this gives it a little trashcan from font awesome-->
+                </li>
+                <!--end of things contained within the li-->
+                <% } %>
+        </ul>
+        <!--end of list-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <h2>Left to do: <%= left %>
+        </h2>
+        <!--displays how many items are left to do based on the counted documents in the get request in the server.js fiel-->
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <h2>Add A Todo:</h2>
+
+        <form action="/addTodo" method="POST">
+            <!--creates a form that will make a POST (create) request using the path /addTodo-->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!--text input that lets you enter your to do item-->
+            <input type="submit">
+            <!--submit it-->
+        </form>
+
+
+        <script src='js/main.js'></script>
+        <!--hooks up our main.js file-->
+    </body>
+
+    </html>
