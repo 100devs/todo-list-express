@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+  <!-- This is an EJS template. We're using a loop to autogenerate a list of tasks -->
+  <!-- Depending on whether the task is completed or not, we generate different classes -->
+  <h1>Todo List: </h1>
+  <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
+    <li class="item">
+      <% if(items[i].completed === true) {%>
+      <span class='completed'><%= items[i].thing %></span>
+      <% }else{ %>
+      <span><%= items[i].thing %></span>
+      <% } %>
+      <span class='fa fa-trash'></span>
+    </li>
     <% } %>
-    </ul>
+  </ul>
 
-    <h2>Left to do: <%= left %></h2>
+  <!-- It gets the number of items left to complete from the database -->
+  <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+  <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+  <!-- The form sends a POST request to the route /addTodo that will -->
+  <!-- add a new item to the collection in the mongodb database -->
+  <form action="/addTodo" method="POST">
+    <input type="text" placeholder="Thing To Do" name="todoItem">
+    <input type="submit">
+  </form>
 
-    <script src='js/main.js'></script>
+  <!-- In loads the client JS file in the public folder -->
+  <script src='js/main.js'></script>
 </body>
+
 </html>
