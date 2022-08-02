@@ -1,47 +1,56 @@
+<!-- Declare browsers that the latest HTML specification is being followed, and not to enable quarks mode -->
 <!DOCTYPE html>
+<!-- Declare document language as `en` -->
 <html lang="en">
 <head>
+    <!-- Declare character encoding as `UTF-8` - the only possible value -->
     <meta charset="UTF-8">
+    <!-- Tell Microsoft browsers which version of Internet Explorer the document should be rendered as -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Declare the width and initial scale (zoom level) of the viewport, as the full width of the device and 1.0 accordingly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Declare the document title, used in the title bar, bookmarks, etc -->
     <title>Document</title>
+    <!-- Link to Font Awesome stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link to local stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     <h1>Todo List: </h1>
+    <!-- Unordered list with a class of `todoItems` -->
     <ul class="todoItems">
+    <!-- Loop through every object in the `items` array -->
     <% for(let i=0; i < items.length; i++) {%>
+        <%# List item with class of `item` %>
         <li class="item">
+            <%# Create span containing text of current item `thing`, with optional class of `completed` if the current item `completed` property is equal to `true` %>
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <%# Font Awesome Trash icon %>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- Output the value of left into the page -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- Form that will make a `POST` request to `/addTodo` when submitted -->
     <form action="/addTodo" method="POST">
+        <!-- Text input field with `placeholder` of `Thing To Do` and `name` of `todoItem`, which will become the key when the value is transmitted -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Submit button -->
         <input type="submit">
     </form>
     
 
+    <!-- Link to local JavaScript file -->
     <script src='js/main.js'></script>
 </body>
 </html>
