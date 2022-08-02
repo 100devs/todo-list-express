@@ -1,4 +1,7 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    //are we commenting this too? Okay.
+    //this changes the font size of vs code if you have a giant monitor and have that need
+    "editor.fontSize": 14,
+    //this changes the font size of the terminal if you have a monitor instead of a wall in your place of living
+    "terminal.integrated.fontSize": 14
 }
