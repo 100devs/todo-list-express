@@ -1,7 +1,13 @@
-h1{
+/* select h1 tag in the ejs file*/
+h1 {
+    /* give the text a color of red */
     color: red;
 }
-.completed{
+
+/* select a class of completed in the ejs file */
+.completed {
+    /* give the text a color of gray */
     color: gray;
+    /* give the text a style decoration of line-through */
     text-decoration: line-through;
 }
