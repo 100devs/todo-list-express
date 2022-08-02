@@ -28,6 +28,7 @@ async function deleteItem(){
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
+            //adding stringify method to the body so JSON object comes as a string
             body: JSON.stringify({
               'itemFromJS': itemText
             })
@@ -41,7 +42,7 @@ async function deleteItem(){
         console.log(err)
     }
 }
-
+//creating an async function...
 async function markComplete(){
             // declaring a variable to get a markComplete response from the server (mark complete method)
 
@@ -50,6 +51,7 @@ async function markComplete(){
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
+            //adding stringify method to the body so JSON object comes as a string
             body: JSON.stringify({
                 'itemFromJS': itemText
             })

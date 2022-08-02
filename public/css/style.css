@@ -1,6 +1,8 @@
+/* adding red color to h1 */
 h1{
     color: red;
 }
+/* adding text-decoration to the completed class */
 .completed{
     color: gray;
     text-decoration: line-through;

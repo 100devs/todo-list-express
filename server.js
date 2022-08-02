@@ -50,7 +50,7 @@ app.get('/',async (request, response)=>{
 // creating a new request to add new documents to the DB and assigning false status(incomplete task)
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    //console log and refresh.
+    //console log and refresh(redirect back to root folder).
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')
@@ -69,10 +69,12 @@ app.put('/markComplete', (request, response) => {
         sort: {_id: -1},
         upsert: false
     })
+    //console log and respond with JSON
     .then(result => {
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
+    // error handling
     .catch(error => console.error(error))
 
 })
@@ -97,6 +99,7 @@ app.put('/markUnComplete', (request, response) => {
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
+            //console log and respond with JSON
         console.log('Todo Deleted')
         response.json('Todo Deleted')
     })
