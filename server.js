@@ -55,7 +55,7 @@ app.get('/', async (request, response) => {
   // .catch(error => console.error(error))
 });
 
-// Handling PORT request to the /addTodo route
+// Handling POST request to the /addTodo route
 app.post('/addTodo', (request, response) => {
   // Create a new document in the todos collection passing in data from the request body
   db.collection('todos')

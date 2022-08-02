@@ -1,47 +1,82 @@
+<!-- Declare HTML version so browser parses doc correctly -->
 <!DOCTYPE html>
+<!-- Opening html tag which with language attribute set to english -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Open tag for the head of the page which contains metadata and stylesheet links -->
+  <head>
+    <!-- Telling browser the character set in the page is UTF-8  -->
+    <meta charset="UTF-8" />
+    <!-- Used for supporting older versions of Internet Explorer -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Optimizing how the site scales for mobile devices Set's the width to device screen width and sets the scaling on initial page load to 1 (no scaling) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title of the page, will appear in the browser tab -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
+    <!-- Importing font-awesome minified css stylesheet to use icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Importing main site stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Closing head tag -->
+  </head>
+  <!-- Opening body tag which will contain the elements that appear in the UI of the website -->
+  <body>
+    <!-- h1 (header) element -->
+    <h1>Todo List:</h1>
+    <!-- opening tag for an unordered list -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+      <!-- ejs which allows you to loop through all the items (which were passed in from the server.js with a value of todoItems) -->
+      <% for(let i=0; i < items.length; i++) {%>
+      <!-- opening tag for a list item -->
+      <li class="item">
+        <!-- ejs which uses a conditional to check if an item is completed -->
+        <% if(items[i].completed === true) {%>
+        <!-- opening span tag for completed item -->
+        <span class="completed">
+          <!-- ejs which inserts data of the item -->
+          <%= items[i].thing %>
+          <!-- closing span tag -->
+        </span>
+        <!-- ejs else statement if above doesn't evaluate to true -->
+        <% }else{ %>
+        <!-- opening span tag for uncompleted item -->
+        <span>
+          <!-- ejs which inserts data of the item -->
+          <%= items[i].thing %>
+        </span>
+        <!-- closing ejs tag for else codeblock -->
+        <% } %>
+        <!-- span which will have the trash aka delete icon -->
+        <span class="fa fa-trash"></span>
+        <!-- closing list item tag -->
+      </li>
+      <!-- closing ejs tag for the for loop -->
+      <% } %>
+      <!-- closing tag for the unordered list -->
     </ul>
+    <!-- h2 (header) tag -->
+    <h2>
+      Left to do:
+      <!-- ejs showing left data passed in from the server.js with a value of itemsLeft -->
+      <%= left %>
+      <!-- closing h2 tag -->
+    </h2>
 
-    <h2>Left to do: <%= left %></h2>
-
+    <!-- h2 (header) tag -->
     <h2>Add A Todo:</h2>
-
+    <!-- opening form tag with the route that the POST request will be sent to. To be handled by server.js when sent -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+      <!-- test input -->
+      <input type="text" placeholder="Thing To Do" name="todoItem" />
+      <!-- submit button -->
+      <input type="submit" />
+      <!-- closing form tag -->
     </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+    <!-- loading main.js after all of above has been added to the DOM -->
+    <script src="js/main.js"></script>
+    <!-- closing body tag -->
+  </body>
+  <!-- closing html tag -->
 </html>
