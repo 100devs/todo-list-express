@@ -1,47 +1,63 @@
+<!-- Document structure declaration -->
 <!DOCTYPE html>
+<!-- html tag letting browser know document is in english -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!-- head of project -->
+    <head>
+        <!-- defines character encoding-->
+        <meta charset="UTF-8">
+        <!-- used to support internet explorer -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- mobile optimization -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- document title -->
+        <title>Document</title>
+        <!-- links doc to external css sheet -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <!-- links doc to primary external css sheet -->
+        <link rel="stylesheet" href="css/style.css">
+    </head> <!-- closing tag -->
+    <!-- body of document -->
+    <!-- removed duplicate code -->
+    <body>
+        <!-- super important name -->
+        <h1>Todo List: </h1>
+        <!-- unorganized list to store items -->
+        <ul class="todoItems">
+            <!-- ejs for loop running for every element in items -->
+        <% for(let i=0; i < items.length; i++) {%>
+            <!-- for every element, create a new li -->
+            <li class="item">
+                <!-- check if completed is checked and true -->
+                <% if(items[i].completed === true) {%>
+                    <!-- if completed is true, create a new thing with completed class  -->
+                    <span class='completed'><%= items[i].thing %></span>
+                <!-- if completed is not true -->
+                <% }else{ %>
+                    <!-- if completed is not true, create a new thing -->
+                    <span><%= items[i].thing %></span>
+                <% } %>    
+                <!-- create trashcan icon -->
+                <span class='fa fa-trash'></span>
+            </li> <!-- closing tag -->
+        <% } %> <!-- closing bracket -->
+        </ul> <!-- closing tag -->
 
-    <h2>Left to do: <%= left %></h2>
+        <!-- important text with EJS for left variable -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+        <!-- important text for header of form -->
+        <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <!-- form for user input -->
+        <form action="/addTodo" method="POST">
+            <!-- allows for user input with type text -->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!-- creates button that submits form information -->
+            <input type="submit">
+        </form> <!-- closing tag -->
+        
+        <!-- link js to document -->
+        <script src='js/main.js'></script>
+    </body> <!-- closing body tag -->
+</html> <!-- closing html tag -->
