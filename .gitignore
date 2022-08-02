@@ -1,2 +1,4 @@
+# makes it so all of the modules don't get pushed to GitHub
 node_modules
+# makes it so the env file doesn't get pushed to GitHub and our secrets stay secret.
 .env

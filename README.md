@@ -1,2 +1,2 @@
-npm install
-add DB_STRING to .env file
+npm install <!-- told people that we installed modules and dependencies -->
+add DB_STRING to .env file <!-- told people that we hid away the DB string so that others can't play with it. Keeps it secret. Keeps it safe. -->

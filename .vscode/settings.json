@@ -1,4 +1,5 @@
-{
+/* Makes all text in VS Code big enough to read on the stream. Commented out so I can read it on my machine a little easier. */
+/* {
     "editor.fontSize": 42,
     "terminal.integrated.fontSize": 62
-}
+} */
