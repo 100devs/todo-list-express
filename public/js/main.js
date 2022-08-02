@@ -2,18 +2,22 @@ const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+// Delete Item from Array
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
+// Mark Item as Complete
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
+// Mark Item as Uncomplete
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+// Choose a specific item from client side to delete
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -33,6 +37,7 @@ async function deleteItem(){
     }
 }
 
+// Choosen items to be mark as complete
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -52,6 +57,7 @@ async function markComplete(){
     }
 }
 
+// Choosen items to be mark as uncomplete
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
