@@ -50,61 +50,53 @@ app.post('/addTodo', (request, response) => { //starts a POST method when the ad
 }) //closes POST method
 
 
-//defined a PUT request at /markComplete endpoint, used to update a document
-app.put('/markComplete', (request, response) => {
 
-    //updates a document from the todos collection
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            //sets the completed key to true (in our ejs, will add a class "completed" in the span)
-            completed: true
+app.put('/markComplete', (request, response) => { //starts a PUT method when the markComplete coute is passed in.
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //look in the db for one item matching the name of the item passed in from the main.js file that was click on
+        $set: { 
+            completed: true //set completed status to true
           }
     },{
-        // method specifies the order in which the quert returns the match documents from the given collection
-        sort: {_id: -1},
-        // makes sure a new document isn't created if the document isn't found in our DB
-        upsert: false
+        sort: {_id: -1}, //moves item to the bottom of the list
+        upsert: false //prevents insertion if item does not already exist
     })
-    .then(result => {
-        console.log('Marked Complete')
-        // respond with json indicatin the marking is complete
-        response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+    .then(result => { //starts a then if update was successful
+        console.log('Marked Complete') // logging successsful completion
+        response.json('Marked Complete') //sending a response back to the sender
+    }) //closing the .then()
+    .catch(error => console.error(error)) //catching errors
 
-})
+}) //ending put
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            //sets the completed key to true (in our ejs, will add a class "completed" to the span) 
-            completed: false
+
+app.put('/markUnComplete', (request, response) => { //starts a PUT method when the markComplete route is passed in
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //look in the db for one item matching the name of the item passed in from the main.js files that was clicked on
+        $set: { 
+            completed: false //set completed status to true
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, //moves item to the bottom of the list
+        upsert: false //prevents insertion if item does not already exist
     })
-    .then(result => {
-        console.log('Marked UnComplete')
-        response.json('Marked UnComplete')
-    })
-    .catch(error => console.error(error))
+    .then(result => { //starts a then if update was successful
+        console.log('Marked UnComplete') //logging successsful completion
+        response.json('Marked UnComplete')//sending a response back to the sender
+    }) //closing the .then()
+    .catch(error => console.error(error)) //catching errors
 
-})
+}) //ending put
 
 
-//adds a DELETE request to /deleteItem endpoint
-app.delete('/deleteItem', (request, response) => {
-    //delete document from todos collection that has the thing key's value as the document passed to the request.
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
-    })
-    .catch(error => console.error(error))
+app.delete('/deleteItem', (request, response) => { //starts a delete method when the delete route is passed
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //looks inside the 'todos' collection for the ONE item that has a matching name from our JS file
+    .then(result => { //starts a .then() if delete was successful
+        console.log('Todo Deleted') //logging sucessful completion
+        response.json('Todo Deleted') //sending a response back to the sender
+    }) //closing .then()
+    .catch(error => console.error(error)) //catching errors
 
-})
+}) //ending delete()
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+app.listen(process.env.PORT || PORT, ()=>{ //setting which port we will be listening on - either the port from the .env file or the port variable we set
+    console.log(`Server running on port ${PORT}`) //console.log the running port.
+}) //end the listen method
