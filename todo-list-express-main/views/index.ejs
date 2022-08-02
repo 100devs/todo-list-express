@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <head> this is what language we're using -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- </head>  -this is for your computer->
+
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo List: </h1> 
+    <!-- the most important items on the page -->
+    <ul class="todoItems"> 
+        <!-- unordered list -->
+    <% for(let i=0; i < items.length; i++) {%> 
+        <!-- psuedo javascript; do a for loop for each item in array -->
+        <li class="item">  
+            <!-- list item -->
+            <% if(items[i].completed === true) {%>
+                <!-- is it completed? Do this -->
+                <span class='completed'><%= items[i].thing %></span>
+                <!-- add the class "completed" to these items for styling? -->
+            <% }else{ %>
+                <!-- if not completed -->
+                <span><%= items[i].thing %></span>
+        <!-- display them in list but don't add the class -->
+            <% } %>    
+            <span class='fa fa-trash'></span>
+            <!-- we are gongin to click on this trash icon at some point, gets added on to each item on our list -->
+        </li>
+    <% } %>
+    </ul>
+
+    <h2>Left to do: <%= left %></h2> 
+    <!-- count number of 'uncompleted' tasks and show here' -->
+
+    <h2>Add A Todo:</h2>
+    <!-- less important header -->
+
+    <form action="/addTodo" method="POST">
+        <!-- redirect to here once new submission made -->
+        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- match to line 40 in our server.js file -->
+        <input type="submit">
+    </form>
+    
+
+    <script src='js/main.js'></script>
+    <!-- tells it to run javascript, put at bottom so it loads last and doesn't mess up the HTML/CSS rendering -->
+</body>
+</html>

@@ -1,0 +1,10 @@
+h1{
+    color: red;
+} 
+/* main stuff is most important */
+
+.completed{
+    color: gray;
+    text-decoration: line-through;
+} 
+/* makes completed items show up as a different color than uncompletd items, and puts a strike thru it */
