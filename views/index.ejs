@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!DOCTYPE html> <!-- DOCUMENT DECLARATION TYPE OF MARKUP  -->
+<html lang="en"> <!-- LANGUAGE ATTRIBUTE SET TO ENGLISH -->
+<head> <!-- HEAD TAG WILL CONTAIN METADATA WITHIN THE WEB PAGE -->
+    <meta charset="UTF-8"> <!-- METADATA ELEMENT ENCODED CHARACTERSET FOR ENGLISH LANG  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- METADATA ELEMENT SETS ATTRIBUTE FOR HTTP HEADER-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- METADATA ELEMENT DISPLAYED VIEWPORTS SIZE AND SHAPE -->
+    <title>Document</title> <!-- TITLE ELEMENT DOCUMENT WILL DISPLAY IN THE BROWSER TAB -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- LINK ELEMENT TO FONT AWESOME ICON LIBRARY -->
+    <link rel="stylesheet" href="css/style.css"> <!-- LINK ELEMENT LOCAL STYLE SHEET  -->
+</head> <!-- HEAD TAG CLOSING  -->
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +16,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> -->
+<body> <!-- MAIN SECTION FOR CONTENT TO BE DISPLAYED -->
+    <h1>Todo List: </h1> <!-- MAIN TITLE ON PAGE -->
+    <ul class="todoItems"> <!-- UNORDERED LIST WITH A CLASS ASSIGNED -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- EMBEDDED JAVASCRIPT WITH FOR LOOP -->
+        <li class="item"> <!-- LIST ITEM WITH A CLASS ASSIGNED -->
+            <% if(items[i].completed === true) {%> <!-- EMBEDDED JAVASCRIPT WITH AN IF STATEMENT COMPLETED PROPERTY EQUALS TRUE -->
+                <span class='completed'>    </span> <!-- INLINE ELEMENT WITH A CLASS ASSIGNED -->
+            <% }else{ %> <!-- EMBEDDED JAVASCRIPT ELSE CLAUSE OF OUR IF STATEMENT -->
+                <span><%= items[i].thing %></span> <!-- EMBEDDED JAVASCRIPT DISPLAY NAME OF TASK -->
+            <% } %>    <!-- EMBEDDED JAVASCRIPT CLOSES THE STATEMENT -->
+            <span class='fa fa-trash'></span> <!-- INLINE ELEMENT WITH CLASS ASSIGNED FOR ICONS -->
+        </li> <!-- CLOSING LIST ITEM  -->
+    <% } %> <!-- EMBEDDED JAVASCRIPT CLOSING FOR LOOP -->
+    </ul> <!-- UNORDERED LIST CLOSING TAG  -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- HEADER ELEMENT WITH EMBEDDED JAVASCRIPT DISPLAY TASKS REMAINING -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- HEADER ELEMENT SECOND LEVEL TITLE -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- FORM ELEMENT WITH A POST METHOD /addTodo -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- INPUT ELEMENT FOR TEXT LIST OF TASKS -->
+        <input type="submit"> <!-- INPUT ELEMENT WITH TYPE OF SUBMIT BUTTON  -->
+    </form> <!-- FORM ELENENT CLOSING TAG -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- CLIENT SIDE JAVASCRIPT LOCATION -->
+</body> <!-- BODY ELEMENT CLOSING TAG -->
+</html> <!-- HTML ELEMENT CLOSING TAG -->
