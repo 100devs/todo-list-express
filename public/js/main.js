@@ -19,14 +19,14 @@ async function deleteItem(){ // what happens when you click on a trash can
   try { // cross your fingers
     const response = await fetch("deleteItem", {
       // make request to server-side code
-      method: "delete", // tell it to delaytay
+      method: "delete", // tell it to DELAYTAY!
       headers: { "Content-Type": "application/json" }, // so browser knows how to render JSON
       body: JSON.stringify({ // convert object to JSON
         itemFromJS: itemText, // thing: task
       }),
     });
     const data = await response.json(); // wait for server-side code to deliver a delicious json treat
-    console.log(data); // logs "Todo Deleted"
+    console.log(data); // logs "Todo Deleted" for a split second
     location.reload(); // refresh the page
   } catch (err) { // oof
     console.log(err); // something went wrong
@@ -38,14 +38,14 @@ async function markComplete(){ // what happens when you click on a task
     try{ // hold your breath
         const response = await fetch("markComplete", {
           // make request to server-side code
-          method: "put", // update!
+          method: "put", // UPDATE!
           headers: { "Content-Type": "application/json" }, // so browser knows how to render JSON
           body: JSON.stringify({ // convert object to JSON
             itemFromJS: itemText, // thing: task
           }),
         });
         const data = await response.json() // wait for server-side code to deliver a delicious json treat
-        console.log(data) // logs "Marked Complete"
+        console.log(data) // logs "Marked Complete" but you can only see it for a millisecond before the browser refreshes
         location.reload() // refresh the page
 
     }catch(err){ // dammit
@@ -57,7 +57,7 @@ async function markUnComplete(){ // what happens when you click on a task that h
   const itemText = this.parentNode.childNodes[1].innerText; // find the task name and store it in a variable
   try { // make a wish
     const response = await fetch("markUnComplete", { // make request to server-side code
-      method: "put", // update!
+      method: "put", // UPDATE!
       headers: { "Content-Type": "application/json" }, // so browser knows how to render JSON
       body: JSON.stringify({ // convert object to JSON
         itemFromJS: itemText, // thing: task
