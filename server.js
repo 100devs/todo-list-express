@@ -22,7 +22,7 @@ app.use(express.json()) //helps us parse json
 
 app.get('/', async (request, response)=>{ //read request for the root path 
     const todoItems = await db.collection('todos').find().toArray() //finds all of the documents in the 'todos' collection, turns them into an array
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //finds all of the documents in the 'todos' collection that haven't been completed
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //finds all of the documents in the 'todos' collection that haven't been completed and counts them
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) //renders our ejs file with the data we've gotten from our database 
     // db.collection('todos').find().toArray()
     // .then(data => {
