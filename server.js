@@ -35,35 +35,35 @@ app.get('/',async (request, response)=>{ //root endpoint for the app. async func
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => { 
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+app.post('/addTodo', (request, response) => { //post endpoint where users can add to the todo list
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //adds one document to the todo list and assigns the completed key to false
     .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
+        console.log('Todo Added') //client side will see that it was added 
+        response.redirect('/') //will redirect the user to the root endpoint
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //if there are any errors then they will appear here 
 })
 
-app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
+app.put('/markComplete', (request, response) => { //updates a document to mark complete 
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //unclear
+        $set: { //changes the completed key to true 
             completed: true
           }
     },{
-        sort: {_id: -1},
+        sort: {_id: -1}, //unclear
         upsert: false
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+    .then(result => { //after database has finished updating 
+        console.log('Marked Complete') //client side will log marked comlpete
+        response.json('Marked Complete') //will send back json marked compled 
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) //if there are any errors they will appear here 
 
 })
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
+app.put('/markUnComplete', (request, response) => { //updates document to change from complete to incomplete 
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //updates the body of the item 
+        $set: { //sets completed to false 
             completed: false
           }
     },{
