@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- All the info for your browser -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To-Do App</title>
+
+    <!-- Links to icons and stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Title of the page -->
     <h1>Todo List: </h1>
+    <!-- For app.get - displays todo items currently in the database -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+        <!-- ejs templating: for each todo item in the data array, do this stuff  -->
+        <% for(let i=0; i < items.length; i++) {%>
+            <li class="item">
+                <% if(items[i].completed===true) {%>
+                    <!-- if the item has the attribute completed:true, make the item with the class of completed -->
+                    <span class='completed'>
+                        <%= items[i].thing %>
+                    </span>
+                    <% }else{ %>
+                        <!-- else, make the item without the class -->
+                        <span>
+                            <%= items[i].thing %>
+                        </span>
+                        <% } %>
+                            <span class='fa fa-trash'></span> <!-- Always make each item with a trash icon to delete -->
+            </li>
+            <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
-
+    <!-- Count out all of the items left and add them here -->
+    <h2>Left to do: <%= left %>
+    </h2>
+    <!-- It's another new section of stuff! This goes with app.post -->
     <h2>Add A Todo:</h2>
-
+    <!-- this form will send your new todo to the database by working with the server.js file -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
 
+    <!-- links to your js file -->
     <script src='js/main.js'></script>
 </body>
+
 </html>
