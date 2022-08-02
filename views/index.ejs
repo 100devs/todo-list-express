@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!DOCTYPE html> <%# Declare doctype as HTML even tho its ejs but ejs renders as HTML so that's cool %>
+<html lang="en"> <%# Open HTML, Language attribute specifies English %>
+<head> <%# Open head %>
+    <meta charset="UTF-8"> <%# Specify character encoding %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <%# Specify HTTP header for content attribute %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <%# Allows for responsive design %>
+    <title>Document</title> <%# Title in browser tab %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <%# Link to fun icons %>
+    <link rel="stylesheet" href="css/style.css"> <%# Link to style sheet %>
+</head> <%# Close head %>
+<!-- <body> This is all duplicate info, so I commented it out
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +16,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> -->
+<body> <%# Open body %>
+    <h1>Todo List: </h1> <%# Title of app %>
+    <ul class="todoItems"> <%# Open list container %>
+    <% for(let i=0; i < items.length; i++) {%> <%# Start code: iterate through all todos in database %>
+        <li class="item"> <%# Open list item %>
+            <% if(items[i].completed === true) {%> <%# If task is crossed out %>
+                <span class='completed'><%= items[i].thing %></span> <%# then add this task that targets styling %>
+            <% }else{ %> <%# If task is not completed %>
+                <span><%= items[i].thing %></span> <%# then add it like normal %>
+            <% } %>    <%# End of conditional block %>
+            <span class='fa fa-trash'></span> <%# Add trash can icon after task %>
+        </li> <%# Close list item %>
+    <% } %> <%# End of list code %>
+    </ul> <%# Close list container %>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <%# Number of tasks left uncompleted %>
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <%# Header for form %>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <%# Open form with reference to server-side JS %>
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <%# Holds value to be added to db and DOM %>
+        <input type="submit"> <%# Grabs value out of input and does magic %>
+    </form> <%# Close form %>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <%# Link to client-side JS %>
+</body> <%# Close body %>
+</html> <%# Close html %>
