@@ -60,54 +60,76 @@ app.post('/addTodo', (request, response) => {
         response.redirect('/')
     })
     //This fires off in any errors happen within this method chain
-    //Also, console.error outputs an error message to the console, and we pass the error stored within out error parameter/binding to this method in order to output the error's information to the console
+    //Also, console.error outputs an error message to the console, and we pass the error stored within our error parameter/binding to this method in order to output the error's information to the console
     .catch(error => console.error(error))
 })
-
+//This routes HTTP PUT requests to the /markComplete endpoint
 app.put('/markComplete', (request, response) => {
+    //This updates the first document found within the 'todos' collection with a thing property and matching value of the itemFromJS sent within the request's body by setting its completed property to true
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: true
           }
     },{
+        //This sorts the ids of the documnets within the 'todos' collection by their _ids (MongoDb given ids) descending
         sort: {_id: -1},
+        //Setting upsert to false causes no new document to be inserted when no match is found
+        //If upsert was set to true, a new documnet would e created even if no documents matched the query
         upsert: false
     })
     .then(result => {
+        //If the above code successfully runs, we will log 'Marked Complete' to the console
         console.log('Marked Complete')
+        //We will then respond within a json string of the text 'Marked Complete'
         response.json('Marked Complete')
     })
+    //This fires off in any errors happen within this method chain
+    //Also, console.error outputs an error message to the console, and we pass the error stored within our error parameter/binding to this method in order to output the error's information to the console
     .catch(error => console.error(error))
 
 })
-
+//This routes HTTP PUT requests to the /markUnComplete endpoint
 app.put('/markUnComplete', (request, response) => {
+    //This updates the first document found within the 'todos' collection with a thing property and matching value of the itemFromJS sent within the request's body by setting its completed property to false
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: false
           }
     },{
+        //This sorts the ids of the documnets within the 'todos' collection by their _ids (MongoDb given ids) descending
         sort: {_id: -1},
+        //Setting upsert to false causes no new document to be inserted when no match is found
+        //If upsert was set to true, a new documnet would e created even if no documents matched the query
         upsert: false
     })
     .then(result => {
+        //If the above code successfully runs, we will log 'Marked Complete' to the console
         console.log('Marked Complete')
+        //We will then respond within a json string of the text 'Marked Complete'
         response.json('Marked Complete')
     })
+    //This fires off in any errors happen within this method chain
+    //Also, console.error outputs an error message to the console, and we pass the error stored within our error parameter/binding to this method in order to output the error's information to the console
     .catch(error => console.error(error))
 
 })
-
+//This routes HTTP DELETE requests to the /deleteItem endpoint
 app.delete('/deleteItem', (request, response) => {
+    //this deletes the first document found within the 'todos' collection that has a thing property that's value matches the itemFromJS value
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
+        //If the above code successfully runs, we will log 'Todo Deleted' to the console
         console.log('Todo Deleted')
+         //We will then respond within a json string of the text 'Todo Deleted'
         response.json('Todo Deleted')
     })
+    //This fires off in any errors happen within this method chain
+    //Also, console.error outputs an error message to the console, and we pass the error stored within our error parameter/binding to this method in order to output the error's information to the console
     .catch(error => console.error(error))
 
 })
-
+//This Binds and listens for connections on the specified host and port
 app.listen(process.env.PORT || PORT, ()=>{
+    //If the app is successfuly bound to and listening to the specified host and port, then 'Server running on post ${PORT} is logged to the console
     console.log(`Server running on port ${PORT}`)
 })

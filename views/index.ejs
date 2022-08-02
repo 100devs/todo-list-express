@@ -20,10 +20,13 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- After a local variable named "items" is passed to this view to render, this loops through each item within the items array and creates a li -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- This checks to see if the current item has a property of completed that has a value of true, and if so, the item's thing property's value replaces "<%= items[i].thing %>" -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- If the current item does not have a property of completed, then this code runs and the item's complete property replaces "<%= items[i].thing %>" below -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
