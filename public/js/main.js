@@ -1,19 +1,24 @@
+//Looks for the classes and elemnts specified in the parens
 const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+//Calls deleteItem() function on click
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
+//Calls markComplete when an item is clicked
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
+//If an item was marked completed and is clicked again, markUnComplete() is triggered
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+//In this function, the item is removed from the list if the trash icon (.fa-trash) is clicked 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -32,6 +37,7 @@ async function deleteItem(){
         console.log(err)
     }
 }
+
 
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
