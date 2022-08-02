@@ -22,9 +22,9 @@ app.use(express.json()) //parses data into json
 
 
 app.get('/',async (request, response)=>{ //root endpoint for the app. async function
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
+    const todoItems = await db.collection('todos').find().toArray() // finds all of the to do list items inf the database 
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // counts the documents that have been marked not completed 
+    response.render('index.ejs', { items: todoItems, left: itemsLeft }) //returns the todo items as well as the items left 
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -35,7 +35,7 @@ app.get('/',async (request, response)=>{ //root endpoint for the app. async func
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => {
+app.post('/addTodo', (request, response) => { 
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
         console.log('Todo Added')
