@@ -22,7 +22,18 @@ li{
     display: block;
 }
 input{
-    border: 2px gray;
-    border-radius: 3px;
+    border: 2px solid gray;
+    border-radius: 5px;
     padding: .25rem;
+}
+form :focus-visible{
+    outline-width: 0px;
+}
+
+
+/* Layout */
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
 }
