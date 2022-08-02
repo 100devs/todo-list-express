@@ -18,7 +18,7 @@ Array.from(itemCompleted).forEach((element)=>{
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText // Selects the inner text of the specific task.
     try{
-        // Send a delete request with json data, assigning the text from the triggering node to itemFromJS 
+        // Send a delete request with json data, assigning the text from the triggering node to itemFromJS to the deleteItem route (server.js)
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
@@ -44,7 +44,7 @@ async function markComplete(){
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
-          })
+          })    // Sends a put request with the item text as a json object to the 'markComplete' route.
         const data = await response.json()
         console.log(data)
         location.reload()
@@ -63,8 +63,8 @@ async function markUnComplete(){
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
-          })
-        const data = await response.json()
+          })    // Sends a put request with itemText to the 'markUnComplete' route.
+        const data = await response.json() // Parses the response as JSON for the following console.log
         console.log(data)
         location.reload()
 
