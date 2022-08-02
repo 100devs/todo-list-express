@@ -18,12 +18,13 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- since this is rendered from the server, the javascript terms will reference the back-end methods.-->
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!-- Using a for loop with the items array. this array is linked from the res.render back-end GET method-->
         <li class="item">
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed'><%= items[i].thing %></span> <!-- item.thing = property given to item during the PUT request /markComplete-->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -36,8 +37,8 @@
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <form action="/addTodo" method="POST"> <!-- to-do form to add items into database-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- does todoItem have a link to the back-end? -->
         <input type="submit">
     </form>
     
