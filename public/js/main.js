@@ -16,21 +16,21 @@ Array.from(itemCompleted).forEach((element)=>{ // Creating an array from the var
 
 async function deleteItem(){ // async function declared and named deleteItem, no parameters used.
     const itemText = this.parentNode.childNodes[1].innerText //declare variable and store inputted text contained in the second child node of a parent node
-    try{
-        const response = await fetch('deleteItem', {
-            method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              'itemFromJS': itemText
-            })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+    try{ // Start try block to do something
+        const response = await fetch('deleteItem', { //create and store in variable response the data from a fetch request
+            method: 'delete', // declare the method of the fetch request
+            headers: {'Content-Type': 'application/json'}, // declare the type of content to be expected, JSON
+            body: JSON.stringify({ // declare the message content being passed, and stringify that content
+              'itemFromJS': itemText // play key of itemFromJS and property from itemText variable to body for request
+            }) // end body being sent
+          })// end fetch request
+        const data = await response.json() // convert response of fetch request to json and store in data
+        console.log(data) //console log the data
+        location.reload() // refresh the page
 
-    }catch(err){
-        console.log(err)
-    }
+    }catch(err){ // start catch block to catch errors if fetch request goes wrong
+        console.log(err) //  console log the error
+    } // end catch block
 }
 
 async function markComplete(){
