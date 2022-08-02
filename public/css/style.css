@@ -1,7 +1,9 @@
 h1{
+    /* This CSS rule selects the h1 element and sets its text color to red */
     color: red;
 }
 .completed{
+    /* This CSS rule selects the elements with a class of completed, sets their ext color to gray, and sets their text-decoration property to line-through (causing a strikethrough effect) */
     color: gray;
     text-decoration: line-through;
 }
