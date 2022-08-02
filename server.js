@@ -23,10 +23,10 @@ app.use(express.urlencoded({ extended: true })) //Tells express to decode and en
 app.use(express.json()) //Parses JSON content
 
 
-app.get('/',async (request, response)=>{ //starts a GET method when the root route is passed in, sets up and req and res parameters
-    const todoItems = await db.collection('todos').find().toArray() //sets a variable and awaits
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
+app.get('/',async (request, response)=>{ //starts a GET method when the root route is passed in, sets up req and res parameters
+    const todoItems = await db.collection('todos').find().toArray() //sets a variable and awaits all items from the todos collection
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //sets a variable and awaits a count of uncompleted items to later display in EJS
+    response.render('index.ejs', { items: todoItems, left: itemsLeft }) //redering the EJS file an passing through the db items and the count remaining inside of an object
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -37,8 +37,8 @@ app.get('/',async (request, response)=>{ //starts a GET method when the root rou
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+app.post('/addTodo', (request, response) => { //starts a POST method when the /addTodo route is passed in, sets up req and res parameters
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //inserts a new item into todos collection, 
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')
@@ -46,7 +46,7 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
-app.put('/markComplete', (request, response) => {
+app.put('/markComplete', (request, response) => { //starts an UPDATE method when the root route is passed in, sets up req and res parameters
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: true
@@ -63,7 +63,7 @@ app.put('/markComplete', (request, response) => {
 
 })
 
-app.put('/markUnComplete', (request, response) => {
+app.put('/markUnComplete', (request, response) => { //starts an UPDATE method when the root route is passed in, sets up req and res parameters
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: false
@@ -80,7 +80,7 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
-app.delete('/deleteItem', (request, response) => {
+app.delete('/deleteItem', (request, response) => { //starts a DELETE method when the root route is passed in, sets up req and res parameters
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
         console.log('Todo Deleted')
