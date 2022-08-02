@@ -20,22 +20,31 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!--iterates through the item array -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- adds a new li -->
         <li class="item">
+            <!-- checks if the item is completed -->
             <% if(items[i].completed === true) {%>
+                <!-- if the item is completed, give it a completed class and push it to the DOM -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- if the item is incomplete, don't give it the 'completed' class -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- adds a delete button at the end of the li -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    
+    <!-- Inserts number of items left to complete -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!--It's just a form -->
+    <!-- it sends data to /addTodo with a post request -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
