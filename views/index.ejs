@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- this tells our browser that our document type is html -->
+<html lang="en"> <!-- this tells our browser that we're setting our language to english -->
+<head> <!-- this opens the head tag that stores our meta data -->
+    <meta charset="UTF-8"> <!-- this indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate compatibility for MS broswers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets the width of the viewing area to the width of the device viewport -->
+    <title>Document</title> <!-- this sets the title of our page that appears on the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- this links to a stylesheet for fontawesome -->
+    <link rel="stylesheet" href="css/style.css"> <!-- this links to our local css stylesheet -->
+</head> <!-- this closes our head tag -->
+<body> <!--this is most likely a duplicate/typo-->
+    <!DOCTYPE html> <!--this is most likely a duplicate/typo-->
+<html lang="en"> <!--this is most likely a duplicate/typo-->
+<head> <!--this is most likely a duplicate/typo-->
+    <meta charset="UTF-8"> <!--this is most likely a duplicate/typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--this is most likely a duplicate/typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--this is most likely a duplicate/typo-->
+    <title>Document</title> <!--this is most likely a duplicate/typo-->
+</head> <!--this is most likely a duplicate/typo-->
+<body> <!--this is the main section for content displayed-->
+    <h1>Todo List: </h1> <!--Main title displayed on page-->
+    <ul class="todoItems"> <!-- Creates an unordered list and assigns a class to the list -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Use EJS to run a for loop -->
+        <li class="item"> <!-- This creates a list item with a class of "item" -->
+            <% if(items[i].completed === true) {%> <!-- EJS: if statement that checks to see if the element in the array of items has a boolean of true (completed) -->
+                <span class='completed'><%= items[i].thing %></span> <!-- EJS: elements that are "completed" will be put into a span here with a class of completed -->
+            <% }else{ %> <!-- EJS: else statement to complete the for loop -->
+                <span><%= items[i].thing %></span> <!-- EJS: for all elements in the array of items that doesn't have a completed value of true will be put into a span here -->
+            <% } %> <!-- this line ends the EJS for the if/else statement -->  
+            <span class='fa fa-trash'></span> <!-- this adds an inline element of a font awesome trash icon next to every line item that is listed -->
+        </li> <!-- this closes the line item -->
+    <% } %> <!-- EJS: this closes the for loop -->
+    </ul> <!-- this closes the unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- EJS: header 2 tag with a variable that represents an integer for the number of things left to do -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- another header 2 tag -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- this creates a form with a POST (create) method that routes through /addToDo -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- this creates an input box that has a type of text with a placeholder text of "Thing to Do" and a name of todoItem -->
+        <input type="submit"> <!-- this creates a submit button for our form -->
+    </form> <!-- this closes the form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- this tells our app to to link to our javascript file and gives it the appropriate route -->
+</body> <!-- this closes our body tag -->
+</html> <!-- this closes our html tag -->
