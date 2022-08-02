@@ -1,47 +1,61 @@
+<!--  EJS is a simple templating language that lets you generate HTML markup with plain JavaScript. EJS stands for Embedded JavaScript Templating-->
+
+<!-- Doctype is an abbreviation of document type. Doctype is a required declaration on an html webpage. It informs the web browser about the type and version of HTML used in building the web document. This helps the browser to handle and load it properly. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!--   This is not displayed, but  -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  
+  <!--   Name the title of the document document ofc   -->
+  <title>Document</title>
+  
+  <!-- Link the font-awesome stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <!-- Link the css stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <!-- Creates an h1(header1) -->
     <h1>Todo List: </h1>
+  
+  <!-- Creates an unordered list with the class of todoItems -->
     <ul class="todoItems">
+      
+    <!-- Create a for loop that iterates through items while i is less than     items.length and for each loop cycle, i increments -->
     <% for(let i=0; i < items.length; i++) {%>
+      
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- Create font-awesome trash bin icon using the fa fa-trash class name -->
         </li>
     <% } %>
     </ul>
 
+    <!-- Creates an h2 (header2) -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Creates an h2 (header2) -->
     <h2>Add A Todo:</h2>
 
+    <!-- Creates a form with an action of "/addTodo" which tells the form to send the data to the /addTodo when the form is submitted. Using method="POST" appends form data inside the body of the HTTP request -->
     <form action="/addTodo" method="POST">
+      
+      <!-- Create an input with the type of text, a placeholder of "Thing To Do, and name of "todoItem" -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+      
+      <!-- Creates an input of a submit button -->
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- Links the js/main.js file to this file -->
 </body>
-</html>
+</html> 
