@@ -1,7 +1,12 @@
+/* this targets the h1 */
 h1{
+    /* this makes the h1 red */
     color: red;
 }
+/* this targets the class "completed" */
 .completed{
+   /* this makes the text color gray */
     color: gray;
+    /* this puts a line through the text */
     text-decoration: line-through;
 }

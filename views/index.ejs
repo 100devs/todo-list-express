@@ -1,5 +1,8 @@
+<!-- sets up doc to be html -->
 <!DOCTYPE html>
+<!-- sets the page to english -->
 <html lang="en">
+    <!-- sets up the internal workings of the html page -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,31 +20,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- what's visible on the html page -->
 <body>
+    <!-- the h1, main heading -->
     <h1>Todo List: </h1>
+    <!-- bulleted list -->
     <ul class="todoItems">
+        <!-- for loop to pull items from database to make the list -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- sets up li and assigns item class -->
         <li class="item">
+            <!-- sets up if statement to organize items -->
             <% if(items[i].completed === true) {%>
+               <!--adds span and completed class if the items are completed  -->
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+            <!-- sets up else statement if item isn't completed -->
+                <% }else{ %>
+                    <!-- creates a span with no class -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %> 
+               <!-- creates span for trash icon -->
             <span class='fa fa-trash'></span>
+            <!-- closing li tag -->
         </li>
+        <!-- closing for loop -->
     <% } %>
+    <!-- closing ul tag -->
     </ul>
-
+<!-- a header, not as important as h1, with a pull from the server to get the left variable -->
     <h2>Left to do: <%= left %></h2>
-
+<!-- header for adding another item -->
     <h2>Add A Todo:</h2>
-
+<!-- creates form -->
     <form action="/addTodo" method="POST">
+        <!-- creates text box -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- creates button to submit -->
         <input type="submit">
+        <!-- closes form -->
     </form>
     
-
+<!-- connects ejs to main.js -->
     <script src='js/main.js'></script>
+    <!-- closes body tag -->
 </body>
+<!-- closes html tag -->
 </html>
+
