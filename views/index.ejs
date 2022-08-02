@@ -1,47 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- Specification of the Document, HTML5 -->
+<html lang="en"> <!-- create html element with language attribute set to English -->
+  <head> <!-- create head element with meta information -->
+    <meta charset="UTF-8" /> <!-- use specified character set -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- allows compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- sets the viewport to take up the entire width of the device, scaled to 1.0 -->
+    <title>Document</title> <!-- title element that displays a title in the browser tab -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    /> <!-- link element to the font awesome icon library -->
+    <link rel="stylesheet" href="css/style.css" /> <!-- link element to style.css in css directory -->
+  </head> <!-- close head tag -->
+  <body> <!-- Body, The Visible Section -->
+    <!DOCTYPE html>                                                               <!-- typo? -->
+    <html lang="en">                                                              <!-- typo? -->
+      <head>                                                                      <!-- typo? -->
+        <meta charset="UTF-8" />                                                  <!-- typo? -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />                   <!-- typo? -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <!-- typo? -->
+        <title>Document</title>                                                   <!-- typo? -->
+      </head>                                                                     <!-- typo? -->
+      <body>                                                                      <!-- typo? -->
+        <!-- Basic Gist: Dynamically render and li element for every 'item' in items array. 
+          Each li element will have a span element with a class of completed or no class depeneding on the 'completed' property value of the 'item' object -->
+        <h1>Todo List:</h1> <!-- heading level 1 displaying main title -->
+        <ul class="todoItems"> <!-- create unordered list with class 'todoItems' -->
+          <% for(let i=0; i < items.length; i++) {%> <!-- Utilize Embedded JavaScript (EJS)'s for loop -->
+          <li class="item"> <!-- (for each iteration,) create list item with class 'item' -->
+            <% if(items[i].completed === true) {%> <!-- IF the specified object has the a value of true for the 'completed' property,: -->
+              <span class="completed"><%= items[i].thing %></span> <!-- THEN create an inline element with class 'completed' - inner text displays the name of the todo task -->
+            <% }else{ %> <!-- else (i.e. IF the specified object does NOT have the completed property value true),: -->
+              <span class="uncompleted"><%= items[i].thing %></span> <!-- THEN create an inline element with no class - inner text displays the name of the todo task -->
+            <% } %> <!-- end of if, else statement -->
+              <span class="fa fa-trash"></span> <!-- font awesome icon of a trashcan added to all li elements regardless of class -->
+          </li> <!-- close list item tag -->
+          <% } %> <!-- close for loop -->
+        </ul> <!-- close unordered list tag -->
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Left to do: <%= left %></h2> <!-- Using EJS, heading level 2 displaying count (variable left) of uncompleted todo tasks -->
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2> <!-- Using EJS, heading level 2 displaying a preface to a form element that will add todo tasks -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <form action="/addTodo" method="POST"> <!-- create a form element with a POST request to the route '/addTodo' -->
+          <input type="text" placeholder="Thing To Do" name="todoItem" /> <!-- create an input element with its type set to text, a placeholder alerting the user as to what to type, and its name set to todoItem -->
+          <input type="submit" /> <!-- create an input element with its type set to text, a placeholder suggesting what to type to the user, and its name, a unique string, set to todoItem -->
+        </form> <!-- close form tag -->
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <script src="js/main.js"></script> <!-- links to main.js file in 'js' directory -->
+      
+  </body> <!-- close body tag -->
+</html> <!-- close html tag -->
