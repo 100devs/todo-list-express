@@ -15,7 +15,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         db = client.db(dbName)
     })
 
-// Set templating engine
+// Set templating engine for front end
 app.set('view engine', 'ejs')
 
 // Serve static files in public folder 
