@@ -1,22 +1,22 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') // get in losers, we're using express
+const app = express() // now we invoke express
+const MongoClient = require('mongodb').MongoClient // that database tho
+const PORT = 2121 // instantiate our port as a constant
+require('dotenv').config() // so we can use super-secret variables like our database string
 
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+let db, // declare database variable
+    dbConnectionStr = process.env.DB_STRING, // use super-secret variable in dotenv file
+    dbName = 'todo' // declare name of collection
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // hook that ish up bih
+    .then(client => { // AND THEEEEENNNNNN???
+        console.log(`Connected to ${dbName} Database`) // success message logged to console
+        db = client.db(dbName) // assign our database to variable
     })
     
 app.set('view engine', 'ejs')
-app.use(express.static('public'))
+app.use(express.static('public')) // so we can use our client-side JS and CSS
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
@@ -88,6 +88,6 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+app.listen(process.env.PORT || PORT, ()=>{ // tells the server where to run
+    console.log(`Server running on port ${PORT}`) // yay, we did it
+}) // kinda sad you don't use semicolons
