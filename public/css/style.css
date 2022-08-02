@@ -1,7 +1,12 @@
+/* h1 styling rule*/
 h1{
+    /* set color to red */
     color: red;
-}
+} /*closing*/
+/* completed class styling rule */
 .completed{
+    /* sets color to gray */
     color: gray;
+    /* puts a line through the text */
     text-decoration: line-through;
-}
+} /*closing*/
