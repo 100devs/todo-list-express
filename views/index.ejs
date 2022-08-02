@@ -1,47 +1,66 @@
+<!-- Declare document type for rendering (HTML) -->
 <!DOCTYPE html>
+<!-- Set language to English -->
 <html lang="en">
+<!-- Declare head block to store metadata -->
 <head>
+    <!-- Indicate character encoding for document -->
     <meta charset="UTF-8">
+    <!-- Set appropriate compatibility for Microsoft browsers -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set display width and scale to auto-adapt to different devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Assign document title that appears on browser tab -->
     <title>Document</title>
+    <!-- Link external stylesheet for internal use of classes and IDs for designated fonts and icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link local stylesheet for page styling -->
     <link rel="stylesheet" href="css/style.css">
+<!-- Close head block -->
 </head>
+<!-- Declare body block of page content -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Set main header displayed on page -->
     <h1>Todo List: </h1>
+    <!-- Create unordered list and assign class name -->
     <ul class="todoItems">
+    <!-- Use EJS to initiate 'for' loop -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Create list item and assign class name -->
         <li class="item">
+            <!-- Check if array item's 'completed' property is set to true before continuing -->
             <% if(items[i].completed === true) {%>
+                <!-- Create inline element, assign class name, and display list item in the DOM -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- Establish 'else' statement if array item's 'completed' property is not set to true -->
             <% }else{ %>
+                <!-- Display list item in the DOM (no class) -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <!-- Close 'else' statement -->
+            <% } %>
+            <!-- Render designated icon from 'Font Awesome' library inside a span -->
             <span class='fa fa-trash'></span>
+        <!-- Close list item -->
         </li>
+    <!-- Close 'for' loop -->
     <% } %>
+    <!-- Close unordered list -->
     </ul>
-
+    <!-- Set secondary header displayed on page and pull 'left' key from server.js -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- Set another secondary header displayed on page -->
     <h2>Add A Todo:</h2>
-
+    <!-- Create form with 'POST' method that submits through '/addTodo' route -->
     <form action="/addTodo" method="POST">
+        <!-- Create box for text-only user input, designate default placeholder text, and assign box 'name' for future reference -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Create button to submit form -->
         <input type="submit">
+    <!-- Close form -->
     </form>
-    
-
+    <!-- Link local JS file to apply action and functionality to page content -->
     <script src='js/main.js'></script>
+<!-- Close body block -->
 </body>
+<!-- End document -->
 </html>

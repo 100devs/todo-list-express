@@ -1,7 +1,14 @@
+/* Select any h1 tags for styling */
 h1{
+    /* Assign text color to red */
     color: red;
+/* Close selector */
 }
+/* Select any item assigned with 'completed' class for styling */
 .completed{
+    /* Assign text color to gray */
     color: gray;
+    /* Apply strikethrough styling to text */
     text-decoration: line-through;
+/* Close selector */
 }
