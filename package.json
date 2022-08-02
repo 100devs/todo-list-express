@@ -1,5 +1,5 @@
 {
-  "name": "rap-name-api",
+  "name": "todo-list-express",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,5 +14,9 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mongodb": "^3.6.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rrkurtz/todo-list-express.git"
   }
 }
