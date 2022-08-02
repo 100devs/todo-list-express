@@ -1,7 +1,12 @@
-h1{
+/* code block for selectors for h1 tags */
+/* text color is red */
+h1 {
     color: red;
 }
-.completed{
+
+/* code block for selectors for elements with class 'completed' */
+/* text color is gray and text will have a strike-line through it */
+.completed {
     color: gray;
     text-decoration: line-through;
 }
