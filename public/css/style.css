@@ -1,7 +1,7 @@
-h1{
+h1{ /* selecting h1 tag and giving the property a value of red */
     color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+} /*closes rule*/
+.completed{ /*selecting the class of 'completed' */ 
+    color: gray; /*giving the property: color the calue of gray*/
+    text-decoration: line-through; /*property: text-decoration a value of line-through when a task is completed */
+} /*closed rule*/
