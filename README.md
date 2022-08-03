@@ -1,2 +1,21 @@
+# todo-list-express
+
+## Starting
+
+Install dependencies.
+
+```
 npm install
-add DB_STRING to .env file
+```
+
+Export database connection string.
+
+```
+export DB_STRING='mongodb://USER:PASS@HOST:PORT/PARAMS'
+```
+
+Run the app.
+
+```
+npm start
+```
