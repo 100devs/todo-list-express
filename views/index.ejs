@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html> <!-- this tells the browser what type of file we're using-->
+<html lang="en"> <!-- this tells the browser the language will be english -->
+<head> <!-- document head, where css and meta tags go -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,40 +8,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+<body> <!-- main section for content -->
+    <h1>Todo List: </h1> <!-- main headline of the page -->
+    <ul class="todoItems"> <!-- creating an unordered list -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- ejs for loop -->
+        <li class="item"> <!-- create an li for each item -->
+            <% if(items[i].completed === true) {%> <!-- if items completed property is true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- list the todo.thing with a completed class -->
+            <% }else{ %> <!-- other wise -->
+                <span><%= items[i].thing %></span> <!-- just list the todo -->
+            <% } %>   <!-- close the if loop --> 
+            <span class='fa fa-trash'></span> <!-- create a trash can icon-->
         </li>
-    <% } %>
+    <% } %> <!-- close the for loop -->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- create a subheading with items left to do (number passed in from server.js) -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- subheading -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- initialize a form with a post method and action of /addTodo -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- text input for the todo item -->
+        <input type="submit"> <!-- submit button -->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- include JS which is inside the public folder -->
 </body>
 </html>
