@@ -1,6 +1,9 @@
-h1{
+/* Recolors the heading to red */
+h1 {
     color: red;
 }
+/* Elements with the completed class have a font color
+of gray and text has a strikethrough line across it*/
 .completed{
     color: gray;
     text-decoration: line-through;
