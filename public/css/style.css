@@ -1,7 +1,7 @@
 h1{
-    color: red;
+    color: red; /*makes headers red*/
 }
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray; /*makes items completed grey*/
+    text-decoration: line-through; /*applying strike through style to completed items class*/
 }
