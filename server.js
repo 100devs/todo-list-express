@@ -67,7 +67,7 @@ app.put('/markUnComplete', (request, response) => { //updates document to change
             completed: false
           }
     },{
-        sort: {_id: -1},
+        sort: {_id: -1},//sorts input documents by id in descending order 
         upsert: false
     })
     .then(result => {
