@@ -17,31 +17,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+<body><!--main section for content displayed-->
+    <h1>Todo List: </h1> 
+    <ul class="todoItems"> <!--create unordered list and assign class to the list-->
+    <% for(let i=0; i < items.length; i++) {%> <!--adding EJS for loop to loop through all existing items in list-->
+        <li class="item"> 
+            <% if(items[i].completed === true) {%> <!--EJS start of the if conditional checks if an intem in an array with a completed property is true-->
+                <span class='completed'><%= items[i].thing %></span> <!--creating an inline element with a class and adding EJS to display-->
+            <% }else{ %> <!--EJS for the else clause of our if statement-->
+                <span><%= items[i].thing %></span> <!--adding EJS to display the name of the task with no class-->
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span class='fa fa-trash'></span> <!--Display font awesome icon of trash can inside a span-->
+        </li> <!--EJS to close the FOR loop-->
+    <% } %> <!--closing our unordered list-->
+    </ul> <!--closing our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!---EJS header for number of items left in todo list-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!---create a second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!---create a form with a POST method that goes to the /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--create an input box that accepts text with default text for placeholder inside of it-->
+        <input type="submit"> <!--gives the form a submit button-->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--link to main js file-->
 </body>
 </html>
