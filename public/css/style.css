@@ -1,7 +1,10 @@
-h1{
-    color: red;
+/* create an element selector for all h1's in the document and set the text to red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+/* create a class selector for the class "completed", and set the element text to gray with a strike-through */
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
