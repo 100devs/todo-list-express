@@ -1,14 +1,14 @@
-// Query the HTML document for all elements with the fa-trash class and store
+// Query the HTML document for all elements with the fa-trash CSS class. Store
 // the result in the deleteBtn variable.
 const deleteBtn = document.querySelectorAll('.fa-trash')
 
 // Query the HTML document for all span elements that are located under an
-// element with the item class. Store the result in the item variable.
+// element with the item CSS class. Store the result in the item variable.
 const item = document.querySelectorAll('.item span')
 
-// Query the HTML document for all span elements with the completed class that
-// are located under an element with the item class. Store the result in the
-// item variable.
+// Query the HTML document for all span elements with the completed CSS class
+// that are located under an element with the item CSS class. Store the result
+// in the item variable.
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
 // Create an array from the deleteBtn NodeList and iterate over all of its
@@ -38,9 +38,9 @@ Array.from(itemCompleted).forEach((element)=>{
 // anything. The function is async because it contains awaits.
 async function deleteItem(){
 	// Get the parent node from the element that was clicked. Then, find its
-	// second child node and retrieve its innerText. Store the result in the
+	// first child node and retrieve its innerText. Store the result in the
 	// itemText variable.
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentElement.children[0].innerText.trim()
 
 	// Try to execute the following code block. If a promise is rejected, the
 	// catch block will be executed.
@@ -56,8 +56,8 @@ async function deleteItem(){
               'itemFromJS': itemText
             })
           })
-		// Resolve the response promise from server and fetch the response as
-		// JSON.
+		// Resolve the response promise from server and fetch the its content
+		// as JSON.
         const data = await response.json()
 
 		// Log the server response.
@@ -77,13 +77,13 @@ async function deleteItem(){
 // anything. The function is async because it contains awaits.
 async function markComplete(){
 	// Get the parent node from the element that was clicked. Then, find its
-	// second child node and retrieve its innerText. Store the result in the
+	// first child node and retrieve its innerText. Store the result in the
 	// itemText variable.
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentElement.children[0].innerText.trim()
 
 	// Try to execute the following code block. If a promise is rejected, the
 	// catch block will be executed.
-    try{
+    try {
 		// Send an HTTP PUT request to the /markComplete route.
         const response = await fetch('/markComplete', {
 			// The HTTP method is PUT.
@@ -95,8 +95,8 @@ async function markComplete(){
                 'itemFromJS': itemText
             })
           })
-		// Resolve the response promise from server and fetch the response as
-		// JSON.
+		// Resolve the response promise from server and fetch the its content
+		// as JSON.
         const data = await response.json()
 
 		// Log the server response.
@@ -106,7 +106,7 @@ async function markComplete(){
         location.reload()
 
 	// If any promise in the try block was rejected, execute this catch.
-    }catch(err){
+    } catch(err) {
 		// Log the error.
         console.log(err)
     }
@@ -116,13 +116,13 @@ async function markComplete(){
 // anything. The function is async because it contains awaits.
 async function markUnComplete(){
 	// Get the parent node from the element that was clicked. Then, find its
-	// second child node and retrieve its innerText. Store the result in the
+	// first child node and retrieve its innerText. Store the result in the
 	// itemText variable.
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentElement.children[0].innerText.trim()
 
 	// Try to execute the following code block. If a promise is rejected, the
 	// catch block will be executed.
-    try{
+    try {
 		// Send an HTTP PUT request to the /markUnComplete route.
         const response = await fetch('/markUnComplete', {
 			// The HTTP method is PUT.
@@ -134,8 +134,8 @@ async function markUnComplete(){
                 'itemFromJS': itemText
             })
           })
-		// Resolve the response promise from server and fetch the response as
-		// JSON.
+		// Resolve the response promise from server and fetch the its content
+		// as JSON.
         const data = await response.json()
 
 		// Log the server response.
@@ -145,7 +145,7 @@ async function markUnComplete(){
         location.reload()
 
 	// If any promise in the try block was rejected, execute this catch.
-    }catch(err){
+    } catch(err) {
 		// Log the error.
         console.log(err)
     }
