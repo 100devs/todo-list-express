@@ -5,43 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--link to eternal font-->
+    <link rel="stylesheet" href="css/style.css"> <!--link to local style sheet-->
 </head>
 <body>
     <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!--user language set ti English-->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
+<body> <!--opening tag-->
+    <h1>Todo List: </h1> <!--create a heading, h1 is most important-->
+    <ul class="todoItems"> <!--create an unordered list and assign a class to the ul-->
+        <!--the following section looks like JavaScript because this file type is Embedded JavaScript (dot ejs)-->
+    <% for(let i=0; i < items.length; i++) {%> <!--for loop for items added to DB-->
+        <li class="item"> <!--declare class 'item' for list-->
+            <% if(items[i].completed === true) {%> <!--if items is completed/key = true-->
+                <span class='completed'><%= items[i].thing %></span> <!--assign items with class 'completed', display in a span-->
+            <% }else{ %> <!--else-->
+                <span><%= items[i].thing %></span> <!--display items in the span as-is-->
+            <% } %> <!--closing tag-->
             <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+        </li> <!--closing tag-->
+    <% } %> <!--closing tag-->
+    </ul> <!--closing tag-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--display remaining item, property 'left' (server.js)-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--create text heading, 2nd priority-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--create a form, take input and send POST request to add input to DB-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--input text field, set input to have value todoItem-->
+        <input type="submit"> <!--submit button send input text to server-->
+    </form> <!--closing tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!---->
+</body> <!--closing tag-->
+</html> <!--closing tag-->
