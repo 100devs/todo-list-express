@@ -1,7 +1,7 @@
 h1{
-    color: red;
+    color: red; /* make h1s red */
 }
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray; /* completed things are gray (the most celebratory color) */
+    text-decoration: line-through; /* give it some festive decoration */
 }
