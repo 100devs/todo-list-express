@@ -1,25 +1,24 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') // load express module 
+const app = express() // assign express module to app variable
+const MongoClient = require('mongodb').MongoClient // load mongodb
+const PORT = 2121 // local port to listen at
+require('dotenv').config() // load .env module
 
+let db, // declar db variable
+    dbConnectionStr = process.env.DB_STRING, // assign DB_STRING variable from .env file to dbConnectionStr variable
+    dbName = 'todo' // declare dbName as 'todo'
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
-
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // mongodb connection with dbConnectionStr and "use the new unified topology layer" passed in as arguments
+    .then(client => { // response of .connect passed in as client variable
+        console.log(`Connected to ${dbName} Database`) // connected to todo Database
+        db = client.db(dbName) // sets db variable to 'todo
+        console.log(db); 
     })
     
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
 
 app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()

@@ -1,18 +1,27 @@
 {
-  "name": "rap-name-api",
+  "name": "todo-list-express-mongodb",
   "version": "1.0.0",
-  "description": "",
+  "description": "npm install add DB_STRING to .env file",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.8",
     "express": "^4.17.1",
     "mongodb": "^3.6.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ROEL12037/todo-list-express-mongodb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ROEL12037/todo-list-express-mongodb/issues"
+  },
+  "homepage": "https://github.com/ROEL12037/todo-list-express-mongodb#readme"
 }
