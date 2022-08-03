@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /* selector that grabs h1 tags */
+    color: red; /* sets the color of the content to be in red, the words will appear read */
+} /* closes the selector */
+.completed{ /* selector that grabs all items with class completed */
+    color: gray; /* sets the text color to be gray */
+    text-decoration: line-through; /* adds strikethrough styling to the text  */
+} /* closes the selector */
