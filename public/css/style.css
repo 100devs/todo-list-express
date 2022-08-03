@@ -1,7 +1,10 @@
+/*selects any h1 tag in the ejs file*/
 h1{
-    color: red;
-}
+    color: red; /*changes the text color to red*/
+} /*closing the selector*/
+
+/*Changes elements with the completed class to gray and to have line through them*/
 .completed{
     color: gray;
-    text-decoration: line-through;
-}
+    text-decoration: line-through; /*applies strikehrough styling to the text*/
+} /* closing the selector*/
