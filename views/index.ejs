@@ -1,47 +1,71 @@
+<!-- telling the browser what type of document we will be displaying -->
 <!DOCTYPE html>
+<!-- starting the html document and telling browser what language we will be displaying-->
 <html lang="en">
+<!-- starting the head tag to store meta data -->
 <head>
+    <!-- declares what character set should be used  -->
     <meta charset="UTF-8">
+    <!-- tells MS browsers what intrenet explorer to render the page -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- sets the width of avialble viewing area to width of the device screen -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title of document, this is what is displayed on browser tab -->
     <title>Document</title>
+    <!--  links to fontawesome as a style sheet and gives access to icon library-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- links css to html document -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    
+<!-- main section for content being displayed -->
+<body> 
+    <!-- main heading/title -->
     <h1>Todo List: </h1>
+    <!-- create unordered list with a specific class assigned to it -->
     <ul class="todoItems">
+    <!-- EJS is a templating language that allows us to make our HTML dynamic and able to interact and update with our backend and database -->
+    <!-- use EJS to initialize a for loop that will loop through each element in the item array -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- for each elemnt in item array, create a list tag with the class of item -->
         <li class="item">
+            <!-- EJS if  statement to check if a list item in the array with a class of completed is true, if item in array has property of comleted that is true  -->
             <% if(items[i].completed === true) {%>
+                <!-- display an inline element with the completed class that adds EJS to display the name of the task, completed class will put a strike through our task item -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- EJS if/else statement -->
             <% }else{ %>
+                <!-- else if completed property is false, create an inline element that does not have a completed class, display the name of the task (no strike through) -->
                 <span><%= items[i].thing %></span>
+                <!-- EJS to close the if/else statement -->
             <% } %>    
+            <!-- for every element in item array add inline element to display trashcan fontawesome icon -->
             <span class='fa fa-trash'></span>
+            <!-- closing list item -->
         </li>
+        <!-- closing EJS for  loop -->
     <% } %>
+    <!-- closing unordered list tag -->
     </ul>
 
+    <!-- another heading/title tag. Using EJS to display a variable that shows the number of tasks left to be completed  -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- another heading/title tag. -->
     <h2>Add A Todo:</h2>
 
+    <!-- Create a form with a POST(create a thing) method that when submitted it routes to /addTodo in our server -->
     <form action="/addTodo" method="POST">
+        <!-- creates input box in form for users to input text, creates a placeholder for text that appears when inputbox is empty, name the input box so that we can refrence it later-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- creates a submission button for the form -->
         <input type="submit">
+        <!-- close form tag -->
     </form>
     
-
+    <!-- links to our main.js in the public/js folder -->
     <script src='js/main.js'></script>
+<!-- closes body and html -->
 </body>
 </html>
+ 
