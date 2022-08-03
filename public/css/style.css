@@ -1,6 +1,9 @@
+/* selecting all h1's and making them red */
 h1{
     color: red;
 }
+
+/* selecting all tags with the completed class, will make text colour be gray and have a line through it */
 .completed{
     color: gray;
     text-decoration: line-through;
