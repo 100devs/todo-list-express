@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!DOCTYPE html>  <!-- Tells the browser what type of document will be shown: HTML -->
+<html lang="en"> <!-- Starting the html tag AND setting the language to english -->
+<head> <!-- Starting the head tag to store our metadata -->
+    <meta charset="UTF-8"> <!-- Indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Sets appropriate compatibility for microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Setting viewport width of avail viewing area to the device screen size. -->
+    <title>Document</title> <!-- Title of the page that is displayed in the tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- font awesome icon library link-->
+    <link rel="stylesheet" href="css/style.css"> <!-- style.css style sheet link. It's inside of public, inside of a CSS folder-->
+</head> <!-- Closing out our head tag -->
+<!-- Section commented out is a possible typo -->
+<!-- <body>   
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +17,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> -->
+<body> <!-- Displayed content is all in the body -->
+    <h1>Todo List: </h1> <!-- Main title displayed -->
+    <ul class="todoItems"> <!-- Creates an unordered list with a class called todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- EJS starts a for loop -->
+        <li class="item"> <!-- Creating a list ITEM with the class item -->
+            <% if(items[i].completed === true) {%> <!-- ESJ checks if the item in an array with a completed property -->
+                <span class='completed'><%= items[i].thing %></span> <!-- A span with class of completed showing the items in the array with a thing property(name of the task) -->
+            <% }else{ %> <!-- EJS to make an else statement if the item.completed is false -->                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- Adding EJS to display task with NO class -->
+                <% } %>   <!-- EJS to close the else statement -->  
+            <span class='fa fa-trash'></span> <!-- Display icon with the fa fa-trash classes/ inline element -->
+        </li> <!-- Closing the list item, everyting above will go into one list item -->
+    <% } %> <!-- EJS to close the for loop -->
+    </ul> <!-- Closing our ul -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- A subheading that uses EJS to display the # of tasks left to do -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Subheadding for the section where we can add a new list item -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- Creating a form with a POST/create method that will go to /addTodo route. Why to a certain route? So the server knows what to do, we want to hit a certain endpoint listening for this route and handle this info properly -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Creates an input box to type in text/ the thing you have to do, placeholder will display on load to tell a user what to type. the name is a unique value to reference this input later.   -->
+        <input type="submit"> <!-- Gives the form a Submit buttom -->
+    </form> <!-- Closing the form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- Linking to our main.js which is in our js folder inside of our public folder -->
+</body> <!-- Closing the body -->
+</html> <!-- Closing our html file-->

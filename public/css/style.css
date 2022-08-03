@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /* Selects any h1 */ 
+    color: red; /* Makes ANY of the h1 red */ 
+} /* Closes the h1 */ 
+.completed{ /* targets items with the class .completed */ 
+    color: gray; /* Makes anything with the completed class gray */
+    text-decoration: line-through; /*  Anything with the completed class has a line through it */
+} /* closes the completed class selector */ 
