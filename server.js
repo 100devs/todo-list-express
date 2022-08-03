@@ -15,7 +15,6 @@ const PORT = 2121
 // file and exposed the environment variable to this program.
 require('dotenv').config()
 
-
 // Declare a variable named db.
 let db
 
@@ -34,6 +33,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
 		// Log the connected database.
         console.log(`Connected to ${dbName} Database`)
+
 		// Tell the MongoClient to use the dbName database. Store the returned
 		// Db class in the db variable.
         db = client.db(dbName)
@@ -74,101 +74,120 @@ app.get('/', async (_, response) => {
 
 // Listen for HTTP POST requests on the `/addTodo` route and executes the
 // handler.
-app.post('/addTodo', (request, response) => {
-	// Inserts a new document into the todos collection with the fields thing
-	// and completed set.
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-		// Since the above return a promise, we handle the resolved promise
-		// here.
-		.then(_ => {
-			// Log that a todo was added.
-			console.log('Todo Added')
-			// Redirect the client back to `/`.
-			response.redirect('/')
-		})
-		// Handle the rejected promise by logging the error.
-		.catch(error => console.error(error))
+app.post('/addTodo', async (request, response) => {
+	// Try to execute the following code block. If a promise is rejected, the
+	// catch block will be executed.
+	try {
+		// Insert a new document into the todos collection with the field thing
+		// set to request.body.todoItem and the field completed set to false.
+		await db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+
+		// Log that the todo was added.
+		console.log('Todo Added')
+
+		// Redirect the client to `/`.
+		response.redirect('/')
+
+	// If any promise in the try block was rejected, execute this catch.
+	} catch(err) {
+		// Log the error.
+		console.log(err)
+	}
 })
 
 // Listen for HTTP PUT requests on the `/markComplete` route and executes the
 // handler.
-app.put('/markComplete', (request, response) => {
-	// Find a document whose thing field matches request.body.itemFromJS and
-	// set its completed field to true. When finding a document, sort the
-	// documents by object ID in ascending order. If no document was found, do
-	// not insert a new one.
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-		// If a document was found, set it's completed field to true.
-        $set: {
-            completed: true
-        }
-    },{
-		// When finding a document, sort the documents by object ID in
-		// ascending order.
-        sort: {_id: -1},
-		// If we don't find a document to update, do not create one.
-        upsert: false
-    })
-	// Handle the resolved promise.
-    .then(_ => {
+app.put('/markComplete', async (request, response) => {
+	// Try to execute the following code block. If a promise is rejected, the
+	// catch block will be executed.
+	try {
+		// Find a document whose thing field matches request.body.itemFromJS and
+		// set its completed field to true. When finding a document, sort the
+		// documents by object ID in ascending order. If no document was found, do
+		// not insert a new one.
+		await db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+			// If a document was found, set it's completed field to true.
+			$set: {
+				completed: true
+			}
+		},{
+			// When finding a document, sort the documents by object ID in
+			// ascending order.
+			sort: {_id: -1},
+			// If we don't find a document to update, do not create one.
+			upsert: false
+		})
+
 		// Log that the update was complete.
         console.log('Marked Complete')
 
 		// Response to the client, letting them know the update was complete.
         response.json('Marked Complete')
-    })
-	// Handle the rejected promise by logging the error.
-    .catch(error => console.error(error))
 
+	// If any promise in the try block was rejected, execute this catch.
+	} catch(err) {
+		// Log the error.
+		console.log(err)
+	}
 })
 
 // Listen for HTTP PUT requests on the `/markUnComplete` route and executes the
 // handler.
-app.put('/markUnComplete', (request, response) => {
-	// Find a document whose thing field matches request.body.itemFromJS and
-	// set its completed field to false. When finding a document, sort the
-	// documents by object ID in ascending order. If no document was found, do
-	// not insert a new one.
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-		// If a document was found, set it's completed field to true.
-        $set: {
-            completed: false
-          }
-    },{
-		// When finding a document, sort the documents by object ID in
-		// ascending order.
-        sort: {_id: -1},
-		// If we don't find a document to update, do not create one.
-        upsert: false
-    })
-	// Handle the resolved promise.
-    .then(_ => {
+app.put('/markUnComplete', async (request, response) => {
+	// Try to execute the following code block. If a promise is rejected, the
+	// catch block will be executed.
+	try {
+		// Find a document whose thing field matches request.body.itemFromJS and
+		// set its completed field to true. When finding a document, sort the
+		// documents by object ID in ascending order. If no document was found, do
+		// not insert a new one.
+		await db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+			// If a document was found, set it's completed field to true.
+			$set: {
+				completed: false
+			}
+		},{
+			// When finding a document, sort the documents by object ID in
+			// ascending order.
+			sort: {_id: -1},
+			// If we don't find a document to update, do not create one.
+			upsert: false
+		})
+
 		// Log that the update was complete.
         console.log('Marked UnComplete')
 
 		// Response to the client, letting them know the update was complete.
         response.json('Marked UnComplete')
-    })
-	// Handle the rejected promise by logging the error.
-    .catch(error => console.error(error))
+
+	// If any promise in the try block was rejected, execute this catch.
+	} catch(err) {
+		// Log the error.
+		console.log(err)
+	}
 })
 
 // Listen for HTTP DELETE requests on the `/deleteItem` route and executes the
 // handler.
-app.delete('/deleteItem', (request, response) => {
-	// Find a document in the todos collection whose thing field matches
-	// request.body.itemFromJS and delete it if found.
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-	// Handle the resolved promise.
-    .then(_ => {
-		// Log that the delete was complete.
-        console.log('Todo Deleted')
+app.delete('/deleteItem', async (request, response) => {
+	// Try to execute the following code block. If a promise is rejected, the
+	// catch block will be executed.
+	try {
+		// Delete a document in the todos collection whose thing field matches
+		// request.body.itemFromJS.
+		await db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+
+		// Log that the delete was completed.
+		console.log('Todo Deleted')
 
 		// Response to the client, letting them know the delete was complete.
         response.json('Todo Deleted')
-    })
-	// Handle the rejected promise by logging the error.
-    .catch(error => console.error(error))
+
+	// If any promise in the try block was rejected, execute this catch.
+	} catch(err) {
+		// Log the error.
+		console.log(err)
+	}
 })
 
 // Start the express web server, listening on port PORT. PORT is retrieved from
