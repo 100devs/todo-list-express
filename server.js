@@ -1,93 +1,111 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express'); // import express
+const app = express(); // create an instance of express
+const MongoClient = require('mongodb').MongoClient; // import mongodb
+const PORT = 2121; // set the port
+require('dotenv').config(); // import dotenv
 
+let db, // create a variable to hold the database
+  dbConnectionStr = process.env.DB_STRING, // get the db connection string from the .env file
+  dbName = 'todo'; // set the database name
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
+  // connect to the database
+  (client) => {
+    // if the connection is successful
+    console.log(`Connected to ${dbName} Database`); // log the connection
+    db = client.db(dbName); // set the database to the client db
+  }
+);
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
-    })
-    
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.set('view engine', 'ejs'); // set the view engine to ejs
+app.use(express.static('public')); // use the public folder
+app.use(express.urlencoded({ extended: true })); // use express urlencoded
+app.use(express.json()); // use express json
 
-
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
-})
+app.get('/', async (request, response) => {
+  // get the home page
+  const todoItems = await db.collection('todos').find().toArray(); // get the todo items
+  const itemsLeft = await db // get the items left
+    .collection('todos') // get the todos collection
+    .countDocuments({ completed: false }); // count the documents that are not completed
+  response.render('index.ejs', { items: todoItems, left: itemsLeft }); // render the index page with the todo items and the items left
+});
 
 app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
+  // make post request to the add todo route
+  db.collection('todos') // get the todos collection
+    .insertOne({ thing: request.body.todoItem, completed: false }) // insert the todo item
+    .then((result) => {
+      // if the insert is successful
+      console.log('Todo Added'); // log the insert
+      response.redirect('/'); // redirect to the home page
     })
-    .catch(error => console.error(error))
-})
+    .catch((error) => console.error(error)); // catch any errors
+});
 
 app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+  // make put request to the mark complete route
+  db.collection('todos') // get the todos collection
+    .updateOne(
+      // update the todo item
+      { thing: request.body.itemFromJS }, // set the query to the item from the body
+      {
         $set: {
-            completed: true
-          }
-    },{
-        sort: {_id: -1},
-        upsert: false
+          // set the update to the completed field to true
+          completed: true, // set the completed field to true
+        },
+      },
+      {
+        sort: { _id: -1 }, // sort the results by the id
+        upsert: false, // don't create a new document if one doesn't exist
+      }
+    )
+    .then((result) => {
+      // if the update is successful
+      console.log('Marked Complete'); // log the update
+      response.json('Marked Complete'); // send a response
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+    .catch((error) => console.error(error)); // catch any errors
+});
 
-})
-
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markIncomplete', (request, response) => {
+  // make put request to the mark incomplete route
+  db.collection('todos') // get the todos collection
+    .updateOne(
+      // update the todo item
+      { thing: request.body.itemFromJS }, // set the query to the item from the body
+      {
         $set: {
-            completed: false
-          }
-    },{
-        sort: {_id: -1},
-        upsert: false
+          // set the update to the completed field to false
+          completed: false, // set the completed field to false
+        },
+      },
+      {
+        sort: { _id: -1 }, // sort the results by the id
+        upsert: false, // don't create a new document if one doesn't exist
+      }
+    )
+    .then((result) => {
+      // if the update is successful
+      console.log('Marked Complete'); // log the update
+      response.json('Marked Complete'); // send a response
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
-
-})
+    .catch((error) => console.error(error)); // catch any errors
+});
 
 app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+  // delete item route
+  db.collection('todos') // query the db for the item
+    .deleteOne({ thing: request.body.itemFromJS }) // delete the item
+    .then((result) => {
+      // if successful
+      console.log('Todo Deleted'); // log the success
+      response.json('Todo Deleted'); // send a response
     })
-    .catch(error => console.error(error))
+    .catch((error) => console.error(error)); // if error, log the error
+});
 
-})
-
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+app.listen(process.env.PORT || PORT, () => {
+  // start server and listen on port 2121
+  console.log(`Server running on port ${PORT}`); // log the port
+});
