@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+<!DOCTYPE html> <!-- it's an html doc bih-->
+<html lang="en"> <!-- it's in english-->
+<head> <!-- tell the browser what's up-->
+    <meta charset="UTF-8"> <!-- the characters to use for the page-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- browser compatibility -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- scale the screen size to the device -->
+    <title>Document</title> <!-- sets the title for the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- that's an awesome font bro -->
+    <link rel="stylesheet" href="css/style.css"> <!-- those are some stylish sheets bro -->
+</head> <!-- that's enough info for the browser about what's up -->
+<body> <!-- this is the document body itself, the initial DOM state -->
+    <h1>Todo List: </h1> <!-- the header for the todo list -->
+    <ul class="todoItems"> <!-- the todo list itself, unordered -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- take each item and... -->
+        <li class="item"> <!-- make a list element, with HTML class "item" -->
+            <% if(items[i].completed === true) {%> <!-- if the item is already done... -->
+                <span class='completed'><%= items[i].thing %></span> <!-- give its span the class of completed -->
+            <% }else{ %> <!-- otherwise -->
+                <span><%= items[i].thing %></span> <!-- it has no class :/ -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- make a little trash can in case we wanna trash it -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- a smaller header counting uncompleted tasks -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- another smaller header for the task-adding form -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- a form for adding a todo to the list -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- lets you input the name of the thing to do -->
+        <input type="submit"> <!-- sends this shit as a POST request to /addTodo -->
     </form>
     
 
-    <script src='js/main.js'></script>
-</body>
+    <script src='js/main.js'></script> <!-- load the JavaScript and replace all this ugly EJS shit with the actual numbers and shit -->
+</body> <!-- the webpage is now non-corporeal -->
 </html>
