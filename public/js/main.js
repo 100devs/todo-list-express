@@ -21,7 +21,7 @@ async function deleteItem(){ // Declares an asynchronous function
             method: 'delete', // Sets the CRUD method for the route
             headers: {'Content-Type': 'application/json'}, // Specifies the type of content expected, which is JSON
             body: JSON.stringify({ // Declares the message content being passed, and stringifies that content 
-              'itemFromJS': itemText // Sets  the content of the body to the inner texts of the list item, and naming it 'itemFromJS'
+              'itemFromJS': itemText // Sets the content of the body to the inner texts of the list item, and naming it 'itemFromJS'
             }) // Closing the body 
           }) // Closing the object
         const data = await response.json() // Waits on JSON from the response to be converted 
