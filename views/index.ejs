@@ -1,47 +1,62 @@
+<!-- inform the browser that is this html file -->
 <!DOCTYPE html>
 <html lang="en">
+<!-- inform that the language we using is english   -->
+
+<!-- start the head and this not show in browser that have all meta and links and thing that run behaind the screen -->
+
 <head>
+    <!--  is a method of converting the typed characters into machine-readable code -->
     <meta charset="UTF-8">
+    <!-- Indicates that the meta element is in the encoding declaration state and represents a character encoding declaration -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- set the  width and initial scale (zoom level) of the viewport, as the full width of the device and 1.0 accordingly -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Link to Font Awesome stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link to local stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- set a website title  -->
+    <title>todo list</title>
 </head>
+<!-- main body that will show in browser -->
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- main head on website -->
     <h1>Todo List: </h1>
+    <!-- make an unordered list to store todo items-->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+        <!-- make a js for loop using ejs looping for each item  -->
+        <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- make list item -->
+            <!--check if the current item `completed` property is equal to `true`-->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <!-- create the item thing using ejs that have class `completed -->
+            <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
+            <!-- if not completed make normal style -->
+            <span><%= items[i].thing %></span>
+            <% } %>
+            <!-- add icons to the list-->
             <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+        <% } %>
     </ul>
-
+    <!-- Output the value of left into the page -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Form that will make a `POST` request to `/addTodo` when submitted -->
     <form action="/addTodo" method="POST">
+        <!-- create an input field that accepts text  -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit form-->
         <input type="submit">
     </form>
-    
 
+    <!-- main link to local javaScript file -->
     <script src='js/main.js'></script>
 </body>
+
 </html>
