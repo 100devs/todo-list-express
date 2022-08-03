@@ -1,6 +1,6 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const deleteBtn = document.querySelectorAll('.fa-trash') //select dom elements with fa-trash class
+const item = document.querySelectorAll('.item span') // span tags inside of an item class
+const itemCompleted = document.querySelectorAll('.item span.completed') // spans with completed class inside of item class elements
 
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
