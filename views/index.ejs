@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html> <!--doctype-->
+<html lang="en"> <!--english-->
+<head> <!--html head stuff-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> <!--title of page-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css"> <!--link css-->
 </head>
 <body>
-    <!DOCTYPE html>
+    <!DOCTYPE html> <!--shouldnt be here-->
 <html lang="en">
-<head>
+<head> <!--shouldnt be here-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <h1>Todo List: </h1> <!--todo list title-->
+    <ul class="todoItems"> <!--created unordered list -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- for loop EJS for length of items-->
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
@@ -32,16 +32,16 @@
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--heading for tasks left todo-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--heading for tasks to add todo-->
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!--Create a form with a POSt method that goes to the /addTodo route-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--link main.js-->
 </body>
 </html>
