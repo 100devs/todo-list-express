@@ -91,4 +91,4 @@ app.delete('/deleteItem', (request, response) => {//starts a delete method when 
 
 app.listen(process.env.PORT || PORT, ()=>{//setting up which port to be listening on - either from .env or port variable
     console.log(`Server running on port ${PORT}`)//console log the running port
-})
+})//end the listen method
