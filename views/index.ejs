@@ -1,47 +1,95 @@
+<!-- telling browser this is html page -->
 <!DOCTYPE html>
+<!-- sets language to english -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- head tag - stores metadata-->
+  <head>
+    <!-- UTF-8 characters -->
+    <meta charset="UTF-8" />
+    <!-- sets compatibile to microsoft browsers -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- display settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- title of page -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+
+    <!-- link icon css  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- link style css page -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- closing head tag -->
+  </head>
+
+  <!-- content displayed on page -->
+  <body>
+    <!-- typo? -->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <!-- typo? -->
+    <html lang="en">
+      <!-- typo? -->
+      <head>
+        <!-- typo? -->
+        <meta charset="UTF-8" />
+        <!-- typo? -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- typo? -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- typo? -->
+        <title>Document</title>
+        <!-- typo? -->
+      </head>
+      <!-- content displayed on page -->
+      <body>
+        <!-- main header of page -->
+        <h1>Todo List:</h1>
+        <!-- unordered list and assign class to whole list-->
+        <ul class="todoItems">
+          <!-- ejs to loop through length of items -->
+          <% for(let i=0; i < items.length; i++) {%>
+          <!-- for each item create a li and assign item class to each item-->
+          <li class="item">
+            <!-- if that item has been completed -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <!-- put it inside a span with class completed and use EJS to display it to DOM-->
+            <span class="completed"><%= items[i].thing %></span>
+            <!--EJS else  -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <!--use EJS to put item into span -->
+            <span><%= items[i].thing %></span>
+            <% } %>
+            <!-- add trash can icon after item -->
+            <span class="fa fa-trash"></span>
+            <!-- end list tag -->
+          </li>
+          <!-- closing of ejs for loop -->
+          <% } %>
+          <!-- end unordered list tag -->
+        </ul>
+        <!--create subheader and use ejs to display number of todos left -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Left to do: <%= left %></h2>
+        <!-- create subheader -->
+        <h2>Add A Todo:</h2>
 
-    <h2>Add A Todo:</h2>
+        <!-- create form, with a POST method, to go to the /addTodo route -->
+        <form action="/addTodo" method="POST">
+          <!-- create input box to type todosf into -->
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <!-- create submit button -->
+          <input type="submit" />
+          <!-- close form tag -->
+        </form>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+        <!--link our main.js script  -->
+        <script src="js/main.js"></script>
+        <!-- close body typo?-->
+      </body>
+      <!-- close html typo? -->
+    </html>
+    <!-- close body -->
+  </body>
+  <!-- close html -->
 </html>
