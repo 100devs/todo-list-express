@@ -1,72 +1,72 @@
-const deleteBtn = document.querySelectorAll('.fa-trash') //delete button link
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const deleteBtn = document.querySelectorAll('.fa-trash') //creating var and assigning it to a selection of all elements with a class trash of can
+const item = document.querySelectorAll('.item span') //creating var and assigning it to a selection of span tags inside a parent of class item
+const itemCompleted = document.querySelectorAll('.item span.completed') //creating var and assigning it to slection of spans with class of completed inside parent class of item
 
-Array.from(deleteBtn).forEach((element)=>{
-    element.addEventListener('click', deleteItem)
+Array.from(deleteBtn).forEach((element)=>{ //create array from selection and starting a loop
+    element.addEventListener('click', deleteItem) //add event listener to current item that waits for click and calls fn deleterItem
+})//close loop
+
+Array.from(item).forEach((element)=>{//create array from selection and starting a loop
+    element.addEventListener('click', markComplete)//add event listener to current item that waits for click and calls fn markComplete
 })
 
-Array.from(item).forEach((element)=>{
-    element.addEventListener('click', markComplete)
-})
+Array.from(itemCompleted).forEach((element)=>{//create array from selection and starting a loop
+    element.addEventListener('click', markUnComplete) //add event listener to current item that waits for click and calls fn markUnComplete
+})//close loop
 
-Array.from(itemCompleted).forEach((element)=>{
-    element.addEventListener('click', markUnComplete)
-})
+async function deleteItem(){ //declare async func
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside of list item and grabs oonly the inner text within the list span
+    try{// starting a try block to do something
+        const response = await fetch('deleteItem', { //creates a response var that waits on a fetch to get data from the result of deleteItem route
+            method: 'delete', // sets CRUD method for the route
+            headers: {'Content-Type': 'application/json'}, //specficying the type of conent expected, which is JSON
+            body: JSON.stringify({ //declare the message content being passed and convert to string
+              'itemFromJS': itemText //settting content of body to the inner text of the list item, and naming it 'itemFromJS'
+            }) //closing the body
+          })//closing the object
+        const data = await response.json()//waiting on JSON from the response to be converted
+        console.log(data)// log result to console
+        location.reload() //reloads the page to update what is displayed
 
-async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('deleteItem', {
-            method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              'itemFromJS': itemText
-            })
-          })
+    }catch(err){ //if error occures pass to catch block
+        console.log(err) //log error to console
+    } //close catch
+}//end the function
+
+async function markComplete(){ //declare async func
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside of list item and grabs oonly the inner text within the list span
+    try{// starting a try block to do something
+        const response = await fetch('markComplete', {//creates a response var that waits on a fetch to get data from the result of markComplete route
+            method: 'put', // sets CRUD method for the route
+            headers: {'Content-Type': 'application/json'}, //specficying the type of conent expected, which is JSON
+            body: JSON.stringify({//declare the message content being passed and convert to string
+                'itemFromJS': itemText //settting content of body to the inner text of the list item, and naming it 'itemFromJS'
+            }) //closing the body
+          })//closing the object
+        const data = await response.json() //waiting on JSON from the response to be converted
+        console.log(data)// log result to console
+        location.reload() //reloads the page to update what is displayed
+
+    }catch(err){ //if error occures pass to catch block
+        console.log(err) //log error to console
+    } //close catch
+}//end the function
+
+async function markUnComplete(){ //declare async func
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside of list item and grabs oonly the inner text within the list span
+    try{ // starting a try block to do something
+        const response = await fetch('markUnComplete', { //creates a response var that waits on a fetch to get data from the result of markUnComplete route
+            method: 'put', // sets CRUD method for the route
+            headers: {'Content-Type': 'application/json'}, //specficying the type of conent expected, which is JSON
+            body: JSON.stringify({ //declare the message content being passed and convert to string
+                'itemFromJS': itemText //settting content of body to the inner text of the list item, and naming it 'itemFromJS'
+            }) //closing the body
+          })//closing the object
         const data = await response.json()
-        console.log(data)
-        location.reload()
+        console.log(data)// log result to console
+        location.reload() //reloads the page to update what is displayed
 
-    }catch(err){
-        console.log(err)
-    }
-}
-
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-
-    }catch(err){
-        console.log(err)
-    }
-}
-
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-
-    }catch(err){
-        console.log(err)
-    }
-}
+    }catch(err){ //if error occures pass to catch block
+        console.log(err) //log error to console
+    } //close catch
+}//end the function
