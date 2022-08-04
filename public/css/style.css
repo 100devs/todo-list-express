@@ -1,6 +1,8 @@
+/* Targets h1 element from the html file and colors the font red */
 h1{
     color: red;
 }
+/* Targets the .completed class and turns text color grey and puts a line-through the text */
 .completed{
     color: gray;
     text-decoration: line-through;
