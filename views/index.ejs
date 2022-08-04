@@ -1,13 +1,22 @@
+<!-- Tells brower what type of document is shown -->
 <!DOCTYPE html>
+<!-- What language the html file is in -->
 <html lang="en">
+<!-- head tag to store data -->
 <head>
+    <!-- checks what character set to use -->
     <meta charset="UTF-8">
+    <!-- sets browser compatibility -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- instructions on how to control page's dimensions and scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of app -->
     <title>Document</title>
+    <!-- Links to font-awesome fonts and css style sheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- Typo body tag + another head element (not necessary) -->
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -17,31 +26,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- body tag starts here -->
 <body>
+    <!-- h1 tag (most important text on the page) -->
     <h1>Todo List: </h1>
+    <!-- Creating an unordered list tag with .todoItems class -->
     <ul class="todoItems">
+    <!-- Creating a for loop to loop through items -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Creating li tags under the ul tag, with class of .item -->
         <li class="item">
+            <!-- Condition after for loop. Will run if item contains completed property -->
             <% if(items[i].completed === true) {%>
+                <!-- Creates an span element with a class of .completed and displays items[i].thing -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- else statement if the original statement is false -->
             <% }else{ %>
+                <!-- Creates a span element of item[i].thing  -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+                <!-- Creates a span element  -->
             <span class='fa fa-trash'></span>
+        <!-- Closing li tag -->
         </li>
+    <!-- End for for loop -->
     <% } %>
+    <!-- Closing ul tag -->
     </ul>
-
+    <!-- h2 tag (second most important on the page) -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Creating a form tag to create new to do li's with POST method that will go to /addToDo route -->
     <form action="/addTodo" method="POST">
+        <!-- Creates a text input with a placeholder and a name of todoItem -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Creates a submit button -->
         <input type="submit">
+    <!-- Closing form tag -->
     </form>
     
-
+    <!-- linking main.js file from public folder -->
     <script src='js/main.js'></script>
+<!-- Closing body tag -->
 </body>
+<!-- Closing html tag -->
 </html>
