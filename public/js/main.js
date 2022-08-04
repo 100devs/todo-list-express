@@ -1,20 +1,20 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
+const deleteBtn = document.querySelectorAll('.fa-trash')                // the const variable for storing items that will be marked for deletion 
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
-Array.from(deleteBtn).forEach((element)=>{
+Array.from(deleteBtn).forEach((element)=>{                              // looping through the array of elements to check if any of them are marked for deletion 
     element.addEventListener('click', deleteItem)
 })
 
-Array.from(item).forEach((element)=>{
+Array.from(item).forEach((element)=>{                                   // looping through the array of elements to check if any of them are to be marked completed
     element.addEventListener('click', markComplete)
 })
 
-Array.from(itemCompleted).forEach((element)=>{
+Array.from(itemCompleted).forEach((element)=>{                          // looping through the array of items marked completed to check if any of them are to be reversed as uncomplete
     element.addEventListener('click', markUnComplete)
 })
 
-async function deleteItem(){
+async function deleteItem(){                                   // looping through the array of elements to check if any of them are to be marked for deletion
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
