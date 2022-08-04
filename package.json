@@ -1,11 +1,18 @@
 {
   "name": "rap-name-api",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "npm install\r add DB_STRING to .env file",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+=======
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 8247adf50f08bd10000a520d0c12dd01ccaa776b
   },
   "author": "",
   "license": "ISC",
