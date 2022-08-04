@@ -32,7 +32,15 @@
     <% } %>
     </ul>
 
+ /*^^ So what the above code does is that it will iterate over the array of items and render them onto the page, but it will also check to see if each item's 
+ 'completed; key is marked to true or false. When it is discoverd that it is marked to true, it gives the item the class of completed as well as the class of item 
+ before rendering them. This allows the code to make the distinction between completed and uncompleted items when marking them one or the other. The list is updated 
+ whenever the page refreshes.
+ */
+
     <h2>Left to do: <%= left %></h2>
+
+//^^This is the location the number of items left to be completed will be rendered. This number is derived from the server JS
 
     <h2>Add A Todo:</h2>
 
@@ -40,7 +48,9 @@
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
+
+//This form allows the addition of new items to the list, making a request to the addTodo directory. The request is sent to the server as request.body.todoItem where
+//todoItem is the name of the item you wish to add to the collection and its 'completed' key is default set to 'false'
 
     <script src='js/main.js'></script>
 </body>
