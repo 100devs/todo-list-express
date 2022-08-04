@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{  /* singling out all h1 tags in ejs file*/
+    color: red;  /* making text in h1 red*/
+}  /* closing selector*/
+.completed{  /* selecting items with class of completed*/
+    color: gray;  /* making all text in selected area gray*/
+    text-decoration: line-through; /* putting a line through the text on all classes named completed*/
+}  /*closing selector */
