@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>  <!-- HTML5 -->
+<html lang="en"> <!-- Language code --> 
+<head> <!-- Head --> 
+    <meta charset="UTF-8"> <!-- Character set -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- IE compatibility --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobile first -->
+    <title>Document</title> <!-- Title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Style -->
+</head> 
+<body>  <!-- Body -->
+    <!DOCTYPE html> <!-- HTML5 -->
+<html lang="en"> <!-- Language code -->
+<head> <!-- Head -->
+    <meta charset="UTF-8"> <!-- Character set -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   <!-- IE compatibility -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Mobile first -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+    <h1>Todo List: </h1>    <!-- Title -->
+    <ul class="todoItems">  <!--List of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%> <!--Loop through items-->
+        <li class="item"> <!--Item-->
+            <% if(items[i].completed === true) {%> <!--If item is completed-->
+                <span class='completed'><%= items[i].thing %></span> <!--Show completed item--> 
+            <% }else{ %> <!--If item is not completed-->
+                <span><%= items[i].thing %></span> <!--Show item-->
+            <% } %>     
+            <span class='fa fa-trash'></span> <!--Delete item-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--Left to do-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--Add a todo-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!--Form-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--Input-->
+        <input type="submit"> <!--Submit-->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--Main script-->
 </body>
 </html>
