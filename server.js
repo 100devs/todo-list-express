@@ -59,35 +59,35 @@ app.put('/markComplete', (request, response) => { //updates a document to mark c
     })
     .catch(error => console.error(error)) //if there are any errors they will appear here 
 
-})
+}) //end put method
 
-app.put('/markUnComplete', (request, response) => { //updates document to change from complete to incomplete 
+app.put('/markUnComplete', (request, response) => { //starts a put method when the markuncomplete route is passed in  
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //updates the body of the item 
         $set: { //sets completed to false 
             completed: false
           }
     },{
         sort: {_id: -1},//sorts input documents by id in descending order 
-        upsert: false
+        upsert: false //prevents insertsion if the item doesn't exist 
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+    .then(result => { //after database has finished updating 
+        console.log('Marked Complete') //clienct side will log marked uncomplete
+        response.json('Marked Complete') //sending a response back to the markec uncomplete async method
+    })// closes then method
+    .catch(error => console.error(error)) //catches and console logs any errors
 
-})
+}) //end put method
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
-    })
-    .catch(error => console.error(error))
+app.delete('/deleteItem', (request, response) => { //starts a delete method when the delete route is passed 
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //looks inside todos collections and runs the deleteOne method. Looks for the name that was passed in from ejs
+    .then(result => { //if delete was successful 
+        console.log('Todo Deleted') //console log results
+        response.json('Todo Deleted') //sends respnse back to the sender 
+    })//closes then block
+    .catch(error => console.error(error)) //catches errors
 
-})
+}) //closes delete method
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+app.listen(process.env.PORT || PORT, ()=>{ //setting up which port we will be listening on, either the port from the .env file or the port vaiable we set 
+    console.log(`Server running on port ${PORT}`) //console.log the running port
+}) //close listen method 
