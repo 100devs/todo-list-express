@@ -2,18 +2,22 @@ const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+//creates an event listener for every trash bin
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
+//creates an event listener for every items text
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
+//creates an event listener for every completed items text
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+//deletes the item that the trashcan belongs to
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -33,6 +37,7 @@ async function deleteItem(){
     }
 }
 
+//Sends put request with item text of uncompleted objects
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -52,6 +57,8 @@ async function markComplete(){
     }
 }
 
+
+//Sends put request with item text of completed objects
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{

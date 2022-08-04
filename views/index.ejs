@@ -20,8 +20,12 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- For every document in the database collection, it creates an 
+        li with the items name and a trash logo. -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if the todoList completed value is true,
+            sets the class name to completed  -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -36,6 +40,7 @@
 
     <h2>Add A Todo:</h2>
 
+    <!-- sends text data to /addTodo as POST request -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
