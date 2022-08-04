@@ -1,0 +1,7 @@
+h1{
+    color: red;
+} /*changes the color of the H1 to red */
+.completed{
+    color: gray;
+    text-decoration: line-through;
+}/* Changes the color of a task to gray if it has been flagged completed == true, and gives it a strike-through text decoration.*/
