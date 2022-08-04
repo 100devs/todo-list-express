@@ -20,10 +20,13 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- for loop iterating through items.length and incrementing the count by 1 each loop -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if item at current index is marked completed, set the span class to completed and populate value from items -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- else, set the span and populate value from items -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -32,10 +35,12 @@
     <% } %>
     </ul>
 
+    <!-- Set h2 value to be items from todos db table that have a key of completed and a value of false -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- Create form that POSTs to the server with an action of /addTodo -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
