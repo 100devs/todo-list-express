@@ -1,7 +1,7 @@
-h1{
+h1{ /* Makes the top level headings display in red font */
     color: red;
 }
-.completed{
+.completed{ /* Changes the "completed" class to grey font color && crossed out */
     color: gray;
     text-decoration: line-through;
 }

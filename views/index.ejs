@@ -29,17 +29,17 @@
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+    <% } %> <!-- adds all of the completed items to the DOM -->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- The remaining number of incomplete items is placed here -->
 
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
-    </form>
+    </form> <!-- upon hitting submit, the value of the form is sent to the server, and the /addTodo method is run using the data from the form -->
     
 
     <script src='js/main.js'></script>
