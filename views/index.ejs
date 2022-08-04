@@ -8,40 +8,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+<body>  <!--typo?-->
+    <!DOCTYPE html> <!--typo?-->
+<html lang="en"> <!--typo?-->
+<head> <!--typo?-->
+    <meta charset="UTF-8"> <!--typo?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--typo?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--typo?-->
+    <title>Document</title> <!--typo?-->
+</head> <!--typo?-->
+<body> <!--main section for client side content-->
+    <h1>Todo List: </h1> <!--main title displayed -->
+    <ul class="todoItems"> <!-- unordered list with a class of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%>  <!--for loop inside EJS-->
+        <li class="item"> <!--creating a list item with a class of item-->
+            <% if(items[i].completed === true) {%>  <!--conditional checking to see if the item in an array with completed property completed = true-->
+                <span class='completed'><%= items[i].thing %></span> <!--creating a span and adding EJS to display the name of the task-->
+            <% }else{ %> <!--if completed = false-->
+                <span><%= items[i].thing %></span> <!--adding EJS to display the name of the task without a class-->
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span class='fa fa-trash'></span> <!--creating a trashcan icon inside a span-->
+        </li> <!--end of list item-->
+    <% } %> <!--closing the for loop-->
+    </ul> <!--end of unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--Second most important heading with text and how many tasks left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--level two heading with text letting you add another task-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- C in CRUD, create a form that will go to the route Todo, and method POST-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--input box named todoItem, with placeholder for text advising to put in the thing to do -->
+        <input type="submit"> <!--submit button-->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--linking the JS file to the EJS file from the public folder-->
 </body>
 </html>
