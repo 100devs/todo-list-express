@@ -8,40 +8,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+<body>  <!-- main section for cotent displayed-->
+
+<!--    <!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--<title>Document</title>-->
+<!--</head>-->
+
+<body> 
+    <h1>Todo List: </h1>			<!--Main title h1--> 
+    <ul class="todoItems">			<!--Unordred list has class of todoItems-->								
+    <% for(let i=0; i < items.length; i++) {%>		<!--use EJS to loop over items-->
+        <li class="item">			<!-- create a list item with class of item-->
+            <% if(items[i].completed === true) {%>  <!--Ejs if task is completed = true/false --> 
+                <span class='completed'><%= items[i].thing %></span> <!--display complet task crossed out-->
+            <% }else{ %> 
+			<span><%= items[i].thing %></span>	<!--display uncompleted task--> 
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span>	<!--trash icon Font awsome-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+	<h2>Left to do: <%= left %></h2>			<!--display left task to do -->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST">      <!--Create a form  with post method goes to the /addTodo-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
-
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script>    <!--js folder in public -->
 </body>
 </html>
