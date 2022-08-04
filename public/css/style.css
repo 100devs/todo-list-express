@@ -1,7 +1,7 @@
-h1{
-    color: red;
+h1{ /* H1 Header */
+    color: red; 
 }
-.completed{
+.completed{ /* Completed Tasks */
     color: gray;
-    text-decoration: line-through;
+    text-decoration: line-through; 
 }

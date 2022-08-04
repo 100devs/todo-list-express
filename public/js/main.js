@@ -1,72 +1,72 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const deleteBtn = document.querySelectorAll('.fa-trash') // create a variable and assign it to the delete button
+const item = document.querySelectorAll('.item span') // create a variable and assign it to the span tag
+const itemCompleted = document.querySelectorAll('.item span.completed') // create a variable and assign it to the span tag with the class completed
 
-Array.from(deleteBtn).forEach((element)=>{
-    element.addEventListener('click', deleteItem)
+Array.from(deleteBtn).forEach((element)=>{ 
+    element.addEventListener('click', deleteItem) // add event listener to each delete button  
 })
 
-Array.from(item).forEach((element)=>{
-    element.addEventListener('click', markComplete)
+Array.from(item).forEach((element)=>{ // add event listener to each item text
+    element.addEventListener('click', markComplete) // add an event listener to the current item that waits for a click and runs the markComplete function
 })
 
 Array.from(itemCompleted).forEach((element)=>{
-    element.addEventListener('click', markUnComplete)
+    element.addEventListener('click', markUnComplete) // add an event listener to the current item that waits for a click and runs the markUnComplete function
 })
 
-async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+async function deleteItem(){ // declares an async function
+    const itemText = this.parentNode.childNodes[1].innerText // looks inside the list item and finds the text inside the span tag
     try{
-        const response = await fetch('deleteItem', {
-            method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              'itemFromJS': itemText
+        const response = await fetch('deleteItem', { // creates a response object that is a promise that is waiting for a response from the server
+            method: 'delete', // sets the method to delete
+            headers: {'Content-Type': 'application/json'}, // sets the headers to application/json
+            body: JSON.stringify({ // sets the body to the itemText variable
+              'itemFromJS': itemText // sets the itemFromJS variable to the itemText variable
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() // creates a data variable that is a promise that is waiting for a response from the server
+        console.log(data) // logs the data variable
+        location.reload() // reloads the page
 
-    }catch(err){
-        console.log(err)
+    }catch(err){ // if there is an error
+        console.log(err) // log the error
     }
 }
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
+async function markComplete(){ // declares an async function 
+    const itemText = this.parentNode.childNodes[1].innerText // looks inside the list item and finds the text inside the span tag 
+    try{ // if there is an error
+        const response = await fetch('markComplete', { // creates a response object that is a promise that is waiting for a response from the server
+            method: 'put', // sets the method to put
+            headers: {'Content-Type': 'application/json'}, // sets the headers to application/json
+            body: JSON.stringify({ // sets the body to the itemText variable
+                'itemFromJS': itemText // sets the itemFromJS variable to the itemText variable
+            }) 
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() // creates a data variable that is a promise that is waiting for a response from the server
+        console.log(data) // logs the data variable
+        location.reload() // reloads the page
 
-    }catch(err){
-        console.log(err)
+    }catch(err){ // if there is an error
+        console.log(err) // log the error
     }
 }
 
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
+async function markUnComplete(){ // declares an async function
+    const itemText = this.parentNode.childNodes[1].innerText // looks inside the list item and finds the text inside the span tag
+    try{ // if there is an error
+        const response = await fetch('markUnComplete', { // creates a response object that is a promise that is waiting for a response from the server
+            method: 'put', // sets the method to put
+            headers: {'Content-Type': 'application/json'}, // sets the headers to application/json
+            body: JSON.stringify({ // sets the body to the itemText variable
+                'itemFromJS': itemText // sets the itemFromJS variable to the itemText variable
+            }) 
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() // creates a data variable that is a promise that is waiting for a response from the server
+        console.log(data) // logs the data variable
+        location.reload() // reloads the page
 
-    }catch(err){
-        console.log(err)
+    }catch(err){ // if there is an error
+        console.log(err) // log the error
     }
 }
