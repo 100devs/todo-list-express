@@ -1,6 +1,8 @@
+/* Style <h1> elements with a text color of red */
 h1{
     color: red;
 }
+/* Style elements with a class of `completed` with a text color of grey and text-decoration of line-through (strikethrough) */
 .completed{
     color: gray;
     text-decoration: line-through;
