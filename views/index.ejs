@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<!DOCTYPE html>
+		<html lang="en">
+			<head>
+				<meta charset="UTF-8" />
+				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<title>Document</title>
+			</head>
+			<body>
+				<h1>Todo List:</h1>
+				<ul class="todoItems">
+					<!-- for loop iterating through items.length and incrementing the count by 1 each loop -->
+					<% for(let i=0; i < items.length; i++) {%>
+					<li class="item">
+						<!-- if item at current index is marked completed, set the span class to completed and populate value from items -->
+						<% if(items[i].completed === true) {%>
+						<span class="completed"><%= items[i].thing %></span>
+						<!-- else, set the span and populate value from items -->
+						<% }else{ %>
+						<span><%= items[i].thing %></span>
+						<% } %>
+						<span class="fa fa-trash"></span>
+					</li>
+					<% } %>
+				</ul>
 
-    <h2>Left to do: <%= left %></h2>
+				<!-- Set h2 value to be items from todos db table that have a key of completed and a value of false -->
+				<h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+				<h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+				<!-- Create form that POSTs to the server with an action of /addTodo -->
+				<form action="/addTodo" method="POST">
+					<input type="text" placeholder="Thing To Do" name="todoItem" />
+					<input type="submit" />
+				</form>
 
-    <script src='js/main.js'></script>
-</body>
+				<script src="js/main.js"></script>
+			</body>
+		</html>
+	</body>
 </html>

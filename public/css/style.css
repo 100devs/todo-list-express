@@ -1,7 +1,9 @@
-h1{
-    color: red;
+/* h1 set to a color of red */
+h1 {
+	color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+/* set items with a class of completed to have a color of gray and a strike through the text */
+.completed {
+	color: gray;
+	text-decoration: line-through;
 }
