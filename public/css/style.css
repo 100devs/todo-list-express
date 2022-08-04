@@ -1,6 +1,9 @@
+/* Sets all tags of type h1, to a text color of red */
 h1{
     color: red;
 }
+/* sets all tags with class of completed to a text color of gray*/
+/* crosses out text*/
 .completed{
     color: gray;
     text-decoration: line-through;
