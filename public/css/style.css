@@ -1,7 +1,10 @@
+/* changes any h1 tag in the EJS */
 h1{
-    color: red;
+    color: red; /* changes text color to red */
 }
+
+/* targets items with the class  completed*/
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray; /* changes the text color to gray */
+    text-decoration: line-through; /* applies strikethrough the text*/
 }

@@ -1,47 +1,52 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Tells the browswer what type of document will be shown (HTML5) -->
+<html lang="en"> <!-- starting the html tag and saying language is english -->
+<head> <!-- Start of head tag to store our metadata -->
+    <meta charset="UTF-8">  <!-- Indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Sets appropriate compatability for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets WIDTH of available viewing area to the width of the device screen. We don't care about height because we can scroll down.  -->
+    <title>Document</title> <!-- Assign title that appears on browswer tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- creates a link to the Font Awesome Icon library -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Links to the local stylesheet, located in the public folder -->
+</head> <!-- End of head tag -->
+<body> <!-- Start of body tag -->
+    
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> -->
+   
+    <h1>Todo List: </h1>   <!-- h1 is the header at the top of the page -->
+  <ul class="todoItems"> <!-- unordered list with a class of todoItems -->
+     
+    <% for(let i=0; i < items.length; i++) {%>     <!-- create a for loop using EJS -->
+        <li class="item">  <!-- create list item with class: item -->
+           <% if(items[i].completed === true) {%>   <!-- check if an item in an array with a completed property is true -->
+                <span class='completed'><%= items[i].thing %></span>  <!-- ifture, create an inline element with  a class and adding EJS to display -->
+            <% }else{ %>    <!-- Else part of if/else for EJS  -->
+                <span><%= items[i].thing %></span>   <!-- adding EJS to display the name of the task with NO CLASS -->
+            <% } %>  <!-- EJS to close the if statement-->
+            <span class='fa fa-trash'></span>   <!-- using Font Awesome, create a trash can pic inside span-->
+        </li>   <!-- Close our List Item  -->
+    <% } %> <!-- EJS to close the FOR loop  -->
+    </ul> <!-- Close our unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <!-- 2nd header, that tells you how many tasks you have left -->
+    <h2>Left to do: <%= left %></h2>   <!-- Heading tag with text and using EJS to display a variable showing how many tasks are left to complete -->
 
-    <h2>Add A Todo:</h2>
+  
+    <h2>Add A Todo:</h2>   <!-- Heading tag with text -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST">    <!-- Creates a form with a POST (create) method that goes to the /addTodo route. Why do we want routes? Bc this lets the server know what to do. The server is listenting for the addTodo route and the post method that goes with it. Once the server hears it, it can handle it properly, bc the server is like an index -- and this creates a match on the user-facing side and the server side. We're basically saying, "if the route says /addTodo, go to this specific place in the server and do this"-->
+        <input type="text" placeholder="Thing To Do" name="todoItem">   <!-- Creates an input box that aceepts text. Placeholder text contains default text that says "Thing to do". The last part, name, is you're assigning a name to the input box -- we want to give it this unique value in case we want to reference it later. Ex. Say you had 16 input boxes and you want to reference number 5 -- so you give it a name so you can refernce it later.  -->
+        <input type="submit">   <!-- Gives the form a Submit button. You would normally have to build a button individually, but input has the ability to create a submit button that links to the server with this. No separation of concerns here. -->
+    </form>   <!-- Close the form tag -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script>   <!-- Link to JavaScript file in public folder -- we don't have to specify this because the "public" folder is root-->
+</body>   <!-- Close body tag -->
+</html>  <!-- Close html tag-->
