@@ -1,3 +1,4 @@
+<!-- For displaying html on the page -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- link to font awesome library   -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to local stylessheet in public fooder. -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,13 +16,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- allows for compatability with microsoft browsers.  -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Sets width of page to width of device being used to view. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- This is the ejs  is embedded javascript -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -35,13 +41,15 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
+<!-- create form with a post method that is being sent to /addTodo route   -->
+    <form action="/addTodo" method="POST">  
+        <!-- ceate an input text type box with a default text of "thing to do" -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Gives the form a submit button -->
         <input type="submit">
     </form>
     
-
-    <script src='js/main.js'></script>
+<!-- link to javascipt file called main.js in js folder inside public  -->
+    <script src='js/main.js'></script>  
 </body>
 </html>

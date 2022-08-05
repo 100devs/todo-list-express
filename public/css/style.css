@@ -1,6 +1,8 @@
+/* target all h1's to text color red */
 h1{
     color: red;
 }
+/* target all classes with class of completed */
 .completed{
     color: gray;
     text-decoration: line-through;
