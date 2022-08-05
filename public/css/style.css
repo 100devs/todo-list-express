@@ -1,7 +1,10 @@
 h1{
-    color: red;
+    color: red; /*/regular font is red */
 }
 .completed{
     color: gray;
     text-decoration: line-through;
 }
+
+/*/completed document crossed out and grey */
+

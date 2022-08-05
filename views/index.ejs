@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +17,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- all traditional html-->
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!-- for loop when items it can change depending how many items are on the database while is is less than items.length as long as i is less than items.-->
+    <!-- ejs reload runs this and adds an item -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> <!-- dot notation is calling on to see if completed is set to true.. if so do the thing if not do the other thing is a value on line 38 48 in server.js while items .compeleted will run until same as true-->
+                <span class='completed'><%= items[i].thing %></span> <!-- value of completed is true. will add class compelted to list item when displyed in broweser it will show as what css says to show class compelted -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- just displays the list item with no styling-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- font awesome trash can yaa will show a trash can to end of line item-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- renders items uncompleted from ejs line 26 const itemsLeft-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- list item-->
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST">  <!-- form to enter info into ToDo- will post class todoItem-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
+    <!-- when clicking addToDo post a text item of todoITem in Things to Do inputting submits to the To do list -->
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script>  <!-- link to main js-->
 </body>
 </html>
+
+
+<!-- notation  -->
