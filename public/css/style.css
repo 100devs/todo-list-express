@@ -1,7 +1,49 @@
-h1{
-    color: red;
+html {
+    box-sizing: border-box;
 }
+/* @import url(https://fonts.bunny.net/css?family=over-the-rainbow:400); */
 .completed{
     color: gray;
     text-decoration: line-through;
+}
+.headerStyling {
+    background-image: linear-gradient(rgb(217, 220, 221) 0px, rgb(217, 220, 221) 56px, rgb(218, 113, 130) 57px,rgb(217,220,221) 60px);
+    margin-bottom: 0;
+    height: 34px;
+    text-align: center;
+    font-size: 2.4rem;
+    line-height: 2px;
+    font-family: monospace;
+  }
+  .headerStyling::before {
+    left: 15px;
+    transform: skew(-5deg) rotate(-5deg);
+  }
+  
+  .headerStyling::after {
+    right: 15px;
+    transform: skew(5deg) rotate(5deg);
+  }
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main {
+    width: 340px;
+    min-height: 300px;
+    box-shadow: 0 5px 14px rgba(0,0,0,.7);
+    background-image: repeating-linear-gradient(rgb(217, 220, 221) 0px, rgb(217, 220, 221) 24px, teal 25px);
+}
+h2 {
+    padding: 50px;
+}
+h1{
+    color: #325bba;
+    padding: 40px 0 0 20px;
+}
+li {
+    padding: 2px 0 2px 20px;
+    font-family: 'Over the Rainbow', handwriting;
+    font-size: 1.4rem;
 }
