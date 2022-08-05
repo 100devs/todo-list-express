@@ -33,7 +33,7 @@ app.get('/',async (request, response)=>{
     //         response.render('index.ejs', { items: data, left: itemsLeft })
     //     })
     // })
-    // .catch(error => console.error(error))
+    .catch(error => console.error(error))  //catch any errors
 })
 
 app.post('/addTodo', (request, response) => {  //send data to mogodb when addTodo route activated
