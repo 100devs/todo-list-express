@@ -16,3 +16,6 @@
     "mongodb": "^3.6.5"
   }
 }
+
+
+/* package json files don't need editing but showing they were downloaded and exist in the docs */

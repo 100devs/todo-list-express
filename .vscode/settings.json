@@ -1,4 +1,11 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "editor.fontSize": 16,
+    "terminal.integrated.fontSize":12,
 }
+
+
+// integrated fontsize is set to ridiculously large
+
+
+//
+//from github // missing line -     "editor.fontSize": 42, added to file makes all documents REALLY LARGE
