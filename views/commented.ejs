@@ -1,0 +1,38 @@
+<!DOCTYPE html> tell browser document type will be HTML
+<html lang="en"> <!-- start of html section with language of text content set to English -->
+    <head> <!-- start of head section for metadata -->
+        <meta charset="UTF-8"> <!-- what character set to utilize -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- what type of IE is still supported -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- set viewport to the width of the device -->
+        <title>To Do</title> <!-- title shown on web page window -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- link to font-awesome -->
+        <link rel="stylesheet" href="css/style.css"> <!-- link to css -->
+    </head> <!-- end of metadata section -->
+    
+    <body> <!-- content of the document -->
+        <h1>Todo List: </h1> <!-- h1 heading -->
+        <ul class="todoItems"> <!-- unordered list with class set to "todoItems" -->
+        <% for(let i=0; i < items.length; i++) {%> <!-- "for" loop utilizing ejs -->
+            <li class="item"> <!-- list item with class set to "item" -->
+                <% if(items[i].completed === true) {%> <!-- logic statement that checks to see if "completed" is set to true -->
+                    <span class='completed'><%= items[i].thing %></span> <!-- create span with class "completed" -->
+                <% }else{ %> <!-- logic statement that runs if "completed" is not set to true -->
+                    <span><%= items[i].thing %></span> <!-- create span -->
+                <% } %> <!-- end of logic statment -->
+                <span class='fa fa-trash'></span> <!-- create span that displays trash icon -->
+            </li> <!-- end of list item -->
+        <% } %> <!-- end of for loop -->
+        </ul> <!-- end of unordered list -->
+
+        <h2>Left to do: <%= left %></h2> <!-- h2 heading and ejs to display count of documents with "completed" set to false -->
+
+        <h2>Add A Todo:</h2> <!-- h2 heading -->
+
+        <form action="/addTodo" method="POST"> <!-- form that will run the post method at route: "/addTodo"  -->
+            <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- text box with placeholder as well as assigns a name that can be referenced more readily -->
+            <input type="submit"> <!-- submit button -->
+        </form> <!-- end of form -->
+
+        <script src='js/main.js'></script> <!-- link to javascript -->
+    </body> <!-- end content of the document -->
+</html> <!-- end of HTML -->
