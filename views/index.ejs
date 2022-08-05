@@ -1,47 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- <!DOCTYPE html>  Tell browsers that the Dpocument type is HTML -->
+<!-- <html lang="en"> Set the page language to English -->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- <meta charset="UTF-8"> Use UTF-8 character encoding. -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> Determine which version of IE the document should render as  -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> Set the initial scale and viewport of the window -->
+    <title>Document</title> 
+    <!-- Make a document title.  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+     <!-- link to a stylesheet for font awesome icons. -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- link to your css for styling -->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> <!-- the main section of the page to be displayed -->
+    <!DOCTYPE html> <!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+<html lang="en"><!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+<head><!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+    <meta charset="UTF-8"><!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+    <title>Document</title><!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+</head><!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+<body><!-- Another DOCTYPE call... maybe not suppose to be here.--> 
+    <h1>Todo List: </h1> <!--Gives a main heading to the page, describes what this page is about --> 
+    <ul class="todoItems"> <!-- Creates an unordered list with a class of 'todoItems.' -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Opens an EJS line to display something, in this case, a "for each loop"-->
+        <li class="item"> <!--Creates a list item, with the class of item. -->
+            <% if(items[i].completed === true) {%> <!-- EJS that checks if an item in the list has a true flag for the "completed" property.-->
+                <span class='completed'><%= items[i].thing %></span> <!-- creating a new inline element with a class of completed and using EJS to show the name of the task.-->
+            <% }else{ %> <!-- EJS for the else part of the if statement. executes if the first part isn't true. -->
+                <span><%= items[i]. thing %></span> <!--Getting a task, and displaying it in the HTML with EJS, but leaving off the "class"-->
+            <% } %> <!--Closes the EJS output for the if/else -->
+            <span class='fa fa-trash'></span> <!--creates a fa trash can icon -->
+        </li> <!-- Closes the list item -->
+    <% } %> <!-- Closes the EJS for the for each loop. -->
+    </ul> <!--Closes the unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Creates a subheading on the page to list the tasks left to do, with EJS to output the Number of tasks that don't have a completed = true flag. -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--Creates a new  subheading that will title the "Add a to do item" part of the page. This label applies to the related form.-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- Creates a form which Performs an Create/post action/method on the page, using the addTodo route, which will create a new to do item on the page. -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--Creates an input field that determines what type of input the user can submit in the text box, gives a placeholder description for the text box called "Thing to Do", which gives a user an idea of what they should be doing here, and links the content entered here to a name so that we can call it later in the code. REMEMBER: It's important to send the correct route, so that the server knows what to do and where to look. Otherwise, you'll get errors. To simplify, tells the server to go directly to that route, and do the instrutions I've put there.  -->
+        <input type="submit"><!-- sends the post request, which addds the task to the database, and triggers a get request which goes to the database, reads the database, returns to the page, and refreshes to show it displayed on the page. -->
+    </form> <!-- closes our form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!-- links to the main.js file, which gives the buttons we've created the ability to respond to interaction and return results-->
+</body> <!--Closes the page's body tag-->
+</html><!--Closes the page's html tag-->
