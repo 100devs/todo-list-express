@@ -1,19 +1,21 @@
 html {
     box-sizing: border-box;
 }
-/* @import url(https://fonts.bunny.net/css?family=over-the-rainbow:400); */
 .completed{
     color: gray;
     text-decoration: line-through;
 }
 .headerStyling {
-    background-image: linear-gradient(rgb(217, 220, 221) 0px, rgb(217, 220, 221) 56px, rgb(218, 113, 130) 57px,rgb(217,220,221) 60px);
+    background-image: linear-gradient(rgb(217, 220, 221) 0px, rgb(217, 220, 221) 60px, rgb(218, 113, 130) 62px,rgb(217,220,221) 65px);
     margin-bottom: 0;
-    height: 34px;
+    height: 34.5px;
     text-align: center;
     font-size: 2.4rem;
-    line-height: 2px;
-    font-family: monospace;
+    line-height: 1px;
+    letter-spacing: .05ch;
+    font-family:  "Notable",Verdana;
+    color: #325bba;
+    padding: 40px 20px 0 20px;
   }
   .headerStyling::before {
     left: 15px;
@@ -37,13 +39,28 @@ main {
 }
 h2 {
     padding: 50px;
+    font-family: "Galindo",Verdana;
+    text-align: center;
+    color:rgb(121, 52, 138);  
 }
-h1{
-    color: #325bba;
-    padding: 40px 0 0 20px;
+main h2 {
+    color:rgb(218, 113, 130);
 }
 li {
     padding: 2px 0 2px 20px;
     font-family: 'Over the Rainbow', handwriting;
     font-size: 1.4rem;
+}
+form {
+    display: flex;
+    justify-content: center;
+    margin-top: -2rem;
+}
+form * {
+    font-family: "Galindo",Verdana;
+}
+#addButton {
+    padding: .5rem;
+    font-size: 2rem;
+    color:rgb(218, 113, 130);
 }
