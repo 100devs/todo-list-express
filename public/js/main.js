@@ -23,7 +23,7 @@ async function deleteItem(){ // initiates function when event listener on delete
               'itemFromJS': itemText // itemText variable passed into request's body parameters as 'itemFromJS' variable
             }) 
           }) 
-        const data = await response.json() // set the response information into the data variable
+        const data = await response.json() // turn response into json and set it as the data variable
         console.log(data) // console log the response
         location.reload() // refresh the window
     }catch(err){ // this catch runs if try statement above fails
@@ -41,7 +41,7 @@ async function markComplete(){ // initiates function when event listener on item
                 'itemFromJS': itemText // itemText variable passed into request's body parameters as 'itemFromJS' variable
             })
           })
-        const data = await response.json() // set the response information into the data variable
+        const data = await response.json() // turn response into json and set it as the data variable
         console.log(data) // console log the response
         location.reload() // refresh the window
     }catch(err){ // this catch runs if try statement above fails
@@ -59,7 +59,7 @@ async function markUnComplete(){ // initiates function when event listener on it
                 'itemFromJS': itemText // itemText variable passed into request's body parameters as 'itemFromJS' variable
             })
           })
-        const data = await response.json() // set the response information into the data variable
+        const data = await response.json() // turn response into json and set it as the data variable
         console.log(data) // console log the response
         location.reload() // refresh the window
     }catch(err){ // this catch runs if try statement above fails
