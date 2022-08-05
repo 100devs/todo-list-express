@@ -1,3 +1,4 @@
+// Group Project
 const express = require('express') // Making it possible to use express in this file.
 const app = express() // Setting a constant and assigning it to the instance of express.
 const MongoClient = require('mongodb').MongoClient // Assign the database (MongoDB) to a variable.  Make is possible to use methods associated with MongoClient and talk to our DB.
