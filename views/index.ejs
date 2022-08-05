@@ -18,30 +18,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <h1>Todo List: </h1> <!-- Creates a h1(main header)-->
+    <ul class="todoItems"> <!-- Creates an unordered list with the class of 'todoItems'-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- EJS - Initializes a FOR loop -->
+        <li class="item"> <!-- Creates a list item with the class of 'item'-->
+            <% if(items[i].completed === true) {%> <!-- EJS - Creates a conditional, if the item the loop is currently iterating over returns true the next line runs-->
+                <span class='completed'><%= items[i].thing %></span> <!-- EJS - if the previous condition returns true, creates this span with the class name of 'completed  '-->
+            <% }else{ %> <!-- if the conditional returns false -->
+                <span><%= items[i].thing %></span>< <!-- EJS - if the previous condition returns false, creates this span-->
+            <% } %>    <!--EJS - Closes the if statement block-->
+            <span class='fa fa-trash'></span>  <!-- creates a span with the class of 'fa fa-trash'-->
+        </li> <!-- Closing tag of the list item -->
+    <% } %> <!-- EJS - Exits the FOR loop -->
+    </ul> <!-- Closing tag of the unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Creates a secondary header (h2) and displays some text + EJS inside it -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Creates a seconder header (h2)-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- Creates a form with a POST (create) METHOD that goes to the /addTodo route  -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Creates an input box with the type text and asigns it a name and placeholder-->
+        <input type="submit"> <!-- Creates a submit input (button)-->
+    </form> <!-- form closing tag -->
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- script linking the js file to the ejs file-->
 </body>
 </html>
