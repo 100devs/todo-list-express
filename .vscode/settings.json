@@ -1,5 +1,10 @@
-// Font size for streaming. Way too huge for normal use so commented out.
+// // Font size for streaming. Way too huge for normal use so commented out.
+// // {
+// //     "editor.fontSize": 16,
+// //     "terminal.integrated.fontSize": 62
+// // }
+// =======
 // {
-//     "editor.fontSize": 16,
+//     "editor.fontSize": 42,
 //     "terminal.integrated.fontSize": 62
 // }
