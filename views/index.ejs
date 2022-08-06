@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
-
-    <h2>Left to do: <%= left %></h2>
-
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
-</html>
+<!DOCTYPE html> <!--Doctype-->
+<html lang="en"><!--Declaring language as english-->
+<head><!--Open Head-->
+    <meta charset="UTF-8"><!--Declaring the Charset-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Compatability with Edge-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Viewport for device width default-->
+    <title>Document</title><!--Document title-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Link to Font Awesome-->
+    <link rel="stylesheet" href="css/style.css"><!-- Line to the Stylesheet-->
+</head><!--Closing the head-->
+<body><!-- Typo?-->
+    <!DOCTYPE html> 
+<html lang="en"><!-- Typo?-->
+<head><!-- Typo?-->
+    <meta charset="UTF-8"><!-- Typo?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- Typo?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Typo?-->
+    <title>Document</title><!-- Typo?-->
+</head><!-- Typo?-->
+<body><!-- Main Section-->
+    <h1>Todo List: </h1> <!--Main Heading-->
+    <ul class="todoItems"> <!-- Declaring Unordered List with an assigned class-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Run a ejs for loop -->
+        <li class="item"> <!--Create a List Item--> 
+            <% if(items[i].completed === true) {%><!--Conditional declaring whether something is True or False. -->
+                <span class='completed'><%= items[i].thing %></span><!--A Span with an assigned class and EJS to display the name of the task-->
+            <% }else{ %> <!--EJS with a Else conditional-->
+                <span><%= items[i].thing %></span><!--Adding EJS to display the name of the task with no class-->
+            <% } %>    <!--EJS to close the Else Statement.-->
+            <span class='fa fa-trash'></span><!--Span with a fa and fa-trash class to display a font awesome trashcan to represent DELETE-->
+        </li> <!--Closing List item-->
+    <% } %> <!--EJS to close the For Loop-->
+    </ul> <!--Close the unordered list-->
+    <!--Blank Line-->
+    <h2>Left to do: <%= left %></h2><!--Creates as second level heading tag and using EJS to disply remaining tags-->
+    <!--Blank Line-->
+    <h2>Add A Todo:</h2><!--Second Level header tag-->
+    <!--Blank Line-->
+    <form action="/addTodo" method="POST"><!--Creating a form with a POST method to the addtodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--Create an text box, with a placeholder text with direction and name for reference-->
+        <input type="submit"><!--Submit button -->
+    </form><!--Closing Form-->
+    <!--Blank Line-->
+    <!--Blank Line-->
+    <script src='js/main.js'></script><!--Script connecting javascript file to html-->
+</body><!--Closing Body-->
+</html><!--Closing HTML-->
+<!--Blank Line-->
