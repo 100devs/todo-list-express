@@ -1,6 +1,8 @@
+/* Set h1s to red */
 h1{
     color: red;
 }
+/* Set completed items to gray with a strike through */
 .completed{
     color: gray;
     text-decoration: line-through;

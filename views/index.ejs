@@ -1,5 +1,9 @@
+<!-- this is an english html document entitled "Document" (ie. that's what shows up on its tab) using the
+    utf-8 charset with the viewport set to the width of the device. It uses a linked stylesheet from font-awesome as
+    well a local one -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +12,54 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
+    <!-- The most important header - the title of the page -->
     <h1>Todo List: </h1>
+    <!-- An unordered list of items that populates based on contents of the array 'items' as passed to this page via the server -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+        <% for(let i=0; i < items.length; i++) {%>
+            <!-- for a number of times equal to the length of the items array, create a list item-->
+            <li class="item">
+                <% if(items[i].completed===true) {%>
+                    <!-- then if the item is marked complete, give it the complete class, else just list it-->
+                    <span class='completed'>
+                        <%= items[i].thing %>
+                    </span>
+                    <% }else{ %>
+                        <span>
+                            <%= items[i].thing %>
+                        </span>
+                        <% } %>
+                            <!-- the font awesome delete icon contained within a span -->
+                            <span class='fa fa-trash'></span>
+            </li>
+            <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <!-- things left to do that's populated based on the variable 'left' as passed to this page via the server -->
+    <h2>Left to do: <%= left %>
+    </h2>
 
+    <!-- a form to add todo items -->
     <h2>Add A Todo:</h2>
-
+    <!-- posts this form's infoto the the 'addTodo' route on the server -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- a text input field with the placeholder text 'Thing To Do'-->
+        <input type="submit">   <!-- a submit button-->
     </form>
-    
 
+    <!-- links to the main.js script -->
     <script src='js/main.js'></script>
 </body>
+
 </html>
