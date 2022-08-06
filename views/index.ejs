@@ -1,47 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!--Tell browser what type of document will be shown-->
+<html lang="en"> <!--Open the HTML tag and assign the language as English-->
+<head> <!--Open the head tag to store metadata-->
+    <meta charset="UTF-8"> <!-- indicates what character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--Sets appropriate compatibility for Microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Sets the width of available viewing area to the width of the device screen-->
+    <title>Document</title> <!--Assign a title to appear on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--link to the FontAwesome Icon Library-->
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to the local stylesheet on the public folder-->
+</head> <!--Close head tag-->
+<body> <!--Main section for the content being displayed -->
+    <!DOCTYPE html> <!-- This may be a typo-->
+<html lang="en"> <!-- leon is messing with us-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <meta charset="UTF-8"> <!-- Yes we are paying attention-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Very funny Leon-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- This is also a typo-->
+    <title>Document</title> <!-- This may also be a typo-->
+</head> <!-- Is this a typo-->
+<body>  <!-- Main section for content to be displayed-->
+    <h1>Todo List: </h1> <!-- Main title Header displayed on page -->
+    <ul class="todoItems"> <!-- Create unordered list and assign class to the list-->
+        <!-- Run a for loop, with ejs, as many times as the items inside 'items' -->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <li class="item"> <!-- Create an line item for each iteration , with class 'item' -->
+            <!-- Check if the item is completed, create a paragraph with class of 'completed' -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
+                <span class='completed'><%= items[i].thing %></span> <!--Create span with a class 'completed' and adding EJS to display the name of the the task -->
+            <% }else{ %> <!--EJS for the Else clause of the 'if' statement-->
+                <!-- Create the item with no class  -->
+                <p><%= items[i].thing %></p>
+            <% } %> <!--close the else statement-->
+               <!-- Create a span that is a fontawesome icon of a trash can -->
             <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+        </li> <!--Close list item-->
+    <% } %> <!--ejs tp close the for loop-->
+    </ul> <!--close the unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
-
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
     
+    <h2>Left to do: <%= left %></h2> <!-- Lvl 2 Header showing how many items are left todo using EJS-->
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <h2>Add A Todo:</h2> <!--Create a second Lvl 2 Header -->
+    <form action="/addTodo" method="POST"> <!-- Form that sends a POST request to the route /addTodo -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input field that takes the todo item, and sends it to the server under the name of "todoItem" -->
+       
+        <input type="submit"> <!-- simple submit input -->
+    </form> <!--Close the form tag-->
+    
+    
+    <script src='js/main.js'></script> <!-- Script tag that links main.js file in the public folder to ejs file -->
+</body> <!--Close the body tag-->
+</html> <!--close the html tag-->
