@@ -1,0 +1,5 @@
+// Font size for streaming. Way too huge for normal use so commented out.
+// {
+//     "editor.fontSize": 16,
+//     "terminal.integrated.fontSize": 62
+// }
