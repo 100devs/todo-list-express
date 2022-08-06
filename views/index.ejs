@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <!--Creates a link to the local stylesheet in the public folder-->
+  </head>
+  <body>
+    <!-- main section for content displayed-->
+
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!-- This is a typo L:18-26-->
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+      <!-- This is a typo L:18-26-->
+      <body>
+        <h1>Todo List:</h1>
+        <!-- Main title displayed on page-->
+        <ul class="todoItems">
+          <!-- Create unordered list and assign class to the list-->
+          <% for(let i=0; i < items.length; i++) {%>
+          <!-- Use EJS to start a FOR loop -->
+          <li class="item">
+            <!--Create a list item with a class of Item-->
+            <% if(items[i].completed === true) {%><!--EJS to check if an item in an array with a completed property is True-->
+            <span class="completed"><%= items[i].thing %></span
+            ><!--Creating an inline element with a class and adding EJS to display the name of the task -->
+            <% }else{ %><!--EJS for the Else clause of our if statement-->
+            <span><%= items[i].thing %></span
+            ><!--adding EJS to display the name of the task with NO CLASS-->
+            <% } %><!--EJS to close the Else Statement-->
+            <span class="fa fa-trash"></span
+            ><!--Display Font Awesome Icon of trash of trash can inside a span-->
+          </li>
+          <!--Closing our List Item-->
+          <% } %><!--EJS to close FOR Loop-->
+        </ul>
+        <!--CLosing our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Left to do: <%= left %></h2>
+        <!-- Creates a 2nd level heading tag with text and using EJS to display a variable showing how many tasks are left to complete-->
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
+        <!--Create a 2nd level header -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <form action="/addTodo" method="POST">
+          <!--Create a form with a POST method that goes to the /addTodo route-->
+          <input
+            type="text"
+            placeholder="Thing To Do"
+            name="todoItem"
+          /><!--create an input box that accepts text with default text inside of it before you type anything. -->
+          <input type="submit" /><!--Gives the form a Submit button -->
+        </form>
+        <!--close the form tag-->
 
-    <script src='js/main.js'></script>
-</body>
+        <script src="js/main.js"></script>
+        <!--Links to the main.js file in the js folder-->
+      </body>
+      <!--Closig the body tag-->
+    </html>
+    <!--clsing the html tag-->
+  </body>
 </html>
