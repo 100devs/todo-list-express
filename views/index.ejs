@@ -1,47 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!--sets doctype to html-->
+<html lang="en"> <!--sets language to english-->
+<head><!--beginning of head-->
+    <meta charset="UTF-8"> <!--sets charset-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--browser compatibility-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--viewport size-->
+    <title>Document</title><!--tab titel-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--stylesheet-->
+    <link rel="stylesheet" href="css/style.css"><!--css link-->
+</head><!--end head-->
+<body><!--typo?-->
+    <!DOCTYPE html><!--typo?-->
+<html lang="en"><!--typo?-->
+<head><!--typo?-->
+    <meta charset="UTF-8"><!--typo?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--typo?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--typo?-->
+    <title>Document</title><!--typo?-->
+</head><!--typo?-->
+<body><!--beginning body-->
+    <h1>Todo List: </h1><!--title todo-->
+    <ul class="todoItems"><!--create ul and assign a class to the list-->
+    <% for(let i=0; i < items.length; i++) {%><!--loop through ejs-->
+        <li class="item"><!--assign a class to created list item-->
+            <% if(items[i].completed === true) {%><!--if the item is completed...-->
+                <span class='completed'><%= items[i].thing %></span><!--...give it a completed class-->
+            <% }else{ %><!--otherwise...-->
+                <span><%= items[i].thing %></span><!--just add - no completed class-->
+            <% } %>    <!--end ejs-->
+            <span class='fa fa-trash'></span><!--trash icon-->
+        </li><!--end list item-->
+    <% } %><!--end ejs-->
+    </ul><!--end ul-->
 
-    <h2>Left to do: <%= left %></h2>
+    <%# Cycle through items and render %><!--describes ejs-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Left to do: <%= left %></h2><!--number of tasks left to do - rendered with ejs-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <h2>Add A Todo:</h2><!--title for method to add a toto-->
+
+    <form action="/addTodo" method="POST"><!--form - sets path and defines method type-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--sets input type-->
+        <input type="submit"><!--sets input type-->
+    </form><!--ends form-->
+
+    <%# Add entry %> <!--button to go to /addToDo path-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--JS link-->
+</body><!--end body-->
+</html><!--end html-->
