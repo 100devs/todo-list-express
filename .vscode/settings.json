@@ -1,4 +1,7 @@
+/*
+    This block Changes the VS Code editor fontsize for this specific project. not Globally
+    And changes the fontsize of the Terminal window.
 {
     "editor.fontSize": 42,
     "terminal.integrated.fontSize": 62
-}
+} */
