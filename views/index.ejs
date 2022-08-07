@@ -20,7 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!--start a for loop to loop through items-->
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
@@ -29,15 +29,15 @@
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+    <% } %> <!--create li for each item-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--use ejs to set the number of items left to do-->
 
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--form that sends a post request to '/addTodo' with values to store in the database-->
         <input type="submit">
     </form>
     
