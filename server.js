@@ -90,4 +90,4 @@ app.delete('/deleteItem', (request, response) => { //starts a delete method when
 
 app.listen(process.env.PORT || PORT, ()=>{ //setting up which port we will be listening on - either the port from the .env file or the port variable we set globally // tells our server to listen for a connection on the port or the port we define as a const earlier.  process.env.port will tell the server to listen whatever server were hosting it at aka heroku.  
     console.log(`Server running on port ${PORT}`) //console.log the running port
-})
+})//end the listen
