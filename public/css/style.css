@@ -1,7 +1,17 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+/* body{
+    height: 100vh;
+    background: rgb(63,94,251);
+    background: linear-gradient(153deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+} */
+h1{ /*select any h1 tag in the ejs file*/
+    color: red; /*change text color to red*/
+} /*closing the selector*/
+.completed{ /*select html item with the class name 'completed' */
+    color: gray; /*change text color to gray*/
+    text-decoration: line-through; /*applign to the text strikethrough*/
+} /*closing the selector*/
