@@ -1,6 +1,10 @@
+/* this targets all h1 elements inside the linked page(s) */
 h1{
     color: red;
 }
+
+
+/* Targets any element with a class of .completed and changes the font color to gray and adds the line through the text decoration*/
 .completed{
     color: gray;
     text-decoration: line-through;
