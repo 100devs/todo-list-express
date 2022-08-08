@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!--template engine = EJS, embedded JavaScript. Offers a way to generate HTML dynamically -->
+<!DOCTYPE html> <!-- must be included to let browser know what version of HTML the document is written in-->
+<html lang="en">  <!--language set to english -->
+<head><!-- primarily holds information for machine processing-->
+    <meta charset="UTF-8"><!-- charset declaration set to UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- To support old legacy browsers, not need anymore and can be left out. the x-ua-compatible meta tag allows us to choose the version of the internet. in this case we choose IE=edge. Edge mode tells Internet Explorer to display content in the highest mode available. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- width of the screen should be considered the "Full Width" of the page. -->
+    <title>Document</title><!-- defines the document's title, 'Document' that is shown in a browser's title bar or page tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!-- attribute value specifies that the external link is a stylesheet that will be applied to the current page. href links to fonts we will use-->
+    <link rel="stylesheet" href="css/style.css"><!--attribute value specifies that the external link is a stylesheet that will be applied to the current page. href links to our style.css -->
+</head><!--the closing tag of head -->
+<body><!-- opening tag of body-->
+    <!DOCTYPE html><!-- code for declaring a doctype in html-->
+<html lang="en"><!-- language set to egnlish-->
+<head><!-- opening of head tag-->
+    <meta charset="UTF-8"><!-- charset declaration set to UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- To support old legacy browsers, not need anymore and can be left out. the x-ua-compatible meta tag allows us to choose the version of the internet. in this case we choose IE=edge. Edge mode tells Internet Explorer to display content in the highest mode available. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- width of the screen should be considered the "Full Width" of the page. -->
+    <title>Document</title><!-- defines the document's title, 'Document' that is shown in a browser's title bar or page tab-->
+</head><!--the closing tag of head -->
+<body><!-- opening body tag-->
+    <h1>Todo List: </h1><!-- h1 tag, with Todo List: as the content -->
+    <ul class="todoItems"><!-- an unordered list with the class of 'todoItems' -->
+    <% for(let i=0; i < items.length; i++) {%><!--Scriptlet tag, and a for loop. this loop will continue to run until it reaches the last item. -->
+        <li class="item"><!-- a list with a class of 'item'-->
+            <% if(items[i].completed === true) {%><!-- Scriptlet tag, with a conditional that will execute if items[i].complete is true-->
+                <span class='completed'><%= items[i].thing %></span><!--span tag with class of 'completed', Scrtiptlet tag with what will be inseted, items[i].thing -->
+            <% }else{ %><!-- Scriptlet tag with a final condition if the above one did not execute.-->
+                <span><%= items[i].thing %></span><!-- span tag, items[i].thing will be inserted here-->
+            <% } %> <!--closing -->   
+            <span class='fa fa-trash'></span><!--span tag with a trash icon -->
+        </li><!-- closing list tag-->
+    <% } %><!--closing for loop -->
+    </ul><!-- closing unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!-- h2 tag with content of 'Left to do: <%= left %>' inside it-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!-- h2 tag, inside, 'Add A Todo'-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--form tag, Action specifies that the form is submitted to '/addTodo', method used here is HTTP POST-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!-- input type=text will create a single-line text field, placeholder has a hint of 'Thing To Do', name = the name of our submitted data -->
+        <input type="submit"><!--submit button -->
+    </form><!-- closing tag of form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--route for our javascript -->
+</body><!-- closing body tag-->
+</html><!--closing html tag -->
