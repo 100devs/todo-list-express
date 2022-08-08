@@ -1,7 +1,8 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+
+h1{ /* SELECTOR STYLES FOR HEADER TAG */
+    color: red; /* TEXT COLOR  */
+} /* SELECTOR CLOSE */
+.completed{ /* CLASS STYLES FOR ITEMS NAMED THE SAME */
+    color: gray; /* TEXT COLOR  */
+    text-decoration: line-through; /* ADDS A STRIKETHROUGH  */
+} /* SELECTOR CLOSE */
