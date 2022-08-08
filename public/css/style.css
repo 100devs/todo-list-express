@@ -1,6 +1,8 @@
+/* make header red */
 h1{
     color: red;
 }
+/*give items with a class of completed a line through and make gray */
 .completed{
     color: gray;
     text-decoration: line-through;
