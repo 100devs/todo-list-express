@@ -5,3 +5,9 @@ h1{
     color: gray;
     text-decoration: line-through;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
