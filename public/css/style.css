@@ -1,7 +1,7 @@
-h1{
-    color: red;
+h1{ /* Selects any h1 tag on the page*/
+    color: red; /* Sets the color value of the selected tages to red*/
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed{ /* Selects any completed class on the page */
+    color: gray; /* Sets the color value in the selected tages to gray*/
+    text-decoration: line-through; /* puts a line through the text in the slected tags*/
 }
