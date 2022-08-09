@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> //tells the browser it's a html file
+<html lang="en"> // tells the browser the language of the website
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> // enables to use viewport sizes for different screen sizes
+    <title>Document</title>  //it's the text that shows up on the tab
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> // this enables to use many icons on the website using the class method.
+    <link rel="stylesheet" href="css/style.css"> // connects the style.css file and shows the layout changes to the index.end file
 </head>
 <body>
     <!DOCTYPE html>
@@ -21,11 +21,11 @@
     <h1>Todo List: </h1>
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <li class="item">. //loops through the item elements 
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed'><%= items[i].thing %></span>  //if the item element is completed then it gets the class of completed
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> //if the element is not completed then it will have a trash can beside the text
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
@@ -36,9 +36,9 @@
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> // form that uses a post method and uses the action /addToDo 
+        <input type="text" placeholder="Thing To Do" name="todoItem">. // puts a text box with the words things to do before text is inputted 
+        <input type="submit"> // this button activates the post method when clicked
     </form>
     
 
