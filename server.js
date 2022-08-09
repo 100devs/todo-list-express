@@ -188,6 +188,6 @@ app.delete('/deleteItem', (request, response) => {
 
 // Node / Express PORT configuration. Specify the PORT number manually through PORT variable or set the defualt PORT from Node
 // in process.env.PORT
-app.listen(process.env.PORT || PORT, ()=>{
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
