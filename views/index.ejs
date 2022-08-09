@@ -1,47 +1,74 @@
+<!-- Telling the browser what type of document this is -->
 <!DOCTYPE html>
+<!-- Setting the language to english -->
 <html lang="en">
+<!-- Starting the head tag to store our meta data -->
 <head>
+    <!-- Encoding type for the characters -->
     <meta charset="UTF-8">
+    <!-- Sets appropriate compatability for Microsoft browsers -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Sets the WIDTH of available viewing area to the width -->
+    <!-- if the device screen -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Sets the text that appears on the broswer tag -->
     <title>Document</title>
+    <!-- link to font awesome library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to local css in the public folder -->
     <link rel="stylesheet" href="css/style.css">
+<!-- close out the header -->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+
+<!-- Main Section for content displayed -->
+<body> 
+    <!-- Main title displayed on page -->
+    <h1>Todo List: </h1> 
+    <!-- Create unordered list and assing class to the list -->
+    <ul class="todoItems"> 
+    <!-- Use EJS to start a for loop -->
+    <% for(let i=0; i < items.length; i++) {%> 
+        <!-- Create a list item with a class of item -->
+        <li class="item"> 
+            <!-- EJS to check if an item in array with a completed prop is true  -->
             <% if(items[i].completed === true) {%>
+                <!-- Creating an inline element with a class and adding EJS -->
+                <!-- to display the name of the task-->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- EJS for else clause of if statement -->
             <% }else{ %>
+                <!-- EJS to display the name of the task with NO CLASS -->
                 <span><%= items[i].thing %></span>
+            <!-- EJS to close the else statement -->
             <% } %>    
+            <!-- Display font awesome icon of trash can inside of span -->
             <span class='fa fa-trash'></span>
+        <!-- Closing list item -->
         </li>
+    <!-- Closing the for loop -->
     <% } %>
+    <!-- Closing our unordered list -->
     </ul>
 
+    <!-- Creating a second level header and using EJS to display the amount of -->
+    <!-- tasks left to do -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Second level header -->
     <h2>Add A Todo:</h2>
 
+    <!-- Creating form with a POST method that sends request to the /addTodo route -->
     <form action="/addTodo" method="POST">
+        <!-- Input box that allows text, with a name for later reference -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Gives the form a submit button -->
         <input type="submit">
+    <!-- Closing the form tag -->
     </form>
     
-
+    <!-- Linking the js file in main.js in the public/js folder -->
     <script src='js/main.js'></script>
+<!-- Closing the body tag -->
 </body>
+<!-- closing the html tag -->
 </html>
