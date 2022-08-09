@@ -1,7 +1,15 @@
+/*styling to make the title red*/
 h1{
     color: red;
 }
+/*class to strike out/grey completed items*/
 .completed{
     color: gray;
     text-decoration: line-through;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
