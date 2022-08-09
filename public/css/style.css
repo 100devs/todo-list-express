@@ -1,7 +1,12 @@
-h1{
+/* Selects any h1 tag */
+h1{ 
+    /* Sets color to red */
     color: red;
 }
+
+/* Selects any element with the class completed */
 .completed{
+    /* Sets the color to gray and text with a line through it */
     color: gray;
     text-decoration: line-through;
 }
