@@ -1,47 +1,58 @@
+<!--declare we are using HTML so the browser knows how to parse/not to run in quirk mode-->
 <!DOCTYPE html>
+<!--set the language so that all the necessary characters are supported-->
 <html lang="en">
+    <!--header-->
 <head>
+    <!--declare which character set to use-->
     <meta charset="UTF-8">
+    <!--provide legacy support for Internet Explorer-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--mobile optimization for responsiveness-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title that appears at top of browser-->
     <title>Document</title>
+    <!--linking to font awesome to use their icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--link to our css stylesheet-->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!--document body-->   
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!--heading one style large text-->
     <h1>Todo List: </h1>
+    <!--an ejx unordered list into which we can insert new tasks-->
     <ul class="todoItems">
+        <!--beginng of loop that grabs items-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!--conditional logic to put completed items into the grey .completed css class-->
             <% if(items[i].completed === true) {%>
+                <!--display items greyed out/with line through them-->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!--display normal/uncompleted items-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %> 
+            <!--put a font-awesome delete button below every item-->   
             <span class='fa fa-trash'></span>
         </li>
+        <!--end of ejs loop-->
     <% } %>
     </ul>
-
+    <!--ejs to display number of uncompleted items-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--header for add form-->
     <h2>Add A Todo:</h2>
-
+<!--action to connect form to /addtoDo in server.ejs-->
     <form action="/addTodo" method="POST">
+        <!--stating input type, adding a placeholder-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--enable form to submit-->
         <input type="submit">
     </form>
     
-
+<!--link to main.js, at the end for optimal loading times-->
     <script src='js/main.js'></script>
 </body>
 </html>
