@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- sets the document type as HTML -->
+<html lang="en"> <!-- Sets the language as english -->
+<head> <!--start of header, to store the page metadata-->
+    <meta charset="UTF-8"> <!-- Sets the charset-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--Sets http-equiv and content types-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets viewport and the initial scale for the device-->
+    <title>Document</title> <!-- title of the webpage to be shown-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- importing css from the Font Awesome Icon Library-->
+    <link rel="stylesheet" href="css/style.css"> <!-- importing the local css file for the page-->
+</head> <!-- closing the head-->
+<body><!-- Extra body declaration, probably typo-->
+    <!DOCTYPE html> <!-- may be a typo -->
+<html lang="en"> <!-- duplicate: may be a typo -->
+<head> <!-- duplicate: may be a typo -->
+    <meta charset="UTF-8"> <!-- duplicate: may be a typo -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- duplicate: may be a typo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- duplicate: may be a typo -->
+    <title>Document</title> <!-- duplicate: may be a typo -->
+</head> <!-- duplicate: may be a typo -->
+<body><!--main section of the stuff being displayed-->
+    <h1>Todo List: </h1><!--Header saying todo list-->
+    <ul class="todoItems"><!--unordered list of the class todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Use EJS to start a for loop -->
+        <li class="item"> <!--creates a list item-->
+            <% if(items[i].completed === true) {%> <!--EJS if statement checking if the item is completed-->
+                <span class='completed'><%= items[i].thing %></span> <!--If the item is completed, assign class completed and insert the todo list item-->
+            <% }else{ %><!--EJS else statement -->
+                <span><%= items[i].thing %></span><!--inserts todo list item-->
+            <% } %> <!--closes EJS else statment-->
+            <span class='fa fa-trash'></span><!--inserts trashcan icon-->
+        </li><!--closes list-->
+    <% } %><!--closes EJS for loop -->
+    </ul><!--closes unorder list for todo items-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--displays how many items are left to do on the list-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--secondary heading-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--Opening of a form that uses the "POST" method to send a request ot the /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--Input box for text with a place holder that takes in new tasks-->
+        <input type="submit"><!--Submit button for the form-->
+    </form><!--close of the form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--Importing the JS for this page-->
+</body><!--close of the body-->
+</html><!--close of the page-->
