@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--The normal stuff-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
     <title>Document</title>
 </head>
 <body>
+    <!--Setting a class for todoItems and using a for loop to iterate through the items within the collections array and adding a completed class to allow update functionality to go through-->
     <h1>Todo List: </h1>
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
@@ -33,7 +35,7 @@
     </ul>
 
     <h2>Left to do: <%= left %></h2>
-
+    <!--Create request in form to allow for backend functionality-->
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
