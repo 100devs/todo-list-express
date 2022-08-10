@@ -42,8 +42,8 @@ app.use(express.json())
 //Read Method (READ THE TODO LIST)
 app.get('/', async (request, response)=>{
     //when you have a request at the root, call this async callback with (req,res)
-    const todoItems = await db.collection('todos').find().toArray()
-    // declaring a variable that fetches the 'todos' collection from our db; .find() returns ALL (when no params) in the collection , and then formats it all in an array
+    const todoItems = await db.collection('todos').find().toArray() 
+    // declaring a variable that fetches the 'todos' collection from our db; .find() returns ALL (when no params) in the collection , and then formats it all in an array (documents are like objects and they can be held in an array)
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     //countDocuments is a mongodb module which counts the objects in the 'todos' collection, in this case we are only adding them if their completed property is set to 'false'(counts the documents in the collection that are not completed)
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) //tells express to render the response as EJS
