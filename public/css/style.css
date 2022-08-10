@@ -1,7 +1,13 @@
-h1{
-    color: red;
+/* Header styles */
+h1 {
+  /* Set header color */
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+/* Style for items on list marked completed */
+.completed {
+  /* Set text color of completed tasks */
+  color: gray;
+  /* Strike through completed tasks */
+  text-decoration: line-through;
 }
