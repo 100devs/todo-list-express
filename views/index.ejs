@@ -25,8 +25,8 @@
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>      <!-- poser javascript wooo; do a for loop for each item in array -->
         <li class="item">
-            <% if(items[i].completed === true) {%>              <!-- is it completed? do this -->
-                <span class='completed'><%= items[i].thing %></span>                <!-- add the class 'completed' for styling -->
+            <% if(items[i].completed === true) {%>       <!-- is it completed? do this -->
+                <span class='completed'><%= items[i].thing %></span>             <!-- add the class 'completed' for styling -->
             <% }else{ %>              <!-- if no completed: -->
                 <span><%= items[i].thing %></span>                <!-- displat the items in list but dont add classes -->
             <% } %>
