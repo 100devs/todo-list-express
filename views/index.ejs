@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
     <!DOCTYPE html>
@@ -17,28 +18,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+<body class="bg-blue-200 text-blue-800 p-5">
+    <h1 class="text-4xl">Todo List: </h1>
+    <ul class="todoItems bg-blue-300 p-5 shadow-xl">
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <li class="item p-1 mt-2 mb-2 shadow-lg bg-blue-100">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash cursor-pointer hover:text-red-400'></span>
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <span class="text-xl text-blue-800"><%= left %></span></h2>
 
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="text" class="px-5 py-1" placeholder="Thing To Do" name="todoItem">
+        <input type="submit" class="px-5 py-1 rounded-md cursor-pointer hover:bg-blue-500">
     </form>
     
 
