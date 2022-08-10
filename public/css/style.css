@@ -1,10 +1,9 @@
-/* Sets the h1 to red colour*/
-h1{
-    color: red;
-}
+ 
+h1{/* selects all h1 tags in the ejs file */
+    color: red; /* changes the text colour to red */
+} /* closes the selector */
 
-/* .completed in the ejs file will be gray, and have a line through it */
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+.completed{/* selects all itemgs with a class of completed */
+    color: gray; /* changes the text colour to gray */
+    text-decoration: line-through; /* applies strikethrough styling to the text */
+} /* closes the selector */
