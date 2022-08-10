@@ -48,11 +48,14 @@ app.get('/',async (request, response)=>{
 //or, learn how to pass in post dates to your google search
     
 
-    // This code
+    // This code is the non-async simpler version, using promise chains!
+    ////We go into the database into collection 'todos'. Find() all documents, in this case there's 3, put it in an array so we can more esaily access it.  
     // db.collection('todos').find().toArray()
+    ////We pass the array into the .then method as parameter 'data'
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
     //     .then(itemsLeft => {
+    //         //this is passing the array of obejcts into the EJS template via the render() method, passing the array 'data' into the EJS template as the value of the property named 'items:' 
     //         response.render('index.ejs', { items: data, left: itemsLeft })
     //     })
     // })
