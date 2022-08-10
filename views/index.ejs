@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- preface; "we will need this but dont show it in the body" -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- add in font awesome -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- link to css -->
 </head>
-<body>
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +19,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
+</head>  -->
+<body>  <!-- Main section for content displayed -->
+    <h1>Todo List: </h1><!-- page's most important headding -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%>      <!-- poser javascript wooo; do a for loop for each item in array -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+            <% if(items[i].completed === true) {%>       <!-- is it completed? do this -->
+                <span class='completed'><%= items[i].thing %></span>             <!-- add the class 'completed' for styling -->
+            <% }else{ %>              <!-- if no completed: -->
+                <span><%= items[i].thing %></span>                <!-- displat the items in list but dont add classes -->
+            <% } %>
+            <span class='fa fa-trash'></span>            <!-- trash can icon that gets added on to each item on our list -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
-
+    <h2>Left to do: <%= left %></h2>    <!-- count out number and render incomplete tasks -->
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
+      <!-- redirect to here once we submit -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- imput for item to insert in the todo list; match to line 40 in our server.js -->
         <input type="submit">
     </form>
-    
+
 
     <script src='js/main.js'></script>
+    <!-- run some javascript -->
 </body>
 </html>
