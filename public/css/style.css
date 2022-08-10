@@ -1,6 +1,9 @@
+/* Sets the h1 to red colour*/
 h1{
     color: red;
 }
+
+/* .completed in the ejs file will be gray, and have a line through it */
 .completed{
     color: gray;
     text-decoration: line-through;
