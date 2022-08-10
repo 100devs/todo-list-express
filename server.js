@@ -27,8 +27,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //navigating to root triggers this function
-app.get('/',async (request, response)=>{
-    //store collection todos to todoItems as an array
+app.get('/', async (request, response)=>{
+    try {
+        //store collection todos to todoItems as an array
     const todoItems = await db.collection('todos').find().toArray()
     //store number of items not completed to itemsLeft
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
@@ -41,6 +42,10 @@ app.get('/',async (request, response)=>{
     //         response.render('index.ejs', { items: data, left: itemsLeft })
     //     })
     // })
+    } catch (error) {
+        console.error(error)
+    }
+    
     // .catch(error => console.error(error))
 })
 

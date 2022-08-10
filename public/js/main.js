@@ -34,7 +34,7 @@ async function deleteItem(){
         location.reload()
 
     }catch(err){
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -54,7 +54,7 @@ async function markComplete(){
         location.reload()
 
     }catch(err){
-        console.log(err)
+        console.error(err)
     }
 }
 
@@ -74,6 +74,6 @@ async function markUnComplete(){
         location.reload()
 
     }catch(err){
-        console.log(err)
+        console.error(err)
     }
 }
