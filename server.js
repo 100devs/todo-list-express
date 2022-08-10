@@ -9,12 +9,17 @@ require('dotenv').config() //need this to look at local env which houses the db 
 
 let db, //declare variable for easier conventional usage of mongo db methods
     dbConnectionStr = process.env.DB_STRING, //a superfresh connection string was added to a new .env so that the app works. Note that dbName must match the following.
-    dbName = 'todo' //what we will call the db. name of database attached to new cluster
+    dbName = 'todo'; //what we will call the db. name of database attached to new cluster
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // connect to database. Promise based
+
+// the following finally worked after 2 changes (remember to check these when troubleshooting):
+// 1. add in the param obj being passed: useNewUrlParser: true,
+// 2. make sure the IP address permission is updated in MongoDB (especially if you've relocated since initial setup)
+MongoClient.connect(dbConnectionStr, { useNewUrlParser: true, useUnifiedTopology: true }) // connect to database. Promise based
     .then(client => { //callback to run on successful connection to db
-        console.log(`Connected to ${dbName} Database`) //print to terminal for visible success
+        console.log(`Connected to ${dbName} Database`) //print to terminal for visible success -- NOT CONNECTING
         db = client.db(dbName) //assign the db to the db var
+
     })
     
 app.set('view engine', 'ejs') //establish views so that ejs can be used and index.ejs recognized
@@ -26,9 +31,9 @@ app.use(express.json()) //so that data in json format can be handled
 
 // look for documents in database, and display conditionally with styles based on value against "completed" key
 app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray() //set up an array of all the items found in the db
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //assign to a variable the number of items in db that 
-    response.render('index.ejs', { items: todoItems, left: itemsLeft }) //serve the compiled index.ejs file and pass the data to the variables we are calling "items" and "left" inside the ejs file.
+    // const todoItems = await db.collection('todos').find().toArray() //set up an array of all the items found in the db
+    // const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //assign to a variable the number of items in db that 
+    // response.render('index.ejs', { items: todoItems, left: itemsLeft }) //serve the compiled index.ejs file and pass the data to the variables we are calling "items" and "left" inside the ejs file.
     db.collection('todos').find().toArray() //get all documents (no filter applied in .find() db method). This is also async but written in more traditional promise style?
     .then(data => {
         db.collection('todos').countDocuments({completed: false}) //then count how many docs. note that this is mongo filter and array method, unlike how you might normally use array.filter(LOGIC).length
@@ -51,6 +56,7 @@ app.post('/addTodo', (request, response) => { //when a post req is sent to the p
     .catch(error => console.error(error))  //if the operation fails for some reason, the error prints to console. Error is "caught" if any of the above ops fails or throws an exception - "control" is given to the .catch
 })
 
+// THE UPDATE AND DELETE are not functioning
 app.put('/markComplete', (request, response) => { //when a put req is sent to the path /addTodo
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //the todos collection in the db - method of updateOne is called and the req body value for "itemFromJS" is passed to it
         $set: { //this Mongo operator replaces the value of the following named key "completed", if found, with the boolean "true"
@@ -84,6 +90,7 @@ app.put('/markUnComplete', (request, response) => { //marked IN complete... the 
     .catch(error => console.error(error))
 
 })
+
 
 app.delete('/deleteItem', (request, response) => { //when a .delete req is sent to the path "/deleteItem"
     db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //mongo method .deleteOne - req body itemFromJS value is passed as value for the doc key "thing" to this method
