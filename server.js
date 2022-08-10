@@ -20,15 +20,15 @@ app.use(express.urlencoded({ extended: true }))// parses req.body - The express.
 app.use(express.json())// parses req.body - It parses incoming requests with JSON payloads and is based on body-parser.
 
 
-app.get('/', async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()// finding convert to array
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})// count the number of documents completed:false. 
+app.get('/', async (request, response)=>{ // get the root eg home
+    const todoItems = await db.collection('todos').find().toArray()// go to collection and find all docs and convert to array
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false})// go to collection and  count the number of documents completed:false. 
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) // render to ejs (HTML)
-    // db.collection('todos').find().toArray()
-    // .then(data => {
+    // db.collection('todos').find().toArray() // this is a promise
+    // .then(data => { data is the array passed on as a param // think of this like map would work passing item
     //     db.collection('todos').countDocuments({completed: false})
     //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
+    //         response.render('index.ejs', { items: data, left: itemsLeft }) // pass to ejs as an array of objects called items - now data is called items which contains the array. have to rename for better readibility and being able to reuse etc. The data  the render is actually HTML file and this is what the response sends
     //     })
     // })
     // .catch(error => console.error(error))
