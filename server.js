@@ -25,6 +25,8 @@ app.use(express.json()) // It parses incoming JSON requests and puts the parsed 
 //next line sends back a function that has no name.  async and await is a promise that we use instead of a callback
 //async keyword 
 // the'/' is the route to the index page
+
+
 app.get('/',async (request, response)=>{ //READ.  when someone access the root page, this function is started. async allows the program to continue while this executes
     const todoItems = await db.collection('todos').find().toArray()  //makes an array called todoItems. returns a promise object . await forces it to wait for a returned response
     //find() function finds all the documents in the collection and puts them into a giant array
@@ -34,7 +36,7 @@ app.get('/',async (request, response)=>{ //READ.  when someone access the root p
     //it is passing in an object file with property of todoItems and property itemsLeft.  this ties to the index.ejs file to build a list of incomplete items
     //
     
-    // db.collection('todos').find().toArray()
+    // db.collection('todos').find().toArray()   //this is the async way that is newer, cleaner, easier. this returns a promise b/c the then/catch tells us
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})  //
     //     .then(itemsLeft => {
