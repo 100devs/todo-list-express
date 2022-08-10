@@ -64,14 +64,18 @@ app.get('/',async (request, response)=>{
 
 //First line is a post request that will fire when the user posts to their page
 //or 'post method for receiving a new to-do item'
+//the route '/addToDo' comes from the action on the input button in html
 app.post('/addTodo', (request, response) => {
     //db.collection - server takes the string of text and bundles it into an object that adds the completed:false property
     //or 'adds new todo item to the db, with completed field set to false
+    //we're inserting the object into our ToDos database collection with method insertOne(); we can call the key-value params whatever we want, but in this case they're property 'thing' & value 'request.body ... and property completed: value 'false'
+    //so when we're inserting out documents into the DB they have hardcoded defualt setting of completed:false
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
         //These console.logs, or if coding in production, other console alerts, are peperred throughout so that you can check the heroku logs for what is working and what is not.
         // So these console.logs are for the heroku console
         console.log('Todo Added')
+        //our response is to refresh, which trigerrs a get request
         response.redirect('/')
     })
     //if there's an error, log it on Heroku

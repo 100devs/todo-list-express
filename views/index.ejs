@@ -20,8 +20,11 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+
+        //whenever you see 'items' it's the array of DB collection 'todo', named as such in server.js. If you look 
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            //this means, if this value is true/completed, give it the span class 'completed,' which in our CSS has a grey color and a line through. If not then it's a normal span. 
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
