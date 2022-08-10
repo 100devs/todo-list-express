@@ -1,26 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+<!DOCTYPE html> <!-- tells browser what to expect -->
+<html lang="en"> <!-- sets it to english -->
+<head>  <!-- head is the top of the page -->
+    <meta charset="UTF-8"> <!-- sets the character set to UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- tells the browser to be compatible with IE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- sets the viewport to the device width and initial scale to 1 -->
+    <title>Document</title> <!-- title of the page -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">   <!-- link to font awesome -->
+    <link rel="stylesheet" href="css/style.css">    <!-- link to css file -->
+</head> <!-- end of head -->
+<body> <!-- typo -->
+    <!DOCTYPE html> <!-- typo -->
+<html lang="en"> <!-- typo -->
+<head> <!-- typo -->
+    <meta charset="UTF-8"> <!-- typo -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- typo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- typo -->
+    <title>Document</title> <!-- typo -->
+</head> <!-- typo -->
+<body> <!-- main section for contain displayed -->
+    <h1>Todo List: </h1> <!-- main heading -->
+    <ul class="todoItems"> <!-- create unordered list nad assign class to the list -->
+
+    <!-- the below ejs code starts a for loop, checks if the todo list items are true or not, and lists them as such, adding comments to each line breaks the clientside javascript and it will no longer work -->    
+
+    <% for(let i=0; i < items.length; i++) {%> 
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
@@ -32,16 +35,16 @@
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- displays the number of items left to do -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading for the form -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- form for adding a todo item -->
+        <input type="text" placeholder="Thing To Do" name="todoItem">   <!-- input for the todo item -->
+        <input type="submit"> <!-- submit button -->
+    </form> <!-- end of form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- javascript file -->
+</body>     <!-- end of body -->
+</html>     <!-- end of html -->
