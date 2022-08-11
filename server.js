@@ -51,10 +51,10 @@ app.get("/", async (request, response) => {
   // db.collection('todos').find().toArray()
 
   // passed the array into the parameter of data (i.e., data is an array of the three todo objects)
-  // goes into the 'todos' collection of the db, counts the number of documents where completed is false, and assigns that number to the variable named itemsLeft
 
   // .then(data => {
   //     db.collection('todos').countDocuments({completed: false})
+  // goes into the 'todos' collection of the db, counts the number of documents where completed is false, and assigns that number to the variable named itemsLeft
   //     .then(itemsLeft => {
   // pass data (arr of objects/documents) into ejs template and giving data the name "items", responds with HTML, and HTML gets rendered
   //         response.render('index.ejs', { items: data, left: itemsLeft })
