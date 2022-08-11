@@ -1,14 +1,15 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-//select the trash can icon, and store it in a variable
-const item = document.querySelectorAll('.item span')
-//select the span elements that are children of .item, and stores them in a variable
-const itemCompleted = document.querySelectorAll('.item span.completed')
-//select the span.copmleted elements (children of .item) and stores them in a variable
+const deleteBtn = document.querySelectorAll('.fa-trash') //select the trash can icon, and store it in a variable
 
+const item = document.querySelectorAll('.item span') //select the span elements that are children of .item, and stores them in a variable
+
+const itemCompleted = document.querySelectorAll('.item span.completed') //select the span.copmleted elements (children of .item) and stores them in a variable
+
+
+//add event listeners to each element in the deleteBtn Array (trashcans)
 Array.from(deleteBtn).forEach((element)=>{
-    //add event listeners to each element in the deleteBtn Array (trashcans)
-    element.addEventListener('click', deleteItem)
-    //add the click event, invoke deletion
+ 
+    element.addEventListener('click', deleteItem) //add the click event that can be used to invoke deletion
+    
 })
 
 Array.from(item).forEach((element)=>{
@@ -23,8 +24,9 @@ Array.from(itemCompleted).forEach((element)=>{
     //add the click event, invoke 'markUncomplete'
 })
 
+//declaring async function for the delete protocol
 async function deleteItem(){
-    //declaring async function
+    
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
@@ -50,7 +52,7 @@ async function deleteItem(){
 }
 
 async function markComplete(){
-    //this is the function that UPDATES 
+    //this is the function that UPDATES the span to be completed (add's the strike through text)
     const itemText = this.parentNode.childNodes[1].innerText
     //this 
     try{
