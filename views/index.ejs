@@ -23,7 +23,7 @@
     <% for(let i=0; i < items.length; i++) {%> <!-- ejs - a for loop -->
         <li class="item"><!-- list item with a class of item -->
             <% if(items[i].completed === true) {%> <!-- ejs - check if an item in an array wiht a completed property is true -->
-                <span class='completed'><%= items[i].thing %></span> <!-- creating an inline elemtn wiht a class ;;; EJS to display the name of the task -->
+                <span class='completed'><%= items[i].thing %></span> <!-- creating an inline elemtn wiht a class. EJS to display the name of the task -->
             <% }else{ %> <!-- EJS for th else clause of the if statement -->
                 <span><%= items[i].thing %></span> <!-- creating an inline element without class -->
             <% } %>    <!-- close else statement -->
