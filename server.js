@@ -30,10 +30,10 @@ app.get('/', async (request, response) => {  //promise syntax for a request from
     const itemsLeft = await db.collection('todos').countDocuments({ completed: false }) // a varraible taking I assume counting the items in the database collection with completed of false
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) //once promise is fulfilled use ejs to render a page using the previous two varriables. I believe this line is replacing what follows
     // db.collection('todos').find().toArray()
-    // .then(data => {
+    // .then(data => {  data indicates the array that was made
     //     db.collection('todos').countDocuments({completed: false})
     //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
+    //         response.render('index.ejs', { items: data, left: itemsLeft }) //pass objects and array holding object into the ejs template to be rendered we are now naming that array "items"
     //     })
     // })
     // .catch(error => console.error(error))

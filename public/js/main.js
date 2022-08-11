@@ -15,7 +15,7 @@ Array.from(itemCompleted).forEach((element)=>{//???
 })
 
 async function deleteItem(){ //async await syntax for deleteItem function called by click on line 6
-    const itemText = this.parentNode.childNodes[1].innerText // ?? creating a variable that seeks out a parent node and then the second (index [1] in an array) child node and using it's inner text
+    const itemText = this.parentNode.childNodes[1].innerText // we click on the span, the LI is the parent , look to the parent and then go to the child node which is (the same span we clicked). anything that takes up space counts in the dom (?) so the text is childnode[1]?? creating a variable that seeks out a parent node and then the second (index [1] in an array) child node and using it's inner text
     try{ //first try what follows
         const response = await fetch('deleteItem', { // response to await fetching the information that follows
             method: 'delete',  // html method
