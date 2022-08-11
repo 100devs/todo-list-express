@@ -1,7 +1,7 @@
 // Target and store delete button icon
 const deleteBtn = document.querySelectorAll('.fa-trash')
 // Target task items (more general than completed items)
-const item = document.querySelectorAll('.item span')
+const item = document.querySelectorAll('.item span.unCompleted')
 // Target completed items (same as items but with completed class added) (more restrictive)
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
@@ -26,7 +26,7 @@ Array.from(itemCompleted).forEach((element) => {
 // Run when delete button is pressed
 async function deleteItem() {
   // Get the text from the parent node of the clicked item
-  const itemText = this.parentNode.childNodes[1].innerText
+  const itemText = this.parentNode.children[0].innerText.trim()
   // Start error handling for fetch request
   try {
     // make fetch request to a this server /deleteItem path (see server.js for path)
@@ -54,7 +54,7 @@ async function deleteItem() {
 // Run when item is clicked
 async function markComplete() {
   // Get text from parent node of clicked item
-  const itemText = this.parentNode.childNodes[1].innerText
+  const itemText = this.parentNode.children[0].innerText.trim()
   // Start error handling for fetch request
   try {
     // Make fetch request to this server /markComplete path (see server.js for path)
@@ -82,7 +82,7 @@ async function markComplete() {
 // Run when completed item is clicked
 async function markUnComplete() {
   // Get the text from parent node of clicked item
-  const itemText = this.parentNode.childNodes[1].innerText
+  const itemText = this.parentNode.children[0].innerText.trim()
   // Start error handling for fetch request
   try {
     // make fetchrequest to this server /markUnComplete path (see server.js for path)

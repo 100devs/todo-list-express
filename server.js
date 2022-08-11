@@ -52,7 +52,7 @@ app.get('/', async (request, response) => {
 // Path to create a new todo item (form submits to this)
 app.post('/addTodo', (request, response) => {
   // Create a new item to the collection (request.body.todoItem hold the text)
-  db.collection('todos').insertOne({ thing: request.body.todoItem, completed: false })
+  db.collection('todos').insertOne({ thing: request.body.todoItem.trim(), completed: false })
     // After submitting confirm success
     .then(result => {
       // Log success to console
