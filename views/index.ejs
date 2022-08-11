@@ -1,47 +1,97 @@
 <!DOCTYPE html>
+<!--what type doc will be shown-->
 <html lang="en">
+<!--language to english-->
+
 <head>
+    <!--header-->
     <meta charset="UTF-8">
+    <!--what set of chars to be used-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--compatibility, which version of microsoft browsers to us-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--set width to device screen-->
     <title>Document</title>
+    <!--title of browser tag-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--access and link to font awesome icon library-->
     <link rel="stylesheet" href="css/style.css">
+    <!--link to css sheet-->
 </head>
+<!--header closing-->
+
 <body>
+    <!--Typo-->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!--Typo-->
+    <html lang="en">
+    <!--Typo-->
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <!--Typo-->
+        <meta charset="UTF-8">
+        <!--Typo-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--Typo-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Typo-->
+        <title>Document</title>
+        <!--Typo-->
+    </head>
+    <!--Typo-->
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <!-- main section for content displayed-->
+        <h1>Todo List: </h1> <!-- main title displayed-->
+        <ul class="todoItems">
+            <!-- create unordered list and assign class to list-->
+            <% for(let i=0; i < items.length; i++) {%>
+                <!--for loop to loop using ejs-->
+                <li class="item">
+                    <!--list item with a class of "item"-->
+                    <% if(items[i].completed===true) {%>
+                        <!--checking completed boolean tag-->
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                        </span>
+                        <!--span with a class "completed" with the item.thing(task)-->
+                        <% }else{ %>
+                            <!--else statement if condition not met-->
+                            <span>
+                                <%= items[i].thing %>
+                            </span>
+                            <!--span with the task , no class-->
+                            <% } %>
+                                <!--close statement-->
+                                <span class='fa fa-trash'></span><!-- spam with trash pic-->
+                </li>
+                <!--close list-->
+                <% } %>
+                    <!--closing ejs tag-->
+        </ul>
+        <!--closing list-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <h2>Left to do: <%= left %>
+        </h2>
+        <!--second important thing displayed, left variable counter-->
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <h2>Add A Todo:</h2>
+        <!--text with equal importance-->
+
+        <form action="/addTodo" method="POST">
+            <!--form with a post method with an action referencing /addToDo route-->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!--text holder for thing to do and name variable with todoitem-->
+            <input type="submit">
+            <!--submit-->
+        </form>
+        <!--closing form-->
+
+
+        <script src='js/main.js'></script>
+        <!--link to main.js-->
+    </body>
+    <!--closing body-->
+
+    </html>
+    <!--closing html-->

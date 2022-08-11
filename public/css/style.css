@@ -1,7 +1,10 @@
-h1{
+h1 {
     color: red;
+    /*makes it red*/
 }
-.completed{
+
+.completed {
+    /*makes it gray and line through*/
     color: gray;
     text-decoration: line-through;
 }
