@@ -6,4 +6,4 @@ h1{/* selects all h1 tags in the ejs file */
 .completed{/* selects all itemgs with a class of completed */
     color: gray; /* changes the text colour to gray */
     text-decoration: line-through; /* applies strikethrough styling to the text */
-} /* closes the selector */
+} /* closes the selector */ 

@@ -48,7 +48,7 @@ async function markComplete(){ // declare an asynchronous function
         location.reload() // reloads the page the user is on to update what is displayed
 
     }catch(err){ // if error occurs, pass the error into the catch block
-        console.log(err) // logs the error to the console
+        console.log(err) // logs the error to the console 
     } // closes the catch block
 } // ends the function
 
