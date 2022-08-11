@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><!-- sets doctype as html -->
+<html lang="en"><!--sets lang as english-->
+<head><!--makes head for storing meta data-->
+    <meta charset="UTF-8"><!-- encoing type for the characters -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- sets compatibilty for microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- sets the dith of the ciewing area to the dfveces width  -->
+    <title>Document</title><!-- name on browser tag-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!-- source for font awesome icons -->
+    <link rel="stylesheet" href="css/style.css"><!-- creates link to the sytlesheet -->
+</head><!-- closes the head -->
+<body><!-- opening body tag -->
+    <!DOCTYPE html><!-- maybe an eror cuz its listed above but this also sets the doctype -->
+<html lang="en"><!-- maybe also a typo because language is already set above -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> <!-- main section fo rthe contenet displayed -->
+    <h1>Todo List: </h1> <!-- h1 for todo list-->
+    <ul class="todoItems"><!--create unoredered list -- with a class of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- EJS to start a for loop to go through ul-- -->
+        <li class="item"> <!-- create a list item with class item-->
+            <% if(items[i].completed === true) {%><!-- EJS if items in array comleted boolean is true -->
+                <span class='completed'><%= items[i].thing %></<span><!-- creating inline element with a class adding EJS to display -->
+            <% }else{ %> <!-- else EJS if above line is flase-->
+                <span><%= items[i].thing %></span><!-- adding EJS to diplay the name of the task with NO CLASS -->
+            <% } %>    <!-- ejs to close else statement -->
+            <span class='fa fa-trash'></span><!-- Display font awesome trashcan inside a span -->
+        </li><!-- closing loist item -->
+    <% } %> <!-- closing EJS for loop-->
+    </ul> <!-- closes the ul  -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!-- creates a second level heading tag with text and EJS to sdiplay how many todo items are left to do-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- h2 for add a to do-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- create a form with a post method that with rout "/addTodo" and method of post(create) -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- create an input field--for text -- has a ploaceholder text for the box of 'thing to do' -- with a name of todoitem -- the name give this a unique value -->
+        <input type="submit"> <!-- givs the form a submit button -->
+    </form> <!-- closes form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!-- links to the main js file in the js fodler in the public folder -->
+</body> <!--closing body tag-->
+</html><!-- closing html form -->
