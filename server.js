@@ -50,8 +50,13 @@ app.get('/', async (request, response)=>{
 })
 
 //adds an item to the todo list
-app.post('/addTodo', (request, response) => {
+app.post('/addTodo', async (request, response) => {
     //gets item from request body and adds it to database as not completed
+    // try {
+        
+    // } catch (error) {
+    //     console.error(error)
+    // }
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
         console.log('Todo Added')
