@@ -1,7 +1,9 @@
-h1{
-    color: red;
+h1 {
+	/*Selecting ANY h1 tag*/
+	color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.completed {
+	/*styling for our completed tasks*/
+	color: gray;
+	text-decoration: line-through;
 }
