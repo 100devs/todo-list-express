@@ -23,17 +23,17 @@ app.use(express.json())//enable to use JSON
 
 //CRUD Methods:
 app.get('/',async (request, response)=>{//reading the homepage, client make the request and response is sent
-    const todoItems = await db.collection('todos').find().toArray()//creating variable wait for the response from db. It will find the specifics object/s and put it in an array
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})//creating variable, wait for response from db. count the documents in db and run until completed.
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })//render the data to the index.ejs file via the variables. 
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+    //const todoItems = await db.collection('todos').find().toArray()//creating variable wait for the response from db. It will find the specifics object/s and put it in an array
+    //const itemsLeft = await db.collection('todos').countDocuments({completed: false})//creating variable, wait for response from db. count the documents in db and run until completed.
+    //response.render('index.ejs', { items: todoItems, left: itemsLeft })//render the data to the index.ejs file via the variables. 
+    db.collection('todos').find().toArray()//went to database, went to the collection, found all documents and put them in an array
+    .then(data => {//we passed the ^ array to data. 
+        db.collection('todos').countDocuments({completed: false})
+        .then(itemsLeft => {
+            response.render('index.ejs', { items: data, left: itemsLeft })//passing all objects into index.ejs
+        })//under the name of items. items: data is a key : value pair
+    })
+    .catch(error => console.error(error))
 })
 
 app.post('/addTodo', (request, response) => { // routes the HTTP POST(create) request to the specified path ('/addTodo') with the specified callback function

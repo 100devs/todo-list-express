@@ -2,11 +2,11 @@
 <!DOCTYPE html> <!-- must be included to let browser know what version of HTML the document is written in-->
 <html lang="en">  <!--language set to english -->
 <head><!-- primarily holds information for machine processing-->
-    <meta charset="UTF-8"><!-- charset declaration set to UTF-8 -->
+    <meta charset="UTF-8"><!--indicates what character tag will be used. charset declaration set to UTF-8 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- To support old legacy browsers, not need anymore and can be left out. the x-ua-compatible meta tag allows us to choose the version of the internet. in this case we choose IE=edge. Edge mode tells Internet Explorer to display content in the highest mode available. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- width of the screen should be considered the "Full Width" of the page. -->
-    <title>Document</title><!-- defines the document's title, 'Document' that is shown in a browser's title bar or page tab-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!-- attribute value specifies that the external link is a stylesheet that will be applied to the current page. href links to fonts we will use-->
+    <title>Document</title><!-- defines the document's title, 'Document' is displayed in a browser's tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!-- attribute value specifies that the external link is a stylesheet that will be applied to the current page. href links to fonts we will use from cdnjs-->
     <link rel="stylesheet" href="css/style.css"><!--attribute value specifies that the external link is a stylesheet that will be applied to the current page. href links to our style.css -->
 </head><!--the closing tag of head -->
 <body><!-- opening tag of body-->
@@ -37,7 +37,7 @@
 
     <h2>Add A Todo:</h2><!-- h2 tag, inside, 'Add A Todo'-->
 
-    <form action="/addTodo" method="POST"><!--form tag, Action specifies that the form is submitted to '/addTodo', method used here is HTTP POST-->
+    <form action="/addTodo" method="POST"><!--form tag, Action specifies that the form is submitted to '/addTodo' route, method used here is HTTP POST-->
         <input type="text" placeholder="Thing To Do" name="todoItem"><!-- input type=text will create a single-line text field, placeholder has a hint of 'Thing To Do', name = the name of our submitted data -->
         <input type="submit"><!--submit button -->
     </form><!-- closing tag of form-->

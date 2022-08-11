@@ -1,7 +1,10 @@
 h1{
-    color: red;/* all h1 will have the text color of red*/
+    color: #F6EDDA;/* all h1 will have the text color of red*/
 }
 .completed{ /* class for changing the color of text to grey and with a line through the text*/
     color: gray;
     text-decoration: line-through;
+}
+body{
+    background-color: #BF94FF;
 }
