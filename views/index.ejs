@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!--Written in Embedded JavaScript (ejs) which let's you write js alongside the html markup 
+    in order to insert html markup as the ejs file gets translated into pure html. 
+    Good for adding a variable ammount of markup based on input from other sources-->
+<!DOCTYPE html> <!--Sets the document type definition, the rules the browser follows to create the page. 
+    The html means use the most up-to-date html rules-->
+<html lang="en"> <!--Sets the initial block formatting context, the lang announces the primary language for the rendered page, en means english-->
+<head> <!--Opens the head tag used to set various settings and insert metadata used by other websites and search engines-->
+    <meta charset="UTF-8"> <!--Sets the Unicode Transformation Format to the 8-bit standard. 
+        Used to ensure compatibility with other devices and programs-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--Tells Internet Explorer what version engine to render the page with,
+    edge means use the newest avaliable version. Can technically use to make IE use engines from earlier versions, but that's rarely useful-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Sets the viewport settings be full screen width (for the browser. On phones they are forced full screen. On desktop, it refers to the size of the current window) and a zoom level of 1x-->
+    <title>Document</title> <!--Sets the title seen on the tab for the page-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--links to the font awesome icons-->
+    <link rel="stylesheet" href="css/style.css"> <!--links to the pages' css stylesheet for instructions on how to pretty up and position the raw html-->
+</head> <!--Close the head tag, ending the list of tags used to change settings and insert data for off site representation-->
+<!-- <body>  !!-looks like unintended duplication of code, commented out for removal-!!
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +22,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> !!-end of comment-removed content -!! -->  
+<body> <!--Starts the body which contains the markup for the visible content on the page-->
+    <h1>Todo List: </h1> <!--Creates a main heading ment to call out the most important point of interest for the page-->
+    <ul class="todoItems"> <!--Creates an unordered list to semantically group multiple items together, assigns class tosoItems to the element-->
+    <% for(let i=0; i < items.length; i++) {%> <!--Loops through array "items" and inserts an li with content built with orher ejs scriptlet tags used to insert their content-->
+        <li class="item"> <!--Opening tag of the li being built and inserted into the html by ejs and assigns calss item-->
+            <% if(items[i].completed === true) {%> <!--Scriptlet that starts an if statement that looks at array items in the database and checks if the contained value set by the incrementing i has a completed property and if it is set to true -->
+                <span class='completed'><%= items[i].thing %></span> <!--creates a span tag with class completed and fills it with an ejs statement that outputs the name of the task styled to show it completed-->
+            <% }else{ %> <!--use ejs to add an else to come after the if statement if completed is false-->
+                <span><%= items[i].thing %></span> <!--display the item without the styling for a completed task-->
+            <% } %>     <!--close the code block to the if statement-->
+            <span class='fa fa-trash'></span> <!--create a span with a class to show a trashcan icon-->
+        </li> <!--close the list element-->
+    <% } %> <!--close the if statements code block-->
+    </ul> <!--close the unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--Create a heading level 2 with Left to do: and a number of how many tasks need to be done pulled by ejs-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--create a heading 2 with text-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--create a form for the inputs, set it to send to /addTodo os the servet hears it and set the sending method to POST-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--create a text input with Thing to do in the box with name todoItem-->
+        <input type="submit"> <!--create a submit button-->
+    </form> <!--close the form element-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--link to the main.js javascript file-->
+</body> <!--close the body tag-->
+</html> <!--close the html tag-->
