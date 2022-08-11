@@ -1,47 +1,62 @@
+<!--Declare that the document will be HTML -->
 <!DOCTYPE html>
+<!-- Declare document language as english -->
 <html lang="en">
+<!--Declare head of document -->
 <head>
+    <!-- Declare what characters your page uses-->
     <meta charset="UTF-8">
+    <!--Declare what Internet Explorer browser will be loaded -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Declare the width/height of the page on load -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Declare title of document-->
     <title>Document</title>
+    <!-- Link stylesheets Icons from Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--Link CSS from folder -->
     <link rel="stylesheet" href="css/style.css">
+    <!--End Head -->
 </head>
+<!--Begin Body -->
 <body>
+    <!--Declare doctype. Typo(?) because it's a copy of line 2 -->
     <!DOCTYPE html>
+ <!-- Declare language, type(?) from line 4-->   
 <html lang="en">
+<!--Declare head again -->
 <head>
+    <!--line 29-34 are the same as above header -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> <!-- main section for content displayed-->
+    <h1>Todo List: </h1><!--Displays a main heading-->
+    <ul class="todoItems"><!-- creates a unordered list with a class-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Use EJS to start a for loop-->
+        <li class="item"> <!-- creat a list item with class: item-->
+            <% if(items[i].completed === true) {%><!-- conditional: if loop index exists, do thing -->
+                <span class='completed'><%= items[i].thing %></span><!-- populate completed with list elements-->
+            <% }else{ %><!--if items[i] not completed -->
+                <span><%= items[i].thing %></span><!--display items -->
+            <% } %> <!-- end line-->   
+            <span class='fa fa-trash'></span><!--Trash FA icon -->
+        </li><!--End list  -->
+    <% } %><!-- end for loop ejs-->
+    </ul><!--end ul -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!-- populate left to do with 'left'-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--html header -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!-- html form for adding todo items -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!-- text input bar for adding things to do -->
+        <input type="submit"><!-- submit input -->
+    </form><!--end form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--Link main.js -->
+</body><!--end body -->
+</html><!-- end html-->

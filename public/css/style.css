@@ -1,7 +1,10 @@
 h1{
+    /* h1 text color red */
     color: red;
 }
 .completed{
+    /* target completed classes with style */
     color: gray;
+    /*strikethrough*/
     text-decoration: line-through;
 }
