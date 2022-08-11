@@ -109,9 +109,9 @@ app.put('/markUnComplete', (request, response) => {
     // After successful update
     .then(result => {
       // Log Success to console
-      console.log('Marked Complete')
+      console.log('Marked UnComplete')
       // Send json response that item is marked complete back to user
-      response.json('Marked Complete')
+      response.json('Marked UnComplete')
     })
     // Error handling, log error to console
     .catch(error => console.error(error))
