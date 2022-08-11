@@ -34,11 +34,11 @@ async function deleteItem() {
 			}), // closing body
 		}); // closing object
 		const data = await response.json(); // assigning the response(parsed via json()) to a variable named 'data'
-		console.log(data); // logging data to console
+		console.log(data); // log data to console
 		location.reload(); // reload the page without a redirect
 	} catch (err) {
 		// if there is an error, pass it into catch block
-		console.log(err); //console.log the error
+		console.log(err); //log error to console
 	} //close
 }
 //Async function
@@ -48,7 +48,7 @@ async function markComplete() {
 	const itemText = this.parentNode.childNodes[1].innerText;
 	//try block
 	try {
-		//Assigns a promise from a fetch to the /markComplete route
+		//Assign a promise from a fetch to the /markComplete route
 		const response = await fetch('markComplete', {
 			// specifies method for CRUD
 			method: 'put',
@@ -60,15 +60,15 @@ async function markComplete() {
 				itemFromJS: itemText,
 			}), //close
 		}); //close
-		// processes response via json() and assigns it to 'data'
+		// process response via json() and assign it to 'data'
 		const data = await response.json();
-		// logs the data
+		// log data to console
 		console.log(data);
 		// reload without redirect
 		location.reload();
 	} catch (err) {
 		// catch block that passes in an error
-		// logs error to console
+		// log error to console
 		console.log(err);
 	} // close
 } // close
