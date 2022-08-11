@@ -12,7 +12,7 @@ require('dotenv').config()
 
 let db, // Initialize db variable to store db information after it is retrieved
   dbConnectionStr = process.env.DB_STRING, // Use .env to get db connection string and assign to var
-  dbName = 'todo' // name of db to connect to
+  dbName = process.env.DB_NAME // name of db to connect to
 
 // Connect to mongodb using the connection string (unified topology is a setting suggested by mongodb)
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
