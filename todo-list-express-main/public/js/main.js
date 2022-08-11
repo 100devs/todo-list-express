@@ -33,7 +33,9 @@ async function deleteItem(){
         const response = await fetch('deleteItem', {
 //           make DELETE fetch request
             method: 'delete',
+            // header to tell server that its request is in JSON format
             headers: {'Content-Type': 'application/json'},
+            // turns item text from item to be deleted into JSON to send
             body: JSON.stringify({
               'itemFromJS': itemText
             })
@@ -61,7 +63,9 @@ async function markComplete(){
         const response = await fetch('markComplete', {
 //           make PUT fetch request
             method: 'put',
+            // request sent as JSON
             headers: {'Content-Type': 'application/json'},
+            // sent text in request as JSON string
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
@@ -84,15 +88,22 @@ async function markUnComplete(){
     //new variable pulling text from the first <span> child node of the parent with the class of item and completed
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+            //      Assign variable to store server response from fetch
         const response = await fetch('markUnComplete', {
+          // PUT method request
             method: 'put',
+            // request sent as JSON
             headers: {'Content-Type': 'application/json'},
+            // parsing request text and converting to JSON string
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
+          // store server response in data variable
         const data = await response.json()
+        // console logging all data received in response
         console.log(data)
+        // reload current page
         location.reload()
 // catch any errors that occur
     }catch(err){

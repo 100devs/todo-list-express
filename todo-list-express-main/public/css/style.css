@@ -1,6 +1,8 @@
+/* make all h1s red text*/
 h1{
     color: red;
 }
+/* make elements with class "completed gray text with strikethrough */
 .completed{
     color: gray;
     text-decoration: line-through;

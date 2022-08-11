@@ -46,6 +46,9 @@ app.get('/',async (request, response)=>{
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
 // Passes the response to ejs file, showing the items to do and the number of items left to be completed
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
+
+    // Following block does same as above but with promises instead of async/await
+
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -56,7 +59,7 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
-// Creates a thing
+// Creates a todo thing
 app.post('/addTodo', (request, response) => {
 // Goes to todos collection, using the insertOne method to pass in 'request.body.todoItem', adding completed: false by default
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})

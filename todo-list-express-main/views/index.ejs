@@ -1,25 +1,27 @@
+<!-- tell browser which HTML version to use -->
 <!DOCTYPE html>
+<!-- english lang attribute, render in english -->
 <html lang="en">
+    <!-- begin head section -->
 <head>
+    <!-- set character endcoding -->
     <meta charset="UTF-8">
+    <!-- special instructions for Edge browser -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- set initial viewport scale -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- set title in tab -->
     <title>Document</title>
 <!-- Importing stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- begin body of document -->
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- H1 text -->
     <h1>Todo List: </h1>
+    <!-- unordered list with class "todo items" -->
     <ul class="todoItems">
 <!-- For every item in the 'items' object, makes a list item -->
     <% for(let i=0; i < items.length; i++) {%>
@@ -43,10 +45,15 @@
 
 <!-- Input to add an item to the todo list via POST method -->
     <form action="/addTodo" method="POST">
+        <!-- text input with placeholder text -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- input is type "submit" -->
         <input type="submit">
     </form>
     
+    <!-- link to client JavaScript -->
     <script src='js/main.js'></script>
+<!-- end body section -->
 </body>
+<!-- end html document -->
 </html>
