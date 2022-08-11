@@ -1,47 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- Include font awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Import css stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <body>
+    <!-- Page heading -->
     <h1>Todo List: </h1>
+    <!-- Start a list of todo items -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+      <!-- start for loop and loop through items array (provided by server when page is served) -->
+      <% for(let i=0; i < items.length; i++) {%>
+        <!-- Create a list item -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+          <!-- Check if the current item is complete -->
+          <% if(items[i].completed===true) {%>
+            <!-- If so generate a span with completed class -->
+            <span class='completed'>
+              <%= items[i].thing %>
+            </span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+              <!-- Item is not complete so do not include complete class -->
+              <span class='unCompleted'>
+                <%= items[i].thing %>
+              </span>
+              <% } %>
+                <!-- Generate a delete button for all list items -->
+                <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+        <% } %>
+          <!-- End for loop -->
     </ul>
+    <!-- Display count of remaining todo items (value provided by server when page is served) -->
+    <h2>Left to do: <%= left %>
+    </h2>
 
-    <h2>Left to do: <%= left %></h2>
-
+    <!-- Heading for form to add new item -->
     <h2>Add A Todo:</h2>
 
+    <!-- Start new task form -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+      <!-- Submits to /addTodo route as a POST request -->
+      <!-- Add input field with placeholder text (name attr unimportant) -->
+      <input type="text" placeholder="Thing To Do" name="todoItem">
+      <!-- Submit button -->
+      <input type="submit">
     </form>
-    
 
+    <!-- Load/import js file to add event listeners to list items -->
     <script src='js/main.js'></script>
-</body>
-</html>
+  </body>
+
+  </html>
