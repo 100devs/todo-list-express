@@ -126,4 +126,4 @@ app.delete('/deleteItem', (request, response) => {
 app.listen(process.env.PORT || PORT, () => {
 	//Log flag to the console displaying the current running port.
 	console.log(`Server running on port ${PORT}`);
-});
+}); //end listen method
