@@ -20,18 +20,19 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Takes todo items from the wait function that is an array and rebders todoItems from database which is array of all the documents in the todo collection  -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!-- takes the number of items left and renders it ejs on this h2 from the database countDocument method -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
@@ -40,7 +41,7 @@
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
+
 
     <script src='js/main.js'></script>
 </body>
