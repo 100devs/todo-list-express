@@ -56,9 +56,19 @@ async function deleteItem(){
 
 async function markComplete(){
     //traverses the DOM up to the parent <li> and gets the text inside of the first <span> element
+    //this redquest leaves our client side, goes to the server.....
     const itemText = this.parentNode.childNodes[1].innerText
     try{
-        //sends a put request to the 'markComplete' endpoint .....
+        //sends a put request to the 'markComplete' endpoint/route .....
+        //when the server hears that request in server.js.....it activates app.put in that file, see the app.put code with endpoint mark complete
+        //look at the methodd, we're making a put request to our server!
+        /* when we send this put request to the server, the server can look at the request body, and the itemFromJS property, which is holeing what property?
+        -the property 'Get Pizza'. We're sending that alonsg here, from the request body to the server
+        -a gremlin is waiting to hear this put erequest , which is on the markComplete route, because its the name on teh fetch(the fetch and route must match)
+        -then the server does everything in app.put in the server.js
+        -so go look at that now, app.put 
+
+        */
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
