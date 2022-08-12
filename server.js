@@ -1,28 +1,28 @@
-const express = require('express')
-//Require the express module and assign it to a variable 
-const app = express()
-//Calls the express function "express()" and puts new express application inside the 'app' variable
-const MongoClient = require('mongodb').MongoClient
-//declaring and assigning the Mongo node.js package to a variable 
-const PORT = 2121
-//Assinging a number that will be act as our localhost port 
-require('dotenv').config()
-//require and configure the dotenv function to provide access to the hidden environment variables  
+const express = require('express') //Require the express module and assign it to a variable 
+
+const app = express() //Calls the express function "express()" and puts new express application inside the 'app' variable
+
+const MongoClient = require('mongodb').MongoClient //declaring and assigning the Mongo node.js package to a variable 
+
+const PORT = 2121 //Assinging a number that will be act as our localhost port 
+
+require('dotenv').config() //require and configure the dotenv function to provide access to the hidden environment variables  
 
 
+//declare a set of variables that will be used by MongoClient for our connection to our database
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
-    //declare a set of variables that will be used by MongoClient for our connection to our database
+    
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    //MongoClient.connect() is an async function call that takes dbConnectionStr as an argument to access the right database
-    .then(client => {
-    //.then() is called after the async function .connect is fulfilled; 
-        console.log(`Connected to ${dbName} Database`)
-        //..console log we are connected
-        db = client.db(dbName)
-        //client contains the connection credentials, which contains the giant db object/collections, and here we are assigning it to the previously declared db variable. Later on we can access the target mongo collection by appending db.collection(dbName)
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })  //MongoClient.connect() is an async function call that takes dbConnectionStr as an argument to access the right database
+   
+    .then(client => { //.then() is called after the async function .connect is fulfilled; 
+    
+        console.log(`Connected to ${dbName} Database`)  //..console log we are connected
+       
+        db = client.db(dbName) //client contains the connection credentials, which contains the giant db object/collections, and here we are assigning it to the previously declared db variable. Later on we can access the target mongo collection by appending db.collection(dbName)
+        
     })
     
 
@@ -30,18 +30,18 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
 app.set('view engine', 'ejs')
 //Tells express we are going to be using EJS, and at this point we would create a views folder for the index.ejs
 app.use(express.static('public'))
-//tells express to look in a 'public' for HTML, CSS, JS
-app.use(express.urlencoded({ extended: true }))
-//Makes URL handling easier
-app.use(express.json())
-//makes sure that responses are in json format
+//tells express to look in a 'public' for HTML, CSS, JS (static files)
+app.use(express.urlencoded({ extended: true })) //Makes URL handling easier
+
+app.use(express.json()) //makes sure that responses are in json format
+
 //.urlencoded and .json() ensure that only request made in the correct format are accepted. In this app, the main.js specifies the content-type to be 'application/json'
 
 //CRUD METHODS
 
 //Read Method (READ THE TODO LIST)
+//when you have a request at the root, call this async callback with (req,res)
 app.get('/', async (request, response)=>{
-    //when you have a request at the root, call this async callback with (req,res)
     const todoItems = await db.collection('todos').find().toArray() 
     // declaring a variable that fetches the 'todos' collection from our db; .find() returns ALL (when no params) in the collection , and then formats it all in an array (documents are like objects and they can be held in an array)
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
@@ -77,9 +77,8 @@ app.post('/addTodo', (request, response) => {
 //updating the item to be completed (setting)
 //this update request runs with the URL path '/markComplete'
 app.put('/markComplete', (request, response) => {
-    //we take the itemText from the main.js and set that to ???
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        //selecting our item
+        //selecting our item, the name .itemFromJS comes from the client side 
         $set: {
             completed: true
           }
