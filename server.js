@@ -4,6 +4,8 @@ const app = express()
 const MongoClient = require('mongodb').MongoClient
 //server will run on port 2121
 const PORT = 2121
+const Swal = require('sweetalert2')
+const alert = require('alert')
 //necessary to use env values
 require('dotenv').config()
 
@@ -51,18 +53,31 @@ app.get('/', async (request, response)=>{
 
 //adds an item to the todo list
 app.post('/addTodo', async (request, response) => {
+    try {
+        //store collection todos to todoItems as an array
+        const todoItems = await db.collection('todos').find().toArray()
+        //make sure todoItem is not a duplicate
+        console.log(todoItems.find(({ thing}) => thing == request.body.todoItem))
+        if (todoItems.find(({ thing}) => thing == request.body.todoItem) == undefined){
+            await db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+            console.log('Todo Added')
+            response.redirect('/')
+        } else {
+            response.redirect('/')
+            Swal.fire('duplicate!')
+            //alert('Duplicate Item')
+        }
+    } catch (error) {
+        console.error(error)
+    }
+
     //gets item from request body and adds it to database as not completed
-    // try {
-        
-    // } catch (error) {
-    //     console.error(error)
-    // }
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
-    })
-    .catch(error => console.error(error))
+    // db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+    // .then(result => {
+    //     console.log('Todo Added')
+    //     response.redirect('/')
+    // })
+    // .catch(error => console.error(error))
 })
 
 //marks an item as completed
