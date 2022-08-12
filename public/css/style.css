@@ -1,7 +1,16 @@
+/* makes h1's red */
+/* css opening block */
 h1{
+    /* what we are doing with the css */
     color: red;
+/* closing the css */
 }
+
+/* makes completed class grey with a line through them */
 .completed{
+    /* we are coloring them grey */
     color: gray;
+    /* giving text a line through */
     text-decoration: line-through;
+    /* closing the css block */
 }
