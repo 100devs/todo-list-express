@@ -1,6 +1,9 @@
+/* header. and its red. how about that */
 h1{
     color: red;
 }
+
+/* completed class (in index.ejs, this is used for completed task lis) - gray and strikes it out */
 .completed{
     color: gray;
     text-decoration: line-through;

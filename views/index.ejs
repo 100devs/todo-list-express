@@ -19,19 +19,19 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <ul class="todoItems">                                                                   <!-- items = object of documents from DB -->
     <% for(let i=0; i < items.length; i++) {%>                                             <!-- for loop to look at all elements in items-->
         <li class="item">
-            <% if(items[i].completed === true) {%>                                          <!-- if the item is marked completed then create span with class completed--> 
+            <% if(items[i].completed === true) {%>                                          <!-- if the item is marked completed: true then create span with class completed--> 
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>                                                                    <!-- else just create span of the item -->        
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span>                                          <!-- items[i].thing is the first document in items array with the "thing" property-->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+                                                                                            <!-- left = count of items left to do from DB (completed: false) -->
     <h2>Left to do: <%= left %></h2>                                                        <!-- show number of items remaining/uncompleted -->
 
     <h2>Add A Todo:</h2>

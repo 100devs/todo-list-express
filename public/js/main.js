@@ -1,16 +1,16 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')                                //declare object variable for all items with class "fa-trash" 
-const item = document.querySelectorAll('.item span')                                    //declare object variable for all items with class "item span"
-const itemCompleted = document.querySelectorAll('.item span.completed')                 //declare object variable for all itemst with class "item span.completed"
+const deleteBtn = document.querySelectorAll('.fa-trash')                                //declare object variable for all elements with class "fa-trash" 
+const item = document.querySelectorAll('.item span')                                    //declare object variable for all spans with class "item"
+const itemCompleted = document.querySelectorAll('.item span.completed')                 //declare object variable for all spans with class "item" and "completed"
 
-Array.from(deleteBtn).forEach((element)=>{                                              //create array of Delete buttons and iterarte on them...
+Array.from(deleteBtn).forEach((element)=>{                                              //create array of items with delete button class and iterate on them...
     element.addEventListener('click', deleteItem)                                       //adding a click event listener to all the individual buttons to run deleteItem function
 })
 
-Array.from(item).forEach((element)=>{                                                   //create array of all todo items and iterarte on them...
+Array.from(item).forEach((element)=>{                                                   //create array of all spans with class item and iterate on them...
     element.addEventListener('click', markComplete)                                     //adding a click event listener to all the individual todos to run markComplete function
 })
 
-Array.from(itemCompleted).forEach((element)=>{                                          //create array of all completed items and iterarte on them...
+Array.from(itemCompleted).forEach((element)=>{                                          //create array of all spans with class completed and items and iterate on them...
     element.addEventListener('click', markUnComplete)                                   //adding a click event listener to all the individual completed items to run markUnComplete function
 })
 
