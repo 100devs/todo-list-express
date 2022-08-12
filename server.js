@@ -30,7 +30,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
 app.set("view engine", "ejs");
 // built-in middleware that allows Express access to everything in the 'public' folder
 app.use(express.static("public"));
-// built-in middleware that allows for the parsing of incoming requests with urlencoded payloads
+// built-in middleware that allows for the parsing of incoming requests with urlencoded payloads and pull data out of request (it's how we get our text)(what bodyparser used to do)
 app.use(express.urlencoded({ extended: true }));
 // built-in middleware that allows for the parsing of incoming requests with JSON payloads
 app.use(express.json());
@@ -99,7 +99,7 @@ app.put("/markComplete", (request, response) => {
       {
         // sort by descending order
         sort: { _id: -1 },
-        // no update/filtering document nor adding/updating the collection with new document
+        // no update/filtering document nor adding/updating the collection with new document (if it were true, it would create a document for you if you try to update something that is not there)
         upsert: false,
       }
     )
@@ -107,7 +107,7 @@ app.put("/markComplete", (request, response) => {
     .then((result) => {
       // logs "Marked Complete" to the console
       console.log("Marked Complete");
-      // responds with "Marked Complete" as JSON
+      // responds with "Marked Complete" as JSON and goes back to server as "data"
       response.json("Marked Complete");
     })
     // error handling: logs any error to the console
@@ -129,7 +129,7 @@ app.put("/markUnComplete", (request, response) => {
       {
         // sort by descending order
         sort: { _id: -1 },
-        // no update/filtering document nor adding/updating the collection with new document
+        // no update/filtering document nor adding/updating the collection with new document (if it were true, it would create a document for you if you try to update something that is not there)
         upsert: false,
       }
     )
@@ -137,7 +137,7 @@ app.put("/markUnComplete", (request, response) => {
     .then((result) => {
       // logs "Marked Complete" to the console
       console.log("Marked Complete");
-      // responds with "Marked Complete" as JSON
+      // responds with "Marked Complete" as JSON and goes back to server as "data"
       response.json("Marked Complete");
     })
     // error handling: logs any error to the console

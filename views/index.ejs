@@ -32,11 +32,11 @@
                         <li class="item">
                             <!-- if a task (item) is completed -->
                             <% if(items[i].completed===true) {%>
-                                <!-- draw a line through the completed task and make text color gray -->
+                                <!-- add class="completed" to <span/>, which draws a line through the completed task and makes text color gray -->
                                 <span class='completed'>
                                     <%= items[i].thing %>
                                 </span>
-                                <!-- if task (item) is not completed, do not draw a line through it and do not make text color gray-->
+                                <!-- if task (item) is not completed (i.e., false), do not add class="completed" to the <span/> (which draws a line through the text and makes the text color gray). Thus, the text should be black with no line-through.-->
                                 <% }else{ %>
                                     <span>
                                         <%= items[i].thing %>
