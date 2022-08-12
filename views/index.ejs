@@ -15,31 +15,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title> <!-- all this might be a typo-->
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> <!-- That's the stuff we se in the browser  -->
+    <h1>Todo List: </h1> <!-- title-->
+    <!-- that's the list that contains our todo items'-->
+    <ul class="todoItems"> <!-- unordered list with class-->
+    <% for(let i=0; i < items.length; i++) {%>   <!-- it's a for-loop in javascript/ejs-->
+        <li class="item">                        <!-- it creates a list-item with the class "item"-->       
+            <% if(items[i].completed === true) {%>   <!-- it checkes if the specific element of an array called items has the property of completed-->
+                <span class='completed'><%= items[i].thing %></span>  <!-- and if it has the property of completed it adds a span with the class completed that contains an element from the array with the property "thing"-->
+            <% }else{ %> <!-- and if the specific element of the array items doesn't have the property of completed-->
+                <span><%= items[i].thing %></span> <!-- it adds a span (without a class) that contains an element of the array items with the property thing-->
+            <% } %>    <!-- closing our if-else statement -->
+            <span class='fa fa-trash'></span> <!-- and it adds a span with a trashcan icon-->
+        </li> <!-- closing the list item-->
+    <% } %><!-- closing the ejs-->
+    </ul> <!-- closing the ul-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- shows the variable "left" to display how many tasks are left to do-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- another header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST">  <!-- opening line for a form with the post-method that is direceted to a certain route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- creates an input field for text with the name todoItem-->
+        <input type="submit"> <!-- gives the form a submit button to send the input data to the server-->
+    </form> <!-- closing tag for the form-->
     
 
     <script src='js/main.js'></script>
