@@ -19,24 +19,24 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <ul class="todoItems">                                                                   <!-- items = object of documents from DB -->
+    <% for(let i=0; i < items.length; i++) {%>                                             <!-- for loop to look at all elements in items-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <% if(items[i].completed === true) {%>                                          <!-- if the item is marked completed: true then create span with class completed--> 
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+            <% }else{ %>                                                                    <!-- else just create span of the item -->        
+                <span><%= items[i].thing %></span>                                          <!-- items[i].thing is the first document in items array with the "thing" property-->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
-    <h2>Left to do: <%= left %></h2>
+                                                                                            <!-- left = count of items left to do from DB (completed: false) -->
+    <h2>Left to do: <%= left %></h2>                                                        <!-- show number of items remaining/uncompleted -->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST">                                                  <!-- POST method to create a new item and name it todoItem-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>

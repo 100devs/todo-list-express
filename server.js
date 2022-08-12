@@ -1,30 +1,31 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express')                                      //enable express
+const app = express()                                                   //allows using "app" as a shorthand whenever calling an express function
+const MongoClient = require('mongodb').MongoClient                      //enables the use of Mongodb
+const PORT = 2121                                                       //creates PORT variable and assigns it to 2121. Allows us to alter the PORT easily
+require('dotenv').config()                                              //enables dotenv - allows using .env file to pull specific information (like connection strings and things you dont want to share publicly)
 
+                                                                        //declares variables related to DB
+let db,                                                                 //declaires db variable
+    dbConnectionStr = process.env.DB_STRING,                            //assigns dbConnectionstr to the DB connection string contained in .env file (needs to be created/copied from MongoDB)
+    dbName = 'todo'                                                     //creates a dbName to name DB once connected
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
-
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })      //connects to MongoDB using connection string from .env file; uses Unified Topology so no ened to connect then commit changes
+    .then(client => {                                                   //once connected, do the following
+        console.log(`Connected to ${dbName} Database`)                  //console log connection with name of DB ("todo")
+        db = client.db(dbName)                                          //assigns db to the MongoDB DB named "todo"
     })
     
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.set('view engine', 'ejs')                                           //allows use of "view engine" and "ejs"
+app.use(express.static('public'))                                       //use "public" folder for status objects -> .js and .css
+app.use(express.urlencoded({ extended: true }))                         //allow use of express urlencoder -> recognize incoming requests as strings or arrays
+app.use(express.json())                                                 //allow use of express json -> recognize JSON files on GET
 
 
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
+//Async/Await function for GET DB items
+app.get('/',async (request, response)=>{                                                    //READ request for root when going to base URL:PORT
+    const todoItems = await db.collection('todos').find().toArray()                         //READS all documents in the todo DB/collection and stores then as an array of objects
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false})       //counts all documents in the todo DB/collection which have the key "completed" set to value "false"
+    response.render('index.ejs', { items: todoItems, left: itemsLeft })                     //renders index.html from index.ejs file, passing todoItems and itemsLeft to the ejs file
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -35,59 +36,59 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
+app.post('/addTodo', (request, response) => {                                               //CREATE new task function via URL/addTodo
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})      //insert new document to the todos DB; thing value equals the todoItem from the submited request; defaults completed to false
+    .then(result => {                                                                       //??    once added do the following (is result the default naming scheme or is this set somewhere????)
+        console.log('Todo Added')                                                           //console log that Todo was Added
+        response.redirect('/')                                                              //refresh the root foldor index.ejs
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))                                                   //console log errors encountered
 })
 
-app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            completed: true
+app.put('/markComplete', (request, response) => {                                           //UPDATE task function via URL/markComplete
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document from todos DB that matches item name from JSON sent by CLIENT main.js
+        $set: {                                                                             //set key value items:
+            completed: true                                                                         //completed to true
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1},                                                                    //resort items in descending order by ID (most recent item at the top)
+        upsert: false                                                                       //will not insert new document if no match is found
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+    .then(result => {                                                                       // once complete
+        console.log('Marked Complete')                                                      // console log that task has been marked complete
+        response.json('Marked Complete')                                                    //respond to the JSON file that something has been done with it
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))                                                   //console log any errors
 
 })
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            completed: false
+app.put('/markUnComplete', (request, response) => {                                         //UPDATE task function
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{                     //update document in todos DB that matches name from JSON sent by CLIENT main.js
+        $set: {                                                                             //set key value items:
+            completed: false                                                                    //completed to false
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1},                                                                    //sort descending order by ID (newest first)
+        upsert: false                                                                       //will not insert new document if no match is found
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+    .then(result => {                                                                        // once complete
+        console.log('Marked Complete')                                                      // console log that task has been marked complete
+        response.json('Marked Complete')                                                    //respond to the JSON file that something has been done with it
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))                                                   //console log any errors
 
 })
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+app.delete('/deleteItem', (request, response) => {                                          //DELETE task function
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS})                      //delete the document in todos DB that matches name from JSON sent by CLIENT main.js
+    .then(result => {                                                                       //then
+        console.log('Todo Deleted')                                                         //console log that file was deleted
+        response.json('Todo Deleted')                                                       //respond that somethings been done with the JSON file
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error))                                                   //console log any errors
 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+app.listen(process.env.PORT || PORT, ()=>{                                                  //have app use PORT in .env file or PORT in variable if it is not set
+    console.log(`Server running on port ${PORT}`)                                           //console log that app is running on PORT
 })
