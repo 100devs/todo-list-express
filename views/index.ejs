@@ -4,42 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ToDo List Demo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
-
-    <h2>Left to do: <%= left %></h2>
-
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <div class="container">
+        <div class="title">
+            <h1>TODO LIST</h1>
+        </div>
+        <div class="list-">
+            <!-- ejs to create li's from items fetched from database -->
+            <ul class="todoItems">
+            <% for(let i=0; i < items.length; i++) {%>
+                <li class="item">
+                    <% if(items[i].completed === true) {%>
+                        <span class='completed'><%= items[i].thing %></span>
+                    <% }else{ %>
+                        <span><%= items[i].thing %></span>
+                    <% } %>    
+                    <span class='fa fa-trash'></span>
+                </li>
+            <% } %>
+            </ul>
+        </div>
+        <div class="list-leftToDo">
+            <!-- ejs to display number of incomplete items -->
+            <h2>Left to do: <%= left %></h2>
+        </div>
+        <div class="container-form">
+            <h2>Add A Todo</h2>
+            <!-- use api addTodo to add item to database using this form -->
+            <form action="/addTodo" method="POST">
+                <input type="text" placeholder="Thing To Do" name="todoItem">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
     
 
     <script src='js/main.js'></script>

@@ -1,7 +1,39 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: black;
+    color: green;
+}
+
 h1{
     color: red;
+}
+h2{
+    color: yellow;
 }
 .completed{
     color: gray;
     text-decoration: line-through;
+}
+ul{
+    list-style:circle;
+}
+li{
+    display: block;
+}
+input{
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: .25rem;
+}
+form :focus-visible{
+    outline-width: 0px;
+}
+
+
+/* Layout */
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
 }
