@@ -54,6 +54,7 @@ app.get('/',async (request, response)=>{
 //Create item in the localhost:2121/addTodo url
 app.post('/addTodo', (request, response) => {
     //Create an item with thing key and completed key
+    //Grab item that came with POST request and save it to db
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     //run promise and console.log(todo added)
     .then(result => {
