@@ -1,6 +1,6 @@
 //Requires the server to use express
 const express = require('express')
-const app = express()
+const app = express();
 //Requires the server to use MongoDB
 const MongoClient = require('mongodb').MongoClient
 //This is the local port
@@ -13,7 +13,7 @@ let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo' //our database name is todo
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+MongoClient.connect(mongodb+srv:BreannaB:Pl4ntM0m@list01.vwedfln.mongodb.net/?retryWrites=true&w=majority, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
