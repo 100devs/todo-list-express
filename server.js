@@ -59,6 +59,7 @@ app.post('/addTodo', (request, response) => {
     //run promise and console.log(todo added)
     .then(result => {
         console.log('Todo Added')
+        //respond and refresh
         //if it works redirected to home
         response.redirect('/')
     })
