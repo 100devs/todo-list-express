@@ -1,13 +1,24 @@
+<!-- tells browser what's coming -->
 <!DOCTYPE html>
+<!-- tells the browser what language is coming, starts HTML tag -->
 <html lang="en">
+<!-- starting the head where the metadata goes -->
 <head>
+    <!-- shows what character set will be used -->
     <meta charset="UTF-8">
+    <!-- sets compatibility with microsoft browsers -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- sets the width of the page -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- sets the title which is what is shown on the tab in the browser -->
     <title>Document</title>
+    <!-- giving us a stylesheet from an online font awesome library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- links our css stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+<!-- closes the head -->
 </head>
+<!-- From here might be a type -->
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -17,31 +28,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- until here -->
+<!-- Opens the body which is what is visible -->
 <body>
+    <!-- Main title shown on the page -->
     <h1>Todo List: </h1>
+    <!-- starting an unordered list with the class of todoItems -->
     <ul class="todoItems">
+        <!-- looping through our items data from the backend with ejs -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- creates a list element for every item looped through -->
         <li class="item">
+            <!-- conditional statement to check if the item was marked completed with ejs -->
             <% if(items[i].completed === true) {%>
+                <!-- if it was completed it reders the span, which is an inline element with the class completed
+                and uses ejs to render the name of the task -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- if it wasn't completed it renders the span without the class -->
             <% }else{ %>
+                <!-- this is the span without the class -->
                 <span><%= items[i].thing %></span>
+                <!-- closing the ejs -->
             <% } %>    
+            <!-- renders the trash can from font awesome inline -->
             <span class='fa fa-trash'></span>
+            <!-- closing the list item -->
         </li>
+        <!-- closing the ejd -->
     <% } %>
+    <!-- closing the unordered list -->
     </ul>
-
+    <!-- creates a 2nd level title that shows tasks left to do using ejs -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- 2nd level title labeling the next section of the page -->
     <h2>Add A Todo:</h2>
-
+    <!-- begins the form, and declares our action, which is our backend route and our method POST which means to create -->
     <form action="/addTodo" method="POST">
+        <!-- input type declared text, placeholder, which is in the text body is "Thing to Do", name is for 
+        later reference -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- I think this is the button with the type of submit which gives data -->
         <input type="submit">
+    <!-- closing the form -->
     </form>
     
-
+    <!-- script tag lets us apply our javascript -->
     <script src='js/main.js'></script>
+    <!-- closing the body -->
 </body>
+<!-- closing the page -->
 </html>
