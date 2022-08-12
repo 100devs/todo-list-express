@@ -60,7 +60,7 @@ app.post('/addTodo', (request, response) => {
     .then(result => {
         console.log('Todo Added')
         //respond and refresh
-        //if it works redirected to home
+        //if it works redirected to home, GET request
         response.redirect('/')
     })
     //Catches an error if it doesn't work
