@@ -37,14 +37,6 @@ app.get('/', async (request, response) => {
     .countDocuments({ completed: false });
   // Sending over the variables todoItems and itemsLeft to EJS
   response.render('index.ejs', { items: todoItems, left: itemsLeft });
-  // db.collection('todos').find().toArray()
-  // .then(data => {
-  //     db.collection('todos').countDocuments({completed: false})
-  //     .then(itemsLeft => {
-  //         response.render('index.ejs', { items: data, left: itemsLeft })
-  //     })
-  // })
-  // .catch(error => console.error(error))
 });
 
 // Responding to a POST (UPDATE) request to the '/addTodo' route
@@ -52,7 +44,10 @@ app.post('/addTodo', (request, response) => {
   // hitting the todo collection
   // Add an item inside
   db.collection('todos')
-    .insertOne({ thing: request.body.todoItem.trim(), completed: false }) // Adds the todo item with the completed property set to false
+    .insertOne({
+      thing: request.body.todoItem.trim().toUpperCase(),
+      completed: false,
+    }) // Adds the todo item with the completed property set to false
     // Console loggin that the todo list item was added, then telling client to refresh the page to home '/'
     .then((result) => {
       console.log('Todo Added');
@@ -84,6 +79,29 @@ app.put('/markComplete', (request, response) => {
     // Otherwise provide error
     .catch((error) => console.error(error));
 });
+app.put('/markAllComplete', (request, response) => {
+  // Going into the database, collection 'todos', and finding a document that matches request.body.itemFromJS
+  db.collection('todos')
+    .updateMany(
+      {},
+      {
+        $set: {
+          completed: true,
+        },
+      },
+      {
+        sort: { _id: -1 }, // Sortin in descending order (-1 descending, 1 ascending, 0 no order)
+        upsert: false, // If the document does not exist, don't create a new one
+      }
+    )
+    // if it works, console log Marked Complete
+    .then((result) => {
+      console.log('Marked All Complete');
+      response.json('Marked All Complete');
+    })
+    // Otherwise provide error
+    .catch((error) => console.error(error));
+});
 
 // Responde to a POST (UPDATE) request
 app.put('/markUnComplete', (request, response) => {
@@ -101,8 +119,8 @@ app.put('/markUnComplete', (request, response) => {
       }
     )
     .then((result) => {
-      console.log('Marked Complete');
-      response.json('Marked Complete');
+      console.log('Marked UnComplete');
+      response.json('Marked UnComplete');
     })
     .catch((error) => console.error(error));
 });
@@ -116,6 +134,18 @@ app.delete('/deleteItem', (request, response) => {
       // console log and Json respond with Todo Deleted
       console.log('Todo Deleted');
       response.json('Todo Deleted');
+    })
+    .catch((error) => console.error(error));
+});
+
+// Responding to a DELETE (REMOVE) request for all
+
+app.delete('/deleteAll', (request, response) => {
+  db.collection('todos')
+    .deleteMany({})
+    .then((result) => {
+      console.log('Deleted All');
+      response.json('Deleted All');
     })
     .catch((error) => console.error(error));
 });

@@ -12,12 +12,14 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <h1>Todo List:</h1>
+    <h1>TODO LIST:</h1>
     <ul class="todoItems">
       <!-- Running a for loop based on the number of items in the db -->
       <% for(let i=0; i < items.length; i++) {%>
       <!-- Creating ali for each iteration, with class 'item' -->
       <li class="item">
+        <% if(!items[i].thing) {%> <span><p>Please add decription</p></span> <%}
+        %>
         <!-- IF item is completed, create a paragraph with class of 'completed' -->
         <% if(items[i].completed === true) {%>
         <span class="completed"><%= items[i].thing %></span>
@@ -43,6 +45,12 @@
       <!-- A simple submit button -->
       <input type="submit" />
     </form>
+    <button type="button" class="yeetAll">
+      Nuke List <span class="fa fa-trash"></span>
+    </button>
+    <button type="button" class="completeAll">
+      Complete All <span class="fa fa-check"></span>
+    </button>
     <!-- Linking a main.js file -->
     <script src="js/main.js"></script>
   </body>

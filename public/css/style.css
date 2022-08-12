@@ -1,11 +1,21 @@
-h1 {
-  color: red;
-}
 .completed {
   color: gray;
   text-decoration: line-through;
+  background-color: greenyellow;
 }
 
 p {
   display: inline;
+}
+
+.fa-times {
+  color: grey;
+}
+
+.fa-check {
+  color: greenyellow;
+}
+
+.fa-trash {
+  color: red;
 }
