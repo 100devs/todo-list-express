@@ -1,6 +1,6 @@
 const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const item = document.querySelectorAll('.thing')
+const itemCompleted = document.querySelectorAll('.completed')
 
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
@@ -12,13 +12,14 @@ Array.from(item).forEach((element)=>{
 
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
+ 
 })
 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
-            method: 'delete',
+            method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
               'itemFromJS': itemText
@@ -51,6 +52,9 @@ async function markComplete(){
         console.log(err)
     }
 }
+
+
+
 
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
