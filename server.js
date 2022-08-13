@@ -51,7 +51,7 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
-//Create item in the localhost:2121/addTodo url
+//Create item in the localhost:2121/addTodo (route comes from the action on the form that made the post request)
 app.post('/addTodo', (request, response) => {
     //Create an item with thing key and completed key
     //Grab item that came with POST request and save it to db
