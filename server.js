@@ -81,7 +81,8 @@ app.put('/markUnComplete', (request, response) => {
 app.put('/deleteItem', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
-            deleted: true
+            deleted: true,
+            completed: true
           }
     },{
         sort: {_id: -1},
