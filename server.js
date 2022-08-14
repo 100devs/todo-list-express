@@ -75,7 +75,7 @@ app.put("/markComplete", (request, response) => {
 app.put("/markUnComplete", (request, response) => {
   db.collection("todos") //access the database collection with todos and update 1
     .updateOne(
-      { thing: request.body.itemFromJS },
+      { thing: request.body.itemFromJS },// the item delete is specified in the arguments
       {
         $set: {
           completed: false, //set item as uncompleted
