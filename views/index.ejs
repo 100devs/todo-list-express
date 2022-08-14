@@ -19,15 +19,15 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <ul class="todoItems">  <!-- create an unordered list of todoItems -->
+    <% for(let i=0; i < items.length; i++) {%>  <!-- loop through items from data array -->
+        <li class="item">   <!-- create a list item -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed'><%= items[i].thing %></span> <!-- if item is marked completed, add item with the completed class -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span>  <!-- add item -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- add delete icon -->
         </li>
     <% } %>
     </ul>
