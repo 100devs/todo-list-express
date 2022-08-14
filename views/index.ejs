@@ -20,12 +20,12 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%><!-- loop through all the item objects -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <% if(items[i].completed === true) {%><!-- checks each item for the completed tasks -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span><!--  -->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
