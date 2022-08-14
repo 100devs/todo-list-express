@@ -4,15 +4,15 @@ const itemCompleted = document.querySelectorAll('.item span.completed') //an arr
 
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
-})
+})// use array constructor and loop thorugh each element in the array  and add event listener, and attach call back which deletes the item
 
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
-})
+})// use array constructor and loop thorugh each element in the array  and add event listener, and attach call back which changes status completed
 
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
-})
+})// use array constructor and loop thorugh each element in the array  and add event listener, and attach call back which changes status to uncomplete
 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
