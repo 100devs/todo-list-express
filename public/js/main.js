@@ -1,6 +1,6 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const deleteBtn = document.querySelectorAll('.fa-trash') // selects all delte buttons
+const item = document.querySelectorAll('.item span') // selects all "items" and saves them in an array
+const itemCompleted = document.querySelectorAll('.item span.completed') //an array of all the completed items based on class complted
 
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
