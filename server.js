@@ -1,4 +1,5 @@
 const express = require("express"); //express dependency for ease of running server
+const { access } = require("fs");
 const app = express(); // initialises the express app
 const MongoClient = require("mongodb").MongoClient; //import  mongo db dependency
 const PORT = 2121; // declaration of port
@@ -70,26 +71,26 @@ app.put("/markComplete", (request, response) => {
     })
     .catch((error) => console.error(error)); // if there is an error it will be handled in the catch block. Prevents the program from crashing
 });
-
+// app.put is the route that accepts frint end requests to update /markunComplete is the route on which the requests is sent 
 app.put("/markUnComplete", (request, response) => {
-  db.collection("todos")
+  db.collection("todos") //access the database collection with todos and update 1
     .updateOne(
       { thing: request.body.itemFromJS },
       {
         $set: {
-          completed: false,
+          completed: false, //set item as uncompleted
         },
       },
       {
-        sort: { _id: -1 },
+        sort: { _id: -1 },//
         upsert: false,
       }
     ) //updates the database with the given parameter
     .then((result) => {
       console.log("Marked Complete");
-      response.json("Marked Complete");
+      response.json("Marked Complete");//send back the response in json format
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error));//catch errors that may have occured in the operation , prevents app from crashing
 });
 
 app.delete("/deleteItem", (request, response) => {
