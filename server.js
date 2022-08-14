@@ -10,11 +10,12 @@ const PORT = 2121
 require('dotenv').config()
 
 // The database connection string is accessed from the environment variables (encapsulation for security).
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+let db = null
+const dbConnectionString = process.env.DB_STRING
+const dbName = 'todo'
+
 // The database connection is created here.
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+MongoClient.connect(dbConnectionString, { useUnifiedTopology: true })
     .then(client => {
         // Once the client is connected, the database name is console logged.
         console.log(`Connected to ${dbName} Database`)
@@ -34,28 +35,28 @@ app.use(express.json())
 
 // Handles home/root page get requests.
 app.get('/',async (request, response)=>{
-    // The database is queried for all items, and converted to an array.
-    // Note that "await" here is redundant because toArray() does not return a promise.
-    const todoItems = await db.collection('todos').find().toArray()
-    // Here we query the database again to get the amount of documents that have not been marked as completed.
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    // We will serve an ejs render of index.ejs as the response, passing in todoItems and itemsLeft.
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+    // The database is queried for all items and converted to an array.
+    const todoItems = db.collection('todos').find().toArray()
+    // Only return the items that the user hasn't deleted.
+    const notDeleted = await todoItems.then(items => {
+        return items.filter(item =>  item.softDeleted === false)
+    })
+    // Rather than making a second database query, we can figure out the
+    // amount of remaining to do items (not marked completed) from our first query above.
+    const itemsLeft = notDeleted.filter(item => item.completed === false).length
+    // We will serve an ejs render of index.ejs as the response, passing in our todo items and uncompleted count.
+    response.render('index.ejs', { items: notDeleted, left: itemsLeft })
 })
 
 // Handles post requests to /addTodo endpoint.
 app.post('/addTodo', (request, response) => {
     // Database query to insert one document into the todos collection.
     // The inserted "thing" will be the todoItem located in the request body.
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+    db.collection('todos').insertOne({
+        thing: request.body.todoItem,
+        completed: false,
+        softDeleted: false
+    })
     .then(result => {
         // After the insert, we are notified in the console and redirected back to the home page to display updated data.
         console.log('Todo Added')
@@ -66,29 +67,29 @@ app.post('/addTodo', (request, response) => {
 })
 
 // Handles put/edit requests to /markComplete endpoint. This style looks more like RPC.
-app.put('/markComplete', (request, response) => {
-    // Database query to update one document in the todos collection.
-    // The query will be the itemFromJS within the request body,
-    // where we will set "completed" to true for this document,
-    // sort the documents by their _id in descending order,
-    // and no new document will be inserted if the queried document does not exist.
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            completed: true
-          }
-    },{
-        sort: {_id: -1},
-        upsert: false
-    })
-    .then(result => {
-        // A response will be sent back to the client indicating the update was complete.
-        console.log('Marked Complete')
-        response.json('Marked Complete')
-    })
-    // If the database query fails, an error is console logged server-side.
-    // Probably need to let the client know as well.
-    .catch(error => console.error(error))
-
+app.put('/markComplete', async (request, response) => {
+    const requestedItem = request.body.itemFromJS
+    try {
+        // Database query to update one document in the todos collection.
+        // The query will be the itemFromJS within the request body,
+        // where we will set "completed" to true for this document,
+        // sort the documents by their _id in descending order,
+        // and no new document will be inserted if the queried document does not exist.
+        const updateResult = await db.collection('todos').updateOne(
+            { thing: requestedItem },
+            { $set: { completed: true } },
+            { sort: { _id: -1 }, upsert: false }
+        )
+        const resultMessage = updateResult.modifiedCount >= 1 ? 'Todo Marked Complete' : 'Todo Not Found'
+        console.log(resultMessage)
+        response.json(resultMessage)
+    }
+    catch (error) {
+        // If the database query fails, an error is console logged server-side.
+        // Probably need to let the client know as well.
+        console.error(error)
+        response.json(`An error occurred when trying to update ${requestedItem}..`)
+    }
 })
 
 // This functionality is identical to the /markComplete endpoint above, but it is for marking items as incomplete.
@@ -112,15 +113,22 @@ app.put('/markUnComplete', (request, response) => {
 
 // An endpoint for handling delete requests, set to a unique "/deleteTodo" endpoint.
 // This should probably be refactored into a single endpoint.
-app.delete('/deleteItem', (request, response) => {
-    // A database query to delete one document matching our request body "itemFromJS" from the todos collection.
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
-    })
-    .catch(error => console.error(error))
-
+app.delete('/deleteItem', async (request, response) => {
+    const requestedItem = request.body.itemFromJS
+    try {
+        const updateResult = await db.collection('todos').updateOne(
+            { thing: requestedItem },
+            { $set: { softDeleted: true } },
+            { sort: { _id: -1 }, upsert: false }
+        )
+        const resultMessage = updateResult.modifiedCount >= 1 ? 'Todo Deleted' : 'Todo Not Found'
+        console.log(resultMessage)
+        response.json(resultMessage)
+    }
+    catch (error) {
+        console.error(error)
+        response.json(`An error occurred when trying to delete ${requestedItem}..`)
+    }
 })
 
 // Start the express server listening on the given port. Console log a message to let us know the server is up.
