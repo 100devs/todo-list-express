@@ -29,7 +29,7 @@ async function deleteItem(){
           })
         const data = await response.json() // converts the response into  a readable object with only the information that we need
         console.log(data)
-        location.reload()
+        location.reload() //reloads the page with updated information
 
     }catch(err){
         console.log(err)
@@ -50,7 +50,7 @@ async function markComplete(){
           })
         const data = await response.json() // converts the response into  a readable object with only the information that we need
         console.log(data)
-        location.reload()
+        location.reload() //reloads the page with updated information
 
     }catch(err){
         console.log(err)
@@ -71,7 +71,7 @@ async function markUnComplete(){
           })
         const data = await response.json() // converts the response into  a readable object with only the information that we need
         console.log(data)
-        location.reload()
+        location.reload() //reloads the page with updated information
 
     }catch(err){
         console.log(err)
