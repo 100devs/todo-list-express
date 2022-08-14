@@ -14,8 +14,10 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })// use array constructor and loop thorugh each element in the array  and add event listener, and attach call back which changes status to uncomplete
 
+// this function is acalled when relevant button  is clicked
 async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[1].innerText //selects 
+    // try catch block ensures the app will not break if ther is  a problem while executing
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
@@ -35,6 +37,7 @@ async function deleteItem(){
 
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
+     // try catch block ensures the app will not break if ther is  a problem while executing
     try{
         const response = await fetch('markComplete', {
             method: 'put',
@@ -54,6 +57,7 @@ async function markComplete(){
 
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
+ // try catch block ensures the app will not break if ther is  a problem while executing
     try{
         const response = await fetch('markUnComplete', {
             method: 'put',
