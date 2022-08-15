@@ -1,2 +1,3 @@
+(holds stuff we don't want to push to our github)
 node_modules
 .env
