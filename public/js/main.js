@@ -54,6 +54,9 @@ async function deleteItem(){
 // -------------------------------------------------------------------
 // Function for marking an item as complete on the server.
 async function markComplete(){
+    if (this.classList.contains('completed')){
+        return
+    }
     // This is the text of the item whose mark-complete button was clicked.
     const itemText = this.parentNode.childNodes[1].innerText
     try{
