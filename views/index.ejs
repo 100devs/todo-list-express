@@ -19,9 +19,16 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    
+    <!-- RENDERING ITEMS FROM DATABASE -->
+    <!-- toDoItems is the name of the array that we assigned to hold our db documents -->
     <ul class="todoItems">
+        <!-- control flow scriplet-- indicidates a block of code.. this is a forLoop-->
     <% for(let i=0; i < items.length; i++) {%>
+
+    <!-- FROM SERVER.. items= our array of toDoItems response.render("index.ejs", { items: todoItems, left: itemsLeft }); -->
         <li class="item">
+            <!-- Render each todo from DB as an li, with a diff class based on if its been done -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -31,11 +38,12 @@
         </li>
     <% } %>
     </ul>
-
+<!-- show total items that havent been marked completed -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- POST request's route is /addToDo  -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
