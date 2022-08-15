@@ -31,7 +31,7 @@
    "Left" is also passed in and rendered as an h2 tag, which is the remaining number of items to be completed.
     -->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <li class="item" id=<%= items[i]._id%>>
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>

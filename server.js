@@ -4,6 +4,8 @@ const express = require('express')
 const app = express()
 // MongoDB is imported here.
 const MongoClient = require('mongodb').MongoClient
+// For querying by _id, we need to import the ObjectID library.
+const ObjectID = require('mongodb').ObjectID
 // This will be the port to use for the server.
 const PORT = 2121
 // This allows us to retrieve any environment variables we need.
@@ -62,7 +64,10 @@ function setupRoutes() {
 
     // Handles put/edit requests to /markComplete endpoint. This style looks more like RPC.
     app.put('/markComplete', async (request, response) => {
-        const requestedItem = request.body.itemFromJS
+        // The id of the todo item is retrieved from the request body and converted to an ObjectID,
+        // so that we can query by _id directly. We can't query the _id by the id string directly
+        // that we're getting from the client.
+        const requestedItemID = new ObjectID(request.body.itemFromJS)
         try {
             // Database query to update one document in the todos collection.
             // The query will be the itemFromJS within the request body,
@@ -70,13 +75,14 @@ function setupRoutes() {
             // sort the documents by their _id in descending order,
             // and no new document will be inserted if the queried document does not exist.
             const updateResult = await db.collection('todos').updateOne(
-                { thing: requestedItem },
+                { "_id": requestedItemID },
                 { $set: { completed: true } },
                 { sort: { _id: -1 }, upsert: false }
             )
+
             const resultMessage = updateResult.modifiedCount >= 1 ?
-                `${requestedItem} marked completed` :
-                `${requestedItem} not found`
+                `${requestedItemID} marked completed` :
+                `${requestedItemID} not found`
 
             console.log(resultMessage)
             response.json(resultMessage)
@@ -85,14 +91,15 @@ function setupRoutes() {
             // If the database query fails, an error is console logged server-side.
             // Probably need to let the client know as well.
             console.error(error)
-            response.json(`An error occurred when trying to update ${requestedItem}..`)
+            response.json(`An error occurred when trying to update ${requestedItemID}..`)
         }
     })
 
     // This functionality is identical to the /markComplete endpoint above, but it is for marking items as incomplete.
     // Because the difference is one line, this should probably be refactored into a single endpoint.
     app.put('/markUnComplete', (request, response) => {
-        db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        const requestedItemID = new ObjectID(request.body.itemFromJS)
+        db.collection('todos').updateOne({"_id": requestedItemID}, {
             $set: {
                 completed: false
             }
@@ -111,10 +118,10 @@ function setupRoutes() {
     // An endpoint for handling delete requests, set to a unique "/deleteTodo" endpoint.
     // This should probably be refactored into a single endpoint.
     app.delete('/deleteItem', async (request, response) => {
-        const requestedItem = request.body.itemFromJS
+        const requestedItemID = new ObjectID(request.body.itemFromJS)
         try {
             const updateResult = await db.collection('todos').updateOne(
-                { thing: requestedItem },
+                { "_id": requestedItemID },
                 { $set: { softDeleted: true } },
                 { sort: { _id: -1 }, upsert: false }
             )
@@ -124,7 +131,7 @@ function setupRoutes() {
         }
         catch (error) {
             console.error(error)
-            response.json(`An error occurred when trying to delete ${requestedItem}..`)
+            response.json(`An error occurred when trying to delete ${requestedItemID}..`)
         }
     })
 

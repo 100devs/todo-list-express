@@ -30,14 +30,15 @@ Array.from(itemCompleted).forEach((element)=>{
 async function deleteItem(){
     // This is the text of the item whose delete button was clicked.
     // If the order of child elements is ever changed, accessing index 1 will give the wrong element text.
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemID = this.parentNode.id
+
     try{
         // The deletion request is sent to the server, as a json converted to a string.
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'itemFromJS': itemText
+              'itemFromJS': itemID
             })
           })
         // The server response is converted to json, console logged, then the page is reloaded.
@@ -58,7 +59,7 @@ async function markComplete(){
         return
     }
     // This is the text of the item whose mark-complete button was clicked.
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.id
     try{
         // The edit/put request sent to the server so that this item can be marked as complete.
         const response = await fetch('markComplete', {
@@ -82,7 +83,7 @@ async function markComplete(){
 // Function for marking an item as incomplete on the server.
 async function markUnComplete(){
     // This is the text of the item whose "mark-uncomplete" button was clicked.
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.id
     try{
         // This put/edit request is identical to the markComplete function above, except
         // the request URl is different.
