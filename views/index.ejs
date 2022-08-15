@@ -27,7 +27,7 @@
             <!-- A list item is generated for each item in the array of data retrieved from the database -->
             <% for(let i=0; i < items.length; i++) {%>
             <li class="item">
-                <!-- For each item, if the value of the "completed" field is true, the item is assigned the class of "completed," which -- if you look at the css file -- changes its color and text decoration. -->
+                <%# For each item, if the value of the "completed" field is true, the item is assigned the class of "completed," which -- if you look at the css file -- changes its color and text decoration. %>
                 <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
                 <% }else{ %>
