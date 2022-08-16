@@ -24,6 +24,7 @@ app.use(express.json())
 
 //set / as a route
 app.get('/', async (request, response) => {
+    //get all the todos from the database
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({ completed: false })
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
@@ -38,6 +39,7 @@ app.get('/', async (request, response) => {
 })
 //api call to create a new todo item
 app.post('/addTodo', (request, response) => {
+    //insert value into database
     db.collection('todos').insertOne({ thing: request.body.todoItem, completed: false })
         .then(result => {
             console.log('Todo Added')
@@ -48,6 +50,7 @@ app.post('/addTodo', (request, response) => {
 
 //api call to update todo
 app.put('/markComplete', (request, response) => {
+    //update value in database with text(itemFromJS) completed: true
     db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
         //dollar sign set key value completed to true
         $set: {
@@ -68,10 +71,12 @@ app.put('/markComplete', (request, response) => {
 
 })
 
-
+//api call to update todo if it is not completed
 app.put('/markUnComplete', (request, response) => {
+    //update value in database
     db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
         $set: {
+            //dollar sign set key value completed to false
             completed: false
         }
     }, {
@@ -79,14 +84,15 @@ app.put('/markUnComplete', (request, response) => {
         upsert: false
     })
         .then(result => {
-            console.log('Marked Complete')
-            response.json('Marked Complete')
+            console.log('Marked UnComplete')
+            response.json('Marked UnComplete')
         })
         .catch(error => console.error(error))
 
 })
-
+//api call to delete todo
 app.delete('/deleteItem', (request, response) => {
+    //delete item from database
     db.collection('todos').deleteOne({ thing: request.body.itemFromJS })
         .then(result => {
             console.log('Todo Deleted')
@@ -95,7 +101,7 @@ app.delete('/deleteItem', (request, response) => {
         .catch(error => console.error(error))
 
 })
-
+//listen to port 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
