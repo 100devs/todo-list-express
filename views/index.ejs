@@ -20,10 +20,13 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- for loop items.length i+=1 -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+          <!-- if the item at current index is marked completed set the span class to completed and populate value from items -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- else set span and populate value from items -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -31,11 +34,11 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- set h2 to be left(items from list)  -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- form that posts to server action of add todo -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
