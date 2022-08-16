@@ -25,8 +25,8 @@ async function deleteItem() { // asynchronous function to delete a todo
             body: JSON.stringify( {'itemFromJS': itemText} ) // declares message content (text from presumably list item span) converted from JSON to string
           })
         const data = await response.json() // create variable for potential result in JSON
-        console.log(data) // log potential result in JSON
         location.reload() // reload page to display updated results
+        console.log(data) // log potential result in JSON
     } 
     catch(err) { // catch error if request fails
         console.log(err) // log error in console
@@ -43,8 +43,8 @@ async function markComplete() { // asynchronous function to mark a todo complete
             body: JSON.stringify( {'itemFromJS': itemText} ) // declares message content (text from presumably list item span) converted from JSON to string
           })
         const data = await response.json() // create variable for potential result in JSON
-        console.log(data) // log potential result in JSON
         location.reload() // reload page to display updated results
+        console.log(data) // log potential result in JSON
     } 
     catch(err) { // catch error if request fails
         console.log(err) // log error in console
@@ -61,8 +61,8 @@ async function markUnComplete() { // asynchronous function to mark a todo to be 
             body: JSON.stringify( {'itemFromJS': itemText} ) // declares message content (text from presumably list item span) converted from JSON to string
           })
         const data = await response.json() // create variable for potential result in JSON
-        console.log(data) // log potential result in JSON
         location.reload() // reload page to display updated results
+        console.log(data) // log potential result in JSON
     } 
     catch(err) { // catch error if request fails
         console.log(err) // log error in console
