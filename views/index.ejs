@@ -1,47 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!--This document is an EJS is file -->
+<!--Although it looks like an html file it is not-->
+<!--EJS stands for embedded Javascript i.e. This document type allows us to combine (embed) JS into with HTML-->
+<!--This allows for more dynamic pages-->
+
+<!DOCTYPE html><!--Tells the browser what type of document we're rendering-->
+<html lang="en"><!--Tells the browser the type of language the document will be written in-->
+<head><!--Opening head tag. The head holds the document metadata ie title character set, styles etc-->
+    <meta charset="UTF-8"><!--Tells the browser to use utf-8 character encoding when translating machine code(binary) into human readble text-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--allows web authors to choose what version of Internet Explorer the page should be rendered as, proabably not a tag that needs to be used any more unless supporting legacy browsers for some reason-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Tells the browser that the width of the screen should be cosidered the full width of the page-->
+    <title>Document</title><!--Dispay title of our document often the webpahge name in the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--link to allow us to import fot awesome styles to our document-->
+    <link rel="stylesheet" href="css/style.css"><!--link to connect of css tyling to our document-->
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!DOCTYPE html><!--This may be a typo-->
+<html lang="en"><!--This may be a typo-->
+<head><!--This may be a typo-->
+    <meta charset="UTF-8"><!--This may be a typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--This may be a typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--This may be a typo-->
+    <title>Document</title><!--This may be a typo-->
+</head><!--This may be a typo-->
+<body><!--Display content of the webpage is held in this section of the ejs file-->
+    <h1>Todo List: </h1><!--Serves as the main heading on webpage display-->
+    <ul class="todoItems">><!--A section that will store our list items by creating an unordered list-->
+    <% for(let i=0; i < items.length; i++) {%><!--This is where ejs comes in handy. Here we're using ejs to start javascritpt for loop-->
+        <li class="item"><!--Creating a list item with a class of 'item'-->
+            <% if(items[i].completed === true) {%><!--Check if item in array with completed prop === true-->
+                <span class='completed'><%= items[i].thing %></span><!--Creates inline element with a class if item is === true -->
+            <% }else{ %><!--else in ejs-->
+                <span><%= items[i].thing %></span><!--Adding ejs to display name of the task with no class-->
+            <% } %>    <!--close else statement-->
+            <span class='fa fa-trash'></span><!--Span that displays the trash icon from favicons-->
+        </li><!--closing list item-->
+    <% } %><!--closing for loop-->
+    </ul><!--closing unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--Creating an H2 tag that displays the number of tasks the are uncompleted-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--Creating an H2 tag which serves as the heading for the form below which allows us to add new todos-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--Creates a form with action which serves as the path and a method set to make POST request whe submitted-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--creates an textbox where user will type, name is todoItem and place holder is the text that will show in box before user types-->
+        <input type="submit"><!--Creates a button with the type of submit that will allow us to submit our form-->
+    </form><!--closing form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--javascript reference script tag which points to main.js-->
+</body><!--Closing body tag for the main diplay section-->
+</html><!--Closing html document tag-->

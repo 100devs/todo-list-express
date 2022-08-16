@@ -1,0 +1,9 @@
+Steps taken to run app after forking:
+
+1. Comment out font-size of .vscode file to normalize font size.
+2. Run npm init to initialize setup.
+3. Run npm install to install all of the packages that are in the exisiting package.json file from the forked code. (this is the benefit of git when working with other developers)
+4. Create a .env that will hold your connection string for connecting to the Database.
+
+
+
