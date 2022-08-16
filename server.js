@@ -1,10 +1,10 @@
 const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
+const app = express() //get express to use it's methods
+const MongoClient = require('mongodb').MongoClient //Get mongodb to connect to database
 const PORT = 2121
 require('dotenv').config()
 
-
+//Establish connection to database
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
@@ -17,10 +17,10 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true })) //Use urlencoded to get form data
 app.use(express.json())
 
-
+//API to get all todo list items
 app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
@@ -35,6 +35,7 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+//API to create a new todo list item
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -44,6 +45,7 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+//API to update todo list(mark an item as complete)
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -61,6 +63,7 @@ app.put('/markComplete', (request, response) => {
 
 })
 
+//API to update todo list(mark an item as incomplete)
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -78,6 +81,8 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+
+//API to delete todo lists
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
@@ -88,6 +93,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+//assign port to listen to requests
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
