@@ -1,2 +1,5 @@
 node_modules
-.env
+.env  
+
+Git ignore file avoids uloading files referenced here from being uploaded ti github
+In this case when we push our files to github it will ignore or .env file with has our mongodb connection string init
