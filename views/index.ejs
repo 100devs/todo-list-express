@@ -1,47 +1,49 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  <!--Declares the html version of the page (5)-->
+<html lang="en"> <!--Opens HTML tag and declares the language in which the page is written-->
+<head> <!--Opens head tag of the page that holds the meta data-->
+    <meta charset="UTF-8"> <!--Declares the characters encoding type used in this page-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--Sets appropriate compatibility for MS browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Sets the viewport width as the device's width and the initial scale to 1-->
+    <title>Document</title> <!--Adds a title to the page that is visible on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--Links a font library to the page-->
+    <link rel="stylesheet" href="css/style.css"> <!--Links a CSS file to the page saved in the public folder-->
+</head> <!--Close tag of the head-->
+<body>
+<!--Duplicated head by mistake-->
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+</head> -->
+<!--Visual Part of Page-->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <h1>Todo List: </h1> <!--Main title of page-->
+    <ul class="todoItems"> <!--Create an unordered list that will be dynamically populated by DB-->
+    <% for(let i=0; i < items.length; i++) {%> <!--Using ejs to embed a for loop to loop over all todos in the DB-->
+        <li class="item"> <!--Create a list item that will hold one todo-->
+            <% if(items[i].completed === true) {%> <!--Using ejs to Check if the todo task is completed or not-->
+                <span class='completed'><%= items[i].thing %></span> <!--If it is completed it will add the class completed to the span to be able to style it differently--> <!--items[i].thing uses ejs to pull an item (a todo) from an array of all todos and displays it in the span-->
+            <% }else{ %> <!--ejs to check if the task is not completed-->
+                <span><%= items[i].thing %></span>  <!--if the task wasn't completed will not add the class completed to the span--><!--Using ejs displays the todo in the span-->
+            <% } %>    <!--EJS for endig the else-->
+            <span class='fa fa-trash'></span><!--displays the trashcan icon from font awesome inside a span-->
+        </li> <!--Close the list item tag-->
+    <% } %> <!--EJS to end the for loop-->
+    </ul> <!--Close the unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2>  <!--Add a subtitle to add the number of todos not yet completed saved in the variable left using ejs-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--Add another subtitle to add new tasks to the list-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST">  <!--Create a form with a Post method that goes to the /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--create a textfield to write in the task to be added with default text inside it as a hint with a name for reference-->
+        <input type="submit"> <!--the form's submit button-->
+    </form> <!--Close form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script>  <!--Linking a script saved under js/main.js in the public folder that holds the client side javascript of the page-->
+</body> <!--Close body tag-->
+</html> <!--Close html tag-->
