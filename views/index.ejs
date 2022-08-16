@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- We first look at the head file where we are just defined the basic stuff and linking some CSS files from the internet -->
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -31,17 +32,21 @@
         </li>
     <% } %>
     </ul>
+    <!-- Since this is EJS we have a specific format so that we can use JS-like stuff like the for loop, and so we have a for loop that will essentially print out the individual objects from the todos collection. Since we specifcally rendered index.ejs with an object with TWO properties, those two properties are then are able to be used in this file. thus items:todoItems and left: itemsLeft are the two properties we can use in this EJS file
+    We are using a foor loop that spits out either a completed or uncompleted object where the CSS will affect it in someway -->
 
     <h2>Left to do: <%= left %></h2>
-
+        <!-- Shows a number of items left to do based on the completed: false count from the objects-->
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
+    <!--This is the form we use with the CREATE method of post. The action is tied to the post method since they both SHARE the same name /addToDo, like a route since they both POST methods 
+    The text is then sent to the POST method as a request.body and then sent to the MongoDB-->
 
     <script src='js/main.js'></script>
+    <!--Connects to the main.js file for possible client-side applications -->
 </body>
 </html>
