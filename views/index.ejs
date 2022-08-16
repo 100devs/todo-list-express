@@ -1,47 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!-- JS template file generating HTML markup for client-side DOM: dynamic to-do list -->
+<!DOCTYPE html> <!-- document type definition for browser -->
+<html lang="en"> <!-- defines language for document -->
+<head>  <!-- metadata settings for document -->
+    <meta charset="UTF-8"> <!-- setting character encoding -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- setting for Microsoft browser compatibility -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- setting for default device viewport and scaling -->
+    <title>Document</title>  <!-- assigns document title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">  <!-- link to fontawesome icon library -->
+    <link rel="stylesheet" href="css/style.css">  <!-- link to CSS stylesheet "style.css" in "css" folder (of "public" folder) -->
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+    <h1>Todo List: </h1> <!-- Dynamically created unordered list of todos -->
+    <ul class="todoItems">  <!-- EJS loops through array of 'todos' documents -->
+    <% for(let i=0; i < items.length; i++) {%>  <!-- Create list item per document, inside of which, -->
+        <li class="item">  
+            <% if (items[i].completed === true) {%>  <!-- if 'completed' boolean property of document is true, -->
+                <span class='completed'><%= items[i].thing %></span> <!-- EJS renders document 'thing' property inside span element with class 'completed'; -->
+            <% } else { %> <!-- if 'completed' property of document is false -->
+                <span><%= items[i].thing %></span> <!-- EJS renders document 'thing' property inside span element without class 'completed' -->
+            <% } %>
+            <span class='fa fa-trash'></span> <!-- Span element containing trash icon from fontsawesome -->
         </li>
-    <% } %>
+    <% } %>  <!-- End loop through array -->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- EJS renders variable with number of documents with 'completed' property of 'false' into text of h2 tag -->
 
     <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- Form with post HTTP method to submit new todo to route "/addTodo" -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Text input for "todoItem" -->
+        <input type="submit"> <!-- Submit button for form -->
     </form>
     
-
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- link to client-side Javascript file "main.js" in "js" folder (of "public" folder) -->
 </body>
 </html>
