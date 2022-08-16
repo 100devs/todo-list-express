@@ -15,5 +15,14 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mongodb": "^3.6.5"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kazcalo/todo-list-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kazcalo/todo-list-express/issues"
+  },
+  "homepage": "https://github.com/Kazcalo/todo-list-express#readme"
 }
