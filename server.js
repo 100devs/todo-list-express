@@ -1,93 +1,166 @@
+// Express is imported here...
 const express = require('express')
+// Then instantiated here.
 const app = express()
+// MongoDB is imported here.
 const MongoClient = require('mongodb').MongoClient
+// For querying by _id, we need to import the ObjectID library.
+const ObjectID = require('mongodb').ObjectID
+// This will be the port to use for the server.
 const PORT = 2121
+// This allows us to retrieve any environment variables we need.
 require('dotenv').config()
 
+// The database connection string is accessed from the environment variables (encapsulation for security).
+let db = null
+const dbConnectionString = process.env.DB_STRING
+const dbName = 'todo'
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+// --------------------------------------------------------------
+function setupMiddleWare() {
+    // Here we are establishing our middleware to use with Express.
+    // First we'll use ejs as the view engine, for server-side rendering of pages.
+    app.set('view engine', 'ejs')
+    // Next, to be able to serve static files without needing to setup routes for every file,
+    // we'll designate the public directory as the static folder.
+    app.use(express.static('public'))
+    // This will allow us to parse the body of the request as JSON.
+    app.use(express.urlencoded({ extended: true }))
+    app.use(express.json())
+}
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
+// --------------------------------------------------------------
+function setupRoutes() {
+    // Handles home/root page get requests.
+    app.get('/',async (request, response)=>{
+        // The database is queried for all items and converted to an array.
+        const todoItems = await db.collection('todos').find().toArray()
+        // Only return the items that the user hasn't deleted.
+        const itemsNotDeleted = todoItems.filter(item =>  item.softDeleted === false)
+        // Rather than making a second database query, we can figure out the
+        // amount of remaining to do items (not marked completed) from our first query above.
+        const itemsLeft = itemsNotDeleted.filter(item => item.completed === false).length
+        // We will serve an ejs render of index.ejs as the response, passing in our todo items and uncompleted count.
+        response.render('index.ejs', { items: itemsNotDeleted, left: itemsLeft })
     })
-    
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
 
-
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
-})
-
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
+    // Handles post requests to /addTodo endpoint.
+    app.post('/addTodo', (request, response) => {
+        // Database query to insert one document into the todos collection.
+        // The inserted "thing" will be the todoItem located in the request body.
+        db.collection('todos').insertOne({
+            thing: request.body.todoItem,
+            completed: false,
+            softDeleted: false
+        })
+            .then(result => {
+                // After the insert, we are notified in the console and redirected back to the home page to display updated data.
+                console.log('Todo Added')
+                response.redirect('/')
+            })
+            // Any errors during the database query request are console logged.
+            .catch(error => console.error(error))
     })
-    .catch(error => console.error(error))
-})
 
-app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            completed: true
-          }
-    },{
-        sort: {_id: -1},
-        upsert: false
+    // Handles put/edit requests to /markComplete endpoint. This style looks more like RPC.
+    app.put('/markComplete', async (request, response) => {
+        // The id of the todo item is retrieved from the request body and converted to an ObjectID,
+        // so that we can query by _id directly. We can't query the _id by the id string directly
+        // that we're getting from the client.
+        const requestedItemID = new ObjectID(request.body.itemFromJS)
+        try {
+            // Database query to update one document in the todos collection.
+            // The query will be the itemFromJS within the request body,
+            // where we will set "completed" to true for this document,
+            // sort the documents by their _id in descending order,
+            // and no new document will be inserted if the queried document does not exist.
+            const updateResult = await db.collection('todos').updateOne(
+                { "_id": requestedItemID },
+                { $set: { completed: true } },
+                { sort: { _id: -1 }, upsert: false }
+            )
+
+            const resultMessage = updateResult.modifiedCount >= 1 ?
+                `${requestedItemID} marked completed` :
+                `${requestedItemID} not found`
+
+            console.log(resultMessage)
+            response.json(resultMessage)
+        }
+        catch (error) {
+            // If the database query fails, an error is console logged server-side.
+            // Probably need to let the client know as well.
+            console.error(error)
+            response.json(`An error occurred when trying to update ${requestedItemID}..`)
+        }
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+
+    // This functionality is identical to the /markComplete endpoint above, but it is for marking items as incomplete.
+    // Because the difference is one line, this should probably be refactored into a single endpoint.
+    app.put('/markUnComplete', (request, response) => {
+        const requestedItemID = new ObjectID(request.body.itemFromJS)
+        db.collection('todos').updateOne({"_id": requestedItemID}, {
+            $set: {
+                completed: false
+            }
+        },{
+            sort: {_id: -1},
+            upsert: false
+        })
+            .then(result => {
+                console.log('Marked incomplete')
+                response.json('Marked incomplete')
+            })
+            .catch(error => console.error(error))
+
     })
-    .catch(error => console.error(error))
 
-})
-
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            completed: false
-          }
-    },{
-        sort: {_id: -1},
-        upsert: false
+    // An endpoint for handling delete requests, set to a unique "/deleteTodo" endpoint.
+    // This should probably be refactored into a single endpoint.
+    app.delete('/deleteItem', async (request, response) => {
+        const requestedItemID = new ObjectID(request.body.itemFromJS)
+        try {
+            const updateResult = await db.collection('todos').updateOne(
+                { "_id": requestedItemID },
+                { $set: { softDeleted: true } },
+                { sort: { _id: -1 }, upsert: false }
+            )
+            const resultMessage = updateResult.modifiedCount >= 1 ? 'Todo Deleted' : 'Todo Not Found'
+            console.log(resultMessage)
+            response.json(resultMessage)
+        }
+        catch (error) {
+            console.error(error)
+            response.json(`An error occurred when trying to delete ${requestedItemID}..`)
+        }
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+
+}
+
+// --------------------------------------------------------------
+// Mongodb connection and express server startup was placed into an asynchronous function,
+// to ensure that the mongodb connection is established before the server is started.
+// When using Nodemon, making changes and auto-refreshing the page would cause the server to crash since
+// mongodb wasn't connected yet.
+async function startServer() {
+    // Start the express server listening on the given port. Console log a message to let us know the server is up.
+    // If the environment variables include a PORT property, use that. Otherwise use the default PORT variable
+    // established within this script.
+    // The database connection is created here.
+    await MongoClient.connect(dbConnectionString, { useUnifiedTopology: true })
+        .then(client => {
+            // Once the client is connected, the database name is console logged.
+            console.log(`Connected to ${dbName} Database`)
+            // The database connection is stored in the db variable.
+            db = client.db(dbName)
+        })
+
+    app.listen(process.env.PORT || PORT, ()=>{
+        console.log(`Server running on port ${PORT}`)
     })
-    .catch(error => console.error(error))
+}
 
-})
-
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
-    })
-    .catch(error => console.error(error))
-
-})
-
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
-})
+// --------------------------------------------------------------
+setupMiddleWare()
+setupRoutes()
+startServer()

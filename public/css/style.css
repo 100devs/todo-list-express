@@ -1,6 +1,11 @@
+/* This sets all h1 headings text to red. */
 h1{
     color: red;
 }
+/*
+For any element that has the completed class,
+the text color will change to grey,
+and the text will have a line through it. */
 .completed{
     color: gray;
     text-decoration: line-through;
