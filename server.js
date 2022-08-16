@@ -44,11 +44,12 @@ app.get('/',async (request, response)=>{
     // the number of items left (items that don't have "true" for "completed") in index.js
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // - Sending back a response of the to-do items we still have to do to index.js
-    // db.collection('todos').find().toArray()
-    // .then(data => {
+    // db.collection('todos').find().toArray() // we found all three documents in the database and put them in the array
+    // .then(data => { // here data is the array that we found
     //     db.collection('todos').countDocuments({completed: false})
     //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
+    //         response.render('index.ejs', { items: data, left: itemsLeft }) // here we are passing data to the index.ejs
+                // and in ejs we are not seeing data but items in ejs because we called them like that
     //     })
     // })
     // .catch(error => console.error(error))
@@ -76,10 +77,10 @@ app.put('/markComplete', (request, response) => {
     },{
         // "When you use the MongoDB sort() method, you can specify the sort order—ascending (1) or descending (-1)—for the result set. I"
         // "Sorting by _id is faster because of the way _id field value is generated."
-        // once a thing has been marked as completed, this removes it from the to-do list and add it to the completed list, 
+        // once a thing has been marked as completed, this removes it from the to-do list and add it to the completed list,
         // this sorts the array by descendng order by id
         sort: {_id: -1},
-        upsert: false // Reduces left-to-do total by 1
+        upsert: false // Reduces left-to-do total by 1 - if we set it to true and if there was a document that is not in the database it would create one for us
     })
     .then(result => {
         console.log('Marked Complete') // When a task is finished we mark the task with line and console log Mark complete

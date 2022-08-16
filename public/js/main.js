@@ -34,7 +34,7 @@ async function deleteItem(){
           })
         const data = await response.json() // wait for a response from JSON to convert the data
         console.log(data) // log the result
-        location.reload() // relolad the page
+        location.reload() // relolad the page - and trigger the get request
 
     }catch(err){ // If something fails then catch the error and log it to the console
         console.log(err)
@@ -43,7 +43,8 @@ async function deleteItem(){
 
 // Does the same thing as the deleteItem function except the method is UPDATE
 async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    // here the parentNode is li and childNode is span
+    const itemText = this.parentNode.childNodes[1].innerText // Gets the text from Learn HTML
     try{
         const response = await fetch('markComplete', {
             method: 'put', // CRUD: UPDATE method
