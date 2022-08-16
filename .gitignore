@@ -1,2 +1,4 @@
 node_modules
 .env
+
+//ignores this documents and doesn't upload them when pushed to github
