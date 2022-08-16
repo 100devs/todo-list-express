@@ -1,47 +1,47 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!--telling the browser what type of doc this is-->
+<html lang="en"><!--telling the browser the document is in english-->
+<head><!--the start of the head tag to store the metadata-->
+    <meta charset="UTF-8"><!--indicates what character set to be used/our encoding type of our characters-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--appropriate compatibility for microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--sets the width of the available viewing area of the device's screen -->
+    <title>Document</title><!--the title of the document that appears on the browser tag-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--a link to a stylesheet in the font awesome library-->
+    <link rel="stylesheet" href="css/style.css"><!--link to the css stylesheet in the public folder-->
+</head><!--closing tag of the head-->
+<body> <!--main section of the page-->
+    <!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+</head>-->
+<body><!--opening of the body tag, which is the main content displayed-->
+    <h1>Todo List: </h1><!--nain title displayed on the page-->
+    <ul class="todoItems"><!--create unordered list and assign a class to the list-->
+    <% for(let i=0; i < items.length; i++) {%> <!--Use ejs to start a for loop that will run three times based on the number of objects we have -->
+        <li class="item"><!--create a list item with a class of item-->
+            <% if(items[i].completed === true) {%> <!--to check if an item in a completed property is true. This enables us to grab the objects in our array and grab the properties in them-->
+                <span class='completed'><%= items[i].thing %></span><!--creating an inline element that uses ejs and a class called completed. thing and completed are just the name of the properties in the object -->
+            <% }else{ %><!--ejs for the else clause of our if statement. If they are not completed, we don't add the completed class-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <% } %><!--ejs to close the else statement-->    
+            <span class='fa fa-trash'></span><!--creating a span of a class of fa to display trash icon-->
+        </li><!--closing our list tag-->
+    <% } %><!--ejs to close the for loop-->
+    </ul><!--closing our unordered list tag-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--creates a second level header and using ejs to show text of what is left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--creates a second level of header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--creates a form with the post input that goes to the /addTodo route. we want a specific point in our server to hit that is why we use this route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--we are creating an input box that accepts only text with a default of text (plaeholder) before you type. The input box is given a name for reference later-->
+        <input type="submit"><!--the form has a built in tag that gives a form submit button. we can use forms to post but not update-->
+    </form><!--close the form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--we are linking to a file main.js in the public folder with the name called js-->
+</body><!--close the body tag-->
+</html><!--close the html tag-->
