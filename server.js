@@ -1,3 +1,4 @@
+//required files for the project
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
