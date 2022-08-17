@@ -1,47 +1,50 @@
 <!DOCTYPE html>
+<html lang="en"><%# setting language to en %>
+<head> <%# head section %>
+    <meta charset="UTF-8"> <%# setting up meta tags %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> <%# setting title %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <%# link to styling library %>
+    <link rel="stylesheet" href="css/style.css"> <%# link to css %>
+</head>
+<body> <%# body section %>
+<% /* %>
+Duplicate of above section
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<% */ %>
+<body> <%# body section %>
+    <h1>Todo List: </h1> <%# h1 header %>
+    <ul class="todoItems"> <%# unordered list %>
+    <% for(let i=0; i < items.length; i++) {%> <%# for loop %>
+        <li class="item"> <%# list item %>
+            <% if(items[i].completed === true) {%> <%# conditional %>
+                <span class='completed'><%= items[i].thing %></span> <%# if has status complete render specified item %>
+            <% }else{ %> <%# if it doesn't have status of completed do following %>
+                <span><%= items[i].thing %></span> <%# insert span of specified item %>
+            <% } %>    <%# end ejs code for conditional %>
+            <span class='fa fa-trash'></span> <%# add image of trash can%>
+        </li><%# close list item %>
+    <% } %> <%# close for loop %>
+    </ul> <%# close unordered list %>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <%# h2 header %>
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <%# h2 header %>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><%# form %>
+        <input type="text" placeholder="Thing To Do" name="todoItem"><%# setting values to be able to index in database %>
+        <input type="submit"><%# submit %>
+    </form> <%# closing form %>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <%# link to js file %>
+</body> <%# closing body %>
+</html><%# closing html %>
