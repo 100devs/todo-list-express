@@ -1,2 +1,3 @@
+files which will not be uploaded to not share passwords or sensitive information
 node_modules
 .env
