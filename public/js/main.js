@@ -1,4 +1,4 @@
-const { Router } = require("express")
+const { Router } = require("express")//Tells router to use express
 
 const deleteBtn = document.querySelectorAll('.fa-trash')//Creating a variable and assigning it to a selection of all elements with a class of the trashcan.
 const item = document.querySelectorAll('.item span')//Creating a variable and assigning it to a selection of span tags inside a parent that has the class of "item"
@@ -13,7 +13,7 @@ Array.from(item).forEach((element)=>{//Creating an array from our selection and 
 })
 
 Array.from(itemCompleted).forEach((element)=>{//Create an array from our selection and starting a loop
-    element.addEventListener('click', markUnComplete)//add event listener to the ONLY Completed items that waits for click, then calls function, markUnComplete
+    element.addEventListener('click', markUnComplete)//add event listener to ONLY Completed items that waits for click, then calls function, markUnComplete
 })//Closes loop
 
 async function deleteItem(){//Declaring an asynchronous function

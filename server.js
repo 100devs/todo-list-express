@@ -33,7 +33,7 @@ app.use(express.json())//Tells express to parse incoming requests
 app.get('/', async (request, response)=>{//Starts a GET method when the root rout is passed in, sets up req and res parameters (everytime browser reloads)
 
     // Getting to-do items from the database
-    const todoItems = await db.collection('todos').find().toArray()//Sets a constant and awaits all items from the todos collection
+    const todoItems = await db.collection('todos').find().toArray()//Sets a constant and awaits all items from the todos collection in the database
 
     // Getting items with a 'completed' value of 'false
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})//Sets a constant and awaits a count of uncompleted items to later display in EJS  

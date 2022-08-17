@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"><!--indicates what character set to use-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Sets appropriate compatability for Microsoft browsers-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Sets the width of the available viewing area of device screen.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Sets the width of the available viewing area of device screen.scale=1.0 enables you to resize manually.-->
     <title>Document</title><!--Set the title that appears in the browser tab-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Creates a link to font awesome fonts-->
     <link rel="stylesheet" href="css/style.css"><!--creates a link to a local stylesheet located in the public folder -->
@@ -11,7 +11,7 @@
 <body> <!--Typop-->
     <!DOCTYPE html><!--Typop-->
 <html lang="en"><!--Typop-->
-<head>
+<head> <!--typo-->
     <meta charset="UTF-8"><!--Typop-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Typop-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--Typop-->
@@ -22,13 +22,13 @@
     <ul class="todoItems"><!--create unordered list and assign class to it-->
     <% for(let i=0; i < items.length; i++) {%> <!--use EJS to creaate a FOR loop-->
         <li class="item"><!--create list item and give it a class "item"-->
-            <% if(items[i].completed === true) {%><!--EJS to check if an item in an array is true-->
+            <% if(items[i].completed === true) {%><!--use EJS to check if an item in an array is true-->
                 <span class='completed'><%= items[i].thing %></span><!--Creating an inline element with class and adding EJS to display the completed task name-->
             <% }else{ %> <!--adding EJS for the else clause of if statement-->
                 <span><%= items[i].thing %></span><!--creating inline element adding EJS to go into array and display task with NO CLASS in the inline ele span-->
             <% } %> <!--EJS closes ELSE statement-->   
             <span class='fa fa-trash'></span><!--create span in line element with class that displays the trash can icon-->
-        </li><!--list item closing tag-->
+        </li><!--closing list item tag-->
     <% } %><!--EJS closes the FOR loop-->
     </ul> <!--unordered list closing tag-->
 
