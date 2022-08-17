@@ -1,47 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"> <!--Starts HTML in the language of english -->
+<head> <!--Storing the meta data and CSS-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!--Linking the CSS to the EJS so that the file has some styling associated with it-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+    <h1>Todo List: </h1> <!-- The main heading of the page-->
+    <ul class="todoItems"> <!-- The unordered list that is holding all the tasks that is returned from the db-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- An EJS for loop that is used to render the items returned from the db-->
+        <li class="item"> <!--The list element that is storing the task list -->
+            <% if(items[i].completed === true) {%> <!-- A conidtional to check whether an item has been completed == true or not using the .completed property in the document-->
+                <span class='completed'><%= items[i].thing %></span> <!-- if completed add the class of completed to the span along with the item[i].thing-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!--if completed == false do not add that class of completed-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- Add the trash can button inline-->
         </li>
     <% } %>
     </ul>
 
+    <!-- left is the number of documents in the database where the completed property was equal to false
+    ...this was stored in the itemsLeft variable which was rendered using {items: itemsLeft}-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!--Form that is used to send a POST request to our server under the route /addToDo-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!--Linking the JS to the ejs to add the functionality of the buttons and click events-->
     <script src='js/main.js'></script>
 </body>
 </html>
