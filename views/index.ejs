@@ -1,14 +1,32 @@
+<!-- Lets the browser know that this document is the most recent version of HTML -->
 <!DOCTYPE html>
+<!-- Lets the browser know that the language of the document is English -->
 <html lang="en">
 <head>
+
+    <!-- Lets the browser know that the character encoding is UTF-8. -->
     <meta charset="UTF-8">
+
+    <!-- Tells MS Browsers which rendering engine to use. In this case, it would be rendered with webkit since Edge is based off of Chrome. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Defines the width and scale of the viewport (100vw & 100% scale). -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Defines the document title, which is used in the titlebar, SEO, and for bookmarks. -->
     <title>Document</title>
+
+    <!-- Links to font awesome stylesheet. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Links to style sheet. -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
+
+<!-- BRUH, WHAT?
+
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +36,13 @@
     <title>Document</title>
 </head>
 <body>
+
+-->
+    <!-- h1 header -->
     <h1>Todo List: </h1>
+    <!-- unordered list -->
     <ul class="todoItems">
+    <!-- loop through items array -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,16 +55,24 @@
     <% } %>
     </ul>
 
+    <!-- h2 header that includes value of left -->
     <h2>Left to do: <%= left %></h2>
-
+    
+    <!-- h2 header -->
     <h2>Add A Todo:</h2>
-
+    
+    <!-- form that makes a POST -->
     <form action="/addTodo" method="POST">
+    
+        <!-- input box for form -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+    
+        <!-- submit button for form -->
         <input type="submit">
     </form>
     
-
+    <!-- Telling browser to run this javascript after the rest of the page has been interpreted. -->
     <script src='js/main.js'></script>
+
 </body>
 </html>
