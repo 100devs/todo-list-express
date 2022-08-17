@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /* select h1 tags*/
+    color: red;/* make them red */
+} /* end properties for h1 */
+.completed{ /* select completed class */
+    color: gray; /* make it gray */
+    text-decoration: line-through; /* display it with a line through it as though it's been crossed out */
+} /* end properties for completed class */
