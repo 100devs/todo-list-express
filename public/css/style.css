@@ -1,7 +1,7 @@
 h1{
-    color: red;
+    color: red; /* Selects the h1 tag and makes the font colour red */
 }
 .completed{
     color: gray;
-    text-decoration: line-through;
+    text-decoration: line-through; /* Selects the class of completed and makes the font-c0lour grey and strikes through the text*/
 }
