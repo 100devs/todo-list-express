@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!-- declaring that the browser it is a HTML file -->
+<html lang="en"> <!-- setting the html language as english -->
+<head> <!-- head stores the meta-data-->
+    <meta charset="UTF-8"> <!-- encoding type for the charcters setting is UTF-8-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate comptability for microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--you are setting the width of available viewing area to the width of the device screen (vertical not needed b/c of scrolling)-->
+    <title>Document</title> <!-- title of this HTML file that appears on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- links the font awesome library so that we have access to the font awesome icons -->
+    <link rel="stylesheet" href="css/style.css"> <!-- links the css file to this html file for styling purposes: we do not have to specify the public folder-->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body><!-- duplicate - typo!-->
+    <!DOCTYPE html> <!-- duplicate - typo!-->
+<html lang="en"><!-- duplicate - typo!-->
+<head><!-- duplicate - typo!-->
+    <meta charset="UTF-8"><!-- duplicate - typo!-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- duplicate - typo!-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- duplicate - typo!-->
+    <title>Document</title><!-- duplicate - typo!-->
+</head><!-- duplicate - typo!-->
+<body> <!-- html template file: this shows you a todo list-->
+    <h1>Todo List: </h1> <!-- heading 1 - main title of the page-->
+    <ul class="todoItems"> <!-- create unordered list of todo items-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- the EJS template - lets us use javascript syntax within the HTML file; it is starting a for loop-->
+        <li class="item"> <!-- individual list item -->
+            <% if(items[i].completed === true) {%> <!-- it is looping through the documents array called items- as it loops through the items array, if the item array element have key-value of completed == true... -->
+                <span class='completed'><%= items[i].thing %></span> <!-- it gives a span class of completed and displays the todo item name. each document is an object that stores two information: thing = name of the todo item, and completed = marker for whether the task is completed or not -->
+            <% }else{ %> <!-- else statement for this if else statement-->
+                <span><%= items[i].thing %></span> <!-- if completed is false for the document array, you are just putting it in a regular span and displays the todo item name-->
+            <% } %>    <!-- end tag of the else statement-->
+            <span class='fa fa-trash'></span> <!-- each array element (list item) has trash can font awesome icon-->
+        </li> <!-- closing list tag-->
+    <% } %> <!-- closes the EJS tag-->
+    </ul> <!-- closing tag for unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- heading 2: displays the number of items that are not completed yet-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading 2: title to add a todo item-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- the form allows us to do the "CREATE" post http method. the action is called addTodo (route)-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--this is a text-type input where you write the "to do" description. because it has name "todoItem", this information will be stored as request.body.todoItem when it is sent to the server-->
+        <input type="submit"> <!-- submit button that allows us to initiate the post-->
+    </form> <!--closing tag of the form -->
     
 
-    <script src='js/main.js'></script>
-</body>
+    <script src='js/main.js'></script> <!-- very important, it links the javascript file to this index EJS file-->
+</body> <!-- closing tag of body element-->
 </html>
