@@ -1,47 +1,63 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Tells browser what kind of document it is -->
 <html lang="en">
+<!-- states what language this file is written in -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8"> <!-- indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- compatibility for microsoft browsers  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets view to size of device width -->
+    <title>Document</title> <!-- Title of page -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Font awesome link -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to custom css file  -->
 </head>
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!-- Duplicate code -->
+    <!DOCTYPE html> <!-- Duplicate code -->
+    <html lang="en">
+    <!-- Duplicate code -->
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <!-- Duplicate code -->
+        <meta charset="UTF-8"> <!-- Duplicate code -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Duplicate code -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Duplicate code -->
+        <title>Document</title> <!-- Duplicate code -->
+    </head> <!-- Duplicate code -->
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <h1>Todo List: </h1> <!-- Header for To List -->
+        <ul class="todoItems">
+            <!-- Unordered list for the to dos -->
+            <% for(let i=0; i < items.length; i++) {%>
+            <!-- EJS to loop thru each todo item -->
+            <li class="item">
+                <!-- list item for each to do item with a class of item -->
+                <% if(items[i].completed === true) {%>
+                <!-- checks if the todo item has a property of completed set to true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- If true a completed class will be added -->
+                <% }else{ %>
+                <span><%= items[i].thing %></span> <!-- else no completed class is added -->
+                <% } %>
+                <span class='fa fa-trash'></span> <!-- Trash can icon  -->
+            </li> <!-- End of todo list item -->
+            <% } %>
+            <!-- End of EJS loop thru each todo item -->
+        </ul> <!-- End of unordered list for the todos  -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <h2>Left to do: <%= left %></h2> <!-- Displays number of todo items left to complete -->
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <h2>Add A Todo:</h2>
+
+        <form action="/addTodo" method="POST">
+            <!-- Form to collect new todo item using POST method and routes to /addToDo -->
+            <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input text field to enter new todo -->
+            <input type="submit"> <!-- Button to submit new todo item to backend -->
+        </form> <!--  End of form to collect todo item -->
+
+
+        <script src='js/main.js'></script> <!-- Link to custom js -->
+    </body>
+
+    </html>
