@@ -9,39 +9,65 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
+<!-- type error -->
+<!--   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> -->
+
+<!--section for displayed content -->
 <body>
+
+    <!-- main heading -->
     <h1>Todo List: </h1>
+
+    <!-- unordered list to display items to do-->
     <ul class="todoItems">
+
+    <!-- ejs code to output list items from the database -->
+    <!-- for loop to loop through the items in the collection-->
     <% for(let i=0; i < items.length; i++) {%>
+
+        <!-- list item -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <!-- condition to check if item with completed property is true-->
+             <%if(items[i].completed === true) {%>
+                <!-- span to show completed item in the array with a class to format it -->
                 <span class='completed'><%= items[i].thing %></span>
+             
+            <!-- ejs else code after the if statement-->
             <% }else{ %>
+                <!--span to display the task item without a class for formatting-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <!--ejs to close the else statement-->    
+            <% } %> 
+            <!-- span to display font awesome icon of trash can--> 
             <span class='fa fa-trash'></span>
         </li>
+    <!-- ejs to close the for loop-->
     <% } %>
+    <!-- unordered list end tag-->
     </ul>
 
+
+    <!-- sub header to display how many items left to do -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- sub header for add a todo-->
     <h2>Add A Todo:</h2>
-
+    
+    <!-- input form to add a todo item that goes to the /addTodo route-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!-- link to main.js file in the js folder in the public folder-->
     <script src='js/main.js'></script>
+<!-- close the body tag-->
 </body>
 </html>

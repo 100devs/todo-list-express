@@ -1,6 +1,10 @@
+
+/*selector for main heading with a property color and value red */
 h1{
     color: red;
 }
+
+/* class 'completed' to format a completed task item */
 .completed{
     color: gray;
     text-decoration: line-through;
