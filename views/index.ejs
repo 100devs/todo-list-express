@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<!DOCTYPE html> <!-- this entire document serves as a template for ejs to build an html to present with injected javascript -->
+<html lang="en"> <!-- this html document is written in english (this is useful for browers and assistive technologies to recognize language / pronunciation) -->
+<head> <!-- this contains data that's used by the browser -->
+    <meta charset="UTF-8"> <!-- tells browser which characterset to use -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- tells browser what type of data set is being used -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- controls rendering size and shape -->
+    <title>Document</title> <!-- the title of the document; appears in the tab of a browser -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- tells the html to get styling from fontawesome (for icons etc) -->
+    <link rel="stylesheet" href="css/style.css"> <!-- tells html to use styling from this css file -->
+</head> <!-- end head division -->
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +16,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> --> <!-- this all seems to be unnecessarily duplicated -->
+<body> <!-- body of the document (what's generally rendered) -->
+    <h1>Todo List: </h1> <!-- most important text, contains a title -->
+    <ul class="todoItems"> <!-- create an (u)nordered (l)ist of class todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- this injects javascript using ejs into html, which by itself does not allow javascript. this iterates a function over the length of items -->
+        <li class="item"> <!-- create a new html list item under the unordered list with the class item -->
+            <% if(items[i].completed === true) {%> <!-- if the item has the completed attribute -->
+                <span class='completed'><%= items[i].thing %></span> <!-- write it in a completed class span (so that we can attach a css strikethrough)-->
+            <% }else{ %> <!-- else -->
+                <span><%= items[i].thing %></span> <!-- write it in an unclassed span -->
+            <% } %>    <!-- close the ejs function -->
+            <span class='fa fa-trash'></span> <!-- and a span with classes fa and fa-trash (so we can inject the font awesome icons) -->
+        </li> <!-- complete the list item -->
+    <% } %> <!-- close the ejs function -->
+    </ul> <!-- close the unorder list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- second most important text, injects variable of how many items are left to do -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- second most important text, heading for the form -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- create a new form that POSTs to the server to the route /addTodo -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- create a text input with the default text "Thing To Do" and labeled todoItem  -->
+        <input type="submit"> <!-- create a submit button -->
+    </form> <!-- close the form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- load javascript from this location -->
+</body> <!-- close body -->
+</html> <!-- close html -->
