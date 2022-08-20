@@ -13,7 +13,7 @@ let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo' //our database name is todo
 
-MongoClient.connect(mongodb+srv:BreannaB:Pl4ntM0m@list01.vwedfln.mongodb.net/?retryWrites=true&w=majority, { useUnifiedTopology: true })
+MongoClient.connect(DB_STRING, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
