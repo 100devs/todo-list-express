@@ -48,7 +48,7 @@ app.post('/addTodo', (request, response) => { // starts a POST method when the f
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) // look into the database, in the todos collection, insert a new document(object) with a 'thing' of the todoItem (from the name property of the form) and a completed of false. We're setting up the properties in that object to thing and completed. 
     .then(result => {
         console.log('Todo Added')
-        response.redirect('/')
+        response.redirect('/') 
     })
     .catch(error => console.error(error))
 })
