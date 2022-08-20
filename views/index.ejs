@@ -1,47 +1,62 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- we're telling the browser what type of document will be displayed -->
+<html lang="en"> <!-- start of the html tag and defining the langauge-->
+<head> <!-- starting the head tag to store our meta data-->
+    <meta charset="UTF-8"> <!-- defines the character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- is used to define the version of Internet Explorer in which the web page will be rendered -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- viewport defines how the site is displayed on different screen sizes, the content tag ensures that websites look good on mobiles, the website will adjust to the width of the device's screen. The initial scale attr sets how the webpage scales.-->
+    <title>Document</title> <!-- Setting a title for the page, whats displayed on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--- linking to font awesome icons that gives us access to them-->
+    <link rel="stylesheet" href="css/style.css"> <!-- links to the local stylesheet-->
+</head> <!-- closing tag for the head -->
+<body>
+    <!-- Below may be a typo -->
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> -->
+<body> <!-- main section for displaying content -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h1>Todo List: </h1> <!-- main heading displayed on page -->
 
-    <h2>Add A Todo:</h2>
+    <ul class="todoItems"> <!-- create unordered list and assign class to the list -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <% for(let i=0; i < items.length; i++) {%> <!-- use EJS to start a FOR loop iterating through the objects in an items array. The items array has been specified in the server.js file, containing all the documents/objects in our collection-->
+
+        <li class="item"> <!-- creating a list item for each item in the array, each todo task essentially -->
+
+           <% if(items[i].completed === true) {%> <!--EJS to check if an item in an array with a completed property is true-->
+
+                <span class='completed dynamic'><%= items[i].thing %></span> <!-- if the array item has a completed property of true then display the item in a span tag with a 'completed' class. This completed class is to be able to style this list item differently -->
+
+            <% }else{ %> <!-- EJS for the else part of our if statement, if an item with a completed property isnt true-->
+
+                <span><%= items[i].thing %></span> <!--- still displaying the item even if the completed property is not true but this time without the 'completed' class-->
+
+            <% } %>    <!-- EJS to close our else statement-->
+
+            <span class='fa fa-trash'></span> <!-- After each item, we are creating a span and displaying a font awesome icon of a trash can inside it-->
+
+        </li> <!--- closing the list item-->
+
+    <% } %> <!--- EJS to close the FOR loop -->
+
+    </ul> <!--- closing the unordered list -->
+
+    <h2>Left to do: <%= left %></h2> <!-- heading level 2 displaying the tasks to be completed. Using EJS to display Left, which is a property from the server.js thats showing tasks with a completed value of false or essentially the number of tasks that are not completed. -->
+
+    <h2>Completed: <%= total %></h2>
+    <h2>Add A Todo:</h2> <!--- heading level 2 -->
+
+    <form action="/addTodo" method="POST"> <!-- Creating a form with a specific route that connects it to an API on the server-side that deals with POST requests-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- place to input/add a task, which accepts text, placeholder is the text that appears before the user types anything. We're assigning a name to this input so we can later reference it in main.js/server.js -->
+        <input type="submit"><!-- This is submitting the input in our form-->
+    </form><!--- Closing the form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- Linking to a file called main.js. That file is located in the public folder, with a folder called js.-->
+</body> <!-- Closing the body tag -->
+</html>  <!--- Closing the html tag -->

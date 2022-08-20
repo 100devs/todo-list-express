@@ -1,7 +1,13 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+h1{ /** selector that is selecting any h1 tag in the ejs file **/
+    color: rgb(66, 59, 136); /** changing the text color to red **/
+} /** closing the declaraing block **/
+.completed{ /** its tagretting a class of completed **/
+    color: white; /** changes the text color to grey **/
+    text-decoration: line-through; /** applies  astrike through style to the the text **/
+} /** closing the declaration block **/
+
+.dynamic {
+    color: #a3ad57;
+    
 }
