@@ -1,7 +1,11 @@
+// array of all the trash icons
 const deleteBtn = document.querySelectorAll('.fa-trash')
+// array of all the todos
 const item = document.querySelectorAll('.item span')
+// array of all the todos marked as completed
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+//Adding event listeners to all the arrays defined above with different functions
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
@@ -15,8 +19,10 @@ Array.from(itemCompleted).forEach((element)=>{
 })
 
 async function deleteItem(){
+    //getting text from the clicked trash can
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //sending text to the backend and wait for response, to delete the clicked element
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
@@ -34,9 +40,12 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    //getting text from the clicked element
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //sending text to the backend and wait for response, updating database
         const response = await fetch('markComplete', {
+            //Hard coding the body sent
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -53,9 +62,12 @@ async function markComplete(){
 }
 
 async function markUnComplete(){
+    //getting text from the clicked element
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //sending text to the backend and wait for response, updating database
         const response = await fetch('markUnComplete', {
+            //Hard coding the body sent
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
