@@ -20,6 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!--loop through items array, if element has completed === true, place in li under span with class 'completed', else place in li under span without class-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -27,15 +28,16 @@
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!--Create trash icon to click to delete an item-->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!--place elements from left into this h2-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!--Create form to add new items to database-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
