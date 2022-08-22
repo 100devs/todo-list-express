@@ -1,6 +1,8 @@
+/*** make h1 red***/
 h1{
     color: red;
 }
+/*** items with completed class get line through and gray color***/
 .completed{
     color: gray;
     text-decoration: line-through;

@@ -1,3 +1,4 @@
+//shows middleware installed, can change node commans under scripts
 {
   "name": "rap-name-api",
   "version": "1.0.0",
