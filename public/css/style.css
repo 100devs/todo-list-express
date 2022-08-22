@@ -5,3 +5,4 @@ h1{
     color: gray;
     text-decoration: line-through;
 }
+/* This class is used to give any items with the completed property gray text and a strikethrough */

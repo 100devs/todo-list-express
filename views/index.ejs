@@ -1,3 +1,7 @@
+<!-- The server uses this file to render the html for the client. Because of our routes setup, the client will request this file when it first loads
+and it will refresh whenever a change is made to the database. EJS allows us to dynamically generate the html with our to do list items -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,20 +23,27 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
+    <!-- Runs a for loop using ejs syntax. Its purpose is to iterate through the database array to fill out the todo list -->
+
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- Creates a span with class completed if the item is completed. -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
+            <!-- Creates a span with no class (like my mom) if the item is not completed. -->
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- Creates the delete button -->
         </li>
     <% } %>
     </ul>
 
     <h2>Left to do: <%= left %></h2>
+    <!-- Displays the number of items with completed property set to false -->
 
     <h2>Add A Todo:</h2>
 
@@ -40,7 +51,9 @@
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
+
+    <!-- The form for adding items to the todo list. the action is the path to the controller that will handle the request. 
+    The method is POST because we are sending data to the server. -->
 
     <script src='js/main.js'></script>
 </body>
