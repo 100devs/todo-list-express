@@ -20,22 +20,21 @@ Array.from(itemCompleted).forEach((element) => {
 	element.addEventListener('click', markIncomplete);
 });
 
-async function deleteItem() {
-	const itemText = this.parentNode.childNodes[1].innerText;
+async function deleteItem() { // declaring an asynchronous function
+	const itemText = this.parentNode.childNodes[1].innerText; // looks inside of the list item and grabs only the inner text within the list span
 	try {
-		const response = await fetch('deleteItem', {
-			method: 'delete',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				'itemFromJS': itemText
+		const response = await fetch('deleteItem', { // create a response variable that waits on a fetch to get data from the result of deleteItem
+			method: 'delete', // sets the CRUD method for the route
+			headers: { 'Content-Type': 'application/json' }, // specifying the type of content expected (JSON)
+			body: JSON.stringify({ // declare the message content being passed, and turn it into a string
+				'itemFromJS': itemText // setting the content of the body to the inner text of the list item, and naming it 'itemFromJS'
 			})
 		});
-		const data = await response.json();
-		console.log(data);
-		location.reload();
-
+		const data = await response.json(); // waiting on JSON from the response to be converted
+		console.log(data); // log the result to the console
+		location.reload(); // reload the page
 	} catch (err) {
-		console.log(err);
+		console.error(err); // if an error occurs log it to console
 	}
 }
 
