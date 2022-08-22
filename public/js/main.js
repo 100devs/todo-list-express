@@ -16,26 +16,30 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
-//declare async function
+//declare async function used in event listener
 async function deleteItem(){
-    //declare variable itemText holding text inside 
+    //grab text in childNode of parentNode(li) and store in itemText
     const itemText = this.parentNode.childNodes[1].innerText
     try{
-        //wait for fetch to resolve then store in variable response
+         //make a fetch with route 'delete0' that is a delete request to our server
         const response = await fetch('deleteItem', {
             //set fetch method to delete
             method: 'delete',
             //tell the server we're sending JSON data
             headers: {'Content-Type': 'application/json'},
-            //convert our data to JSON and pass into the body property
+            //DOM cannot understand JSON unless stringified
+            //convert our data to JSON and pass into the body property 'itemFromJS' that will be sent in request to server
+            //essentially we are hardcoding the delete request to send request body, lots of info in request
+            //gets sent to server API where gremlin listening for delete
             body: JSON.stringify({
               'itemFromJS': itemText
             })
           })
-          //waits to convert data in response variable to json and log
+          //store 'TodoDeleted' from server response in data
         const data = await response.json()
+        //log on the client side
         console.log(data)
-        //reload the current URL
+       //send refresh, makes GET request to make gremlin get updated db and render into ejs
         location.reload()
 
     }catch(err){
@@ -43,27 +47,31 @@ async function deleteItem(){
     }
 }
 
-//declare async function
+//declare async function used in event listener
 async function markComplete(){
-    //declare variable itemText holding text inside 
+    //declare variable itemText and store text from todoitem span that was clicked on
+    //[1] because there are things that precede, like bullet point, etc.
     const itemText = this.parentNode.childNodes[1].innerText
+    //With text of clicked span 'todoitem', stored in itemText
     try{
-         //wait for fetch to resolve then store in variable response
+         //make a fetch with route 'markComplete' that is a put request to our server
         const response = await fetch('markComplete', {
-            //set fetch method to delete
+            //set fetch method to put
             method: 'put',
             //tell the server we're sending JSON data
             headers: {'Content-Type': 'application/json'},
             //DOM cannot understand JSON unless stringified
-            //convert our data to JSON and pass into the body property
+            //convert our data to JSON and pass into the body property 'itemFromJS' that will be sent in request to server
+            //essentially we are hardcoding the put request to send request body, lots of info in request
             body: JSON.stringify({
+                //request.body.itemFromJS holds itemText
                 'itemFromJS': itemText
             })
           })
-           //waits to convert data in response variable to json and log
+           //when json response 'markComplete' is received, store in data variable and log response client side
         const data = await response.json()
         console.log(data)
-        //reload the current URL
+        //send refresh, makes GET request to make gremlin get updated db and render into ejs
         location.reload()
 
     }catch(err){
@@ -71,19 +79,30 @@ async function markComplete(){
     }
 }
 
-//declare async function, same as above explanation
+//declare async function, same as above explanation 
 async function markUnComplete(){
+    //declare variable itemText and store text from todoitem span that was clicked on
+    //[1] because there are things that precede, like bullet point, etc.
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+         //make a fetch with route 'markUnComplete' that is a put request to our server
         const response = await fetch('markUnComplete', {
+             //set fetch method to put
             method: 'put',
+            //tell the server we're sending JSON data
             headers: {'Content-Type': 'application/json'},
+            //DOM cannot understand JSON unless stringified
+            //convert our data to JSON and pass into the body property 'itemFromJS' that will be sent in request to server
+            //essentially we are hardcoding the put request to send request body, lots of info in request
             body: JSON.stringify({
+                //request.body.itemFromJS holds itemText
                 'itemFromJS': itemText
             })
           })
+           //when json response 'markUnComplete' is received, store in data variable and log response client side
         const data = await response.json()
         console.log(data)
+        //send refresh, makes GET request to make gremlin get updated db and render into ejs
         location.reload()
 
     }catch(err){
