@@ -19,15 +19,15 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <ul class="todoItems"> //when we render the todoItems use the following JS to create HTML
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%>  //if an item has a property of completed set to True assign it the class completed, so that we can put a grey line through it in the CSS
+                <span class='completed'><%= items[i].thing %></span> //adds completed thing to list item
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> //adds uncompleted thing to list item
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> //space for trash can icon from font awesome
         </li>
     <% } %>
     </ul>
@@ -36,12 +36,12 @@
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> //Form that allows you to add an item to the todo list, ACTION must match CRUD route(POST)
+        <input type="text" placeholder="Thing To Do" name="todoItem"> //adds the property of todoItem with the value you inputed, and we call the value using request.body.todoItem in the Post method in the server
+        <input type="submit"> //submit button
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> //script for main.js file
 </body>
 </html>

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "victory quiah, Victory#2503 Eric Vieira, EVieira#2734 Faerlyn Hunter, Faefifofumble#5733 andrew goldstein, muckitymuck#5477 david pollak, bluestreamz#9182 Kristen Smith, kristen#0744",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
