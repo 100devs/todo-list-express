@@ -23,7 +23,7 @@ async function deleteItem() {
   try {
     //starting a try block
     const response = await fetch("deleteItem", {
-      //declares a response variable that waits on a fetch to get data from the result of the /deleteItem route
+      //assigns a response variable that waits on a fetch to get data from the result of the /deleteItem route
       method: "delete", //sets the CRUD method for the route
       headers: { "Content-Type": "application/json" }, //specifies the type of content expected, which is JSON
       body: JSON.stringify({
