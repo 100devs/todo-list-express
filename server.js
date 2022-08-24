@@ -1,21 +1,22 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') //allows for use of express in this file.
+const app = express()//set const assigned to instance of express.
+const MongoClient = require('mongodb').MongoClient//allows methods associated with MongoClient and to talk to our DB.
+const PORT = 2121//const to define PORT location.
+require('dotenv').config()//allows us to look for variables inside of the .env file.
 
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+let db,//declare a variable called db without an assigned value.
+    dbConnectionStr = process.env.DB_STRING,//declaring a variable and assigning our db connection string to it.
+    dbName = 'todo'//declares variable dbName and assigns it the name of the db we will be using.
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
-    .then(client => {
-        console.log(`Connected to ${dbName} Database`)
-        db = client.db(dbName)
-    })
-    
-app.set('view engine', 'ejs')
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })//creating a connection to MongoDB and passing in our connection string. also passing in an additional property.
+    .then(client => {//waiting for connection and then passing in client information if successful.
+        console.log(`Connected to ${dbName} Database`)//console log template literal.
+        db = client.db(dbName)//assigning a value to previously declared db variable that contains a db client factory method.
+    })//closing our .then
+
+//middleware
+app.set('view engine', 'ejs')//sets ejs as the default render method.
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())

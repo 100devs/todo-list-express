@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
+<body><!--main section for content displayed-->
+    <!DOCTYPE html><!---->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +17,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body><!--main section for content displayed-->
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <% for(let i=0; i < items.length; i++) {%><!--use EJS to start a FOR loop-->
+        <li class="item"><!--create a list item with a class of Item-->
+            <% if(items[i].completed === true) {%><!--use EJS to check if an item in an array with a completed propperty is true-->
+                <span class='completed'><%= items[i].thing %></span><!--creating an inline element with a class and adding EJS to display the name of the task-->
+            <% }else{ %><!--EJS for the Else clause of our statement-->
+                <span><%= items[i].thing %></span><!--adding EJS to display the name of the task with NO CLASS-->
+            <% } %>    <!--EJS close Else statement-->
+            <span class='fa fa-trash'></span><!--Display Font Awesome Icon of trash can inside a snap-->
+        </li><!--closing our List Item-->
+    <% } %><!--EJS close FOR loop-->
+    </ul><!--close our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--creates a sedond level heading tag with text and using EJS to display a variable showing how many tasks are left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--create a second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--create a form with a POST method that goes to the /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--create an input box that accepts text with default text inside of it before you type anything. the input box is given a name for later reference-->
+        <input type="submit"><!--gives the form a 'submit' section-->
+    </form><!--close the form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--links to the main.js file in the js folder in the public folder-->
+</body><!--close body tag-->
+</html><!--close html tag-->
