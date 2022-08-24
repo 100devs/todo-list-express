@@ -6,7 +6,7 @@
 ### Description :
 This is a simple to do list generator and manager. Create new ones, mark items as completed and delete old ones.
 
-### Link to project: https://js-quiz-100devs.netlify.app/admin
+### Link to project: https://to-do-list-new-beta.herokuapp.com/
 
 ### How It's Made:
 Tech used: Node.js,Express.js,Mongodb;
