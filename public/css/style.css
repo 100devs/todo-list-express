@@ -16,6 +16,7 @@ main {
     border: 1px solid black;
     border-radius:20px;
     padding:20px;
+    box-shadow: 5px 10px #888888;
 }
 
 /* set color of completed items as grey and display them as striked */
