@@ -1,19 +1,26 @@
+//Select all the delete buttons
 const deleteBtn = document.querySelectorAll('.fa-trash')
+//select all list items with span class
 const item = document.querySelectorAll('.item span')
+//select all the completed items
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+//Add event listener to all delete buttons
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
+//Add eventlistener to each item so that it can turn "completed" on clicking
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
+//Add eventlistener to each item so that it can turn "Incompleted" on clicking
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+//Define the function for deleting an item
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -33,6 +40,8 @@ async function deleteItem(){
     }
 }
 
+
+//Define the function for marking an item as "complete"
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -52,6 +61,7 @@ async function markComplete(){
     }
 }
 
+//Define the function for marking an item as "Incomplete"
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -70,3 +80,4 @@ async function markUnComplete(){
         console.log(err)
     }
 }
+

@@ -1,7 +1,65 @@
+/* set color for h1 as red */
 h1{
-    color: red;
+    color: red; 
 }
+
+.container{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    min-height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius:20px;
+    padding:20px;
+}
+
+/* set color of completed items as grey and display them as striked */
 .completed{
     color: gray;
     text-decoration: line-through;
+}
+ul{
+    list-style: none;
+    padding:0;
+}
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    
+    border:1px solid  black;
+    border-radius:5px;
+    margin-bottom: 5px;
+    background:pink;
+}
+
+.form-container,.list-container {
+    padding:10px;
+    border:2px solid lightgrey;
+    border-radius: 10px;
+}
+
+input {
+    width:80%;
+    height:50px;
+    margin-left: 5px;
+    border-radius: 5px;
+    border:1px solid  black;
+}
+
+.done{
+    background: rgba(0, 128, 0,0.5);
+
+}
+
+#submit{
+    cursor:pointer;
+    margin: 5px;
+    height: 30px;
+    background-color: rgba(144, 238, 144, 0.5);
 }
