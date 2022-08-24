@@ -19,13 +19,16 @@
           <h1>Todo List:</h1>
           <ul class="todoItems">
             <!-- For loop for displaying each item in the todo list -->
-            <% for(let i=0; i < items.length; i++) {%> <% if(items[i].completed
+            <% for(let i=0; i < items.length; i++) {%> 
+              <% if(items[i].completed
             === true) {%>
-            <li class="item done"><% }else{ %></li>
+            <li class="item done">
+              <span completed><%= items[i].thing %></span>
+            <% }else{ %>
 
             <li class="item">
-              <% } %>
               <span incomplete><%= items[i].thing %></span>
+              <% } %>
               <span class="fa fa-trash"></span>
             </li>
             <% } %>
