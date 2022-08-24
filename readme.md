@@ -1,6 +1,6 @@
 ### TODO List generator
 
-![image](images/todo list.png)
+![image](images/todo.png)
 
 
 ### Description :
