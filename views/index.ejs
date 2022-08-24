@@ -4,22 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Reading List</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <section class="container my-5">
+        <h1  class="display-4 text-center">Reading<span class="text-warning">List</span></h1>
+    </section>
+    <form id="book-form" action="/todos/createTodo" method='POST'>
+        <div class="form-group text-center mx-5 my-3 px-5">
+            <label for="title">Book Title</label>
+            <input type="text" id="title" class="form-control" placeholder="Add Book" name="todoItem">
+        </div>
+        <div class="form-group text-center mx-5 my-3 px-5">
+            <label for="author">Author</label>
+            <input type="text" id="author" class="form-control">
+        </div>
+        <div class="form-group text-center mx-5 my-3 px-5">
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" class="form-control">
+        </div>
+        <div class="d-flex justify-content-center my-4">
+            <button class="btn btn-warning" type="submit" id="add-book-btn">Add to your list!</button>
+          </div>
+    </form>
+    <ul>
     <% for(let i=0; i < items.length; i++) {%>  <!-- loops through every element in the items arr and creates a new li and span for each item-->
         <li class="item">
             <% if(items[i].completed === true) {%> <!-- if item has a key value pair of completed true, it is assigned class completed-->
@@ -31,16 +42,9 @@
         </li>
     <% } %>
     </ul>
-
-    <h2>Left to do: <%= left %></h2> <!--Displays number of items left to do based on variable left items-->
-
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+    <section class="container my-5">
+        <h2  class="display-5 text-center"><span class="text-warning"> Left to Read: </span> <%= left %></h2>
+    </section>
 
     <script src='js/main.js'></script>
 </body>
