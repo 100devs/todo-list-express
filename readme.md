@@ -11,6 +11,9 @@ This is a simple to to list generator and manager. Create new ones, mark items a
 ### How It's Made:
 Tech used: Node.js,Express.js,Mongodb;
 
+### How to use: 
+npm install
+add DB_STRING to .env file
 
 ### Optimizations
 The UI could be extended to include frameworks.
