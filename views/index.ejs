@@ -1,47 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- tell the browser that the document is in English -->
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> <!-- character encoding -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- enable support for Internet explorer -->
+    <title>Document</title> <!-- document title shown in the tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- link font awesome -->
+    <link rel="stylesheet" href="css/style.css"> <!-- link our css stylesheet -->
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <h1>Todo List: </h1> <!-- h1 heading -->
+    <ul class="todoItems"> <!-- unordered list -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- for loop that dynamically creates list items -->
+        <li class="item"> <!-- list item -->
+            <!-- if item is completed add class 'completed' -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- add span if item is incomplete -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- trash icon -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- number of incomplete items from the variable passed to the template from back end -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- h2 heading -->
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!-- form that sends a POST request to /addTodo with the field {name: userinput}-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="submit"> <!-- submit the form button -->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- link client side javascript -->
 </body>
 </html>
