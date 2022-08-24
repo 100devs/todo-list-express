@@ -20,18 +20,26 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- For loop while items.length is greater than i. -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- If item is completed. -->
             <% if(items[i].completed === true) {%>
+                <!-- Insert item with completed class. -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- Item is completed yet -->
             <% }else{ %>
+                <!-- Insert item with no class. -->
                 <span><%= items[i].thing %></span>
+            <!-- Close else -->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
+    <!-- Close for loop -->
     <% } %>
     </ul>
 
+    <!-- Insert left variable into the H2 heading element. -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
