@@ -27,14 +27,23 @@
     <% for(let i=0; i < items.length; i++) {%>
         <!--creates list item of class item-->
         <li class="item">
+            <!--if item at loop index has completed as true,-->
             <% if(items[i].completed === true) {%>
+                <!--then it is added to the completed class, in a span-->
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+                <!--otherwise-->
+                <% }else{ %>
+                <!--it is just shown in a span-->
                 <span><%= items[i].thing %></span>
+                <!--closes if check-->
             <% } %>    
+            <!--adds a trash icon-->
             <span class='fa fa-trash'></span>
+        <!--closes list item-->
         </li>
+    <!--closes items array loop-->
     <% } %>
+    <!--closes unordered list-->
     </ul>
 
     <h2>Left to do: <%= left %></h2>
