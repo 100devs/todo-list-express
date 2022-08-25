@@ -46,13 +46,18 @@
     <!--closes unordered list-->
     </ul>
 
+    <!--shows number of todos left-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--tells you can add a todo-->
     <h2>Add A Todo:</h2>
 
+    <!--starts form that uses post method, sends action to /addTodo-->
     <form action="/addTodo" method="POST">
+        <!--text input space with placeholder and name-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--submit button-->
         <input type="submit">
+    <!--closes form-->
     </form>
     
 
