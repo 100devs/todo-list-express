@@ -1,7 +1,9 @@
+//Get elements from querySelectors
 const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+//add event listeners
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
@@ -14,7 +16,9 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+//create and send delete request
 async function deleteItem(){
+    //get todo item from list
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
@@ -33,6 +37,7 @@ async function deleteItem(){
     }
 }
 
+//
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
