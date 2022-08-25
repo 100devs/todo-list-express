@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /*selects any h1 tag in the ejs file*/
+    color: red; /*Changes the etxt color to red*/
+} /*close h1 tag*/
+.completed{ /*targeting class completed using . any elements with class completed*/
+    color: gray; /*Gives the color to completed item grey*/
+    text-decoration: line-through; /*Line thru element*/
+} /*closing class selector*/
