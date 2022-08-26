@@ -1,19 +1,19 @@
-//deleteBtn const shows as font awesome icon
+//font awesome icon becomes deleteBtn
 const deleteBtn = document.querySelectorAll('.fa-trash')
-//const item adds .item class, span selector?
+//adds .item class, span selector? to item array
 const item = document.querySelectorAll('.item span')
-//const itemCompleted adds .item class, span.completed selector?
+//adds .item class, span.completed selector? to itemCompleted array
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
-//every deleteBtn has event listener, runs deleteItem on click
+//every deleteBtn object has event listener, runs deleteItem on click
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
-//every item has event listener, runs markComplete on click
+//every item object has event listener, runs markComplete on click
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
-//every itemCompleted has event listener, runs markUnComplete on click
+//every itemCompleted object has event listener, runs markUnComplete on click
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
@@ -50,7 +50,7 @@ async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     //attempts
     try{
-        //fetch markComplete, put method
+        //fetch markComplete, put method on itemText
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -66,12 +66,12 @@ async function markComplete(){
         console.log(err)
     }
 }
-
+//start async function markUnComplete
 async function markUnComplete(){
     //assigns found itemCompleted innerText to constant itemText 
     const itemText = this.parentNode.childNodes[1].innerText
     try{
-        //fetch markUncomplete, put method
+        //fetch markUncomplete, put method on itemText
         const response = await fetch('markUnComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},

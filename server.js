@@ -40,11 +40,11 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
-//add addTodo
+//add with addTodo
 app.post('/addTodo', (request, response) => {
     //adds todoItem from form (incomplete) to db todos
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    //logs, refresh
+    //logs, refresh (get)
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')
@@ -52,7 +52,7 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
-//update markComplete
+//update with markComplete
 app.put('/markComplete', (request, response) => {
     //find object, check db, set complete
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
@@ -71,7 +71,7 @@ app.put('/markComplete', (request, response) => {
 
 })
 
-//update markUncomplete
+//update with markUncomplete
 app.put('/markUnComplete', (request, response) => {
     //find object, check db, set incomplete
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
@@ -90,8 +90,9 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
-//
+//remove with deleteItem
 app.delete('/deleteItem', (request, response) => {
+    //find object in db, delete
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
         console.log('Todo Deleted')
@@ -101,7 +102,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
-//
+//run, listen at PORT
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
