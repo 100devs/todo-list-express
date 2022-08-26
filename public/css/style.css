@@ -1,6 +1,8 @@
+/*h1s will be res*/
 h1{
     color: red;
 }
+/*.completed selector will be gray and struckthough*/
 .completed{
     color: gray;
     text-decoration: line-through;

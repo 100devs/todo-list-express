@@ -1,30 +1,35 @@
+//required frameworks are set
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
-
+//?? sets db, dbConnectionStr, and dbName
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
-
+//logs where and if Mongo connects
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
     
+//??
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+//async app get
 app.get('/',async (request, response)=>{
+    //sets array todoItems and num itemsLeft (not completed) based on db
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    //show todoItems, itemsLeft
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
+
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -35,8 +40,11 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+//add with addTodo
 app.post('/addTodo', (request, response) => {
+    //adds todoItem from form (incomplete) to db todos
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+    //logs, refresh (get)
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')
@@ -44,7 +52,9 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+//update with markComplete
 app.put('/markComplete', (request, response) => {
+    //find object, check db, set complete
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: true
@@ -61,7 +71,9 @@ app.put('/markComplete', (request, response) => {
 
 })
 
+//update with markUncomplete
 app.put('/markUnComplete', (request, response) => {
+    //find object, check db, set incomplete
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: false
@@ -78,7 +90,9 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+//remove with deleteItem
 app.delete('/deleteItem', (request, response) => {
+    //find object in db, delete
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
         console.log('Todo Deleted')
@@ -88,6 +102,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+//run, listen at PORT
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })

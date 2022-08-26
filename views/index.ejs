@@ -1,44 +1,63 @@
+<!--type of document:html-->
 <!DOCTYPE html>
-<html lang="en">
+<!--language = english-->
+<html lang="en"> 
+<!--starts head-->
 <head>
+    <!--character set:UTF-8-->
     <meta charset="UTF-8">
+    <!--compatabilities?-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--describes viewport settings-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--page name-->
     <title>Document</title>
+    <!--uses and links font awesome library-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--uses and links css stylesheet-->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!--starts body / content-->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!--titles todo list-->
     <h1>Todo List: </h1>
+    <!--creates unordered list of class todoItems-->
     <ul class="todoItems">
+    <!--ejs loops length of items array-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--creates list item of class item-->
         <li class="item">
+            <!--if item at loop index has completed as true,-->
             <% if(items[i].completed === true) {%>
+                <!--then it is added to the completed class, in a span-->
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+                <!--otherwise-->
+                <% }else{ %>
+                <!--it is just shown in a span-->
                 <span><%= items[i].thing %></span>
+                <!--closes if check-->
             <% } %>    
+            <!--adds a trash icon-->
             <span class='fa fa-trash'></span>
+        <!--closes list item-->
         </li>
+    <!--closes items array loop-->
     <% } %>
+    <!--closes unordered list-->
     </ul>
 
+    <!--shows number of todos left-->
     <h2>Left to do: <%= left %></h2>
-
+    <!--tells you can add a todo-->
     <h2>Add A Todo:</h2>
 
+    <!--starts form that uses post method, sends action to /addTodo-->
     <form action="/addTodo" method="POST">
+        <!--text input space with placeholder and name-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--submit button-->
         <input type="submit">
+    <!--closes form-->
     </form>
     
 
