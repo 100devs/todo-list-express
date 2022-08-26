@@ -1,2 +1,3 @@
-npm install
-add DB_STRING to .env file
+- npm install
+- create and setup your own MongoDB database and collection
+- add DB_STRING to .env file
