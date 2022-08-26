@@ -1,6 +1,9 @@
+/* Makes the h1 red */
 h1{
     color: red;
 }
+
+/*Makes the spans with completed class color gray with a strike through line */
 .completed{
     color: gray;
     text-decoration: line-through;

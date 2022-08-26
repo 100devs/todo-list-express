@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> <!--Metadata-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,30 +18,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
+    <h1>Todo List: </h1> <!--Header 1-->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!--For Loop to loop through the array of documents(objects) from our database-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <% if(items[i].completed === true) {%> <!--If the object has the completed property equal to true then add the completed class to that span-->
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+            <% }else{ %> <!--if not, then leave it as a regular span-->
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--span for trash bins-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--where we display the number of spans that do not have the class completed-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--prompt for the form-->
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!--Form to post a new to do item-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--connects the ejs to the main js which is the client side code-->
 </body>
 </html>
