@@ -1,0 +1,10 @@
+h1 {
+    /*any h1 in the ejs document will render in red*/
+    color: red;
+}
+
+.completed {
+    /* sets items with this specified class to have a text color of gray and strike through it to show it is completed*/
+    color: gray;
+    text-decoration: line-through;
+}
