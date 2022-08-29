@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+<!DOCTYPE html> <!-- declare DOCTYPE -->
+<html lang="en"> <!-- specifying language of HTML to english -->
+<head> <!-- opening head tag to contain meta data -->
+    <meta charset="UTF-8"> <!-- specifying the character encoding of the HTML document to be the UTF-8 character set -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- a tag to support old legacy browsers as well as allows individuals to choose what version of internet explorer the page should be rendered as -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- tag to control the viewports size and shap - in this case width is device width and intial scale is the zoom level -->
+    <title>Document</title> <!-- a tag to define the title of the document (in this case it is 'Document') that will be shown in browser's title bar or page tab  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- a link to a style sheet called cdnjs for icons -->
+    <link rel="stylesheet" href="css/style.css"> <!-- linking the CSS stylesheet -->
+</head> <!-- closing head tag -->
+<body> <!-- body tag to define document body -->
+    <h1>Todo List: </h1> <!-- the largest heading tag (h1) to show the title of the document -->
+    <ul class="todoItems"> <!-- opening unordered list tag with a class of 'todoItems' -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- the initializing of a loop that goes through the items within the DB -->
+        <li class="item"> <!-- opening list tag with a class of item -->
+            <% if(items[i].completed === true) {%> <!-- start of conditional statement that checks if the completed component within the collections is set to true  -->
+                <span class='completed'><%= items[i].thing %></span> <!-- if completed component is set to true, a span with the class of completed is created displaying the items content within thing -->
+            <% }else{ %> <!-- else statement for if conditional is not true  -->
+                <span><%= items[i].thing %></span> <!-- pulling 'thing' out of collections and displaying within a span -->
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
+            <span class='fa fa-trash'></span> <!-- a span with a class that shows a trashcan icon -->
+        </li> <!-- closing list tag -->
     <% } %>
-    </ul>
+    </ul> <!-- closing unordered list tag -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- heading 2 that displays the amount of todos that still need to be completed within the list -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading 2 with a title of 'add a todo' -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- opening form tag with the action of adding a todo and a method to submit -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- a text input with a placeholder of 'thing to do' and an identifying name of 'todoItem' -->
+        <input type="submit"> <!-- submit input button -->
+    </form> <!-- closing form tag -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- script tag to link javascript file to ejs document -->
+</body> <!-- closing body tag -->
+</html> <!-- closing html tag -->
