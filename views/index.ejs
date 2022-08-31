@@ -16,7 +16,6 @@
   <ul class="todoItems">
     <% for (let i = 0; i < items.length; i++) { %>
     <li class="item">
-      <!-- const items = [{}, {}, ...]-->
       <% if (items[i].completed === true) { %>
       <span class='completed'><%= items[i].thing %></span>
       <% } else { %>
