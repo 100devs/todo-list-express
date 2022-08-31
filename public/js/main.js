@@ -36,9 +36,7 @@ async function markComplete() {
 		const response = await fetch('markComplete', {
 			method: 'put',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				'itemFromJS': itemText
-			})
+			body: JSON.stringify({ 'itemFromJS': itemText })
 		});
 		const data = await response.json();
 		console.log(data);
@@ -54,9 +52,7 @@ async function markIncomplete() {
 		const response = await fetch('markIncomplete', {
 			method: 'put',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				'itemFromJS': itemText
-			})
+			body: JSON.stringify({ 'itemFromJS': itemText })
 		});
 		const data = await response.json();
 		console.log(data);
