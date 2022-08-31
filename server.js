@@ -26,18 +26,18 @@ app.get('/',async (request, response)=>{ // starts a GET/READ method when the ro
     const todoItems = await db.collection('todos').find().toArray() // sets a constant and awaits all items form the todos collection
     const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // sets a constant and awaits a count of uncompleted items to later display in EJS
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) // rendering the EJS file and passing through the db items and the count remaining inside of an object
-    // db.collection('todos').find().toArray()
-    // .then(data => {
+    // db.collection('todos').find().toArray() - go into db and in collection called "todos", find all the documents (objects), and put them in an array
+    // .then(data => { - pass that array into .then as parameter named "data""
     //     db.collection('todos').countDocuments({completed: false})
     //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
+    //         response.render('index.ejs', { items: data, left: itemsLeft }) - pass data (objects - array of documents) into EJS (template) with the name of "items" and respond with the HTML file that is spit out by EJS
     //     })
     // })
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => { // starts a POST method when the addTodo route is passed in, sets up req and res parameters; passed up by the form
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) // inserts a new document into todos collection, with a thing of todoItem (from name="todoItem" from form) and a completed of false
+app.post('/addTodo', (request, response) => { // starts a POST method when the addTodo route (route comes from action on the form that made the POST request) is passed in, sets up req and res parameters; passed up by the form
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) // inserts a new document into todos collection, with properties of thing of todoItem (from name="todoItem" from form) and a completed of false
     .then(result => { // if insert is successful, do something
         console.log('Todo Added') // console log action
         response.redirect('/') // gets rid of the /addTodo route and redirects back to the homepage
@@ -52,7 +52,7 @@ app.put('/markComplete', (request, response) => { // starts a PUT/UPDATE method 
           }
     },{
         sort: {_id: -1}, // moves item to the bottom of the list
-        upsert: false // prevents insertion if item does not already exist
+        upsert: false // prevents insertion if item does not already exist; if set to true, if you try to update something that is not there, it will create it 
     })
     .then(result => { // starts a then if update was successful
         console.log('Marked Complete') // logging successful completion

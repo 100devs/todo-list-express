@@ -20,10 +20,10 @@
 <body> <!-- main section for content being displayed -->
     <h1>Todo List: </h1> <!-- main header displayed on page -->
     <ul class="todoItems"> <!-- unordered list with a class of "todoItems" -->
-    <% for(let i=0; i < items.length; i++) {%> <!-- ejs FOR loop -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- ejs FOR loop that will run through array of objects from database -->
         <li class="item"> <!-- list item with a class of "item" -->
             <% if(items[i].completed === true) {%> <!-- ejs conditional to see if task (item in an array) is completed (true) -->
-                <span class='completed'><%= items[i].thing %></span> <!-- span with a class of "completed" and ejs to display task -->
+                <span class='completed'><%= items[i].thing %></span> <!-- span with a class of "completed" and ejs to display task (from database with property of thing)-->
             <% }else{ %> <!-- ejs for else clause of if statement -->
                 <span><%= items[i].thing %></span> <!-- ejs putting task name in span with no class specified -->
             <% } %> <!-- ejs closing else statement -->
