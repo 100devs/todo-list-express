@@ -12,7 +12,8 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
 	.then(client => {
 		console.log(`Connected to ${dbName} Database`);
 		db = client.db(dbName);
-	});
+	})
+	.catch(error => console.error(error));
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
