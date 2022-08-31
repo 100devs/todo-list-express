@@ -26,5 +26,6 @@
   "bugs": {
     "url": "https://github.com/jasoncassella/todo-list-express/issues"
   },
-  "homepage": "https://github.com/jasoncassella/todo-list-express#readme"
+  "homepage": "https://github.com/jasoncassella/todo-list-express#readme",
+  "keywords": []
 }
