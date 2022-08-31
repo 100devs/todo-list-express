@@ -21,9 +21,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', async (request, response) => {
-	const todoItems = await db.collection('todos').find().toArray();
-	const itemsLeft = await db.collection('todos').countDocuments({ completed: false });
-	response.render('index.ejs', { items: todoItems, left: itemsLeft });
+	db.collection('todos').find().toArray()
+		.then(data => {
+			db.collection('todos').countDocuments({ completed: false })
+				.then(itemsLeft => {
+					response.render('index.ejs', { items: data, left: itemsLeft });
+				});
+		})
+		.catch(error => console.error(error));
 });
 
 app.post('/addTodo', (request, response) => {
@@ -35,46 +40,46 @@ app.post('/addTodo', (request, response) => {
 		.catch(error => console.error(error));
 });
 
-app.put('/markComplete', (request, response) => {
-	db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
-		$set: {
-			completed: true
-		}
-	}, {
-		sort: { _id: -1 },
-		upsert: false
-	})
-		.then(result => {
-			console.log('Marked Complete');
-			response.json('Marked Complete');
-		})
-		.catch(error => console.error(error));
-});
+// app.put('/markComplete', (request, response) => {
+// 	db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
+// 		$set: {
+// 			completed: true
+// 		}
+// 	}, {
+// 		sort: { _id: -1 },
+// 		upsert: false
+// 	})
+// 		.then(result => {
+// 			console.log('Marked Complete');
+// 			response.json('Marked Complete');
+// 		})
+// 		.catch(error => console.error(error));
+// });
 
-app.put('/markIncomplete', (request, response) => {
-	db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
-		$set: {
-			completed: false
-		}
-	}, {
-		sort: { _id: -1 },
-		upsert: false
-	})
-		.then(result => {
-			console.log('Marked Incomplete');
-			response.json('Marked Incomplete');
-		})
-		.catch(error => console.error(error));
-});
+// app.put('/markIncomplete', (request, response) => {
+// 	db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
+// 		$set: {
+// 			completed: false
+// 		}
+// 	}, {
+// 		sort: { _id: -1 },
+// 		upsert: false
+// 	})
+// 		.then(result => {
+// 			console.log('Marked Incomplete');
+// 			response.json('Marked Incomplete');
+// 		})
+// 		.catch(error => console.error(error));
+// });
 
-app.delete('/deleteItem', (request, response) => {
-	db.collection('todos').deleteOne({ thing: request.body.itemFromJS })
-		.then(result => {
-			console.log('Todo Deleted');
-			response.json('Todo Deleted');
-		})
-		.catch(error => console.error(error));
-});
+// app.delete('/deleteItem', (request, response) => {
+// 	db.collection('todos').deleteOne({ thing: request.body.itemFromJS })
+// 		.then(result => {
+// 			console.log('Todo Deleted');
+// 			response.json('Todo Deleted');
+// 		})
+// 		.catch(error => console.error(error));
+// });
 
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`);
