@@ -1,6 +1,6 @@
 /* selects any h1 tag in the ejs file */
 h1 {
-	/* changes text color to red */
+	/* changes all text color to red */
 	color: red;
 }
 /* selects element with class of compeleted */
