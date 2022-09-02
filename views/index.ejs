@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<!DOCTYPE html>
+		<html lang="en">
+			<head>
+				<meta charset="UTF-8" />
+				<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+				<title>Document</title>
+			</head>
+			<body>
+				<h1>Todo List:</h1>
+				<!-- creates a unordered list for the todoitems to print to   -->
+				<ul class="todoItems">
+					<!-- creates a for loop that will loop through each item in todoItems.               -->
+					<% for(let i=0; i < items.length; i++) {%>
+					<!-- For each item, it creates a span with the item name, a delete button, all enclosed in a list item  -->
+					<li class="item">
+						<% if(items[i].completed === true) {%>
+						<!-- if it has already been marked completed, it is assigned the class = 'completed', to which css crosses out -->
+						<span class="completed"><%= items[i].thing %></span>
+						<% }else{ %>
+						<!-- if it was not already  marked completed, it is assigned the class = 'not', to which css does not cross out -->
+						<span><%= items[i].thing %></span>
+						<% } %>
+						<!-- button to trigger Delete request of the item it is next too in the li -->
+						<span class="fa fa-trash"></span>
+					</li>
+					<% } %>
+				</ul>
 
-    <h2>Left to do: <%= left %></h2>
+				<!-- plugs in the value recieved from mongo that represents the amount of documents that have the completed property set to true -->
+				<h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+				<h2>Add A Todo:</h2>
+				<!-- This is a form that triggers a POST request on the todos/addTodo route, sending along the value from the input in the req.body as 'todoItem' -->
+				<form action="/addTodo" method="POST">
+					<input type="text" placeholder="Thing To Do" name="todoItem" />
+					<input type="submit" />
+				</form>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+				<!-- links client side javascript to the html that will be rendered out of this ejs doc -->
+				<script src="js/main.js"></script>
+			</body>
+		</html>
+	</body>
 </html>
