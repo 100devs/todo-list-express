@@ -20,8 +20,11 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- run a for loop to iterate through all documents that the database can find in the 'todos' collection once the get method is called -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- render todo items -->
+            <!-- set a conditional to assign a class of completed for documents whose 'completed' property is set to the boolean true -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -32,10 +35,12 @@
     <% } %>
     </ul>
 
+    <!-- render number of todo items that do not have the class of completed -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- set the form's action attribute as an 'addTodo' route and its method attribute as a POST -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
