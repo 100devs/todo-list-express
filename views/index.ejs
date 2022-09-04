@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,59 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <html lang="en">
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <h1>Todo List: </h1>
+        <ul class="todoItems">
+            <!-- a for loop that acts on each element of the 'items' array passed from server.js -->
+            <% for(let i=0; i < items.length; i++) {%>
+                <!-- spans in this class will receive the markComplete or markUnComplete methods as onclick events -->
+                <!-- based on if they have the 'completed' class or not -->
+                <li class="item">
+                    <!-- if the item is completed -->
+                    <% if(items[i].completed===true) {%>
+                        <!-- render it with the 'completed' class (that displays it with a strikethrough) -->
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                        </span>
+                        <% }else{ %>
+                            <!-- otherwise render it normally -->
+                            <span>
+                                <%= items[i].thing %>
+                            </span>
+                            <% } %>
+                                <!-- trash can icon that will recieve the deleteItem method as an onclick event -->
+                                <span class='fa fa-trash'></span>
+                </li>
+                <% } %>
+        </ul>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <!-- uses the 'left' variable passed from server.js to dynamically render the number of items left -->
+        <h2>Left to do: <%= left %>
+        </h2>
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <h2>Add A Todo:</h2>
+
+        <!-- when this form is submitted, it will send the server a POST request to the URL endpoint '/addTodo' -->
+        <!-- using the string placed into the text input as the todo text -->
+        <form action="/addTodo" method="POST">
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <input type="submit">
+        </form>
+
+
+        <script src='js/main.js'></script>
+    </body>
+
+    </html>
