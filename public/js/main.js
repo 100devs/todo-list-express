@@ -14,8 +14,10 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+//delete function
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
+   
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
@@ -33,9 +35,13 @@ async function deleteItem(){
     }
 }
 
+//description fires when an item from out todos is clicked and will make a request to out 
 async function markComplete(){
+    //select inner text of the first span
     const itemText = this.parentNode.childNodes[1].innerText
+    
     try{
+        //make put request to out server and pass our itemText in the body of our request
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -43,8 +49,10 @@ async function markComplete(){
                 'itemFromJS': itemText
             })
           })
+          //convert the response to json
         const data = await response.json()
         console.log(data)
+        //refresh the page to see updated element 
         location.reload()
 
     }catch(err){
