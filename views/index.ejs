@@ -1,47 +1,64 @@
+<!-- worked with TheWoodenMan#2671 -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+	<!DOCTYPE html>
+	<html lang="en">
 
-    <h2>Left to do: <%= left %></h2>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
 
-    <h2>Add A Todo:</h2>
+	<body>
+		<h1>Todo List: </h1>
+		<ul class="todoItems">
+			<!-- Takes the provided todo data (items) and loops over it to display a list -->
+			<% for(let i=0; i < items.length; i++) {%>
+				<li class="item">
+					<!-- either renders a span with the "completed" class or without, depending on completed = true or not -->
+					<% if(items[i].completed===true) {%>
+						<span class='completed'>
+							<%= items[i].thing %>
+						</span>
+						<% }else{ %>
+							<span>
+								<%= items[i].thing %>
+							</span>
+							<% } %>
+								<!-- renders the trash can icon to attach the delete event listener-->
+								<span class='fa fa-trash'></span>
+								</li>
+								<% } %>
+									</ul>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+		<!-- This renders the number of things left to do using the left variable passed in the response object -->
+		<h2>Left to do: <%= left %>
+		</h2>
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+		<h2>Add A Todo:</h2>
+
+		<!-- This form makes a POST request which creates a new todo -->
+		<form action="/addTodo" method="POST">
+			<input type="text" placeholder="Thing To Do" name="todoItem">
+			<input type="submit">
+		</form>
+
+
+		<script src='js/main.js'></script>
+		</body>
+
+	</html>
