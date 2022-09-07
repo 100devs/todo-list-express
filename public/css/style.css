@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /* selecting for all h1 tags */
+    color: red; /* change font color to red */
+} /* closing selector */
+.completed{ /* selecting all tags with the class of "completed" (can tell with . in the beginning; # for ID) */
+    color: gray; /* change font color to gray */
+    text-decoration: line-through; /* strikethrough text */
+} /* closing selector */
