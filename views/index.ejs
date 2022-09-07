@@ -20,22 +20,27 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Takes the provided todo data (items) and loops over it to display a list -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+        <!-- either renders a span with the "completed" class or without, depending on completed = true or not -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- renders the trash can icon to attach the delete event listener-->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+			<!-- This renders the number of things left to do using the left variable passed in the response object -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+				<!-- This form makes a POST request which creates a new todo -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
