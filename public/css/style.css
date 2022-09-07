@@ -1,7 +1,12 @@
-h1{
-    color: red;
+body {
+	background-color: rgb(30, 30, 30);
+	color: aliceblue;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+h1 {
+	color: red;
+}
+.completed {
+	color: gray;
+	text-decoration: line-through;
 }
