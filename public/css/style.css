@@ -1,6 +1,8 @@
+/*selects every h1 in the html doc and turns the element red*/
 h1{
     color: red;
 }
+/*selects the element "completed" in the html doc and turns the element gray and add a line through it*/
 .completed{
     color: gray;
     text-decoration: line-through;

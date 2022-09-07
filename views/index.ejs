@@ -18,30 +18,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+    <h1>Todo List: </h1> <!--title-->
+    <ul class="todoItems"> <!--create a list ul of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%> <!--loop through items-->
+        <li class="item"> <!--item-->
+            <% if(items[i].completed === true) {%> <!--if item is completed-->
+                <span class='completed'><%= items[i].thing %></span> <!--show completed item-->
+            <% }else{ %> <!--if item is not completed-->
+                <span><%= items[i].thing %></span> <!--show item-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--delete item-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--left todo -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--add a todo-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!--add a form-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--add an imput-->
+        <input type="submit"><!--submit-->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script><!--link to main.js-->
 </body>
 </html>
