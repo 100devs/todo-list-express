@@ -1,3 +1,4 @@
+<!-- HTML template injected -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- loads third-party icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- links to css stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,23 +22,29 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- since we do not know how many todo items there will be, we embed JS to account for such items -->
     <ul class="todoItems">
+    <!-- loops through items which has been tied to todoItems in server.js by length of however many documents the collection has -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if the item of each iteration's completed is true, set the span's class to completed. else do not -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- renders trash can icon to attach the delete event listener to -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- renders how many items there are left to do -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- makes a create request with the route of /addTodo which is being listened to at the server -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
