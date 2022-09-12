@@ -1,1 +1,1 @@
-npm install
+This is an exercise where I comment every single line of code of a simple CRUD app. 
