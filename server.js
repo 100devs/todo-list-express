@@ -99,7 +99,7 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-//declare endpoint for url /delete item then run the middleawre
+//declare endpoint for url /delete item then run the middleawre function
 app.delete('/deleteItem', (request, response) => {
 //find document that was clicked on and use the delete method. and log the success  or error
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
