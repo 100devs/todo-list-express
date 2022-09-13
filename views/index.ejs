@@ -1,47 +1,88 @@
+<!-- Specify current version of HTML document -->
 <!DOCTYPE html>
+<!-- Set the HTML document language as English -->
 <html lang="en">
+
 <head>
+    <!-- Set the character set as 'UTF-8' -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set the initial scale and viewport of the document to match the width of a device -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the title of the document as 'Document' -->
     <title>Document</title>
+    <!-- Load the style for 'font-awesome' icons from an external stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Load the main style for this document from an external stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <!-- Specify current version of HTML document -->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!-- Set the HTML document language as English -->
+    <html lang="en">
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <!-- Set the character set as 'UTF-8' -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Set the initial scale and viewport of the document to match the width of a device -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Set the title of the document as 'Document' -->
+        <title>Document</title>
+    </head>
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <h1>Todo List: </h1>
+        <ul class="todoItems">
+            <!-- 
+                Render HTML string based on the response obtained (GET) from the server on index ('/') route
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+                The response data is: {items: todoItems, left: itemsLeft}
+             -->
+            <% for(let i=0; i < items.length; i++) {%>
+                <!-- 
+                    Iterate each item in `items` array and render HTML strings on each iteration
+                -->
+                <li class="item">
+                    <% if(items[i].completed===true) {%>
+                        <!-- 
+                            If current item `completed` value is `true`, render the following HTML strings
+                         -->
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                        </span>
+                        <% }else{ %>
+                            <!-- 
+                                If current item `completed` value is not `true`, render the following HTML strings
+                            -->
+                            <span>
+                                <%= items[i].thing %>
+                            </span>
+                            <% } %>
+                                <span class='fa fa-trash'></span>
+                </li>
+                <% } %>
+        </ul>
 
-    <script src='js/main.js'></script>
+        <!-- Render response data `left`  -->
+        <h2>Left to do: <%= left %>
+        </h2>
+
+        <h2>Add A Todo:</h2>
+
+        <form action="/addTodo" method="POST">
+            <!-- Create a request to the server on '/addTodo' route on submit  -->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <input type="submit">
+        </form>
+
+        <!-- Load the main script for this document from an external JavaScript file -->
+        <script src='js/main.js'></script>
+    </body>
+
+    </html>
 </body>
+
 </html>
