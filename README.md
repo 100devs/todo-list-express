@@ -1,2 +1,1 @@
-npm install
-add DB_STRING to .env file
+This is an exercise where I comment every single line of code of a simple CRUD app. 
