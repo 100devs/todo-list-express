@@ -1,47 +1,61 @@
-<!DOCTYPE html>
+<!-- tells the browser that this file is HTML 5 -->
+<!DOCTYPE html> 
+<!-- tells the browser that the page is written in english -->
 <html lang="en">
+<!-- open head tag tells the browser that this information is not visual but is required to render the page properly -->
 <head>
+    <!-- tells the browser that the webpage is encoded in the UTF-8 character set -->
     <meta charset="UTF-8">
+    <!-- ensures compatibility with Internet explorer -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ensures that when the webpage is loaded in a mobile browser it is the proper width and size -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tells the browser what the title of the webpage should be -->
     <title>Document</title>
+    <!-- tells the browser to download the font awesome css stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- tells the browser to download the style.css file from our server -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- open body tag tells the browser that this is where the visual HTML information starts -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- header to tell the user that this is the todo list -->
     <h1>Todo List: </h1>
+    <!-- unordered list with a "todoItems" class for styling -->
     <ul class="todoItems">
+    <!-- loop through every item that was passed to EJS -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- render a list item with the class "item" -->
         <li class="item">
+            <!-- check to see if the list item is completed -->
             <% if(items[i].completed === true) {%>
+                <!-- if the list item is completed then render a span element with a "completed" class on it -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- else render a span element that contains the list item as text -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- create a span to be used as a button (bad way of doing it BTW) -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- communicate how many items are incomplete on the list -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- a header to label the form and provide hierarchy to the page -->
     <h2>Add A Todo:</h2>
 
+    <!-- set the form to send a post request on the "/addTodo" route -->
     <form action="/addTodo" method="POST">
+        <!-- add a text input that will send data over with the name "todoItem" -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- add a button to submit the form -->
         <input type="submit">
     </form>
     
-
-    <script src='js/main.js'></script>
+    <!-- include the client js code -->
+    <script src='js/main.js'></script> 
 </body>
 </html>
