@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /* Selector - selects h1 tags in ejs file*/
+    color: red; /* Changing text color to red */
+} /* closing selector */
+.completed{ /* selector targeting items with CLASS of completed in ejs */
+    color: gray; /* change text color to gray */
+    text-decoration: line-through; /* apply a strike through line to the text */
+} /* closing selector */
