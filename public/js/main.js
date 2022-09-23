@@ -17,7 +17,7 @@ Array.from(itemCompleted).forEach((element)=>{ // create array from our selectio
 async function deleteItem(){ //declare asynchronous function
     const itemText = this.parentNode.childNodes[1].innerText //looks inside the list item and grabs the TEXT only
     try{ // starting try block
-        const response = await fetch('deleteItem', { //create a variable that waits on a fetch to get data from the result of deleteItem route. start a object
+        const response = await fetch('deleteItem', { //create a variable that waits on a fetch to get data from the result of deleteItem route. and start a object
             method: 'delete', //sets crud method for the route
             headers: {'Content-Type': 'application/json'}, //specifying type of content expected which is json
             body: JSON.stringify({ //declare the message content being passed, and stringify it
@@ -33,40 +33,40 @@ async function deleteItem(){ //declare asynchronous function
     } //close catch err tag
 } //close async function
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
+async function markComplete(){ //declare asynchronous function
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside the list item (ul > li) and grabs the TEXT only
+    try{ // starting try block
+        const response = await fetch('markComplete', { //create a variable that waits on a fetch to get data from the result of markComplete route. and start a object
+            method: 'put', //sets crud method for the route (put / update)
+            headers: {'Content-Type': 'application/json'}, //specify that the type of content we expect will be json format
+            body: JSON.stringify({ //Set the body object and stringify it - conver it to a string
+                'itemFromJS': itemText //via an object we can set the content of the body to contain the innerText of the list item and store it under 'itemFromJs'
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() //wait on JSON from the response to be converted
+        console.log(data) // log the data to the console
+        location.reload() //reload the page to show the updated results
 
-    }catch(err){
-        console.log(err)
-    }
-}
+    }catch(err){ // if an error occurs, grab it and pass it into this catch block
+        console.log(err) //log the error to the console
+    } //close catch err tag
+} //close the async function
 
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
+async function markUnComplete(){ //declare asynchronous function
+    const itemText = this.parentNode.childNodes[1].innerText //looks inside the list item (ul > li) and grabs the TEXT only
+    try{ // starting try block
+        const response = await fetch('markUnComplete', { //create a variable that waits on a fetch to get data from the result of markUnComplete route. and start a object
+            method: 'put', //this part of the object sets crud method for the route (put / update)
+            headers: {'Content-Type': 'application/json'}, //this part of the object specifies that the type of content we expect will be json format
+            body: JSON.stringify({ //Set the body object and stringify it - conver it to a string
+                'itemFromJS': itemText  //this part of the object we can set the content of the body to contain the innerText of the list item and store it under 'itemFromJs'
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json()  //wait on JSON from the response to be converted
+        console.log(data) // log the data to the console
+        location.reload() //reload the page to show the updated results
 
-    }catch(err){
-        console.log(err)
-    }
-}
+    }catch(err){ // if an error occurs, grab it and pass it into this catch block
+        console.log(err) //log the error to the console
+    } //close catch err tag
+} //close the async function
