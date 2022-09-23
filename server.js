@@ -20,10 +20,13 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
-app.get('/',async (request, response)=>{
+// GET request on root page '/'
+app.get('/', async (request, response) => {
+  // Go to DB and get all documents from collection 'todos' as an array of objects
     const todoItems = await db.collection('todos').find().toArray()
+  // Go to DB and count all documents that are not completed
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+  // Plug elements in the ejs template and render it out: respond with HTML 
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {
@@ -35,8 +38,12 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+// POST request on route '/addTodo', which comes from the action on the form that made the POST request: <form action="/addTodo" method="POST">
 app.post('/addTodo', (request, response) => {
+  // Grab value request.body.todoItem and add(.insertOne) to DB
+  // The input has the name 'todoItem': <input type="text" placeholder="Thing To Do" name="todoItem">
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+  // Respond OK and refresh(.redirect)
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')
