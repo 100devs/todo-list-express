@@ -7,7 +7,7 @@ require('dotenv').config()
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+    dbName = process.env.DB_NAME
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -89,5 +89,5 @@ app.delete('/deleteItem', (request, response) => {
 })
 
 app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}, http://localhost:${PORT}`)
 })
