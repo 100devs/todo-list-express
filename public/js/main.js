@@ -1,6 +1,6 @@
 const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const item = document.querySelectorAll('.fa-check')
+const itemCompleted = document.querySelectorAll('.fa-wrench')
 
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
@@ -15,7 +15,9 @@ Array.from(itemCompleted).forEach((element)=>{
 })
 
 async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[5].innerText
+    console.log(this.parentNode);
+    console.log(this.parentNode.childNodes);
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
@@ -26,7 +28,7 @@ async function deleteItem(){
           })
         const data = await response.json()
         console.log(data)
-        location.reload()
+        // location.reload()
 
     }catch(err){
         console.log(err)
@@ -34,7 +36,7 @@ async function deleteItem(){
 }
 
 async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[5].innerText
     try{
         const response = await fetch('markComplete', {
             method: 'put',
@@ -45,7 +47,7 @@ async function markComplete(){
           })
         const data = await response.json()
         console.log(data)
-        location.reload()
+        // location.reload()
 
     }catch(err){
         console.log(err)
@@ -53,7 +55,7 @@ async function markComplete(){
 }
 
 async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[5].innerText
     try{
         const response = await fetch('markUnComplete', {
             method: 'put',
@@ -64,7 +66,7 @@ async function markUnComplete(){
           })
         const data = await response.json()
         console.log(data)
-        location.reload()
+        // location.reload()
 
     }catch(err){
         console.log(err)
