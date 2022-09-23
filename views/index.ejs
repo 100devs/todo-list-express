@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><!-- Declare browsers that the latest HTML specification is being followed, and not to enable quarks mode -->
+<html lang="en"><!-- Declare document language as `en` -->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8"><!-- Declare character encoding as `UTF-8` - the only possible value -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <!-- Tell Microsoft browsers which version of Internet Explorer the document should be rendered as -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Declare the width and initial scale (zoom level) of the viewport, as the full width of the device and 1.0 accordingly -->
+    <title>Document</title><!-- Declare the document title, used in the title bar, bookmarks, etc -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!-- Link to Font Awesome stylesheet -->
+    <link rel="stylesheet" href="css/style.css"><!-- Link to local stylesheet -->
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+
+    <ul class="todoItems"><!-- Unordered list with a class of `todoItems` -->
+    <% for(let i=0; i < items.length; i++) {%><!-- Loop through every object in the `items` array -->
+        <li class="item"><%# List item with class of `item` %>            
+            <% if(items[i].completed === true) {%><%# Create span containing text of current item `thing`, with optional class of `completed` if the current item `completed` property is equal to `true` %>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span><%# Font Awesome Trash icon %>
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!-- Output the value of left into the page -->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"><!-- Form that will make a `POST` request to `/addTodo` when submitted -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!-- Text input field with `placeholder` of `Thing To Do` and `name` of `todoItem`, which will become the key when the value is transmitted -->
+        <input type="submit"><!-- Submit button -->
     </form>
     
-
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script><!-- Link to local JavaScript file -->
 </body>
 </html>
