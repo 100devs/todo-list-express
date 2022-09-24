@@ -1,10 +1,13 @@
+// Using express and setting app so we can use express
 const express = require('express')
 const app = express()
+// Use MongoDB
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
+// Environment variables 
 require('dotenv').config()
 
-
+// Connect to MongoDB
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = process.env.DB_NAME
@@ -14,9 +17,12 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+
+// Using ejs as our templating language
 app.set('view engine', 'ejs')
+// Using Public folder to hold all our static files CSS/JS
 app.use(express.static('public'))
+// Allows to look at the request that are coming through and pull the data out of those requests (what a body parser would do). e.g.: get text out of a request
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
@@ -52,16 +58,22 @@ app.post('/addTodo', (request, response) => {
 })
 
 app.put('/markComplete', (request, response) => {
+  // Update the first document in DB with value for 'thing' property from 'request.body.itemFromJS'
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+      // Set 'completed' property to 'true'
         $set: {
             completed: true
           }
     },{
+      // Sort top to bottom
         sort: {_id: -1},
+        // update and insert: If you try to update something that wasn't it would create it for you
         upsert: false
     })
     .then(result => {
+      // console.log to server side
         console.log('Marked Complete')
+      // respond to the client side
         response.json('Marked Complete')
     })
     .catch(error => console.error(error))
@@ -85,6 +97,7 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+// route deleteItem, go to DB and delete document with thing from request.body.itemFromJS
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
