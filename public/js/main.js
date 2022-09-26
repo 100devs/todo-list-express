@@ -70,3 +70,14 @@ async function markUnComplete(){ //declare asynchronous function
         console.log(err) //log the error to the console
     } //close catch err tag
 } //close the async function
+
+
+//Overview
+//Setup the todo list: items interactivity
+//Assign eventListeners
+//Run async functions when event occurs - deleteItem, markComplete, markUnComplete
+//Get data from server
+//Linked to index.ejs where DOM is updated with new data
+
+//To add items to the list, we use a form which has built in requests like a post method, & click submit
+//Form handles submissions so no need to create function for that
