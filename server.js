@@ -4,8 +4,8 @@ const express = require('express')
 const app = express()
 // Imports MongoDB then connects to MongoDB through MongoClient.
 const MongoClient = require('mongodb').MongoClient
-// The (hard-coded) port stored in the PORT variable. Use process.env.PORT when deploying.
-const PORT = 2121 || process.env.PORT
+// The (hard-coded) port stored in the PORT variable.
+const PORT = 2121
 // Imports the dotenv (.env) module & the config() method takes a .env file path as an argument, it parses it and sets environment vars defined in that file in process.env.
 require('dotenv').config()
 // (I added this line) Imports the .env directory to access the config.js file. The config.js file exports the secret key using a DB_STRING variable.
@@ -65,68 +65,78 @@ app.get('/', async (request, response) => {
 });
 // A route that is used to handle HTTP POST requests made to the address /addTodo.
 app.post('/addTodo', (request, response) => {
-    /* db.collection specifies the todos collection, adds an object into the document with a thing & completed property 
-    The thing property receives its value from the form input located within the index.ejs file 
-    The completed property has a boolean value, when it evaluates as true, it applies a class of completed onto span elements within the index.ejs */
+    /* db.collection specifies the todos collection, adds an object into the document with a thing & completed property.
+    The thing property receives its value from the form input located within the index.ejs file.
+    The completed property has a boolean value, when it evaluates as true, it applies a class of completed onto span elements within the index.ejs. */
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
-        // Prints a string
+        // Prints a string.
         console.log('Todo Added')
         // Refreshes the page after the POST request & displays the newly-added document in the collection.
         response.redirect('/')
     })
-    // then/catch error handling
+    // then/catch error handling.
     .catch(error => console.error(error))
 })
 // A route that is used to handle HTTP PUT requests made to the address /markComplete.
 app.put('/markComplete', (request, response) => {
-    /* db.collection specifies the todos collection, updates the thing object and changes the completed property value to true 
-    It also sorts the thing object so that c*/
+    /* db.collection specifies the todos collection, updates the thing object and changes the completed property value to true. */
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: true
           }
     },{
-        // If there are multiple matches in the database, sort the matches in descending order and pick that one
+        // If there are multiple matches in the database, sort the matches in descending order and pick that one.
         sort: {_id: -1},
-        // If true, if the match doesn't exist, it can be created 
+        // When set to true, if the match doesn't exist, it can be created.
         upsert: false
     })
     .then(result => {
+        // Responds with "Marked Complete" to the markComplete() function within main.js.
         console.log('Marked Complete')
         response.json('Marked Complete')
     })
+    // Error handling.
     .catch(error => console.error(error))
 
 })
-
+// A route that is used to handle HTTP PUT requests made to the address /markUnComplete.
 app.put('/markUnComplete', (request, response) => {
+    /* db.collection specifies the todos collection, updates the thing object and changes the completed property value to false. */
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: false
           }
     },{
+        // If there are multiple matches in the database, sort the matches in descending order and pick that one.
         sort: {_id: -1},
+        // When set to true, if the match doesn't exist, it can be created.
         upsert: false
     })
     .then(result => {
+        // Responds with "Marked Uncomplete" to the markUnComplete() function within main.js.
         console.log('Marked Uncomplete')
         response.json('Marked Uncomplete')
     })
+    // Error handling.
     .catch(error => console.error(error))
 
 })
-
+// A route that is used to handle HTTP DELETE requests made to the address /deleteItem.
 app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemsFromJS})
+    /* db.collection specifies the todos collection and deletes the thing object. */
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
+        // Responds with "Todo Deleted" to the deleteItem() function within main.js.
         console.log('Todo Deleted')
         response.json('Todo Deleted')
     })
+    // Error handling.
     .catch(error => console.error(error))
 
 })
-
+// Express's listen method. It listens to HTTP requests on the port stored in the PORT variable (2121) or the PORT provided via environment variable.
 app.listen(process.env.PORT || PORT, ()=>{
+    // Prints when the server runs successfully.
     console.log(`Server running on port ${PORT}`)
 })
