@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
-
-    <h2>Left to do: <%= left %></h2>
-
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+<!-- 
+This renders the appearance of the app, using the ejs templating engine. 
+EJS (embedded javascript) allows javscript to be embedded inside HTML 
+-->
+<!DOCTYPE html> <!--Telling browser what type of document will be shown-->
+<html lang="en"> <!--Starting the html tag and saying the language is english-->
+  <head> <!--Starting the head tag to store the metadata-->
+    <meta charset="UTF-8" /> <!--encoding type for characters-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!--Sets appropriate compatibility for Microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Sets width of available viewing area to width of device screen-->
+    <title>Document</title> <!--Assign a title that appears in the browser tab-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    /> <!--Link to fontawesome icon library-->
+    <link rel="stylesheet" href="css/style.css" /> <!--Link to local stylesheet in the public folders-->
+  </head> <!--Closing head tag-->
+  
+  <body> <!--Main section that displays content-->
     
+        <h1>Todo List:</h1> <!--Main title displayed on page-->
+        <ul class="todoItems"> <!-- Unordered list & assign class -->
+          <% for(let i=0; i < items.length; i++) {%> <!--Use EJS to start a for-loop-->
+          <li class="item"> <!-- Create a List Item with a class of item-->
+            <% if(items[i].completed === true) {%> <!-- EJS to check if an item in an array with a completed property is true-->
+            <span class="completed"><%= items[i].thing %></span> <!-- Creating a span with a class 'completed' that will strike out the completed task & then use EJS to display name of task-->
+            <% }else{ %> <!--EJS for else part of the if statement-->
+            <span><%= items[i].thing %></span> <!-- Added EJS to display name of task, with NO class-->
+            <% } %> <!--EJS to close the if/else statement-->
+            <span class="fa fa-trash"></span> <!--Create a span with class for the trash icon (from font-awesome)-->
+          </li> <!--Closing list item-->
+          <% } %> <!--Ending the EJS to close the for-loop-->
+        </ul> <!--Closing unordered list-->
 
-    <script src='js/main.js'></script>
-</body>
+        <h2>Left to do: <%= left %></h2> <!--Text and EJS which displays a variable that changes showing how many tasks left to complete. The clicking will be handled by javascript in dif file -->
+
+        <h2>Add A Todo:</h2> <!--Text header 2-->
+
+        <form action="/addTodo" method="POST"> <!--Create a form with a POST method that goes to /addTodo route-->
+          <input type="text" placeholder="Thing To Do" name="todoItem" /> <!-- Create an input box that accepts text, with default text before you type, and a name so we can reference it later in dif file (ie grab a value from it) -->
+          <input type="submit" /> <!--Gives the form a submit button-->
+        </form> <!--Closing form tag-->
+
+        <script src="js/main.js"></script> <!--Link to file called main.js in the js folder whithin the public folder -->
+
+    </body> <!--Closing body tag--> 
 </html>
