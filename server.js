@@ -34,61 +34,61 @@ app.get('/',async (request, response)=>{ //starts a GET method when the root '/'
     //     })
     // })
     // .catch(error => console.error(error))
-})
+}) //close app.get
 
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
-    })
-    .catch(error => console.error(error))
-})
+app.post('/addTodo', (request, response) => { //Starts a POST method when the add route is passed in
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //inserts a new item into todos collection, gives it a completed value of false by default
+    .then(result => { //if it works then do something
+        console.log('Todo Added') //Log what happened
+        response.redirect('/') //Redirect back to the homepage, gets rid of /addTodo route ( a route that doesn't exist )
+    }) //close .then
+    .catch(error => console.error(error)) //catch any errors
+}) //close app.post
 
-app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markComplete', (request, response) => { //starts a put method when the markComplete route is passed in
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //look in the db for one item matching the name of the item passed in from the main.js file that was clicked
         $set: {
-            completed: true
+            completed: true //Set completed status to true
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, //moves item to bottom of list
+        upsert: false //prevents insertion if item does not already exist
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+    .then(result => { //starts a then if update was successful
+        console.log('Marked Complete') //logging successful completion
+        response.json('Marked Complete') //sending a response back to the sender
+    }) //close .then
+    .catch(error => console.error(error)) //catch errors
 
-})
+}) //ending put function
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markUnComplete', (request, response) => { //starts a put method when the markUnComplete route is passed in
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //look in the db for one item matching the name of the item passed in from the main.js file that was clicked
         $set: {
-            completed: false
+            completed: false //set status to false for not completed
           }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, //moves item to bottom of list
+        upsert: false //prevents insertion if item does not already exist
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
-    })
-    .catch(error => console.error(error))
+    .then(result => { //starts a then if update was successful
+        console.log('Marked Complete') //logging successful completion
+        response.json('Marked Complete') //sending a response back to the sender
+    }) //close .then
+    .catch(error => console.error(error)) //catch errors
 
 })
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
-    })
-    .catch(error => console.error(error))
+app.delete('/deleteItem', (request, response) => { //starts a delete method when the /deleteItem route is passed in
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //look in the db in the todos collection and deleteOne method deletes one item matching the name of the item passed in from the JS file that was clicked
+    .then(result => { // if delete was successful start a then 
+        console.log('Todo Deleted') //logging successful completion
+        response.json('Todo Deleted') //sending a response back to the sender
+    }) //close .then
+    .catch(error => console.error(error)) //catch errors
 
-})
+}) //end delete
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+app.listen(process.env.PORT || PORT, ()=>{ //specify the location (PORT) on which the server will be listening on - either from the .env file if there is one in there or from the port variable we set
+    console.log(`Server running on port ${PORT}`) //console log the running port
 })
