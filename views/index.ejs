@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!--tells browser what type of document to show-->
+<html lang="en"><!--starting html tag and indicates the language is English-->
+<head><!--starting head tag to store all metadata-->
+    <meta charset="UTF-8"><!--indicates what character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--sets appropriate compatibility for Microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--sets width of available viewing area to the width of the device screen-->
+    <title>Document</title><!--determines the title that appears on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--creates link to the Font Awesome Icon library so we can use fa icons in our html-->
+    <link rel="stylesheet" href="css/style.css"><!--creates link to the local stylesheet in the public folder-->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body><!--main section indicates content to be displayed-->
+    <!DOCTYPE html><!--(an inadvertent duplicate of an above tag?) I don't think this tag is necessary and it's probably inadvertent -->
+<html lang="en"><!--(an inadvertent duplicate of an above tag?) I don't think this tag is necessary and it's probably inadvertent -->
+<head><!--(an inadvertent duplicate of an above tag?) I don't think this tag is necessary and it's probably inadvertent -->
+    <meta charset="UTF-8"><!--(an inadvertent duplicate of an above tag?) I don't think this tag is necessary and it's probably inadvertent -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--(an inadvertent duplicate of an above tag?) I don't think this tag is necessary and it's probably inadvertent -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--(an inadvertent duplicate of an above tag?) I don't think this tag is necessary and it's probably inadvertent -->
+    <title>Document</title><!--(an inadvertent duplicate of an above tag?) I don't think this tag is necessary and it's probably inadvertent -->
+</head><!--(an inadvertent duplicate of an above tag?) I don't think this tag is necessary and it's probably inadvertent -->
+<body><!--main section indicates content to be displayed (I think it's inadvertently duplicated up above too)-->
+    <h1>Todo List: </h1><!--Main title displayed on page, semantically most important title-->
+    <ul class="todoItems"><!--creates unordered list and assigns a class name to the list-->
+    <% for(let i=0; i < items.length; i++) {%><!--uses ejs to start a for loop-->
+        <li class="item"><!--creates a list item with a class of item-->
+            <% if(items[i].completed === true) {%><!--uses ejs to check if an item in an array with a completed property is true-->
+                <span class='completed'><%= items[i].thing %></span><!--creates a span with a class and uses ejs to display the name of the task-->
+            <% }else{ %><!--uses ejs for the else in our if statement-->
+                <span><%= items[i].thing %></span><!--adds ejs to display the name of the task with no class-->
+            <% } %><!--uses ejs to close the else-->
+            <span class='fa fa-trash'></span><!--shows a Font Awesome icon of trash can inside a span-->
+        </li><!--closes our list item-->
+    <% } %><!--uses ejs to close our for loop-->
+    </ul><!--closing our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--creates a second level heading tag with text and uses ejs to use a variable to show how many tasks are left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--creates another second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--creates a form with a post method that goes to the /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--creates an input box that accepts text with default text inside of it before you type anything. The input box is given a name so we can refer to this later-->
+        <input type="submit"><!--gives the form a submit button to display-->
+    </form><!--closind tag for the form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--links to the main.js file in the js folder in the public folder-->
+</body><!--closind tag for the body-->
+</html><!--closind tag for the html-->
