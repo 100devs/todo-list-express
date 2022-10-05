@@ -1,7 +1,9 @@
-h1{
-    color: red;
+/* select all h1 set it to color red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+/* select class with .completed to text gray and add line through the text */
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
