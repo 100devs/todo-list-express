@@ -18,30 +18,44 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Main title -->
     <h1>Todo List: </h1>
+    <!-- Unordered list to contain todo item -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+        <!-- ejs: loop through todo items -->
+        <% for(let i=0; i < items.length; i++) {%>
+        <!-- Create each item as li -->
         <li class="item">
+            <!-- ejs: if item is completed-->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <!-- ejs: item.thing as text inside of a span with a completed class -->
+            <span class='completed'><%= items[i].thing %></span>
+            <!-- ejs: else item is not completed-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
+            <!-- ejs: item.thing as text inside of a span -->
+            <span><%= items[i].thing %></span>
+            <% } %>
+            <!-- An bin/trash icon for deleting item-->
             <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+        <% } %>
     </ul>
 
+    <!-- Display the quantity of todo item left to be completed -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Form title for adding new todo item -->
     <h2>Add A Todo:</h2>
 
+    <!-- A form with a POST method to post to '/addTodo' route on submit -->
     <form action="/addTodo" method="POST">
+        <!-- Input for adding new todo item -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Button to submit new todo item-->
         <input type="submit">
     </form>
-    
 
+    <!-- Link main.js to execute the script after the browser finish rendering -->
     <script src='js/main.js'></script>
 </body>
 </html>
