@@ -20,3 +20,31 @@ I would refactor the existing code to improve the overall functionality of the a
 
 ## Lessons Learned
 I learned more about EJS and how it renders out client-side HTML that displays in the DOM.
+
+## Other Projects
+
+<table bordercolor="#66b2b2">
+  <tr>
+  <td width="33.3%"  style="align:center;" valign="top">
+	<a target="_blank" href="https://github.com/jaclynbrothers/squawk-space">Squawk Space</a>
+    	<br>
+    	<a target="_blank" href="https://github.com/jaclynbrothers/squawk-space">
+    	<img src="https://media.giphy.com/media/7dsiIBgG8OuU95SUvF/giphy.gif" width="100%"  alt="Squawk Space">
+        </a>
+    </td>
+    <td width="33.3%"  style="align:center;" valign="top">
+	<a target="_blank" href="https://github.com/jaclynbrothers/homework-bound">Homework Bound</a>
+    	<br>
+    	<a target="_blank" href="https://github.com/jaclynbrothers/homework-bound">
+    	<img src="https://media.giphy.com/media/MZ2Jzzzb77f5LKH3w4/giphy.gif" width="100%"  alt="Homework Bound">
+        </a>
+    </td>
+    <td width="33.3%" valign="top">
+	<a target="_blank" href="https://github.com/jaclynbrothers/artist-portfolio">Artist Portfolio</a>
+      	<br>
+        <a target="_blank" href="https://github.com/jaclynbrothers/artist-portfolio">
+          <img src="https://media.giphy.com/media/OtZnHQvpwaGOxKxoi1/giphy.gif" width="100%" alt="Artist Portfolio Website">
+        </a>
+    </td>
+  </tr>
+</table>
