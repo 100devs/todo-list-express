@@ -1,6 +1,8 @@
+/* Colour all heading 1 elements red */
 h1{
     color: red;
 }
+/* Colour all completed classes grey with a line-through */
 .completed{
     color: gray;
     text-decoration: line-through;

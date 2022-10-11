@@ -18,6 +18,18 @@
     <title>Document</title>
 </head>
 <body>
+
+    <!-- 
+        heading 1 
+        create a list
+        for loop, to list all the items
+        each item has a class of item
+        if item is completed, 
+            add item with a class of completed
+        if not,
+            add item
+        trash
+    -->
     <h1>Todo List: </h1>
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
@@ -26,22 +38,29 @@
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- heading 2 with number of items that are have not been completed -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- heading 2 -->
     <h2>Add A Todo:</h2>
 
+    <!--
+        FORM that has a create/post method with the route of addTodo
+        a text input section
+        submit button
+    -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
 
+<!-- client side JavaScript -->
     <script src='js/main.js'></script>
 </body>
 </html>
