@@ -2,19 +2,22 @@ const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+// add event listener for delete button to all tasks
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
-
+// add event listener for mark complete button to all tasks
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
+// add event listener for mark uncomplete button to all tasks
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
 async function deleteItem(){
+    // get the clicked item and send a request to the server to delete a task
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
@@ -34,6 +37,7 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    // get the clicked item and send a request to the server to complete a task
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('markComplete', {
@@ -53,6 +57,7 @@ async function markComplete(){
 }
 
 async function markUnComplete(){
+    // get the clicked item and send a request to the server to uncomplete a task
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('markUnComplete', {
