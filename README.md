@@ -1,7 +1,7 @@
 ## Description
 A full stack web application that posts & stores to-do tasks. You may mark a task as completed, delete a task entirely, or mark completed tasks as uncomplete.
 
-The project is deployed here: https://protected-beyond-02026.herokuapp.com/
+The (UPDATED) project is deployed here: https://salty-castle-61426.herokuapp.com/
 
 ## Demo
 ![demo](todolistdemo.gif)
