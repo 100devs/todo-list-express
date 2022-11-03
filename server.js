@@ -8,7 +8,7 @@ require('dotenv').config() // require/import dotenv for use in connections
 // declaring 3 global scope variables: db, dbConnectionStr, and dbName
 let db,
     dbConnectionStr = process.env.DB_STRING, //dbConnectionStr is pulled from env file
-    dbName = 'todo' //naming the database as 'todo'
+    dbName = 'to-do-list' //naming the database as 'todo'
 
 // Connecting to Mongo using our connection string and telling it how to connect
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
