@@ -28,14 +28,14 @@ app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray() // first, find all items in the collection 'todos' and make an array of them
     const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // find all items in the collection 'todos' that have not been completed and return total number
     response.render('index.ejs', { items: todoItems, left: itemsLeft }) // render index.ejs while passing in two arguments: an array of items in the 'todos' collection; and the number itemsLeft
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+    db.collection('todos').find().toArray()
+    .then(data => {
+        db.collection('todos').countDocuments({completed: false})
+        .then(itemsLeft => {
+             response.render('index.ejs', { items: data, left: itemsLeft })
+        })
+    })
+    .catch(error => console.error(error))
 })
 
 
