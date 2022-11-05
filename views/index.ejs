@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- custom font style-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- our css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,6 +21,11 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- 
+        "items" is passed as a parameter to the ejs file which is our "todoItems"\
+        Each todo item is a span
+        If the todo item is marked completed, the .completed class is added
+    -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
@@ -31,17 +38,18 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- "left" is passed in and rendered as h2 tag which is the remaining items to be completed-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- Form for submitting a post request to the /addToDo route in our server -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!-- Loads our client side javascript-->
     <script src='js/main.js'></script>
 </body>
 </html>
