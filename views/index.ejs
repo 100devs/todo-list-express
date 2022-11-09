@@ -22,15 +22,17 @@
 <body>
     <h1>Todo List: </h1>
     <!-- 
-        "items" is passed as a parameter to the ejs file which is our "todoItems"\
-        Each todo item is a span
-        If the todo item is marked completed, the .completed class is added
+        For loop runs once for each item in our collection
+        Each time it runs it builds an li and that li has a span in it
+        that span has the value that we got out of our database
     -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- If the todo item is marked completed, the .completed class is added -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- "items" is passed as a parameter to the ejs file which is our "todoItems"-->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    

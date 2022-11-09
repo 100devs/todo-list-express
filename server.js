@@ -35,7 +35,7 @@ app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     // same as above to get documents that have not been marked as completed stored as variable itemsLeft
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    // serve an ejs render of index.ejs as the response by passing in todoItems and itemsLeft
+    // serves up HTML as the response by passing in todoItems with new a name of "items" and itemsLeft with a new name of "left" (key value pairs)
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
     // db.collection('todos').find().toArray()
     // .then(data => {
@@ -47,10 +47,11 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
-// handles post requests to the route /addToDo
+// handles post requests from the form route /addToDo in our index.ejs
 app.post('/addTodo', (request, response) => {
     // inserts one document into the todos collection
-    // the inserted "thing" is in the request.body with a completed false property
+    // the inserted "thing" is from the form todoItem in the request.body
+    // all post in db will have thing property and a hard coded completed false
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
         // when inserted the page refreshes and triggers a get request with updated document
