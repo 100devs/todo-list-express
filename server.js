@@ -41,6 +41,8 @@ app.get('/',async (request, response)=>{
 
 // if a request is made to the '/addTodo' url,
 app.post('/addTodo', (request, response) => {
+    console.log(request)
+    console.log(request.body)
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) //will go to the 'todos' collection in the database, insert one 
                                                                                        // with the inserted text and mark it as not completed
     .then(result => { // After the promise is fulfilled
