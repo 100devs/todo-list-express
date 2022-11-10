@@ -1,7 +1,12 @@
+//allows express to be used
 const express = require('express')
+//assigns app variable to express
 const app = express()
 const MongoClient = require('mongodb').MongoClient
+//assigns port variable for port being used
 const PORT = 2121
+//dotenv - a zero-dependency module that loads env variables from the .env file
+//make sure to install locally: npm install dotenv --save
 require('dotenv').config()
 
 
