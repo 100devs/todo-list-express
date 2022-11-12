@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,9 +20,14 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Items refers to our array of data sent from mongodb  -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
+                <!-- //this takes the thing property of each document and
+                puts it into a span in the dom 
+                if the item has completed == true it will be given the class
+                completed -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
@@ -36,6 +41,8 @@
 
     <h2>Add A Todo:</h2>
 
+    <!-- The action is the route, the method is the request type -->
+    <!-- The name class allows us to target the value inside the input -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">

@@ -1,6 +1,10 @@
+/* Every h1 will have a color red */
+
 h1{
     color: red;
 }
+
+/* Everything with class="completed" will have a gray color and strikethrough */
 .completed{
     color: gray;
     text-decoration: line-through;
