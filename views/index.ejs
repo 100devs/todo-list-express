@@ -42,30 +42,47 @@
                     <% if(items[i].completed===true) {%>
                         <!--EJS to check if an item in an array with a completed property is true-->
                         <span class='completed'>
+                            <!--This line creates a span with a class of 'completed', and inside the span it will pull an item from the array with the property of .thing -->
                             <%= items[i].thing %>
                         </span>
                         <% }else{ %>
+                            <!--EJs is the Else clause of our if statement-->
                             <span>
                                 <%= items[i].thing %>
+                                    <!--adding EJS/ to display task with NO class-->
                             </span>
                             <% } %>
+                                <!--EJS to close the Else statement-->
                                 <span class='fa fa-trash'></span>
+                                <!--Creates a span with class for Font Awesome icon of trashcan-->
                 </li>
+                <!--closing the list item-->
                 <% } %>
+                    <!--EJS to close the For loop-->
         </ul>
+        <!--closing our unordered list-->
 
         <h2>Left to do: <%= left %>
+                <!--heading lvl 2 with 'Left to do' displayed and uses EJS to display a variable showing how many items on task list are left to complete-->
         </h2>
 
         <h2>Add A Todo:</h2>
+        <!--This creates another header-->
 
         <form action="/addTodo" method="POST">
+            <!--Starts a form with a POST method that goes to the /addTodo route-->
             <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!--this creates an input box that allows text, placeholder is the text that appears in the box before anything is typed in, name allows us to grab the value from the input box.-->
             <input type="submit">
+            <!--gives the form a way to submit the values-->
         </form>
+        <!--closes the form tag-->
 
 
         <script src='js/main.js'></script>
+        <!--links to main.js file in the js folder within the public folder-->
     </body>
+    <!--Closing out our body tag-->
 
     </html>
+    <!--closing out our html tag-->
