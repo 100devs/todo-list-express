@@ -1,54 +1,54 @@
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+ <!DOCTYPE html>  <!-- Telling the browser what type of document will be shown -->
+<html lang="en"> <!-- Starting the HTML tag and saying that the language is English -->
+<head> <!-- Starting the head tag to store our metadata -->
+    <meta charset="UTF-8"> <!-- indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate compatibility for microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets the width of available viewing area to the width of the device screen -->
+    <title>Document</title> <!-- assign a title that appears on the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Creates a link to the font awesome icon library -->
+    <link rel="stylesheet" href="css/style.css"> <!--  Creates a link to the local stylesheet in the public folder -->
+</head> <!-- closing the header tag --> 
+<body><!-- main section for content displayed -->
+    <!DOCTYPE html><!-- This may be a typo -->
+<html lang="en"><!-- This may be a typo -->
+<head><!-- This may be a typo -->
+    <meta charset="UTF-8"><!-- This may be a typo -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- This may be a typo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- This may be a typo -->
+    <title>Document</title><!-- This may be a typo -->
+</head><!-- This may be a typo -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <h1>Todo List: </h1><!-- Main title displayed on page-->
+    <ul class="todoItems"><!-- Create unordered list and assign class to the list -->
     <!-- Items refers to our array of data sent from mongodb  -->
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!-- Use EJS to start a FOL loop -->
+        <li class="item"> <!-- Create a list item with a class of Item -->
+            <% if(items[i].completed === true) {%><!-- EJS to check if an item in an array with a completed property is true -->
                 <!-- //this takes the thing property of each document and
                 puts it into a span in the dom 
                 if the item has completed == true it will be given the class
                 completed -->
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+                <span class='completed'><%= items[i].thing %></span> <!-- Creating a span with a class and adding EJS to display the name of the task -->
+            <% }else{ %> <!-- EJS for the else clause of our if statement -->
+                <span><%= items[i].thing %></span> <!-- addine EJS to displaythe name of the task with NO CLASS -->
+            <% } %>    <!-- EJS to close the Else Statement -->
+            <span class='fa fa-trash'></span> <!-- Display fornt awesome icon of trash can inside a span -->
+        </li><!-- Closing our list item -->
+    <% } %> <!-- EJS to close our FOR loop -->
+    </ul><!-- Closing our unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Creates a second level heading tag with text and using EJS to display a variable showing how many tasks are left to complete -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Create a second level header -->
 
     <!-- The action is the route, the method is the request type -->
     <!-- The name class allows us to target the value inside the input -->
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- Create a form with a POST method that goes to the /addTodo route -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Create an input box that accepts text with default text inside of it before you type anything. The input box is given a name for later reference -->
+        <input type="submit"> <!-- Give the form a Submit button -->
+    </form> <!-- Close the form tag -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- Links to the main.js file in the js folder in the public folder -->
+</body> <!-- Close the body tag -->
+</html> <!-- Close the html tag -->
