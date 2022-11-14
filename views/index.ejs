@@ -20,10 +20,14 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- EJS template sytax, looping through the tasks and injecting the result into HTML file -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- Checks if the task was completed and applies .completed CSS class if true -->
             <% if(items[i].completed === true) {%>
+                <!-- Add the task with applied .completed class -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- If the above isn't satisfied, add the task without apllying any classes -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -31,7 +35,7 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- Adds the number of tasks left to do in a form of the 'left' variable -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
