@@ -1,47 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- typo -->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <!-- typo -->
+    <html lang="en">
+      <!-- typo -->
+      <head>
+        <!-- typo -->
+        <meta charset="UTF-8" />
+        <!-- typo -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- typo -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- typo -->
+        <title>Document</title>
+        <!-- typo -->
+      </head>
+      <!-- typo -->
+      <body>
+        <!-- display content on page -->
+        <h1>Todo List:</h1>
+        <!-- main title -->
+        <ul class="todoItems">
+          <!-- create an unorder list with a class -->
+          <% for(let i=0; i < items.length; i++) {%>
+          <!-- ejs opens a loop from items -->
+          <li class="item">
+            <!-- create a list item with a class -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <!-- ejs checks if items is completed -->
+            <span class="completed"><%= items[i].thing %></span>
+            <!-- creates a span with a class and ejs displays item-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <!-- ejs creates an else statement -->
+            <span><%= items[i].thing %></span>
+            <!-- create an span without a class with ejs displaying the item -->
+            <% } %>
+            <!-- ejs close if else staement -->
+            <span class="fa fa-trash"></span>
+            <!-- create span with an icon -->
+          </li>
+          <!-- close list item -->
+          <% } %>
+          <!-- ejs closes for loop -->
+        </ul>
+        <!-- close unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Left to do: <%= left %></h2>
+        <!-- a sedondary heading with ejs that displays a number of items left -->
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
+        <!-- adds a secundary heading -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <form action="/addTodo" method="POST">
+          <!-- opens a form with route /addTodo and Post method -->
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <!-- a txt input -->
+          <input type="submit" />
+          <!-- a submit input -->
+        </form>
+        <!-- close form -->
 
-    <script src='js/main.js'></script>
-</body>
+        <script src="js/main.js"></script>
+        <!-- read main.js script -->
+      </body>
+      <!-- typo -->
+    </html>
+    <!-- typo -->
+  </body>
+  <!-- close body -->
 </html>
+<!-- close html -->
