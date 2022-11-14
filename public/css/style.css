@@ -1,6 +1,7 @@
 h1{
     color: red;
 }
+/* Class applied to the text of the task displaying the completion status */
 .completed{
     color: gray;
     text-decoration: line-through;
