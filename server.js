@@ -25,8 +25,8 @@ app.use(express.json()) // convert request body to a JSON Object
 
 // When user requests the root '/' url, it will be served the index.ejs file 
 app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray() // first, find all items in the collection 'todos' and make an array of them
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // find all items in the collection 'todos' that have not been completed and return total number
+    //const todoItems = await db.collection('todos').find().toArray() // first, find all items in the collection 'todos' and make an array of them
+    //const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // find all items in the collection 'todos' that have not been completed and return total number
     //response.render('index.ejs', { items: todoItems, left: itemsLeft }) // render index.ejs while passing in two arguments: an array of items in the 'todos' collection; and the number itemsLeft
     db.collection('todos').find().toArray()
     .then(data => {
