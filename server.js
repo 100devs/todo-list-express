@@ -9,21 +9,24 @@ const PORT = 2121
 //make sure to install locally: npm install dotenv --save
 require('dotenv').config()
 
-
+//below we assign 3 different variables using one let. db has no value yet.
 let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+    dbConnectionStr = process.env.DB_STRING, //DB_string is being pulled from .env file and assigned to 'dbConnectionStr'
+    dbName = 'todo' //assigning 'todo' to dbName - the name of our database
 
+//below: MongoClient variable to use mongodb.. ".connect" is to connect to db. (dbConnectionStr..)is our declared variable above. takes in the DB_string from our env file.
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+//allows us render web pages using template files. So below we are setting the view engine to EJS 
 app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+
+app.use(express.static('public')) //this adds middleware for serving static files to your express app; makes it possible to access files from this folder via http. Public is where we are storing our style.css and js files.
+app.use(express.urlencoded({ extended: true })) //a bit complicated but from what i gather, extended true allows us to parse nested JSON like objects and arrays.
+
+app.use(express.json())//used to recognize incoming Request Objects as JSON Objects
 
 
 app.get('/',async (request, response)=>{

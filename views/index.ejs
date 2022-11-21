@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,63 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <!--This may be a typo-->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!--This may be a typo-->
+    <html lang="en">
+    <!--This may be a typo-->
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <!--This may be a typo-->
+        <meta charset="UTF-8">
+        <!--This may be a typo-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!--This may be a typo-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--This may be a typo-->
+        <title>Document</title>
+    </head>
+    <!--This may be a typo-->
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <!--main section for content displayed-->
+        <h1>Todo List: </h1>
+        <!--Main heading-->
+        <ul class="todoItems">
+            <!--unordered list with an assigned class of "todoItems"-->
+            <% for(let i=0; i < items.length; i++) {%>
+                <!--using ejs to start a for loop-->
+                <li class="item">
+                    <!--create a list item with a class of "item"-->
+                    <% if(items[i].completed===true) {%>
+                        <!--EJS to check if an item in an array with a completed property is true-->
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                        </span>
+                        <% }else{ %>
+                            <span>
+                                <%= items[i].thing %>
+                            </span>
+                            <% } %>
+                                <span class='fa fa-trash'></span>
+                </li>
+                <% } %>
+        </ul>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <h2>Left to do: <%= left %>
+        </h2>
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <h2>Add A Todo:</h2>
+
+        <form action="/addTodo" method="POST">
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <input type="submit">
+        </form>
+
+
+        <script src='js/main.js'></script>
+    </body>
+
+    </html>
