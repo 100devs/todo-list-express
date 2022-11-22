@@ -17,7 +17,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //creating a 
   }); //closing our .then
 
 //middleware
-app.set("view engine", "ejs"); //sets EHS as the default render method
+app.set("view engine", "ejs"); //sets EJS as the default render method
 app.use(express.static("public")); //sets the location for static assets
 app.use(express.urlencoded({ extended: true })); //tells express to decode and endcode URLs where the header matches the content
 // supports arrays and objects
@@ -121,7 +121,7 @@ app.delete("/deleteItem", (request, response) => {
       response.json("Todo Deleted"); //sending a response back to the sender
     }) //closing .then
     .catch((error) => console.error(error)); //catching errors
-}); //endign delete
+}); //ending delete
 
 app.listen(process.env.PORT || PORT, () => {
   //set up which port we will be listening on -either the port from the .env file or the port variable we set

@@ -1,16 +1,20 @@
-const deleteBtn = document.querySelectorAll(".fa-trash"); //creating a variable and assigning it to a selection of all elements with a class of the trashcan
-const item = document.querySelectorAll(".item span"); //creating a variable and assigning it to a selection of span tags inside of a parent that has a class of 'item'
-const itemCompleted = document.querySelectorAll(".item span.completed"); //creating a cariable and assigning it to a selection of spans with a class of 'completed' inside of a parent with
+const deleteBtn = document.querySelectorAll(".fa-trash"); //creating a variable and assigning it to a selection
+// of all elements with a class of the trashcan
+const item = document.querySelectorAll(".item span"); //creating a variable and assigning it to a selection of
+// span tags inside of a parent that has a class of 'item'
+const itemCompleted = document.querySelectorAll(".item span.completed"); //creating a variable and assigning it to a selection of spans with a class of 'completed' inside of a parent with
 // a class of 'item'
 
 Array.from(deleteBtn).forEach((element) => {
   //creating an array from our selection and starting a loop
-  element.addEventListener("click", deleteItem); //add an event listener to the current item tha waits for a click and then calls a function called deleteItem
+  element.addEventListener("click", deleteItem); //add an event listener to the current item tha waits for a click
+  //    and then calls a function called deleteItem
 }); //close our loop
 
 Array.from(item).forEach((element) => {
   //creating an array from our selection and starting a loop
-  element.addEventListener("click", markComplete); // add an event listener to the current item that waits for a click then calls a fucntion called markComplete
+  element.addEventListener("click", markComplete); // add an event listener to the current item that waits for
+  //   a click then calls a fucntion called markComplete
 }); //close our loop
 
 Array.from(itemCompleted).forEach((element) => {
