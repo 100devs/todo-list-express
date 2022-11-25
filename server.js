@@ -1,5 +1,4 @@
-//allows express to be used
-const express = require('express')
+const express = require('express') //allows express to be used
 //assigns app variable to express
 const app = express()
 const MongoClient = require('mongodb').MongoClient
@@ -22,25 +21,23 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     })
 //allows us render web pages using template files. So below we are setting the view engine to EJS 
 app.set('view engine', 'ejs')
-
 app.use(express.static('public')) //this adds middleware for serving static files to your express app; makes it possible to access files from this folder via http. Public is where we are storing our style.css and js files.
 app.use(express.urlencoded({ extended: true })) //a bit complicated but from what i gather, extended true allows us to parse nested JSON like objects and arrays.
-
 app.use(express.json())//used to recognize incoming Request Objects as JSON Objects
 
 
 app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()//assigning a variable that 
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+    //const todoItems = await db.collection('todos').find().toArray()//assigning a variable that 
+    //const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    //response.render('index.ejs', { items: todoItems, left: itemsLeft })
+    db.collection('todos').find().toArray()
+    .then(data => {
+         db.collection('todos').countDocuments({completed: false})
+         .then(itemsLeft => {
+            response.render('index.ejs', { items: data, left: itemsLeft })
+         })
+     })
+     .catch(error => console.error(error))
 })
 
 app.post('/addTodo', (request, response) => {

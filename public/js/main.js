@@ -1,5 +1,5 @@
 const deleteBtn = document.querySelectorAll('.fa-trash') //creating a variable and assigning it to a selection of all elements with a class of 'fa-trash'
-const item = document.querySelectorAll('.item span') //creating a variable and assigning it to a selection of span tags within a parent with the class of "item"
+const item = document.querySelectorAll('.item span.regular') //creating a variable and assigning it to a selection of span tags within a parent with the class of "item"
 const itemCompleted = document.querySelectorAll('.item span.completed') //creating a variable and assigning it to a selection of span tags with the class of "completed" within a parent with the class of "item"
 
 Array.from(deleteBtn).forEach((element)=>{//creating an array from our selection of .fa-trash and starting a loop
@@ -71,3 +71,8 @@ async function markUnComplete(){
         console.log(err)
     }
 }
+
+console.log(item)
+console.log(itemCompleted)
+
+console.log(itemText)

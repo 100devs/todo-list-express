@@ -28,50 +28,33 @@
     <html lang="en">
     <!--This may be a typo-->
 
-    <head>
-        <!--This may be a typo-->
-        <meta charset="UTF-8">
-        <!--This may be a typo-->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!--This may be a typo-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--This may be a typo-->
-        <title>Document</title>
-    </head>
+<head>
+    <!--This may be a typo-->
+    <meta charset="UTF-8">
+    <!--This may be a typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--This may be a typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--This may be a typo-->
+    <title>Document</title>
+</head>
     <!--This may be a typo-->
 
-    <body>
-        <!--main section for content displayed-->
-        <h1>Todo List: </h1>
-        <!--Main heading-->
-        <ul class="todoItems">
-            <!--unordered list with an assigned class of "todoItems"-->
-            <% for(let i=0; i < items.length; i++) {%>
-                <!--using ejs to start a for loop-->
-                <li class="item">
-                    <!--create a list item with a class of "item"-->
-                    <% if(items[i].completed===true) {%>
-                        <!--EJS to check if an item in an array with a completed property is true-->
-                        <span class='completed'>
-                            <!--This line creates a span with a class of 'completed', and inside the span it will pull an item from the array with the property of .thing -->
-                            <%= items[i].thing %>
-                        </span>
-                        <% }else{ %>
-                            <!--EJs is the Else clause of our if statement-->
-                            <span>
-                                <%= items[i].thing %>
-                                    <!--adding EJS to display task with NO class-->
-                            </span>
-                            <% } %>
-                                <!--EJS to close the Else statement-->
-                                <span class='fa fa-trash'></span>
-                                <!--Creates a span with class for Font Awesome icon of trashcan-->
-                </li>
-                <!--closing the list item-->
-                <% } %>
-                    <!--EJS to close the For loop-->
-        </ul>
-        <!--closing our unordered list-->
+<body>
+    <h1>Todo List: </h1>
+    <ul class="todoItems">
+    <% for(let i=0; i < items.length; i++) {%>
+        <li class="item">
+            <% if(items[i].completed===true) {%>
+                <span class='completed'><%= items[i].thing %></span>
+            <% }else{ %>
+                <span class="regular"><%= items[i].thing %></span>
+            <% } %>
+                <span class='fa fa-trash'></span>
+        </li>
+     <% } %>
+    </ul>
+
 
         <h2>Left to do: <%= left %>
                 <!--heading lvl 2 with 'Left to do' displayed and uses EJS to display a variable showing how many items on task list are left to complete-->
@@ -97,3 +80,33 @@
 
     </html>
     <!--closing out our html tag-->
+
+    <!--*<body>
+        --main section for content displayed--
+        <h1>Todo List: </h1>
+        --Main heading--
+        <ul class="todoItems">
+            <% for(let i=0; i < items.length; i++) {%>
+                 --using ejs to start a for loop--
+                <li class="item">
+                    --create a list item with a class of "item"--
+                    <% if(items[i].completed===true) {%>
+                        --EJS to check if an item in an array with a completed property is true--
+                        
+                        <span class='completed'>
+                            --This line creates a span with a class of 'completed', and inside the span it will pull an item from the array with the property of .thing --
+                            <%= items[i].thing %>
+                        </span>
+                        <% }else{ %>
+                            --EJs is the Else clause of our if statement--
+                            <span>
+                                <%= items[i].thing %>
+                                    --adding EJS to display task with NO class--
+                            </span>
+                            <% } %>
+                                --EJS to close the Else statement--
+                                <span class='fa fa-trash'></span>
+                                --Creates a span with class for Font Awesome icon of trashcan--
+                </li>  --closing the list item--
+                <% } %> --EJS to close the For loop--
+        </ul> --closing our unordered list-->
