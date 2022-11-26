@@ -71,8 +71,3 @@ async function markUnComplete(){
         console.log(err)
     }
 }
-
-console.log(item)
-console.log(itemCompleted)
-
-console.log(itemText)

@@ -3,7 +3,7 @@ const express = require('express') //allows express to be used
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 //assigns port variable for port being used
-const PORT = 2121
+const PORT = 2120
 //dotenv - a zero-dependency module that loads env variables from the .env file
 //make sure to install locally: npm install dotenv --save
 require('dotenv').config()
@@ -19,6 +19,8 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
+
+console.log(db)
 //allows us render web pages using template files. So below we are setting the view engine to EJS 
 app.set('view engine', 'ejs')
 app.use(express.static('public')) //this adds middleware for serving static files to your express app; makes it possible to access files from this folder via http. Public is where we are storing our style.css and js files.
