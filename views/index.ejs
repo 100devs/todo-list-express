@@ -1,47 +1,112 @@
 <!DOCTYPE html>
+<!--Tells the browser what type of doc will be shown-->
 <html lang="en">
+<!--Starts the HTML tag and is saying the language is english-->
+
 <head>
+    <!--starts our head tag-->
+    <!--starting head tag to store our meta data-->
     <meta charset="UTF-8">
+    <!--indicates what character set should be used-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--this allows web authors to choose what version of internet explorer the page should be rendered as. This is to support old legacy browsers -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--tells the device that the viewport should be the device's width (vw = 100%). the initial-scale is set to 1 which is 1 viewport pixel is qual to 1 css pixel.-->
     <title>Document</title>
+    <!--this is the title that is shown in the browser's title bar or page's tab-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--this links to the Font Awesome Icon Library-->
     <link rel="stylesheet" href="css/style.css">
+    <!--this links to our external stylesheet for CSS-->
 </head>
+<!--closes out the head tag-->
+
 <body>
+    <!--This may be a typo-->
     <!DOCTYPE html>
-<html lang="en">
+    <!--This may be a typo-->
+    <html lang="en">
+    <!--This may be a typo-->
+
 <head>
+    <!--This may be a typo-->
     <meta charset="UTF-8">
+    <!--This may be a typo-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--This may be a typo-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--This may be a typo-->
     <title>Document</title>
 </head>
-<body>
+    <!--This may be a typo-->
+
+<body> <!--main section for content displayed-->
     <h1>Todo List: </h1>
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <% if(items[i].completed===true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+                <span class="regular"><%= items[i].thing %></span>
+            <% } %>
+                <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+        <h2>Left to do: <%= left %>
+                <!--heading lvl 2 with 'Left to do' displayed and uses EJS to display a variable showing how many items on task list are left to complete-->
+        </h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <h2>Add A Todo:</h2>
+        <!--This creates another header-->
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <form action="/addTodo" method="POST">
+            <!--Starts a form with a POST method that goes to the /addTodo route-->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!--this creates an input box that allows text, placeholder is the text that appears in the box before anything is typed in, name allows us to grab the value from the input box.-->
+            <input type="submit">
+            <!--gives the form a way to submit the values-->
+        </form>
+        <!--closes the form tag-->
+
+
+        <script src='js/main.js'></script>
+        <!--links to main.js file in the js folder within the public folder-->
+    </body>
+    <!--Closing out our body tag-->
+
+    </html>
+    <!--closing out our html tag-->
+
+    <!--*<body>
+        --main section for content displayed--
+        <h1>Todo List: </h1>
+        --Main heading--
+        <ul class="todoItems">
+            <% for(let i=0; i < items.length; i++) {%>
+                 --using ejs to start a for loop--
+                <li class="item">
+                    --create a list item with a class of "item"--
+                    <% if(items[i].completed===true) {%>
+                        --EJS to check if an item in an array with a completed property is true--
+                        
+                        <span class='completed'>
+                            --This line creates a span with a class of 'completed', and inside the span it will pull an item from the array with the property of .thing --
+                            <%= items[i].thing %>
+                        </span>
+                        <% }else{ %>
+                            --EJs is the Else clause of our if statement--
+                            <span>
+                                <%= items[i].thing %>
+                                    --adding EJS to display task with NO class--
+                            </span>
+                            <% } %>
+                                --EJS to close the Else statement--
+                                <span class='fa fa-trash'></span>
+                                --Creates a span with class for Font Awesome icon of trashcan--
+                </li>  --closing the list item--
+                <% } %> --EJS to close the For loop--
+        </ul> --closing our unordered list-->
