@@ -88,6 +88,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+//controls the enviornment and allows it to host
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
