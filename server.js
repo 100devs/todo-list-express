@@ -1,13 +1,18 @@
 const express = require('express')
+// use express in this file
 const app = express()
+//setting a variable and assigning it to express
 const MongoClient = require('mongodb').MongoClient
+//use methods associated with MongoClient and talk to our DB
 const PORT = 2121
 require('dotenv').config()
+// allows us to look for variables inside of the .env file
 
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
+//declaring a variable and assigning our database connection string to it
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -21,10 +26,11 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 
-app.get('/',async (request, response)=>{
+app.get('/',async (request, response)=>{//starts a GET method when the root route is passed in, sets up req and res parameters
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
+    response.render('index.ejs', { items: todoItems, left: itemsLeft })// render EJS file and passing through the db items and the count remaining inside of an object
+
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})

@@ -1,5 +1,7 @@
 const deleteBtn = document.querySelectorAll('.fa-trash')
+// makes a variable that selects all elements with a class of fa-trash
 const item = document.querySelectorAll('.item span')
+// makes a variable and selects the span tags inside of a parent that has a class of "item"
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
 Array.from(deleteBtn).forEach((element)=>{
