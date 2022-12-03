@@ -24,21 +24,21 @@
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed'><%= items[i].thing %></span> <!--creating an inline element with a class and adding EJS to display the name of the class-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!--adding EJS to display the name of the task with no class-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--display font awesome icon of trash can inside a span-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--creates a second level heading tag with text and using EJS to display a variable showing how many tasks are left to complete-->
 
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--create an input box that accepts text with default text inside of it before you type anything. The input box is given a name for later reference-->
         <input type="submit">
     </form>
     
