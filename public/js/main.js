@@ -7,6 +7,7 @@ const itemCompleted = document.querySelectorAll('.item span.completed')
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
+// create a variable and assigning it to a selection of all elements with a class of fa-trash
 
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)

@@ -84,8 +84,8 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+app.delete('/deleteItem', (request, response) => { //starts a delete method when the delete route is passed
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS})// look inside the todos collection for the one item that has a matching name
     .then(result => {
         console.log('Todo Deleted')
         response.json('Todo Deleted')
