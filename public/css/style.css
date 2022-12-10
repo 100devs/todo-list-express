@@ -1,6 +1,9 @@
+/* h1 selector styling for our main header */
 h1{
-    color: red;
+    color: red; 
 }
+
+/* completed class styling - strike through the ToDo items when they are completed */
 .completed{
     color: gray;
     text-decoration: line-through;

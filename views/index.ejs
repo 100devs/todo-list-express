@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+	<!-- links to stylesheet - fontawesome and our css  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,24 +19,30 @@
     <title>Document</title>
 </head>
 <body>
+	<!-- draw out our html to send back to the user -->
     <h1>Todo List: </h1>
     <ul class="todoItems">
+		<!-- loops every item in the todo item and creates a new li with the class .item, the varaible items come from the function that calls this ejs file -->
     <% for(let i=0; i < items.length; i++) {%> 
         <li class="item">
-            <% if(items[i].completed === true) {%>                      <%# checks of item is completed%>
-                <span class='completed'><%= items[i].thing %></span>    <%# marks it as completed%>
-            <% }else{ %>                                                <%# if not completed show it in a different list %>
-                <span><%= items[i].thing %></span>                      <%# things to do%>
-            <% } %>    
-            <span class='fa fa-trash'></span>                           <%# delete item%>
+			<!-- Check the property of the items and either add the .completed class if it is, and if not don't add any extra classes -->
+            <% if(items[i].completed === true) {%>                      
+                <span class='completed'><%= items[i].thing %></span>    
+            <% }else{ %>                                                
+                <span><%= items[i].thing %></span>                      
+            <% } %>
+			<!-- add a trashcan using fontawesome -->
+            <span class='fa fa-trash'></span>                           
         </li>
     <% } %>
     </ul>
 
+	<!-- left is a varaible for the amount of items that have completed: false -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+	<!-- html form that allows a new ToDo to your list via a post request the server -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
