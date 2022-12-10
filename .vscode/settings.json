@@ -1,4 +1,5 @@
-{
-    "editor.fontSize": 42,
+{   
+    //sets a bigger font size to make this project stream friendly 
+    "editor.fontSize": 42, 
     "terminal.integrated.fontSize": 62
 }
