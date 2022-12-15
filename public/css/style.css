@@ -1,7 +1,9 @@
 h1{
+    /* Set the color of all <h1> elements to red*/
     color: red;
 }
 .completed{
+    /*Set the color of elements with the 'completed' class to gray and Add a line-through decoration*/
     color: gray;
     text-decoration: line-through;
 }
