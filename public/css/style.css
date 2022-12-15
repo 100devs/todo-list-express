@@ -1,6 +1,8 @@
-h1{
-    color: red;
+/* header color */
+h1{ 
+    color: red; 
 }
+/* targeting the class completed in the ejs file */
 .completed{
     color: gray;
     text-decoration: line-through;

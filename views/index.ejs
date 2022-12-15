@@ -1,33 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<!-- Instructions to the brower about what version of HTML the website is written in -->
+<html lang="en"> 
+<!--The root, language is english -->
 <head>
+ <!-- container for metadata  -->
     <meta charset="UTF-8">
+<!-- tells the browser to use the utf-8 character encoding when translating machine code into human-readable text and vice versa to be displayed in the browser -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- supports older versions of internet explorer -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- doc is responsive -->
     <title>Document</title>
+<!-- title of page -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- serve up fontawesome -->
     <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<!-- serve up css -->
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- header -->
     <ul class="todoItems">
+    <!-- list with a specifier for css -->
     <% for(let i=0; i < items.length; i++) {%>
+    <!-- ejs for loop iterating through items from server -->
         <li class="item">
+        <!-- list item with specifier -->
             <% if(items[i].completed === true) {%>
+            <!-- conditional if item completed property has a value of yes -->
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+                <!-- put the item here and give it the completed class-->
+            <% }else{ %> 
+                <!-- otherwise -->
                 <span><%= items[i].thing %></span>
+                <!-- put the item with a property of thing here -->
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- trash icon -->
         </li>
     <% } %>
     </ul>
@@ -37,11 +46,15 @@
     <h2>Add A Todo:</h2>
 
     <form action="/addTodo" method="POST">
+        <!-- route that server is listening for, Post or create method -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- text box with a placeholder and name, todoItem, or name, is what differentiates the inputs -->
         <input type="submit">
+        <!-- submit button -->
     </form>
     
 
     <script src='js/main.js'></script>
+    <!-- serve up clientside js -->
 </body>
 </html>
