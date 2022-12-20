@@ -1,14 +1,20 @@
+// activate Express framework:
 const express = require('express')
+// assign app variable to Express framework:
 const app = express()
+// activate Mongo database, and assign to MongoClient variable:
 const MongoClient = require('mongodb').MongoClient
+// assign port variable, to view app locally via localhost:
 const PORT = 2121
+// activate environment variable
 require('dotenv').config()
 
-
+// assign variables for Mongo database, connection to Mongo collection, and Mongo collection name:
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
+// 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
