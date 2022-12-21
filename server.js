@@ -12,7 +12,7 @@ require('dotenv').config()
                     // assign variables for Mongo database, connection to Mongo collection, and Mongo collection name:
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+    dbName = 'LeonToDoListComments'
 
                     // connect to the Mongo collection via dbConnectionStr variable and ensure formatting is configured correctly via useUnifiedTopology:
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
