@@ -9,39 +9,36 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- Begin a for loop with EJS -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
+                <!-- If the todo item has been completed, display it with a completed class -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- Otherwise, just display the todo item without the completed class -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- Add a trash icon that can be used to delete the todo item -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- Display the number of items left to do -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- Form for adding a new todo item -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
 
+    <!-- Import the main script file -->
     <script src='js/main.js'></script>
 </body>
 </html>
