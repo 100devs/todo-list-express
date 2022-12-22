@@ -1,6 +1,9 @@
+/* change the h1 color */
 h1{
     color: red;
 }
+
+/* change color/text-decoration of tasks marked completed */
 .completed{
     color: gray;
     text-decoration: line-through;

@@ -1,47 +1,70 @@
+<!-- required DOCTYPE declaration for html5 -->
+<!-- ensures browsers use the correct version of html and avoid quirks mode -->
 <!DOCTYPE html>
+<!-- sets the language of the document -->
 <html lang="en">
 <head>
+    <!-- tells browser to use UTF-8 character encoding  -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- allows for proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title, the text that will appear in the browser tab -->
     <title>Document</title>
+    <!-- add font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- add style.css sheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- h1 -->
     <h1>Todo List: </h1>
+    <!-- assign ul list class "todoItems" -->
     <ul class="todoItems">
+    <!-- for loop using ejs formatting -->
+    <!-- items.length refers to the number of items in the mongoDB database -->
+    <!-- items is defined in server.js line 49 -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- assign li list items the class "item" -->
         <li class="item">
+            <!-- conditional: if the item from the database has a completed property equal to true -->
             <% if(items[i].completed === true) {%>
+                <!-- then span class will be set to 'completed' and the item.thing will have the css styling specific to completed items  -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- if the item.completed property isn't true -->
             <% }else{ %>
+                <!-- then no class is added and the item will be listed normally-->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- add the trash icon from font-awesome -->
             <span class='fa fa-trash'></span>
+        <!-- close the list item -->
         </li>
+    <!-- end the for loop -->
+    <!-- loop will run the length of the items in the database, so a new li will be made for each todo item -->
     <% } %>
+    <!-- close the ul list -->
     </ul>
 
+    <!-- variable, left, defined in server.js line 49 -->
+    <!-- counts all the documents with the completed: false property-value pair and returns that number -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- h2 -->
     <h2>Add A Todo:</h2>
 
+    <!-- form to allow user to add new todo items via POST method -->
+    <!-- action is /addTodo and this request is handled by server.js line 61 -->
     <form action="/addTodo" method="POST">
+        <!-- text input with a placeholder -->
+        <!-- data sent with request will be assigned to the toDoItem property and accessed via request.body.todoItem-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- form must contain a submit -->
         <input type="submit">
+    <!-- close form -->
     </form>
     
-
+    <!-- add main.js -->
     <script src='js/main.js'></script>
 </body>
 </html>
