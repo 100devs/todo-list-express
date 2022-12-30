@@ -18,30 +18,38 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Creates H1 -->
     <h1>Todo List: </h1>
+    <!-- Creates ul -->
     <ul class="todoItems">
+        <!-- Loops through each document from our MongoDB collection which comes from the server and creates a new li for each item -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- Conditional syntax to check if the document in the MongoDB database has a completed property of true. If so, add the class of completed to the span when it puts the item into the DOM. The class will add strikethrough and turn the text grey. -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- If the item has a completed property of false then it creates a span without a class and puts the items name within. -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- Adds the trash can to each span item. -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+<!-- Number of items left to do -->
     <h2>Left to do: <%= left %></h2>
 
+<!-- Add a todo item using the form below and the H2 is a heading. -->
     <h2>Add A Todo:</h2>
-
+<!-- Action gives a route for the server to listen for -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+<!-- Links the client side JS -->
     <script src='js/main.js'></script>
 </body>
 </html>

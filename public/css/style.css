@@ -1,6 +1,8 @@
+/* Colour of the H1 is red */
 h1{
     color: red;
 }
+/* Documents / properties marked as complete will acquire a line-through and turn the text grey. */
 .completed{
     color: gray;
     text-decoration: line-through;
