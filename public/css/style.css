@@ -1,6 +1,8 @@
+ /* setting all h1 to red*/
 h1{
     color: red;
 }
+/* selecting everything with the class of completed and sets the color to gray and gives it a line through the text*/
 .completed{
     color: gray;
     text-decoration: line-through;

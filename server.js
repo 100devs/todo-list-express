@@ -4,10 +4,10 @@ const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
-
+//
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+    dbName = 'ToDoLeon'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
