@@ -56,6 +56,7 @@ app.put('/markComplete', (request, response) => {
     },{
         // sort by most recently added
         sort: {_id: -1},
+        // when set to true, if the document does not already exist, it will be created
         upsert: false
     })
     .then(result => {
@@ -78,6 +79,7 @@ app.put('/markUnComplete', (request, response) => {
     },{
         // sorts it by most recently added
         sort: {_id: -1},
+        // when set to true, if the document does not already exist, it will be created
         upsert: false
     })
     .then(result => {
@@ -100,6 +102,7 @@ app.delete('/deleteItem', (request, response) => {
     .catch(error => console.error(error))
 })
 
+//decides whether to use the port chosen in this file or by the hosting platform e.g. Cyclic/Heroku. Console logs when the server is running
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })

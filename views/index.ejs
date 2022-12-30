@@ -20,22 +20,28 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- loops through each document from our Mongo DB collection (coming from server) and creates a new li for each item/document/todo -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if the item has completed: true then we create a span with a class of completed -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- if the item has completed:false then we create a span with no class -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- adds a trashcan to each li -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
-    </ul>
 
+    
+    </ul>
+<!-- displays the number of uncompleted items -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- a form to allow the user to input new to do items, the action /addTodo gives a route for the server to listen for -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">

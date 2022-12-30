@@ -34,6 +34,7 @@ async function deleteItem(){
           })
         //waiting for response
         const data = await response.json()
+        // console log response
         console.log(data)
         //getting the page to refresh and a new get request
         location.reload()
@@ -53,13 +54,14 @@ async function markComplete(){
             // making a put request to the server
             method: 'put',
             headers: {'Content-Type': 'application/json'},
-            //sends the item text with the request body to tell our API which item to update
+            //sends the item text within the request body to tell our API which item to update
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
-        //await response from server.js and console log said response
+        //await response from server.js
         const data = await response.json()
+        // console log said response
         console.log(data)
         //refresh page and trigger get request
         location.reload()
