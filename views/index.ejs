@@ -1,47 +1,51 @@
-<!DOCTYPE html>
+<!--ejs is  rendering html in browser, allows us to script js-->
+    <!DOCTYPE html><!--start of typo-->
+
+<html lang="en"> <!--language the code is in-->
+<head><!--starting the head tag to store megadata-->
+    <meta charset="UTF-8"><!--indicated what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--sets appropriate compatibility for MicroSoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--sets width of viewing area to the width of the device screen-->
+    <title>Document</title><!--naming document-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--icons-->
+    <link rel="stylesheet" href="css/style.css"><!--link to cdd-->
+</head>
+<body>
+    <!DOCTYPE html><!--telling browser the type of document-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>    <!--end of typo-->
+
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> <!--main section for displayed content-->
+    <h1>Todo List: </h1> <!--main heading display on page-->
+    <ul class="todoItems"> <!--creating class called todoItems on the unordered list-->
+    <% for(let i=0; i < items.length; i++) {%>    <!--loop using ejs -->
 
-    <h2>Left to do: <%= left %></h2>
+        <li class="item"><!--creating a list item with a class of item -->
+            <% if(items[i].completed === true) {%> <!--checking if an item in the array with a 'completed' property is true-->
+                <span class='completed'><%= items[i].thing %></span> <!--creating a span with a class and adding EJS to display the name of the task-->
+            <% }else{ %> <!--ejs for else clause of our "if" statement-->
+                <span><%= items[i].thing %></span><!--putting a task into span with no class name , meaning no styling-->
+            <% } %>    <!--closing else statemnt in ejs-->
+            <span class='fa fa-trash'></span><!--displaying the icon for the trash can inside a span-->
+        </li> <!--closing list item-->
+    <% } %><!--closing the ejs for loop-->
+    </ul><!--closing the unordered list-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Left to do: <%= left %></h2><!--displaying the # of tasks left  -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <h2>Add A Todo:</h2><!--text above the form and button describing what to enter -->
+
+    <form action="/addTodo" method="POST"><!-- adding a from , with the action of the route /addTodo and a method of POST -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--input for text, with a place holder that has pre -written text inside and name of todoItem , name is for its value to reference later-->
+        <input type="submit"> <!--gives form a submit button-->
+    </form><!--form end-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--connecting the client side js in the public folder-->
+</body><!--ending body tag-->
+</html><!--ending html-->
