@@ -67,8 +67,11 @@ app.get("/", async (request, response) => {
   // .catch(error => console.error(error))
 });
 
-//
+// create todo and place in database
 app.post("/addTodo", (request, response) => {
+  // databse collection todos, insert document once, thing to do and set
+  // completed to false, then redirect to root route, possibly catch error
+  // and console error the error
   db.collection("todos")
     .insertOne({ thing: request.body.todoItem, completed: false })
     .then((result) => {
@@ -78,7 +81,12 @@ app.post("/addTodo", (request, response) => {
     .catch((error) => console.error(error));
 });
 
+// update document in database collection todos
 app.put("/markComplete", (request, response) => {
+  // database collection todos update one document, set completed to true,
+  // sort descending and do not create a new document if the searched for
+  // one does not exist, then console log the string given and respond with
+  // string as json, catch error if error and console error the error
   db.collection("todos")
     .updateOne(
       { thing: request.body.itemFromJS },
@@ -99,7 +107,12 @@ app.put("/markComplete", (request, response) => {
     .catch((error) => console.error(error));
 });
 
+// update document in database collection todos
 app.put("/markUnComplete", (request, response) => {
+  // database collection todos update one document, set completed to false,
+  // sort descending and do not create a new document if the searched for
+  // one does not exist, then console log the string given and respond with
+  // string as json, catch error if error and console error the error
   db.collection("todos")
     .updateOne(
       { thing: request.body.itemFromJS },
@@ -120,7 +133,11 @@ app.put("/markUnComplete", (request, response) => {
     .catch((error) => console.error(error));
 });
 
+// delete document from database collection
 app.delete("/deleteItem", (request, response) => {
+  // database collection todos delete one document, then console log
+  //  the string given and respond with string as json,
+  // catch error if error and console error the error
   db.collection("todos")
     .deleteOne({ thing: request.body.itemFromJS })
     .then((result) => {
@@ -130,6 +147,8 @@ app.delete("/deleteItem", (request, response) => {
     .catch((error) => console.error(error));
 });
 
+// listen on port given from env file or from top of this file,
+// console log that the server is running on port.
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
