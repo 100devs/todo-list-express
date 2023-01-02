@@ -1,47 +1,47 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- document type declaration for HTML5 -->
+<html lang="en"> <!-- html opening tag with lang attribute set to english -->
+<head> <!-- opening head tag -->
+    <meta charset="UTF-8"> <!-- meta self closing tag set to standard character set -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- render page as any version of edge  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- set viewport's width to device width, normal scale (zoom) -->
+    <title>Document</title> <!-- title opening and closing tags with title value -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- link to external stylesheet -->
+    <link rel="stylesheet" href="css/style.css"> <!-- link to local stylesheet -->
+</head> <!-- head closing tag -->
+<body> <!-- body opening tag -->
+    <!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> --> <!-- error? -->
+    <h1>Todo List: </h1> <!-- heading one opening and closing tags with value -->
+    <ul class="todoItems"> <!-- unordered list with class todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- ejs syntax for a for loop -->
+        <li class="item"> <!-- list item with class item -->
+            <% if(items[i].completed === true) {%> <!-- ejs syntax for an if conditional -->
+                <span class='completed'><%= items[i].thing %></span> <!-- span with class completed and ejs syntax for array value object property -->
+            <% }else{ %> <!-- ejs syntax for else -->
+                <span><%= items[i].thing %></span> <!-- span and ejs syntax for array value object property -->
+            <% } %>    <!-- ejs syntax end if -->
+            <span class='fa fa-trash'></span> <!-- span with class fa and fa-trash -->
+        </li> <!-- closing list item tag-->
+    <% } %> <!-- ejs syntax for end for loop -->
+    </ul> <!-- closing unordered list tag -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- heading two with ejs syntax of items left to do -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading two -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- send form data to addTodo file location and create document with values -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- allow text input from user with todoItem set to input value -->
+        <input type="submit"> <!-- fake button -->
+    </form> <!-- end form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- script location -->
+</body> <!-- end body -->
+</html> <!-- end html -->

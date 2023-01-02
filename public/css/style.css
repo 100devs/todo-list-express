@@ -1,6 +1,8 @@
+/* set all h1s text to color red */
 h1{
     color: red;
 }
+/* any element with class, set text color to gray and put a line through the text */
 .completed{
     color: gray;
     text-decoration: line-through;
