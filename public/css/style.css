@@ -1,6 +1,9 @@
+/* makes the h1 red */
 h1{
     color: red;
 }
+
+/* Makes all 'completed' items crossed out and grey through the completed class */
 .completed{
     color: gray;
     text-decoration: line-through;
