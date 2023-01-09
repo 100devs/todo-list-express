@@ -39,7 +39,7 @@ app.get('/',async (request, response)=>{ // READ
 app.post('/addTodo', (request, response) => { //CREATE
     // The route comes from the Action="/addTodo" on on the Form. Method= "POST"
     // Then the actual input name that has name="todoItem" this is sent in the req.body inserted below.
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) 
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false, actual: true}) 
     // The value is added to the DB with the name thing.
     .then(result => {
         console.log('Todo Added')
@@ -87,7 +87,7 @@ app.put('/markUnComplete', (request, response) => { // UPDATE
 app.put('/markDeleted', (request, response) => { // UPDATE
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
-            actual: true
+            actual: false
           }
     },{
         sort: {_id: -1},
