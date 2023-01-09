@@ -28,7 +28,7 @@ app.get('/',async (request, response)=>{ // READ
     // response.render('index.ejs', { items: todoItems, left: itemsLeft })
     db.collection('todos').find().toArray()// Puts all collection documents into an array. 
     .then(data => { // This array is then put into the data parameter. 
-        db.collection('todos').countDocuments({completed: false, actual: true}) 
+        db.collection('todos').countDocuments({completed: false, deleteClientSide: false}) 
         .then(itemsLeft => {
             response.render('index.ejs', { items: data, left: itemsLeft })
         })
@@ -39,7 +39,7 @@ app.get('/',async (request, response)=>{ // READ
 app.post('/addTodo', (request, response) => { //CREATE
     // The route comes from the Action="/addTodo" on on the Form. Method= "POST"
     // Then the actual input name that has name="todoItem" this is sent in the req.body inserted below.
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false, actual: true}) 
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false, deleteClientSide: false}) 
     // The value is added to the DB with the name thing.
     .then(result => {
         console.log('Todo Added')
@@ -87,7 +87,7 @@ app.put('/markUnComplete', (request, response) => { // UPDATE
 app.put('/markDeleted', (request, response) => { // UPDATE
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
-            actual: false
+            deleteClientSide: true
           }
     },{
         sort: {_id: -1},

@@ -22,7 +22,7 @@
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
-            <% if(items[i].actual === false) {%>
+            <% if(items[i].deleteClientSide === true) {%>
                 <span class='hidden'><%= items[i].thing %></span>                
             <% }else if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
