@@ -24,12 +24,14 @@
         <li class="item">
             <% if(items[i].deleteClientSide === true) {%>
                 <span class='deleted'><%= items[i].thing %></span>                
+                <span class='fa fa-trash deleted'></span>
             <% }else if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+                <span class='fa fa-trash'></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+                <span class='fa fa-trash'></span>
+            <% } %>              
         </li>
     <% } %>
     </ul>
