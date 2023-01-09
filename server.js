@@ -87,7 +87,7 @@ app.put('/markUnComplete', (request, response) => { // UPDATE
 app.put('/markDeleted', (request, response) => { // UPDATE
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
-            actual: false
+            actual: true
           }
     },{
         sort: {_id: -1},
