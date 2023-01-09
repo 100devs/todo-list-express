@@ -24,7 +24,7 @@
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
-            <% } else if(items[i].actual === false) {%>
+            <% } if(items[i].actual === false) {%>
                 <span class='hidden'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
