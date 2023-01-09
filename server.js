@@ -94,8 +94,8 @@ app.put('/markDeleted', (request, response) => { // UPDATE
         upsert: false
     })
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        console.log('Marked Deleted')
+        response.json('Marked Deleted')
     })
     .catch(error => console.error(error)) // throws error if promise rejected.
 
