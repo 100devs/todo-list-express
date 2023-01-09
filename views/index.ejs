@@ -19,7 +19,7 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <ul class="todoItems"> <!-- This ejs "deletes" client side, but keeps info in DB-->
     <% for(let i=0; i < items.length; i++) {%>       
             <% if(items[i].deleteClientSide === true) {%>
                 <li class="item deleted">

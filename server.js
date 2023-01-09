@@ -51,66 +51,70 @@ app.post('/addTodo', (request, response) => { //CREATE
 })
 
 app.put('/markComplete', (request, response) => { //UPDATE 
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ 
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{  //route comes from main.js response
+        // Go to DB--> 'todos' collection---> updateOne with what was sent from /markUnComplete and update the thing property with it. 
         $set: {
-            completed: true
+            completed: true // Set completed to true
           }
     },{
-        sort: {_id: -1},
+        sort: {_id: -1}, // if there is more than one of the same named item- delete the first indexed. 
         upsert: false
     })
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        console.log('Marked Complete') // send to client console.log Marked Complete
+        response.json('Marked Complete') // send to client json marcked complete
     })
     .catch(error => console.error(error)) // throws error if promise rejected.
 
 })
 
 app.put('/markUnComplete', (request, response) => { // UPDATE
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //route comes from main.js response
+        // Go to DB--> 'todos' collection---> updateOne with what was sent from /markUnComplete and update the thing property with it. 
         $set: {
-            completed: false
+            completed: false // Set completed to false (unclick.)
           }
     },{
-        sort: {_id: -1},
+        sort: {_id: -1},// if there is more than one of the same named item- delete the first indexed.
         upsert: false
     })
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        console.log('Marked Complete')// send to client console.log Marked Complete
+        response.json('Marked Complete') // send to client json marcked complete
     })
     .catch(error => console.error(error)) // throws error if promise rejected.
 
 })
 
-app.put('/markDeleted', (request, response) => { // UPDATE
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markDeleted', (request, response) => { // UPDATE // This "deletes" client side- but not really.
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //route comes from main.js response
+        // Go to DB--> 'todos' collection---> updateOne with what was sent from /markUnComplete and update the thing property with it. 
         $set: {
-            deleteClientSide: true
+            deleteClientSide: true // here we set the deleteClientSide Property to true.
           }
     },{
-        sort: {_id: -1},
+        sort: {_id: -1},// if there is more than one of the same named item- delete the first indexed.
         upsert: false
     })
     .then(result => {
-        console.log('Marked Deleted')
-        response.json('Marked Deleted')
+        console.log('Marked Deleted') // send to client console.log Marked Deleted
+        response.json('Marked Deleted') // send to client json marked deleted
     })
     .catch(error => console.error(error)) // throws error if promise rejected.
 
 })
 
 app.delete('/deleteItem', (request, response) => { // DELETE 
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //route comes from main.js respons
+    // Go to DB--> 'todos' collection---> Delete with what was sent from /deleteItem and delete the document with the thing property. 
     .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+        console.log('Todo Deleted')// send to client console.log 
+        response.json('Todo Deleted') // send to client json 
     })
     .catch(error => console.error(error)) // throws error if promise rejected.
 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+app.listen(process.env.PORT || PORT, ()=>{ // Create a port from either the .env or the PORT defined above
+    console.log(`Server running on port ${PORT}`)// console log that it's working 
 })
