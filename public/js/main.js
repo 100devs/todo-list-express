@@ -3,7 +3,7 @@ const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
 Array.from(deleteBtn).forEach((element)=>{
-    element.addEventListener('click', deleteItem)
+    element.addEventListener('click', markDeleted)
 })
 
 Array.from(item).forEach((element)=>{
@@ -14,11 +14,11 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
-async function deleteItem(){
+async function markDeleted(){
     const itemText = this.parentNode.childNodes[1].innerText // Holds the item that the user entered. 
     try{
-        const response = await fetch('deleteItem', {
-            method: 'delete',
+        const response = await fetch('markDeleted', {
+            method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
               'itemFromJS': itemText
