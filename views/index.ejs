@@ -20,14 +20,14 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%>         <!-- loops through the array got passed into the ejs by the server, runs as many time as the number of tasks -->
         <li class="item">
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed'><%= items[i].thing %></span>  <!-- if item is completed sets a class of completed and no class if not, this is used so that appropriate event listeners can be set for sending update request for marking complete and incomplete --> 
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span>   <!-- trash button for sending a delete request -->
         </li>
     <% } %>
     </ul>
