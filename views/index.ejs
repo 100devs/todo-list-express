@@ -18,8 +18,11 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- title of to do list -->
     <h1>Todo List: </h1>
+    <!-- the ul the list created with added class of todoItems -->
     <ul class="todoItems">
+        <!-- ejs of for statement that creates each item in the DB -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,10 +35,12 @@
     <% } %>
     </ul>
 
+    <!-- count of how many tasks are left to complete -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- form for adding more items to the list/post request -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
