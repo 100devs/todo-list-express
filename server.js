@@ -6,7 +6,8 @@ require('dotenv').config()
 
 
 let db,
-    dbConnectionStr = process.env.DB_STRING,
+    // dbConnectionStr = process.env.DB_STRING,
+    dbConnectionStr = 'mongodb+srv://ethan:todoapp@cluster0.7yxx2e6.mongodb.net/?retryWrites=true&w=majority',
     dbName = 'todo'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
@@ -22,17 +23,17 @@ app.use(express.json())
 
 
 app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+    // const todoItems = await db.collection('todos').find().toArray()
+    // const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    // response.render('index.ejs', { items: todoItems, left: itemsLeft })
+    db.collection('todos').find().toArray()
+    .then(data => {
+        db.collection('todos').countDocuments({completed: false})
+        .then(itemsLeft => {
+            response.render('index.ejs', { items: data, left: itemsLeft })
+        })
+    })
+    .catch(error => console.error(error))
 })
 
 app.post('/addTodo', (request, response) => {

@@ -18,28 +18,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <div class="container">
+        <h1>Todo List: </h1>
+        <ul class="todoItems">
+        <% for(let i=0; i < items.length; i++) {%>
+            <li class="item">
+                <% if(items[i].completed === true) {%>
+                    <span class='completed'><%= items[i].thing %></span>
+                <% }else{ %>
+                    <span><%= items[i].thing %></span>
+                <% } %>    
+                <span class='fa fa-trash'></span>
+            </li>
+        <% } %>
+        </ul>
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+        <form action="/addTodo" method="POST">
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <input type="submit">
+        </form>
+    </div>
     
 
     <script src='js/main.js'></script>
