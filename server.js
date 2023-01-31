@@ -86,6 +86,7 @@ app.put('/markUnComplete', (request, response) => { // UPDATE
 
 })
 
+/*
 app.put('/markDeleted', (request, response) => { // UPDATE // This "deletes" client side- but not really.
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //route comes from main.js response
         // Go to DB--> 'todos' collection---> updateOne with what was sent from /markUnComplete and update the thing property with it. 
@@ -103,6 +104,7 @@ app.put('/markDeleted', (request, response) => { // UPDATE // This "deletes" cli
     .catch(error => console.error(error)) // throws error if promise rejected.
 
 })
+*/
 
 app.delete('/deleteItem', (request, response) => { // DELETE 
     db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //route comes from main.js respons

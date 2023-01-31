@@ -17,6 +17,26 @@ Array.from(itemCompleted).forEach((element)=>{ //all event listeners to all comp
 async function markDeleted(){
     const itemText = this.parentNode.childNodes[1].innerText // Holds the item that the user entered. 
     try{
+        const response = await fetch('deleteItem', { // send response to markDeleted
+            method: 'delete',                            // it is a put request
+            headers: {'Content-Type': 'application/json'}, // should be in JSON
+            body: JSON.stringify({                          // send itemFromJS: itemText
+              'itemFromJS': itemText
+            })
+          })
+        const data = await response.json() // in the variable data we put the response in json
+        console.log(data)                   //console.log the data
+        location.reload()                   // trigger reload
+
+    }catch(err){
+        console.log(err)
+    }
+}
+// This is a client side "delete" it is actually a put request that deletes client side, but stay in the data base. 
+/*
+async function markDeleted(){
+    const itemText = this.parentNode.childNodes[1].innerText // Holds the item that the user entered. 
+    try{
         const response = await fetch('markDeleted', { // send response to markDeleted
             method: 'put',                            // it is a put request
             headers: {'Content-Type': 'application/json'}, // should be in JSON
@@ -32,7 +52,7 @@ async function markDeleted(){
         console.log(err)
     }
 }
-
+*/
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText // Holds the item that the user entered. 
     try{
