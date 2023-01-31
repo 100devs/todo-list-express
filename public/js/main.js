@@ -1,5 +1,9 @@
+//making delete button easier to access via a simple variable
+//referencing items in the ejs file, with fa being an html tag for font awesome icons
 const deleteBtn = document.querySelectorAll('.fa-trash')
+//item on to do list
 const item = document.querySelectorAll('.item span')
+//checkmark I imagine.
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
 Array.from(deleteBtn).forEach((element)=>{

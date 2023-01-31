@@ -1,4 +1,7 @@
+//this edits the size of the fonts for vsCode when you view the file
+//I turned them down to 12 then back up to 14 to help my eyes.
+
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 14
 }
