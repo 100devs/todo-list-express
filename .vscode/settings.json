@@ -1,4 +1,7 @@
-{
+//commented out to reduce font-size
+
+/*{
+
     "editor.fontSize": 42,
     "terminal.integrated.fontSize": 62
-}
+}*/
