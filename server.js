@@ -9,11 +9,19 @@ let db,    // innitialize db without a value.
     dbConnectionStr = process.env.DB_STRING, // Grabs our DB connection string from our .env
     dbName = 'todo'  // anything with dbName will reference the value 'todo' which is the name of our collection.
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // This connects our DB. 
-    .then(client => { // Client now holds the return of the connection to our DB. 
+    const connectDB = async ()=> {
+        try {
+        const con = await MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // This connects our DB. 
+        .then(client => { // Client now holds the return of the connection to our DB. 
         console.log(`Connected to ${dbName} Database`) // Console.log that once we are connected to DB
         db = client.db(dbName) // We assign db to be the Connection but specifically the 'todo' collection. 
     })
+        } catch (error) {
+            console.log(error)
+            process.exit(1)
+
+        }
+    }
     
     
 app.set('view engine', 'ejs') // allows us to use ejs. 
@@ -117,6 +125,8 @@ app.delete('/deleteItem', (request, response) => { // DELETE
 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{ // Create a port from either the .env or the PORT defined above
-    console.log(`Server running on port ${PORT}`)// console log that it's working 
+connectDB().then(()=> {
+    app.listen(process.env.PORT || PORT, ()=>{ // Create a port from either the .env or the PORT defined above
+        console.log(`Server running on port ${PORT}`)// console log that it's working 
+    })
 })
