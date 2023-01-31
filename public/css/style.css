@@ -1,6 +1,8 @@
+/*Change h1 color to red. */
 h1{
     color: red;
 }
+/*if an item is completed (clicked) this changes the color and strikes out the font*/
 .completed{
     color: gray;
     text-decoration: line-through;

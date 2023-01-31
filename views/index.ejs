@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
+<!--<body>  this shouldn't be here.
+    <!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,31 +18,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+-->
 <body>
+    <!--Header-->
     <h1>Todo List: </h1>
+    <!--Unordered list-->
     <ul class="todoItems">
+    <!--the loop that will run and add/remove/strike the data from mongo to the dom when functions from main.js run-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--list items-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <!--if statement checks to see if an item in an array with a property of 'completed' is true-->-->
+            <% if(items[i].completed === true) {%> 
+                <!-- Creates a span and uses EJS to display the name of the task -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!--Span without class completed and displaying name of the task -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!--trash icon-->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!--second header displaying what hasn't been marked complete yet-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!--the form where users can add new todo items to the list-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--submit button-->
         <input type="submit">
     </form>
     
-
+    <!--links the main.js file-->
     <script src='js/main.js'></script>
 </body>
 </html>
