@@ -1,6 +1,11 @@
-h1{
+/* here our h1 selector grabs all h1 elements, and the declaration block that follows says that the font color should be red */
+h1{ 
     color: red;
 }
+/* here, the .completed selector grabs any element with a class of 'completed' and does 2 things:
+ 1. change font color to gray
+ 2. strikethrough the text
+ */
 .completed{
     color: gray;
     text-decoration: line-through;
