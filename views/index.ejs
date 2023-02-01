@@ -1,47 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- top level boilerplate stuff here -->
+<html lang="en"> <!-- top level boilerplate stuff here -->
+<head> <!-- top level boilerplate stuff here -->
+    <meta charset="UTF-8"> <!-- top level boilerplate stuff here -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- top level boilerplate stuff here -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- top level boilerplate stuff here -->
+    <title>Document</title> <!-- title for the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- link to pull in font-awesome for those beautiful trash cans -->
+    <link rel="stylesheet" href="css/style.css"> <!-- link to the stylesheet -->
+</head> <!-- top level boilerplate stuff here -->
+<body><!-- start of the body, buddy -->
+    <!DOCTYPE html> <!-- wait, what the heck is this -->
+<html lang="en"><!-- why are we redoing the html/head -->
+<head><!-- i'm genuinely not sure, is this necessary for some reason in EJS -->
+    <meta charset="UTF-8"> <!-- or just an oversight -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- or neither... am I supposed to remove all this? -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- do I trust my gut or just stick to comments? -->
+    <title>Document</title> <!-- Regis, I think my final answer is this is NOT required a second time -->
+</head> <!-- But I'm not gonna actually remove it. Also RIP Regis. -->
+<body><!-- start of the body, buddy 2: Electric Boogaloo -->
+    <h1>Todo List: </h1> <!-- h1 element. Big & bold, unless you say otherwise. We do actually have an h1 style back in our linked CSS, so I believe this text will be red-->
+    <ul class="todoItems"> <!-- Here we come to the meat & potatoes, the ul which will be dynamically populated with database entries, or documents from a collection. -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Javascript IN HTML ? ? ? this is a for loop which starts from 0, increments 1 at a time, and goes til we run out of items -->
+        <li class="item"> <!-- regardless of any conditions, we're gonna make an <li> for each iteration through this loop. What's IN the <li>'s ? -->
+            <% if(items[i].completed === true) {%> <!-- conditional - if the current item has a 'completed' property and it is set to true... -->
+                <span class='completed'><%= items[i].thing %></span> <!-- then we create a span WITH a class of "completed" and set it's text to the value of the item's "thing" property. -->
+            <% }else{ %> <!-- otherwise... -->
+                <span><%= items[i].thing %></span> <!-- we do the same thing, minus the "completed" class -->
+            <% } %>    <!-- end of ze conditional, having created a span one way or another. -->
+            <span class='fa fa-trash'></span> <!-- trash can, baby -->
+        </li> <!-- end of the <li> -- we now loop back with i increasing by 1 to pull the next item, or finish if we're at the end. -->
+    <% } %> <!-- end of the loop-->
+    </ul> <!-- end of the list - on to other content! -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- h2 element, slightly less big & bold, and no specific styles in our CSS. But, this one does populate dynamically too! 
+        Right about ^ HERE ^ at the end of the h2, we grab 'left' which is a variable defined elsewhere... must be server-side.
+    -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- boring h2, not dynamic. Still fine though. -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- this form tag includes 2 attributes - an action of "/addTodo" which is the route the server will listen for 
+        to respond appropriately, paried with the "POST" method to further instruct the response -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input field where we place our new to-do task. This field's name attribute, "todoItem" 
+            will be included in the request body and the server will grab the value from the input to put in the database - based on that name! -->
+        <input type="submit"> <!-- just a button -->
+    </form> <!-- bye, formlecia -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- gotta link to the client-side javascript. we do so AFTER everything else in the file so that loading JS doesn't slow down page rendering -->
+</body> <!-- end of the body -->
+</html> <!-- sorry my comments here were so silly -->

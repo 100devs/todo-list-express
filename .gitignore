@@ -1,2 +1,5 @@
 node_modules
 .env
+
+# should probably add settings.json (or maybe just .vscode ?) to this file 
+# so that those text config settings don't get uploaded/cloned down, but hey, I'm just a commenter.

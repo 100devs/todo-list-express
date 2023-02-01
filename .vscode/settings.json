@@ -1,4 +1,7 @@
 {
+    /* these are vscode config settings to increase font size so code is more readable on stream.
+    I have commented out the whole thing so my font goes back to normal because, sheesh.
     "editor.fontSize": 42,
     "terminal.integrated.fontSize": 62
+    */
 }
