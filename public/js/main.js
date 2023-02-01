@@ -19,13 +19,17 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
-
+//fetch to interact with the server.js file.
 async function deleteItem(){
+    //has to grab items as nodes, grabbing the actual text
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('deleteItem', {
+            //important method here
             method: 'delete',
+            //how to respond
             headers: {'Content-Type': 'application/json'},
+            //converts js to JSON
             body: JSON.stringify({
               'itemFromJS': itemText
             })
