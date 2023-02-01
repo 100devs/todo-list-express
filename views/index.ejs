@@ -1,49 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html><!--Telling th browser what type of document will be shown-->
+<html lang="en"><!--the start of my html tags and telling the browser that the language is in english-->
+<head><!--starting our head tag to store our metadata-->
+    <meta charset="UTF-8"><!--The type of characters we are going to use-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Sets appropriate compatibility for Microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--sets the initial zoom and sizes of the page according to the device and sets the width -->
+    <title>Document</title><!--the text that appears on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--this is a link that allows us to use the icons from font awesome library-->
+    <link rel="stylesheet" href="css/style.css"><!--creates a link to the local stylesheet in the public folder-->
+</head><!--closing our head tag-->
+<body> <!--our body is the main section for content displayed-->
+    <!DOCTYPE html> <!--this may be a typo cause theres 2?-->
+<html lang="en"><!--this may be a typo cause theres 2?-->
+<head><!--this may be a typo cause theres 2?-->
+    <meta charset="UTF-8"><!--this may be a typo cause theres 2?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--this may be a typo cause theres 2?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--this may be a typo cause theres 2?-->
+    <title>Document</title><!--this may be a typo cause theres 2?-->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Todo List: </h1>
-        <ul class="todoItems">
-        <% for(let i=0; i < items.length; i++) {%>
-            <li class="item">
-                <% if(items[i].completed === true) {%>
-                    <span class='completed'><%= items[i].thing %></span>
-                <% }else{ %>
-                    <span><%= items[i].thing %></span>
-                <% } %>    
-                <span class='fa fa-trash'></span>
-            </li>
-        <% } %>
-        </ul>
+<body><!--main section for content being displayed-->
+    <div class="container"><!---->
+        <h1>Todo List: </h1><!--Main title displayed on page-->
+        <ul class="todoItems"><!--this holds an unorded list with a class of todoItems-->
+        <% for(let i=0; i < items.length; i++) {%><!--Use EJS to start a for loop-->
+            <li class="item"><!--Creates a list item with the class of item-->
+                <% if(items[i].completed === true) {%><!--Use EJS to check if certain item has a completed property of true-->
+                    <span class='completed'><%= items[i].thing %></span><!--Use EJS to insert the item in the span that was created with the class of completed-->
+                <% }else{ %><!--the else part of the item-->
+                    <span><%= items[i].thing %></span><!--if the item does not have a completed property, then use ejs to put a span with no class with the current item in the list-->
+                <% } %><!--use the ejs to end the conditional statement--> 
+                <span class='fa fa-trash'></span><!--an empty span with a class of fa fa-trash its font awesome icons to display a trash can-->
+            </li><!--we close the list item like normal-->
+        <% } %><!--EJS to close the for loop-->
+        </ul><!--the closing tag for our unordered list-->
 
-        <h2>Left to do: <%= left %></h2>
+        <h2>Left to do: <%= left %></h2><!--h2 tag using EJS to display the variable left which shows how many tasks are left to complete-->
 
-        <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2><!--h2 tag to display add a todo:-->
 
-        <form action="/addTodo" method="POST">
-            <input type="text" placeholder="Thing To Do" name="todoItem">
-            <input type="submit">
-        </form>
+        <form action="/addTodo" method="POST"><!--creates a form with a POST method that goes to the  /addTodo route when submitted-->
+            <input type="text" placeholder="Thing To Do" name="todoItem"><!--the input tag creates a field/box that we can interact with, it accepts text with the type, the placeholder is was the box says before we type in it,  and the name is what this input is going to be called so we can reference it later-->
+            <input type="submit"><!--creates a button with the type of submit so we can send the information that the form holds-->
+        </form><!--closing the form tag-->
     </div>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--linking to the main.js file that is in the js folder which we can find in the public folder-->
+</body><!--close out the body tag-->
+</html><!--close out the html tag-->
