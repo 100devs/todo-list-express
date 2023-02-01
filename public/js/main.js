@@ -6,6 +6,7 @@ const item = document.querySelectorAll('.item span')
 //checkmark I imagine.
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
+//turns data into arrays so we can work with it in the below fetch functions?
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
@@ -17,6 +18,7 @@ Array.from(item).forEach((element)=>{
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
+
 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
