@@ -1,7 +1,27 @@
-h1{
-    color: red;
+h1{  /*this selects any h1 tag in the ejs file*/
+    color: red;/*this changes the text color to red*/
+    text-decoration: underline;/*this underlines all the h1 elements*/
+}/*this closes our h1 selector*/
+.completed{/*this targets anything with a class of completed*/
+    color: gray;/*changes the text color to gray */
+    text-decoration: line-through;/*this strikes a line through the text*/
+}/*closes the selector*/
+body{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+.container{
+    text-align: center;
+    margin: 0 auto;
+    border: 1px solid red;
+    /* justify-content:center; */
+    /* align-items: center; */
+    /* padding-top: 50px; */
+
+    
+}
+.todoItems {
+    margin: 0 auto;
 }
