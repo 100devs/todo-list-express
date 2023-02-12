@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /*selector for any h1 tag*/
+    color: red;/*sets the text color to red for any h1 tagged item*/
+}/*closes the selector for the h1 tag*/
+.completed{/*creates a class called "completed"*/
+    color: gray;/*using the "completed" class changes the text color to grey*/
+    text-decoration: line-through;/*using the "completed" class also puts a line through the text*/
+}/*closes the "completed" class*/
