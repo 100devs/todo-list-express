@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html><!--sets the document type as html-->
+<html lang="en"><!--sets the language to english-->
+<head><!--opens a header area-->
+    <meta charset="UTF-8"><!--sets the character set to UTF-8-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--chooses what version of internet explorer the page should be rendered as for compatibility-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--makes the page responsive by setting the pickel-widrgh of the page to be the same as the pixel-width of the device it is viewed on-->
+    <title>To Do List</title><!--creates a title for the page-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--references the CSS stylesheet for font awesome-->
+    <link rel="stylesheet" href="css/style.css"><!--references the style css stylesheet-->
+</head><!--closes the header area-->
+<body> <!--main section for content to be displayed-->
+    <h1>Todo List: </h1><!--header 1 for title-->
+    <ul class="todoItems"><!--starts an unnumbered list with class "todoItems"-->
+    <% for(let i=0; i < items.length; i++) {%><!--begins an EJS loop-->
+        <li class="item"><!--creates a list item with a class of "item"-->
+            <% if(items[i].completed === true) {%><!--conditional statement to checked whether or not the status of an element in the items array is true or not-->
+                <span class='completed'><%= items[i].thing %></span><!--displays the element from the array with a class of "completed"-->
+            <% }else{ %><!--second part of the conditional - if the status of the element in the items array is not true, then-->
+                <span><%= items[i].thing %></span><!--display the element from the items array without the "completed" class-->
+            <% } %>    <!--close the else portion of the loop-->
+            <span class='fa fa-trash'></span><!--add a font awesome icon for a trash bin-->
+        </li><!--close the list item-->
+    <% } %><!--close the loop-->
+    </ul><!--close the unnumbered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--a header 2 for a subtitle for Left To Do with code for an EJS variable for the count of items left in the array that are not complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--header subtitle-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--created a form with action /addTodo and method of "POST"-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--sets the input type to "text," places 'Thing To Do' text in the form input box and names it "todoItem" -->
+        <input type="submit"><!--the button for the form with the word "submit" on it-->
+    </form><!--closes the form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--references the main.js file-->
+</body><!--closes the content body tag-->
+</html><!--closes the html content tag-->

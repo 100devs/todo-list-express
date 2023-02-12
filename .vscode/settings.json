@@ -1,4 +1,4 @@
-{
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
-}
+{//opens a settings tag
+    "editor.fontSize": 16, //changes the font sizes in the editor
+    "terminal.integrated.fontSize": 16 //changes the font sizes in the integrated terminal
+}//closes the settings tag
