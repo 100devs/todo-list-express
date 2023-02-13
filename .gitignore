@@ -1,2 +1,4 @@
 node_modules
 .env
+
+# when pushing to github ignore the files node_modules and .env files and dont push those

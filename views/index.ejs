@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- This line specifies the type of document this is. HTML. -->
+<html lang="en"> <!-- specifies the language of the document as english  -->
+<head> <!-- opening head tag  -->
+    <meta charset="UTF-8"> <!-- indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- sets appropriate compatibility for microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- setting viewport width to the width of the device being used -->
+    <title>Document</title> <!-- this is the displayed title of the document. would be displayed on the browser tab.  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- links the font used in the dom using a url  -->
+    <link rel="stylesheet" href="css/style.css"> <!--  links the main CSS file -->
+</head><!-- closing head tag  -->
+<body> <!-- opening body tag. what can be seen in the dom  -->
+    <!DOCTYPE html> <!--  probably a typo -->
+<html lang="en"> <!--  probably a typo -->
+<head> <!--  probably a typo -->
+    <meta charset="UTF-8"> <!--  probably a typo -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--  probably a typo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--  probably a typo -->
+    <title>Document</title> <!--  probably a typo -->
+</head> <!--  probably a typo -->
+<body> <!--the real opening body tag.  -->
+    <h1>Todo List: </h1><!-- h1 showing the name of the app todo list -->
+    <ul class="todoItems"><!-- unordered list openeing tag with the class of toDoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- embedded javascript starting a for loop -->
+        <li class="item"><!-- a unordered list item with the class of item -->
+            <% if(items[i].completed === true) {%><!-- ejs conditional stating if an item in an array has a property of completed that equals true  -->
+                <span class='completed'><%= items[i].thing %></span> <!-- span tag with class of completed and the inner content being a todo list item from an array  -->
+            <% }else{ %><!-- else of the conditional statement -->
+                <span><%= items[i].thing %></span> <!-- span of text thats inner content is a todo list item -->
+            <% } %>    <!-- closing bracket for the else statement -->
+            <span class='fa fa-trash'></span><!--span tag with the class of fa fa-trash  -->
+        </li><!-- closing unordered list tag -->
+    <% } %><!--closing bracket for the ejs for loop  -->
+    </ul> <!-- closing unordered list tag -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- h2 tag titling the number of items left to do with ejs showing the current number of uncompleted tasks -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- h2 titling the add a todo section of the app -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- opening form tag with a post method using the /addTodo route  -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- a text input with the text Thing to Do displayed before anthing is typed and a name property of todoItem -->
+        <input type="submit">  <!-- input button with the word submit on it -->
+    </form><!-- closing form tag -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!-- script tag linking the client side javascript file -->
+</body><!-- closing body tag -->
+</html><!-- closing html tag -->

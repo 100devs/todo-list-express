@@ -1,7 +1,7 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+h1{ /* h1 selector and opening bracket */
+    color: red; /* indicates the font color for all h1's be red */
+}/* closing curley bracket */
+.completed{/* selector for the class of completed  */
+    color: gray; /* indicates everything with the class of completed have the font color gray */
+    text-decoration: line-through; /* indicates everything with the class of completed have a line through it. */
+}/* closing curley bracket */
