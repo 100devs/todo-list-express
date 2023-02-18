@@ -61,7 +61,7 @@ app.put('/markComplete', (request, response) => { //start a PUT method when the 
     .catch(error => console.error(error)) //catch errors and console them
 }) //end PUT method
 
-app.put('/markUnComplete', (request, response) => { //start a PUT method when the "markUnComplete" route is passed in, set up req and res parameters
+app.put('/markUnComplete', (request, response) => { //start a PUT method when the "markUnComplete" route is passed in, set up request and response parameters
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{ //look in db for an item matching the name of the item passed in from the main.js file that was clicked
         $set: {
             completed: false //set completed status to false
@@ -77,7 +77,7 @@ app.put('/markUnComplete', (request, response) => { //start a PUT method when th
     .catch(error => console.error(error)) //catch errors and console them
 }) //end PUT method
 
-app.delete('/deleteItem', (request, response) => { //start a DELETE method when "deleteItem" route is passed in, set up req and res parameters
+app.delete('/deleteItem', (request, response) => { //start a DELETE method when "deleteItem" route is passed in, set up request and response parameters
     db.collection('todos').deleteOne({thing: request.body.itemFromJS}) //look in db for an item matching the name of the item passed in from the main.js file that was clicked on
     .then(result => { //if successful, do tasks below
         console.log('Todo Deleted') //log to console
