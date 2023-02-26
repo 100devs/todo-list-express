@@ -1,6 +1,11 @@
-h1{
+/* This rule selects the h1 heading and the color declaration changes the color of text to red. */
+h1 {
     color: red;
 }
+
+/* This rule selects the completed class and contains two declarations in the declaration block.
+The first declaration changes the color of text to gray.
+The second declaration adds a strike-through text. */
 .completed{
     color: gray;
     text-decoration: line-through;

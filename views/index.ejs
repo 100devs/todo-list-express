@@ -6,39 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/9f91d488b5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- A heading element -->
     <h1>Todo List: </h1>
+    <!-- An unordered list with a class of todoItems -->
     <ul class="todoItems">
+    <!-- Iterates through the items object -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- A listed item with a class of item -->
         <li class="item">
+            <!-- Checks if the completed property on the current items object evaluates as true -->
             <% if(items[i].completed === true) {%>
+                <!-- If true, generate a span with a class of completed that displays the thing property on the current items object -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- Otherwise the completed property on the current items object evaluates as false -->
             <% }else{ %>
+                <!-- If false, generate a span that displays the thing property on the current items object -->
                 <span><%= items[i].thing %></span>
+            <!-- Closes the if/else conditional -->
             <% } %>    
+            <!-- A span with font-awesome classes. This class displays a trash bin -->
             <span class='fa fa-trash'></span>
+            <span class='fas fa-check'></span>
+            <span class='fas fa-wrench'></span>
+        <!-- Closes the item class listed items  -->
         </li>
+    <!-- Closes the for loop -->
     <% } %>
     </ul>
-
+    <!-- A heading element that displays the left object -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- A heading element -->
     <h2>Add A Todo:</h2>
-
+    <!-- A form element that makes an HTTP POST request to the address /addTodo -->
     <form action="/addTodo" method="POST">
+        <!-- A text field that submits a string along with the POST request. The string submitted will be the value of the thing property. -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- The button to make the HTTP POST request -->
         <input type="submit">
+    <!-- Closes the form element -->
     </form>
     
 
