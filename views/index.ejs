@@ -18,13 +18,17 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- This is the EJS FILE where dynamic data updates the page and is displayed as HTML -->
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- we make a for loop and grabs the number of objects in the collection using the length property -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- where we check for the property completed and see if is equal to completed. If yes, we add the item with the class 'completed' and add the thing property  -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- if false, it will add the thing without the completed class -->
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
@@ -32,10 +36,12 @@
     <% } %>
     </ul>
 
+    <!-- here we add the left object that shows how many object we have left on the screen with the completed:false property -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- creating a form that connects with our server. Once the data is sumbitted, our server received the request. -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
