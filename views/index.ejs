@@ -19,6 +19,8 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- starts unordered list with class of 'todoItems'. EJS will loop through data array assigned in server.js get request to render to the page.
+    [response.render('index.ejs', { items: todoItems, left: itemsLeft })] -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
@@ -35,13 +37,15 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- specifies root and method for how to handle data passed in -->
+<!-- '/addTodo' is used in server.js file for post request -->
     <form action="/addTodo" method="POST">
+    <!-- assigns name to data passed in so it can be targeted in server requests -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+<!-- connects to main js for client side requests -->
     <script src='js/main.js'></script>
 </body>
 </html>
