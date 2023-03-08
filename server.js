@@ -44,9 +44,14 @@ app.use(express.json())
 
 
 app.get('/',async (request, response)=>{
+// This is telling express that it's going to have a get request on the root, and that it will have async operations
     const todoItems = await db.collection('todos').find().toArray()
+// This is defining todoItems, which is a collection in the database, and then it's making that collection into an array
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+// This is defining itemsLeft which is a subset of the items that have their completed property set to false
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
+// This is setting the response of the get request to be a render of the dynamically generated JavaScript found in the index.ejs file,
+// specifically, it wants to render the properies items and left to be the variables we just defined
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -82,47 +87,83 @@ app.put('/markComplete', (request, response) => {
 // This is finding the connection from mongo labeled 'to dos' and updating a file in the database. It's finding a document with a field
 // of thing and then going into the body of the request and updating the itemFromJS
         $set: {
+// The $ special character here denotes to Mongo that we're going to change a property
             completed: true
+// The property we'll change is completed to true
           }
+// End of the function to complete
     },{
+// This just keeps the change of $set going to other properties
         sort: {_id: -1},
+// This sets the sort to -1 which will show us the oldest change and go down the list to the youngest
         upsert: false
+// This is telling mongo that if there's no match for the put request, then don't make a new document. By default, it will insert a new document
     })
+// Close the function
     .then(result => {
+// Once all that is complete, do the following
         console.log('Marked Complete')
+// Send 'Marked Complete' to the console, confirming that everything went well
         response.json('Marked Complete')
+// Respond with some JSON saying 'Marked Complete', confirming that everything went well
     })
+// Close the function
     .catch(error => console.error(error))
-
+// If there's an error, console log the error
 })
+// Close the function
 
 app.put('/markUnComplete', (request, response) => {
+// On a put request from '/markUnComplete' do the following
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+// From the collection 'todos' update the property of thing with the value of itemFromJS that you will get from the body of the request
         $set: {
+// $ is a special character telling mongo that you're about to change something in the database
             completed: false
+// Set the completed property to false
           }
-    },{
+// End function
+        },{
+// End function and change another thing
         sort: {_id: -1},
+// Sort it so that the oldest gets shown first
         upsert: false
+// If you don't find a match to the document we asked for in the request, don't make a new document
     })
+// End function and end of updateOne
     .then(result => {
+// Once all that is done, do the following
         console.log('Marked Complete')
+// Print to the console Marked Complete so the user knows everything went well
         response.json('Marked Complete')
+// Send a response in the form of JSON saying Marked Complete so the user knows everything went well
     })
+// End function, end of promise
     .catch(error => console.error(error))
-
+// If there's an error, console log the error
 })
+// End of function, end of catch
 
 app.delete('/deleteItem', (request, response) => {
+// On a delete request from the route deleteItem, do the following
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+// Find the collection todos and then delete the property with a value of itemFromJS that you'll get from the request body
     .then(result => {
+// Then do the following
         console.log('Todo Deleted')
+// Console log Todo Deleted, so the user knows everything went well
         response.json('Todo Deleted')
+// Respond with some JSON saying Todo Deleted, so the user knows everything went well
     })
+// End the function
     .catch(error => console.error(error))
-
+// If there's an error, log it to the console
 })
-
+// End the function and the delete
 app.listen(process.env.PORT || PORT, ()=>{
+// Tell express to be listening on the port that is either the environment port set in a seperate file, or the default port which we
+// set as 2121
     console.log(`Server running on port ${PORT}`)
+// When you start that process, console log a message to say what port we're running on and to let the user know it's all working
 })
+// End the function
