@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<!DOCTYPE html><!--declaration for broswers to know this document is HTML5-->
+<html lang="en"><!--root of the HTML document with language set to english-->
+<head><!-- container that has information about HTML document-->
+    <meta charset="UTF-8"><!--sets page encoding to UTF-8. "UTF-8 (UCS Transformation Format 8) is the World Wide Web's most common character encoding. 
+        Each character is represented by one to four bytes. UTF-8 is backward-compatible with ASCII and can represent any standard Unicode character."-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--support for older versions of IE (9 and under?)-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--sets window size-->
+    <title>ToDo LIST</title><!--Page title shows up in browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--loads font-awesome fonts for use in css-->
+    <link rel="stylesheet" href="css/style.css"><!--loads style.css from public/css-->
+<!-- </head>
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -16,32 +17,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+</head>  I think this was a typo?-->
+<body><!--contains all the main contents of html page-->
+    <h1>Todo List: </h1><!--h1 container with app name-->
+    <ul class="todoItems"><!--unsorted list container-->
+    <!--ejs code to create an unordered list of tasks from DB. loops through all tasks in array receieved from DB -->
+     <!--if the item being added already completed use .completed css styling-->
+    <!--each item will get added to list and styled approtiatly if completed or not-->
+     <!--if not completed add normal styling-->
+     <!--add trashcan icon from font awesome for delete button-->
+     <!--close container for current item in array being added.-->
+     <!--end of ejs code this creates an HTML template of the list of tasks from DB-->
+     <!--ABOVE comments were for each line of ejs but broke it so I moved them above ejs code-->
+    <% for(let i=0; i < items.length; i++) {%> 
         <li class="item">
+           
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed task'><%= items[i].thing %></span>
+           
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span class = 'task'><%= items[i].thing %></span> <!--I added class = 'task' for more specifity to deal with dupicate tasks being marked compelete when delete.-->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
-    </ul>
+    </ul><!--closes unorderd list container-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--this h2 uses ejs to keep track of how many tasks are left to be completed-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--creates an H2 for indicating that form is for adding a todo-->
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"><!--form that sends a post request to server.js to add a todo to our DB and update list-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--loads our main.js file-->
+</body><!--closes body of html indicating end of main contents-->
+</html><!--closes root container-->
