@@ -1,5 +1,5 @@
 const deleteBtn = document.querySelectorAll('.fa-trash')//web api that returns elements with .fa-trash class
-const item = document.querySelectorAll('.item span')//web api that returns spans that are descendents of .item class
+const item = document.querySelectorAll('.item span.task')//web api that returns spans that are descendents of .item class
 const itemCompleted = document.querySelectorAll('.item span.completed')//web api that returns span.completed elements that are descendents of .item class
 
 //The Array.from() static method creates a new, shallow-copied Array instance from an iterable or array-like object.

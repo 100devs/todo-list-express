@@ -33,10 +33,10 @@
         <li class="item">
            
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+                <span class='completed task'><%= items[i].thing %></span>
            
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span class = 'task'><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
