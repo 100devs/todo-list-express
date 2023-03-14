@@ -16,6 +16,9 @@ Array.from(itemCompleted).forEach((element)=>{
 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
+    console.log(this)
+    console.log(this.parentNode)
+    console.log(...this.parentNode.childNodes)
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
