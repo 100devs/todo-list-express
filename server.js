@@ -9,7 +9,7 @@ let db,//stores db info for collection we want to connect to
     dbConnectionStr = process.env.DB_STRING,//gets DB_STRING from .env file needed to connect to collection
     dbName = 'todo'//stores the name of collection we will be accessing
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })//sets up a connection to MongoDB using DB_STRING
-    .then(client => {
+    .then(client => {//once connect promise is fufilled do the following while passing in client info (we don't use it here)
         console.log(`Connected to ${dbName} Database`)//logs which collection in database we are connected to
         db = client.db(dbName)//stores connection to collection dbName in db variable
     })
@@ -36,7 +36,7 @@ app.get('/',async (request, response)=>{//get request for what will show up on h
 
 app.post('/addTodo', (request, response) => {//post request with route /addToDo. When someone adds a task on form it gets routed here
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})//adds a new task in collection as an object with thing being the text from form and completed initially set to false
-    .then(result => {//when the promise from instertOne is fullfilled do the following
+    .then(result => {//when the promise from instertOne is fullfilled do the following while passing in results of fufilled promise
         console.log('Todo Added')//log what happed
         response.redirect('/')//redirect to homepage which will render the new list of tasks in using ejs
     })
@@ -69,7 +69,7 @@ app.put('/markUnComplete', (request, response) => {//put request with route /mar
         sort: {_id: -1},//in case of duplicates chooses oldest task. This causes clicking newest duplicate to change the oldest one to complete.
         upsert: false//if there is no item in db that match does not add a new one
     })
-    .then(result => {//once updateOne promise is resovled do
+    .then(result => {//once updateOne promise is resovled do the follwing
         console.log('Marked Complete')//log what happened. should be "Marked incomplete"
         response.json('Marked Complete')//sends a json response that should be "Marked Incomplete"
     })
