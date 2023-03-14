@@ -36,7 +36,7 @@
                 <span class='completed task'><%= items[i].thing %></span>
            
             <% }else{ %>
-                <span class = 'task'><%= items[i].thing %></span>
+                <span class = 'task'><%= items[i].thing %></span> <!--I added class = 'task' for more specifity to deal with dupicate tasks being marked compelete when delete.-->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
