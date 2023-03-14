@@ -34,7 +34,7 @@ async function deleteItem(){
           })
         const data = await response.json()//waits for delete response to convert to json.
         console.log(data)//logs response.json()
-        location.reload()//reloads current url (like refresh button on browser)
+        location.reload()//reloads current url (like refresh button on browser) which updates list with item removed
 
     }catch(err){//catches error if there is one from the try block and console.logs it
         console.log(err)
@@ -54,7 +54,7 @@ async function markComplete(){
           })
         const data = await response.json()//waits for response from server which is then converted to JSON
         console.log(data)//logs the json data received
-        location.reload()//reloads current url
+        location.reload()//reloads current url which updates the item to now be crossed out on list
 
     }catch(err){//if errors occur during request catches them here and logs them
         console.log(err)
@@ -74,7 +74,7 @@ async function markUnComplete(){
           })
         const data = await response.json()//awaits server response and then converts to json
         console.log(data)//logs json data
-        location.reload()//reloads current url
+        location.reload()//reloads current url and updates list with item now uncrossed out
 
     }catch(err){//catches any errors that occur during request and logs them
         console.log(err)
