@@ -21,16 +21,26 @@
 <body><!--contains all the main contents of html page-->
     <h1>Todo List: </h1><!--h1 container with app name-->
     <ul class="todoItems"><!--unsorted list container-->
-    <% for(let i=0; i < items.length; i++) {%> <!--ejs code to create an unordered list of tasks from DB. loops through all tasks in array receieved from DB -->
-        <li class="item"><!--each item will get added to list and styled approtiatly if completed or not-->
-            <% if(items[i].completed === true) {%><!--if the item being added already completed use .completed css styling-->
+    <!--ejs code to create an unordered list of tasks from DB. loops through all tasks in array receieved from DB -->
+     <!--if the item being added already completed use .completed css styling-->
+    <!--each item will get added to list and styled approtiatly if completed or not-->
+     <!--if not completed add normal styling-->
+     <!--add trashcan icon from font awesome for delete button-->
+     <!--close container for current item in array being added.-->
+     <!--end of ejs code this creates an HTML template of the list of tasks from DB-->
+     <!--ABOVE comments were for each line of ejs but broke it so I moved them above ejs code-->
+    <% for(let i=0; i < items.length; i++) {%> 
+        <li class="item">
+           
+            <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %><!--if not completed add normal styling-->
+           
+            <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span><!--add trashcan icon from font awesome for delete button-->
-        </li><!--close container for current item in array being added.-->
-    <% } %><!--end of ejs code this creates an HTML template of the list of tasks from DB-->
+            <span class='fa fa-trash'></span>
+        </li>
+    <% } %>
     </ul><!--closes unorderd list container-->
 
     <h2>Left to do: <%= left %></h2><!--this h2 uses ejs to keep track of how many tasks are left to be completed-->

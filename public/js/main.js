@@ -21,7 +21,7 @@ Array.from(itemCompleted).forEach((element)=>{
 
 //async callback function that is run when element in deleteBtn is clicked. It is async bc it has to send a delete request to server and wait for response.
 async function deleteItem(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    const itemText = this.parentNode.childNodes[1].innerText//grabs the innerText of span that has task. this is the seconde child of the parent node(li)
     console.log(this)
     console.log(this.parentNode)
     try{
@@ -78,3 +78,4 @@ async function markUnComplete(){
         console.log(err)
     }
 }
+
