@@ -22,21 +22,21 @@ Array.from(itemCompleted).forEach((element)=>{
 //async callback function that is run when element in deleteBtn is clicked. It is async bc it has to send a delete request to server and wait for response.
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText//grabs the innerText of span that has task. this is the seconde child of the parent node(li)
-    console.log(this)
-    console.log(this.parentNode)
-    try{
-        const response = await fetch('deleteItem', {
-            method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
+    console.log(this)//testing to see what "this" is. it is the span containing trash icon
+    console.log(this.parentNode)//testing to see what parentNode is. it is the li containing task and trash icon
+    try{//try catch block. tries running code below and catches error if there is one from the fetch
+        const response = await fetch('deleteItem', {//sends a delete request to server and awaits reponse
+            method: 'delete',//method of fetch is delete
+            headers: {'Content-Type': 'application/json'},//info for headers
+            body: JSON.stringify({//converts object to json string and puts into body of request
               'itemFromJS': itemText
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json()//puts delete response into data
+        console.log(data)//logs response.json()
+        location.reload()//reloads current url (like refresh button on browser)
 
-    }catch(err){
+    }catch(err){//catches error if there is one from the try block and console.logs it
         console.log(err)
     }
 }
