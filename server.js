@@ -66,7 +66,7 @@ app.put('/markUnComplete', (request, response) => {//put request with route /mar
             completed: false//sets item complete key to false in db
           }
     },{
-        sort: {_id: -1},//in case of duplicates chooses oldest task
+        sort: {_id: -1},//in case of duplicates chooses oldest task. This causes clicking newest duplicate to change the oldest one to complete.
         upsert: false//if there is no item in db that match does not add a new one
     })
     .then(result => {//once updateOne promise is resovled do
@@ -78,7 +78,7 @@ app.put('/markUnComplete', (request, response) => {//put request with route /mar
 })
 
 app.delete('/deleteItem', (request, response) => {//delete request with route /deleteItem from clicking trash can icon on a task
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})//uses task text to find in collection and then removes.(this one does not deal with duplicates?)
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS})//uses task text to find in collection and then removes.(this one does not deal with duplicates? Yeah will not necessarily delete task that trash was clicked on if there are dublicates)
     .then(result => {//once deleteOne Promise fullfilled do
         console.log('Todo Deleted')//logs what happened
         response.json('Todo Deleted')//sends json reponse of log to browser
@@ -88,5 +88,5 @@ app.delete('/deleteItem', (request, response) => {//delete request with route /d
 })
 
 app.listen(process.env.PORT || PORT, ()=>{//tells server which port to listen to. If server has preferred port in .env uses that. IF no preference uses our PORT variable (2121)
-    console.log(`Server running on port ${PORT}`)//logs what port server is running on.
+    console.log(`Server running on port ${process.env.PORT||PORT}`)//logs what port server is running on.
 })
