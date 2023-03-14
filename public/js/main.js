@@ -22,6 +22,8 @@ Array.from(itemCompleted).forEach((element)=>{
 //async callback function that is run when element in deleteBtn is clicked. It is async bc it has to send a delete request to server and wait for response.
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
+    console.log(this)
+    console.log(this.parentNode)
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
