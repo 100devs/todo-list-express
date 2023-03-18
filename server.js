@@ -1,16 +1,16 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express')//making it possibe to use express in this file
+const app = express() //setting a constant and assigning it to the instance of express
+const MongoClient = require('mongodb').MongoClient //makes is possible to use methods associated with MOngoDB and MongoClient talks to MongoDB. MongoClient is a class
+const PORT = 2121 //setting a constant to define the location where our server will be listening.
+require('dotenv').config() //allows us to look for variables inside the .env file
 
 
-let db,
-    dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
-    console.log(dbConnectionStr)
+let db, //declaring a variable called db but not assigning a value. it is a global variable
+    dbConnectionStr = process.env.DB_STRING, //declaring a variable and assigning our database connection string to it
+    dbName = 'todo' //declaring a varible and assigning the name of the database we will be using
+    console.log(dbConnectionStr)//logging to the console
     
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //
     .then(client => {
         
         console.log(`Connected to ${dbName} Database`)
