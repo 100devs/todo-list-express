@@ -1,3 +1,4 @@
+
 h1{ /*h1 selector, selecting any h1 tag in the EJS file.*/
     color: red; /*changes text color to red.*/
 } /*this closes the selector block*/
