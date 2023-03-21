@@ -1,7 +1,38 @@
+body{
+    font-family: "sono", "sans-serif";
+    margin:2%;
+    text-align: center;
+    
+
+background-image:url("madison-bracaglia-fcWAwPKpkTU-unsplash.jpg");
+
+
+}
+
 h1{
-    color: red;
+    color: rgb(96, 96, 96); 
+    
 }
 .completed{
     color: gray;
     text-decoration: line-through;
+}
+
+ul{
+    list-style-type: none;
+}
+input{
+    font-size: 16px;
+    font-size: max(16px, 1em);
+    font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    border: 2px solid grey;
+    border-radius: 4px;
+    
+}
+div{
+   
+    height: 100vw;
+    border-bottom: none;
 }
