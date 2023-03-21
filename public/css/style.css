@@ -1,7 +1,8 @@
 h1{
-    color: red;
+    color: red; /* Makes the todo list red */
 }
 .completed{
     color: gray;
     text-decoration: line-through;
+    /* When a task is clicked, text is changed to grey and marked through with a line to indicate completion */
 }

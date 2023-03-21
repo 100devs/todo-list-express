@@ -1,47 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- Tells the browser what version of HTML is being used  -->
+<html lang="en"> <!-- Opens the HTML tag, sets the language to English -->
+<head> <!-- Opens the head tag to store metadata -->
+    <meta charset="UTF-8"> <!-- sets the charset to 'UTF-8'-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Sets compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets the viewport size -->
+    <title>Document</title> <!-- Sets the title of the document -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Links to Font Awesome library -->
+    <link rel="stylesheet" href="css/style.css"> <!-- links to external CSS file in the public folder -->
+</head> <!-- closes head tag -->
+<body> <!-- Opens body tag containing main content of the document -->
+    <!DOCTYPE html> <!-- Tells the browser what version of HTML is being used  -->
+<html lang="en"> <!-- Opens the HTML tag, sets the language to English -->
+<head> <!-- Opens the head tag to store metadata -->
+    <meta charset="UTF-8"> <!-- sets the charset to 'UTF-8'-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Sets compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets the viewport size -->
+    <title>Document</title> <!-- Sets the title of the document -->
+</head> <!-- closes head tag -->
+<body> <!-- Opens body tag containing main content of the document -->
+    <h1>Todo List: </h1> <!-- Sets a heading named 'Todo List' -->
+    <ul class="todoItems"> <!-- Creates an unordered list with the class of 'todoItems' -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- Starts a for loop to loop through 'items' array -->
+        <li class="item"> <!-- Creates a list item with a class of 'item' -->
+            <% if(items[i].completed === true) {%> <!-- checks if items in the 'items' array have a completed property set to 'true' -->
+                <span class='completed'><%= items[i].thing %></span> <!-- Creates an inline element with the class of 'completed' and adding EJS 
+                 to display the name of the task using the .thing property from the item in the 'items' array-->
+            <% }else{ %> <!-- EJS for the else part of our if/else statement -->
+                <span><%= items[i].thing %></span> <!-- Adds EJS to display the items with no assigned class-->
+            <% } %> <!-- closes else statement -->   
+            <span class='fa fa-trash'></span> <!-- Displays Font Awesome trash can icon-->
+        </li> <!-- closes list item-->
+    <% } %> <!-- EJS to close for loop -->
+    </ul> <!-- closes unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Creates a heading and uses EJS to display the number of tasks left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- creates a heading -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- creates a form to post to the 'addTodo' route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- creates an input field with placeholder text and assigns 
+        the name to a unique value to reference later-->
+        <input type="submit"> <!-- sets input type to submit to give a Submit button-->
+    </form> <!-- closes form tag -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- links to external JS document in public folder-->
+</body> <!-- closes body tag -->
+</html><!-- closes HTML tag -->
