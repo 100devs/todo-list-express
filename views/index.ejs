@@ -19,20 +19,29 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+    <ul class="todoItems"> <!-- This ejs "deletes" client side, but keeps info in DB-->
+    <% for(let i=0; i < items.length; i++) {%>   <!-- loop through items -->    
+            <% if(items[i].deleteClientSide === true) {%> <!--- if item deletCli.. is true then-->
+                <li class="item deleted"> <!--- add delted to item li -->
+                <span class='deleted'><%= items[i].thing %></span>   <!--- add .deleted to span-->             
+                <span class='fa fa-trash deleted'></span>           <!--- add .deleted to trashcan-->
+                </li>                                               <!--- Close li---  Do this for completed/ uncompleted as well. Creating a new li for each posibility-->
+            <% }else if(items[i].completed === true) {%>
+                <li class="item">
                 <span class='completed'><%= items[i].thing %></span>
+                <span class='fa fa-trash'></span>
+                </li>
             <% }else{ %>
+                <li class="item">
                 <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
+                <span class='fa fa-trash'></span>
+                </li>
+            <% } %>              
+        
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--- left comes from server.js main path response render-->
 
     <h2>Add A Todo:</h2>
 
