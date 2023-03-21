@@ -1,47 +1,93 @@
 <!DOCTYPE html>
+<!-- Tells the browser what kind of document will run-->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- starting the html tag and sets the language to English-->
+  <head>
+    <!-- head tag opens-->
+    <meta charset="UTF-8" />
+    <!-- indicates which character type should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- sets appropriate compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- sets the width of available area to the width of the device screen-->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!-- Text that appears on the browser tag -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- creates a link to the font Awesome Icon library -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- links to the CSS file at the css folder located at views folder-->
+  </head>
+  <body>
+    <!-- -->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <!-- typo -->
+    <html lang="en">
+      <!-- typo -->
+      <head>
+        <!-- typo -->
+        <meta charset="UTF-8" />
+        <!-- typo -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- typo -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- typo -->
+        <title>Document</title>
+        <!-- typo -->
+      </head>
+      <!-- typo -->
+      <body>
+        <h1>Todo List:</h1>
+        <!-- Heading One -->
+        <ul class="todoItems">
+          <!-- Unordered list with class todoItems -->
+          <% for(let i=0; i < items.length; i++) {%>
+          <!-- EJS for loop to run through all the items array-->
+          <li class="item">
+            <!-- list item with class item -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <!-- if items property completed equals to true -->
+            <span class="completed"><%= items[i].thing %></span>
+            <!-- items property thing will receive class completed -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <!-- else statement, or when items completed equals false -->
+            <span><%= items[i].thing %></span>
+            <!-- render only items thing -->
+            <% } %>
+            <!-- close else statement -->
+            <span class="fa fa-trash"></span>
+            <!-- span class font awesome icons is rendered for any item-->
+          </li>
+          <!-- close list item -->
+          <% } %>
+          <!-- close for loop-->
+        </ul>
+        <!-- close unordered list tag -->
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Left to do: <%= left %></h2>
+        <!-- Heading Two rendered with a text and a variable left which contains what is left toDo from the list -->
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
+        <!-- Heading Two -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <form action="/addTodo" method="POST">
+          <!-- form action matches the method POST route activating the API request on the backend -->
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <!-- Input type text with a placeholder; the name matches the request body on the backend -->
+          <input type="submit" />
+          <!-- submit -->
+        </form>
+        <!-- form closing tag -->
 
-    <script src='js/main.js'></script>
-</body>
+        <script src="js/main.js"></script>
+        <!-- link to javascript file at js folder -->
+      </body>
+      <!-- typo  -->
+    </html>
+    <!-- typo -->
+  </body>
+  <!-- body closing tag-->
 </html>
+<!-- html closing tag-->
