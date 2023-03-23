@@ -8,7 +8,7 @@ const PORT = 2121 // this is where I want this app to run locally
 
 let db,
     dbConnectionStr = process.env.DB_STRING, // get the dbconnectionStr from the .env folder
-    dbName = 'To-do'// name of the collection we will be using
+    dbName = 'to-do'// name of the collection we will be using
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // using the parameters in .env, connect to my mongo DB
     .then(client => {
