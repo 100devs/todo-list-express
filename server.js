@@ -37,7 +37,7 @@ app.get('/',async (request, response)=>{
 })
 
 app.post('/addTodo', (request, response) => { // get the info from /todo form and post it
-    db.collection('To-do').insertOne({thing: request.body.todoItem, completed: false})// find the collection todo, insert into the property thing whatever is in the input to-do item
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})// find the collection todo, insert into the property thing whatever is in the input to-do item
     .then(result => {
         console.log('Todo Added')
         response.redirect('/')// once completed, console log and refresh so the info can be sent back to ejs to do its thing on the client side.
@@ -46,7 +46,7 @@ app.post('/addTodo', (request, response) => { // get the info from /todo form an
 })
 
 app.put('/markComplete', (request, response) => {// get the function from the js client side
-    db.collection('To-do').updateOne({thing: request.body.itemFromJS},{// find this collection, update one element, insert whatever the body from itemFromJs contains into the property thing.
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{// find this collection, update one element, insert whatever the body from itemFromJs contains into the property thing.
         $set: {// then set the property completed of this element to true
             completed: true
           }
@@ -63,7 +63,7 @@ app.put('/markComplete', (request, response) => {// get the function from the js
 })
 
 app.put('/markUnComplete', (request, response) => {// get the info sent from the js client side function markuncomplete
-    db.collection('To-do').updateOne({thing: request.body.itemFromJS},{// find this collection, update one element, insert whatever the body from itemFromJs contains into the property thing.
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{// find this collection, update one element, insert whatever the body from itemFromJs contains into the property thing.
         $set: {
             completed: false // then set the property completed of this element to false
           }
@@ -80,7 +80,7 @@ app.put('/markUnComplete', (request, response) => {// get the info sent from the
 })
 
 app.delete('/deleteItem', (request, response) => {
-    db.collection('To-do').deleteOne({thing: request.body.itemFromJS})// get the text from itemFromJs
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS})// get the text from itemFromJs
     .then(result => {
         console.log('Todo Deleted')
         response.json('Todo Deleted')
