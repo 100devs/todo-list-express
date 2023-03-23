@@ -1,11 +1,14 @@
 {
+  "homepage": "https://Thetechyteacher.github.io/todo-list-express",
   "name": "todo-list-express",
   "version": "1.0.0",
   "description": "npm install add DB_STRING to .env file",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
