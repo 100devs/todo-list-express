@@ -4,6 +4,7 @@ const app = express()//saving this invocation of express as a constant called ap
 const PORT = 2121//creating a constant that holds the location that listens for the server
 const connectDB = require('./config/database')
 const homeRoutes = require('./routes/home')
+const todoRoutes = require('./routes/todo')
 //dotenv file created to hold connection string
 require('dotenv').config({path: './config/.env'})//alows us access to the contentof the dotenv file
 connectDB()
@@ -23,7 +24,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 //used to parse incoming request json payloads
 app.use('/', homeRoutes) 
-app.use('/todo', todoRouter)
+app.use('/todos', todoRoutes)
 
 //sets up a GET method for the root route  with req and res as parameters
 // app.get('/',async (request, response)=>{

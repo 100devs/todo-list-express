@@ -2,6 +2,9 @@ h1{
     color: red;
 }
 .completed{
-    color: gray;
     text-decoration: line-through;
+    color: gray;
+}
+.not{
+    text-decoration: underline;
 }
