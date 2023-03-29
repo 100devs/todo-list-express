@@ -46,13 +46,18 @@ app.get("/", async (request, response) => {
     response.render("index.ejs", { items: todoItems, left: itemsLeft });
 });
 
+// Add a custom request handler to the POST method of the '/addTodo' path. The route of the post request is '/addTodo' from the form on our index.ejs.
 app.post("/addTodo", (request, response) => {
+    // Access the 'todos' collection in our database and insert a new document to our 'todos' collection. The new documents 'thing' property will use the requests.body.todoItem and it's completed property will default to false.
     db.collection("todos")
         .insertOne({ thing: request.body.todoItem, completed: false })
+        // When the Promise resolves we then log "Todo Added" to the console
         .then((result) => {
             console.log("Todo Added");
+            // We refresh the page
             response.redirect("/");
         })
+        // Any errors are console.error logged to the console.
         .catch((error) => console.error(error));
 });
 
