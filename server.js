@@ -61,7 +61,9 @@ app.post("/addTodo", (request, response) => {
         .catch((error) => console.error(error));
 });
 
+// Add a custom request handler for the PUT method of the "/markComplete" path
 app.put("/markComplete", (request, response) => {
+    // Access the todos collection and run the updateOne method on it. It uses the $set operator telling our database to change the completed property to true.
     db.collection("todos")
         .updateOne(
             { thing: request.body.itemFromJS },
@@ -70,19 +72,24 @@ app.put("/markComplete", (request, response) => {
                     completed: true,
                 },
             },
+            // Attempt to sort the document _id's descending to get the latest document first - this works because the `_id` is a `ObjectId` and these contain the second they were created encoded within them.
             {
                 sort: { _id: -1 },
                 upsert: false,
             }
         )
+        // After the update is successful, redirect the user to the '/' path.
         .then((result) => {
             console.log("Marked Complete");
             response.json("Marked Complete");
         })
+        // If this operation fails, then log the error to the console.
         .catch((error) => console.error(error));
 });
 
+// Add a custom request handler for the PUT method of the "/markComplete" path
 app.put("/markUnComplete", (request, response) => {
+    // Access the todos collection and run the updateOne method on it. It uses the $set operator telling our database to change the completed property to false.
     db.collection("todos")
         .updateOne(
             { thing: request.body.itemFromJS },
