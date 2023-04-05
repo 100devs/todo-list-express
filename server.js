@@ -6,7 +6,7 @@ const PORT = 2121 //sets up a port where our server will listen to
 require('dotenv').config() //allows to look for variables inside an env file
 
 
-let db, //asign varaible db
+let db, //assign varaible db
     dbConnectionStr = process.env.DB_STRING, //find the variable DB_STRING in .env file and assign it to variable dbConnectionStr
     dbName = 'todo' //assign a name todo to the db Name. 
 
