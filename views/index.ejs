@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!--declare the browser what the type of document will be-->
+<html lang="en"> <!-- set language to english -->
+<head> <!--create head to put metadata information and links -->
+    <meta charset="UTF-8"> <!-- indicate what character set should be displayed -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--appropriate compatibility for microsoft browser -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- enable responsiveness by setting the width of avaliable viewing area to the width of the device screen-->
+    <title>Document</title> <!--title of the browser tab  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- link to the font awesome icons-->
+    <link rel="stylesheet" href="css/style.css"> <!--links the css file  -->
 </head>
-<body>
+<body> 
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,31 +17,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+<body> <!-- main section of the body-->
+    <h1>Todo List: </h1> <!-- heading todo list -->
+    <ul class="todoItems"> <!--unordered list with class todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!--loop through the items length  -->
+        <li class="item"> <!-- create a list of class item-->
+            <% if(items[i].completed === true) {%> <!-- conditional to say if the item index completed is equal to true-->
+                <span class='completed'><%= items[i].thing %></span> <!-- add span with a class of completed and the thing -->
+            <% }else{ %> <!-- if not then add span with thing-->
                 <span><%= items[i].thing %></span>
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!--icon of trash in span -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- display the left in the heading-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading to say add to do -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- create a form that has a route of addTodo, and the mehthod it will pass to the server is POST -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input text box  -->
+        <input type="submit"> <!-- gives form a submit button -->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--links to the main.js file  -->
 </body>
 </html>
