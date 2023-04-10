@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!--HTML doctype-->
+<html lang="en"><!--language english-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8"><!--defines characters to use-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--browser compatibility-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--define initial viewport scaling-->
+    <title>Document</title><!--head that goes in tab description-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--use this stylesheet-->
+    <link rel="stylesheet" href="css/style.css"><!--use this stylesheet-->
 </head>
 <body>
     <!DOCTYPE html>
@@ -18,24 +18,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <h1>Todo List: </h1><!--header 1-->
+    <ul class="todoItems"><!--ul with class-->
+        <!--ejs in brackets, creates a for-loop that generates an li for each item in the items array-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!--if item in loop is in the completed section, give that span the completed class-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!--else, post the item in a span without any special class-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!--give all items an trash can icon at the end-->    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!--displays count of how many things are left to be done on the todolist-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!--adds form that has the CRUD action POST, will send input to request, /addToDo-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
