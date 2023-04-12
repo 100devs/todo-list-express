@@ -25,7 +25,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         db = client.db(dbName)
         // deecho "# todo-list-work" >> README.md
 
-mainfines the database that it will work with
+// mainfines the database that it will work with
     })
     
 app.set('view engine', 'ejs')
