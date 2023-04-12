@@ -54,31 +54,54 @@ app.get('/',async (request, response)=>{
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
 //    rendering items left on the 'todo' list after you have iterated through the items
    
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+    db.collection('todos').find().toArray()
+    // goes to database inn the collection of 'todo's, then asks the get to find the item and return it as an array
+        .then(data => {
+        // then  once that data has been grabbed
+            db.collection('todos').countDocuments({ completed: false })
+            // go to the database collection of 'todo's. count the number of documents and it the items are showing as false
+                .then(itemsLeft => {
+            // with the items that are left
+                    response.render('index.ejs', { items: data, left: itemsLeft })
+                    // render the response into index.ejs, responding witht eh items left qhich are now called data and left wich are now called itemsLeft
+                })
+            // close then block
+        })
+        // close first then block
+        .catch(error => console.error(error))
+    // if nothing can be returned then return an error
 })
+// close full block
 
 app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
-    })
-    .catch(error => console.error(error))
+    // post request, posting to the todo route. tells what request and response to return
+    db.collection('todos').insertOne({ thing: request.body.todoItem, completed: false })
+        // go to database, look at the collection called 'todos' onsert one thin. that thing will come from request body under rhee todo items but the complteted status will be false
+        .then(result => {
+        // then witht the results
+            console.log('Todo Added')
+            // console log todo added
+            response.redirect('/')
+            // server is then refreshed
+        })
+        // close the then block
+        .catch(error => console.error(error))
+    // catch any errors and console log them
 })
+// close post block
 
 app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+    // this is the update function posting to the markcomplete route. request and response 
+    db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
+        // go to database collection todo, update one item in the items marked things. request the body in the items from JS section
         $set: {
+            // set
             completed: true
-          }
-    },{
+            // complete items to true. once it is marked as complete it now becomes true, this triggers css which turns the line gray and strikes a line through it.
+        }
+        // block this code
+    }, {
+        // closes completed block and opens new closure
         sort: {_id: -1},
         // Once a thing has been marked as completed this sorts the aray by descening order by ID
         upsert: false
