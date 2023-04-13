@@ -45,11 +45,11 @@ app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     // go to 'todo' database and converts to an array of objects called 'toDo'
     // create a variable 'todoItems' it waits for server to get the information ** Create a constant called "todo items" that goes into our database, create a collection called "todos", find anything in that database, and turn it into an array of objects
-    const itemsLeft = await db
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     // Creates a constant in our todos collection
-    .collection('todos')
+    
     // Looks at documents in the collection
-    .countDocuments({completed: false})
+    
 // these are all items still waiting to be done.  The .countDocuments method counts the number of documents that have a completed status equal to "false" (You're going and counting how many to-do list items haven't been completed yet. "what is still left on the agenda?") 
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
 //    rendering items left on the 'todo' list after you have iterated through the items
