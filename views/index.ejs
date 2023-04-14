@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Document</title>
+            </head>
+            <body>
+                <h1>Todo List: </h1>
+                <ul class="todoItems">
+                    <!-- looping over for as many elements inside 'items' array of objects-->
+                    <% for(let i=0; i < items.length; i++) {%>
+                        <!-- in every iteration, it's creating a new li -->
+                        <li class="item">
+                            <!-- if item has completed value of true, add span with class of completed-->
+                            <% if(items[i].completed===true) {%>
+                                <span class='completed'>
+                                    <%= items[i].thing %>
+                                </span>
+                                <!-- else - create a span with no class -->
+                                <% }else{ %>
+                                    <span>
+                                        <%= items[i].thing %>
+                                    </span>
+                                    <% } %>
+                                        <!-- create span with font awesome trash symbol for each todo item -->
+                                        <span class='fa fa-trash'></span>
+                        </li>
+                        <% } %>
+                </ul>
+                <!-- render left with key value pair from server js  -->
+                <h2>Left to do: <%= left %>
+                </h2>
 
-    <h2>Left to do: <%= left %></h2>
+                <h2>Add A Todo:</h2>
 
-    <h2>Add A Todo:</h2>
+                <!-- sets up the form with POST method at the route of /addTodo -->
+                <form action="/addTodo" method="POST">
+                    <!-- name ties into the request.body.todoItem in the server.js code for POST -->
+                    <input type="text" placeholder="Thing To Do" name="todoItem">
+                    <input type="submit">
+                </form>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+                <script src='js/main.js'></script>
+            </body>
+        </html>
