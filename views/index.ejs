@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html>                 <!-- rendering out to html./ Telling browser what type of doc to expect -->
+<html lang="en">                <!-- language is english -->
+<head>                          <!-- storing our metadata -->
+    <meta charset="UTF-8">  <!-- charset used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate compatability for miscrisoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets width of the viewing area to the width of the device being used -->
+    <title>Document</title> <!-- the title of the page shown on the browser -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- used for fa icons -->
+    <link rel="stylesheet" href="css/style.css"> <!-- using our css in the public folder -->
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!DOCTYPE html> <!-- typo? -->
+<html lang="en"> <!-- typo? -->
+<head> <!-- typo? -->
+    <meta charset="UTF-8"> <!-- typo? -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- typo? -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- typo? -->
+    <title>Document</title> <!-- typo? -->
+</head> <!-- typo? -->
+<body>  <!-- main section for content to be displayed -->
+    <h1>Todo List: </h1>    <!-- main title displayed on page -->
+    <ul class="todoItems">  <!-- creating an unordered list, assigning class to the list -->
+    <% for(let i=0; i < items.length; i++) {%>     <!-- this loops through the items(data) passed into ejs from the serverside code -->
+        <li class="item">   <!-- list with the class of item -->
+            <% if(items[i].completed === true) {%> <!-- if the item has a key:value pair of completed:true, then something happens -->
+                <span class='completed'><%= items[i].thing %></span> <!-- when completed:true, the items are inserted into a span with a class of completed -->
+            <% }else{ %> <!-- if the key:value of completed:??? is anything other than true, then something else happens -->
+                <span><%= items[i].thing %></span> <!-- when completed != true, added to a span with no class -->
+            <% } %>    <!-- closing else statement -->
+            <span class='fa fa-trash'></span> <!-- this is an icon for the  -->
+        </li> <!-- closing list -->
+    <% } %> <!-- closing for loop -->
+    </ul> <!-- closing unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- a smaller heading that shows the amount of tasks that are remaining to be completed. Inserts the "left" variable -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading for adding a new item to do -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- this is a form that we insert to-dos in. It connects the form to the serverside, /addTodo is the part in an app.post, specified that it is a post method.  -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- this is where we specifically input the text for the todo we want to add. Specifies that it is text. Establishes a placeholder so user knows what to enter.  -->
+        <input type="submit"> <!-- another input that allows us to submit the thing to do.  -->
+    </form> <!-- closing form -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- specifies that main.js is the clientside js being used.  -->
+</body> <!-- closing body -->
+</html> <!-- ending html -->
