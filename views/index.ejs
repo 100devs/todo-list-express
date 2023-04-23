@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+<!-- sets the lang to engish -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- links the css link to cloudflare -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- links css to css/style.css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,26 +21,36 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- h1 -->
     <h1>Todo List: </h1>
+    <!-- ul class todoitems -->
     <ul class="todoItems">
+    <!-- for loop -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- identifies li class item -->
         <li class="item">
+            <!-- if item = true it display completed -->
             <% if(items[i].completed === true) {%>
+                <!-- displays completed item -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- else displays item[i].thing -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- trash symbol -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!-- displays left  -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- form with action /addTodo with method POST -->
     <form action="/addTodo" method="POST">
+        <!-- text inpute with name todoItem -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- input with type submit -->
         <input type="submit">
     </form>
     

@@ -1,7 +1,13 @@
+/* identifies html tag h1*/
 h1{
+/* sets text color to red */
     color: red;
 }
+/* identifies html class tag .completed*/
+
 .completed{
+    /* sets text color to gray */
     color: gray;
+    /* adds a line through the text */
     text-decoration: line-through;
 }
