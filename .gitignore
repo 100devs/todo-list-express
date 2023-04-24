@@ -1,2 +1,3 @@
+# git ingnores the following files/folders
 node_modules
 .env
