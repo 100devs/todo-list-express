@@ -16,7 +16,7 @@ Array.from(itemCompleted).forEach((element)=>{ //organizes all elements within v
 
 async function deleteItem(){ //starts function block, with async/await syntax
     const itemText = this.parentNode.childNodes[1].innerText  //'this' refers to the element clicked on. Refer to parent element, then drop down to the child's innerText. Store this inner text in the variable 'itemText'
-    try{
+    try{ //begin try block
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
