@@ -20,7 +20,8 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <!-- EJS allows us to implement JS with HTML syntax to dynamically generate HTML files. Here we are using a for loop to generate as many li elements as needed, and a conditional if else for their contained spans -->
+        <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
