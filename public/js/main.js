@@ -14,44 +14,50 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+// send a delete request to the server 
 async function deleteItem(){
+    // select the second child node of the parent node of the delete button
     const itemText = this.parentNode.childNodes[1].innerText
+    // try to ...
     try{
-        const response = await fetch('deleteItem', {
+        const response = await fetch('deleteItem', { // use the fetch API to delete todo item
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'itemFromJS': itemText
+              'itemFromJS': itemText // send the text in JSON format
             })
           })
         const data = await response.json()
-        console.log(data)
-        location.reload()
-
+        console.log(data) // console.log message sent from server 
+        location.reload() // render the page 
+    // if it doesn't work...
     }catch(err){
-        console.log(err)
+        console.log(err) //... log error message in the console
     }
 }
 
+// send a put request to the server to mark the todo as completed
 async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+    // select the second child node of the parent node of the task 
+    const itemText = this.parentNode.childNodes[1].innerText 
     try{
-        const response = await fetch('markComplete', {
+        const response = await fetch('markComplete', { // use the fetch API to update todo item
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                'itemFromJS': itemText
+                'itemFromJS': itemText // send the text in JSON format
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-
+        const data = await response.json() 
+        console.log(data) // console.log message sent from server 
+        location.reload() // render the page 
+    // if it doesn't work...
     }catch(err){
-        console.log(err)
+        console.log(err) //... log error message in the console
     }
 }
 
+// send a put request to the server to mark the todo as incomplete
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{

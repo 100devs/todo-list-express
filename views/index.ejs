@@ -19,9 +19,11 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- loop through the todo items to display them  -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if the todo item is completed, give it class completed -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
