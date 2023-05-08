@@ -72,10 +72,11 @@ app.put('/markComplete', (request, response) => { // set route handler for the P
 
 })
 
+// UPDATE request to mark the todo as incomplete 
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
-            completed: false
+            completed: false  // set the todo property to incomplete 
           }
     },{
         sort: {_id: -1},
