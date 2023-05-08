@@ -14,22 +14,25 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+// send a delete request to the server 
 async function deleteItem(){
+    // select the second child node of the parent node of the delete button
     const itemText = this.parentNode.childNodes[1].innerText
+    // try to ...
     try{
-        const response = await fetch('deleteItem', {
+        const response = await fetch('deleteItem', { // use the fetch API to delete todo item
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'itemFromJS': itemText
+              'itemFromJS': itemText // send the text in JSON format
             })
           })
         const data = await response.json()
-        console.log(data)
-        location.reload()
-
+        console.log(data) // console.log message sent from server 
+        location.reload() // render the page 
+    // if it doesnt't work...
     }catch(err){
-        console.log(err)
+        console.log(err) //... log error message in the console
     }
 }
 
