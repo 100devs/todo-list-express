@@ -1,47 +1,66 @@
-<!DOCTYPE html>
+<!--Indicate document type is html 5-->
+<!DOCTYPE html> 
+<!--Confirm english as language-->
 <html lang="en">
+<!--Begin head tag-->
 <head>
+<!--Set Character encoding-->
     <meta charset="UTF-8">
+<!--Set compatability for Internet Explorer-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--Set viewport properties-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--Set Title of document-->
     <title>Document</title>
+<!--Adds link to font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!--Links CSS file to add custom styles-->
     <link rel="stylesheet" href="css/style.css">
+<!--End head tag-->
 </head>
+<!--Begin body tag-->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<!--Show h1 tag that says 'Todo List:'-->
     <h1>Todo List: </h1>
+<!--Begin unordered list with class of todoItems-->
     <ul class="todoItems">
+<!--Loop through each element of 'items' array-->
     <% for(let i=0; i < items.length; i++) {%>
+<!--Open a list tag w/ item class-->
         <li class="item">
+<!--Begin conditional if item is completed-->
             <% if(items[i].completed === true) {%>
+<!--Add class completed to item if completed is true (within a span)-->
                 <span class='completed'><%= items[i].thing %></span>
+<!--If not, then...-->
             <% }else{ %>
+<!--Add item normally if not compelted-->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+<!--End conditional-->
+            <% } %>   
+<!--Adds trash icon-->
             <span class='fa fa-trash'></span>
+<!--Close list tag-->
         </li>
+<!--End loop-->
     <% } %>
+<!--Clost unordered list tag-->
     </ul>
-
+<!--Display # of items left-->
     <h2>Left to do: <%= left %></h2>
-
+<!--Display h2 tag that says 'Add A Todo:'-->
     <h2>Add A Todo:</h2>
-
+<!--Open form to add todo item, includes route and method name-->
     <form action="/addTodo" method="POST">
+<!--Add a text into input, has words in input that says 'Thing To Do'-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+<!--Creates submit button-->
         <input type="submit">
+<!--Closes form tag-->
     </form>
-    
-
+<!--Adds script tag to link to with path-->
     <script src='js/main.js'></script>
+<!--Closes body tag-->
 </body>
+<!--Closses html tag-->
 </html>

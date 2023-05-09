@@ -1,2 +1,2 @@
-node_modules
-.env
+node_modules  #ignores node modules folder
+.env # ignores .env file

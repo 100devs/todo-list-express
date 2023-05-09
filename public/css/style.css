@@ -1,6 +1,8 @@
+/*Code to change h1 tag font color to red*/
 h1{
     color: red;
 }
+/*"completed" class will have the following properties: font color gray, strike through line through text*/
 .completed{
     color: gray;
     text-decoration: line-through;
