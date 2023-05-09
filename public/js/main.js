@@ -17,56 +17,56 @@ Array.from(itemCompleted).forEach((element)=>{ //organizes all elements within v
 async function deleteItem(){ //starts function block, with async/await syntax
     const itemText = this.parentNode.childNodes[1].innerText  //'this' refers to the element clicked on. Refer to parent element, then drop down to the child's innerText. Store this inner text in the variable 'itemText'
     try{ //begin try block
-        const response = await fetch('deleteItem', {
-            method: 'delete',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              'itemFromJS': itemText
-            })
+        const response = await fetch('deleteItem', { //await response from fetch call
+            method: 'delete', //name of method
+            headers: {'Content-Type': 'application/json'}, //sets headers for request, specifically json 
+            body: JSON.stringify({ //retrieve body of request and returns as json data
+              'itemFromJS': itemText //data  is sent to server in the request body
+            }) 
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() //parses response as JSON data
+        console.log(data) //console log data variable
+        location.reload() //reloads current page to show update
 
-    }catch(err){
-        console.log(err)
+    }catch(err){ //catches and logs errors that may occur
+        console.log(err) //console log the error if needed
     }
 }
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
+async function markComplete(){ //starts function block, with async/await syntax
+    const itemText = this.parentNode.childNodes[1].innerText //'this' refers to the element clicked on. Refer to parent element, then drop down to the child's innerText. Store this inner text in the variable 'itemText'
+    try{ //begin try block
+        const response = await fetch('markComplete', { //await response from fetch call
+            method: 'put', //name of method
+            headers: {'Content-Type': 'application/json'}, //sets headers for request, specifically json 
+            body: JSON.stringify({ //retrieve body of request and returns as json data
+                'itemFromJS': itemText //data  is sent to server in the request body
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() //parses response as JSON data
+        console.log(data)  //console log data variable
+        location.reload()  //reloads current page to show update
 
-    }catch(err){
-        console.log(err)
+    }catch(err){  //catches and logs errors that may occur
+        console.log(err)  //console log the error if needed
     }
 }
 
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
+async function markUnComplete(){ //starts function block, with async/await syntax
+    const itemText = this.parentNode.childNodes[1].innerText //'this' refers to the element clicked on. Refer to parent element, then drop down to the child's innerText. Store this inner text in the variable 'itemText'
+    try{ //begin try block
+        const response =  await fetch('markUnComplete', { //await response from fetch call
+            method: 'put', //name of method
+            headers: {'Content-Type': 'application/json'}, //sets headers for request, specifically json 
+            body: JSON.stringify({ //retrieve body of request and returns as json data
+                'itemFromJS': itemText //data  is sent to server in the request body
             })
           })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() //parses response as JSON data
+        console.log(data) //console log data variable
+        location.reload() //reloads current page to show update
 
-    }catch(err){
-        console.log(err)
+    }catch(err){ //catches and logs errors that may occur
+        console.log(err) //console log the error if needed
     }
 }
