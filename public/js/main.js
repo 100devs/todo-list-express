@@ -34,8 +34,10 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    // select the element clicked on
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        // we make a request to our server.js
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -43,8 +45,10 @@ async function markComplete(){
                 'itemFromJS': itemText
             })
           })
+        // we wait for the response from the server.
         const data = await response.json()
         console.log(data)
+        // refresh the current page.
         location.reload()
 
     }catch(err){
