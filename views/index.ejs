@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!-- Declaration of HTML document type -->
+<html lang="en"> <!-- Use English language -->
+<head> <!-- Header tag -->
+    <meta charset="UTF-8"> <!-- Sets charset to UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Sets compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets viewport size -->
+    <title>Document</title> <!-- Sets the title of the document -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Links to Font Awesome CSS file -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Links to CSS file in the public folder -->
 </head>
-<body>
+<body> <!-- Opens the body tag which contains the main content of the document -->
     <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8"> <!-- Sets charset to UTF-8 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Sets compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets viewport size -->
+    <title>Document</title> <!-- Sets the title of the document -->
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+<body> <!-- Opens the body tag which contains the main content of the document -->
+    <h1>Todo List: </h1> <!-- Heading named "Todo List:" -->
+    <ul class="todoItems"> <!-- Unordered list with class type "todoItems" -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- For loop over the "items" array -->
+        <li class="item"> <!-- Creates a list item with class "item" -->
+            <% if(items[i].completed === true) {%> <!-- Checks to see if items in the "items" array have a completed property set to "true" -->
+                <span class='completed'><%= items[i].thing %></span> <!-- Creates an element with the class of "completed" and display the name of the task using the .thing property from the item in the "items" array -->
+            <% }else{ %> <!-- ELSE part of the IF statement -->
+                <span><%= items[i].thing %></span> <!-- Adds items with no assigned class -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- Adds Font Awesome trash can icon -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Heading named "Left to do:" -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Heading named "Add A Todo:" -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- Form with POST request and action set on route /addTodo -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Input field with placeholder text and a specified name to be referenced later -->
+        <input type="submit"> <!-- Sets input type to submit which generates a button -->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- Links to JS file in public folder -->
 </body>
 </html>
