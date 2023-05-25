@@ -1,47 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!--lets browser know how to handle doc-->
+<html lang="en"><!--start of html doc and sets language to english-->
+<head><!--open head to store metadata -->
+    <meta charset="UTF-8"><!--sets character encoding set-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--for compatibilty with MS browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- sets viewing area to device width at 100% scale-->
+    <title>Document</title><!--gives title that is displayed in browser tab and used elsewhere-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--links to styles for specific set of icon fonts-->
+    <link rel="stylesheet" href="css/style.css"><!--links to styles for site-->
+</head><!--closes head-->
 
-    <h2>Left to do: <%= left %></h2>
+<body><!--duplicate for some reason-->
+    <!DOCTYPE html><!--duplicate for some reason-->
+<html lang="en"><!--duplicate for some reason-->
+<head><!--duplicate for some reason-->
+    <meta charset="UTF-8"><!--duplicate for some reason-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--duplicate for some reason-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--duplicate for some reason-->
+    <title>Document</title><!--duplicate for some reason-->
+</head><!--duplicate for some reason-->
 
-    <h2>Add A Todo:</h2>
+<body><!--area where content is displayed-->
+    <h1>Todo List: </h1><!--displays main header -->
+    <ul class="todoItems"><!--opens unorderd list with class name-->
+    <% for(let i=0; i < items.length; i++) {%><!--loops through data-->
+        <li class="item"><!--opens list open-->
+            <% if(items[i].completed === true) {%><!--checks if item is completed or not and if it is ...-->
+                <span class='completed'><%= items[i].thing %></span><!--creates list item with class of completed from data thing-->
+            <% }else{ %><!-- close if then otherwise ...-->
+                <span><%= items[i].thing %></span><!-- creates a regular list item from data thing -->
+            <% } %><!--closes ejs else-->
+            <span class='fa fa-trash'></span><!--creates and adds icon-->
+        </li><!--closes li-->
+    <% } %> <!--closes ejs for-loop code block-->
+    </ul><!--closes ul-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <h2>Left to do: <%= left %></h2><!--displays header/title for counter-->
+
+    <h2>Add A Todo:</h2><!--displays a header for form -->
+
+    <form action="/addTodo" method="POST"><!--opens form with an action(route) and method-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--displays text input box for todo item includes placeholder and name for routing/handling req-->
+        <input type="submit"><!--displays a form submit button-->
+    </form><!--closes form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--links to main.js clientside js-->
+</body><!--close body-->
+</html><!--end of html doc-->
