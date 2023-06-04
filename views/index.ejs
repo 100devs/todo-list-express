@@ -18,30 +18,31 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+
+    <h1>Todo List: </h1> <!-- Heading for our list -->
+    <ul class="todoItems"> <!-- Our list of TODO tasks -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- setting up the loop, items is an array of TODOs -->
+        <li class="item"> <!-- item is a TODO task -->
+            <% if(items[i].completed === true) {%> <!--if item is completed, add completed class styling -->
+                <span class='completed'><%= items[i].thing %></span> <!-- thing is simply the request.body containing the TODO task -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- else do not mark as complete -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- trash icon with event listener that runs the deleteItem function when clicked -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- left refers to how many documents in our collection have completed set to false -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading for remaining items TODO -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <form action="/addTodo" method="POST"> <!-- form that calls the POST method in order to add a TODO document to the db collection -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input section for user to add TODO details -->
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- hooks up the client-side js -->
 </body>
 </html>
