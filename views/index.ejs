@@ -18,30 +18,48 @@
     <title>Document</title>
 </head>
 <body>
+
+    <!-- Header title -->
     <h1>Todo List: </h1>
+
+    <!-- Create unordered list with class 'todoItems' -->
     <ul class="todoItems">
+
+    <!-- Iterate through items returned from db -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- For each item returned, create a list item -->
         <li class="item">
+
+            <!-- If item with key completed has a value of true, add span to dom with class of completed  -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- If item with key completed does not have a value of true, add span to dom without class of completed -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>   
+            
+              <!-- Trash can emoji -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- Add h2 with left variable to dom -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Header for form below -->
     <h2>Add A Todo:</h2>
 
+    <!-- Form to add items to db -->
     <form action="/addTodo" method="POST">
+        <!-- Text box for todo item -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+
+        <!-- Submit button -->
         <input type="submit">
     </form>
     
-
+    <!-- Add script tag for client side js file -->
     <script src='js/main.js'></script>
 </body>
 </html>
