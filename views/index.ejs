@@ -9,36 +9,44 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- - title of the page - -->
     <h1>Todo List: </h1>
+    <!-- -ul to list the todos- -->
     <ul class="todoItems">
+    <!-- -loop to list the todo items- -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- -list for each todo item that contains - -->
+        <!-- -if else to check whether todo is completed or not- -->
+        <!-- -if: places span with completed class and the todo item- -->
+        <!-- -else: places span without completed class and the todo item- -->
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- -span with trash icon- -->
             <span class='fa fa-trash'></span>
+        <!-- -end of list- -->
         </li>
+    <!-- -end of for loop- -->
     <% } %>
+    <!-- -end of ul- -->
     </ul>
 
+    <!-- -field to print the items left- -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- -form title- -->
     <h2>Add A Todo:</h2>
 
+    <!-- -form that handles new todos- -->
     <form action="/addTodo" method="POST">
+        <!-- -input field for new todos- -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- -submit button- -->
         <input type="submit">
+    <!-- -end of the form- -->
     </form>
     
 
