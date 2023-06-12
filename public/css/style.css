@@ -1,7 +1,7 @@
 h1{
     color: red;
-}
+} /* Selects all h1s and changes text to red color*/
 .completed{
     color: gray;
     text-decoration: line-through;
-}
+} /* Selects all items with the completed class - changes text color to gray and adds strikethrough on the text */ 
