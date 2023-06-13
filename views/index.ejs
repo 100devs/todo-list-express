@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+      <!-- This is the template that will be used to render the html on the client side Data from the database will be sent here via the ejs view engine set up with app.set('view engine', 'ejs'); When response.render() is called data from the database will be passed in and will be plugged in here to be dynamically rendered and then sent back as html to the client -->
+      <body>
+        <h1>Todo List:</h1>
+        <ul class="todoItems">
+          <!-- ejs syntax JavaScript for loop that will loo over the documents array that's sent here via the render method Will create a li for each document Contains a conditional to determine whether or not a completed class will be added to the li-->
+          <% for(let i=0; i < items.length; i++) {%> // ejs syntax
+          <li class="item">
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <span class="completed"><%= items[i].thing %></span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span><%= items[i].thing %></span>
+            <% } %>
+            <span class="fa fa-trash"></span>
+          </li>
+          <% } %>
+        </ul>
 
-    <h2>Left to do: <%= left %></h2>
+        <!-- plugs in the left property -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+        <h2>Add A Todo:</h2>
+        <!-- form the sends a request to the /addTodo endpoint when a new post is created -->
+        <form action="/addTodo" method="POST">
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <input type="submit" />
+        </form>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+        <script src="js/main.js"></script>
+      </body>
+    </html>
+  </body>
 </html>
