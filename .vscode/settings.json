@@ -1,4 +1,7 @@
 {
     "editor.fontSize": 20,
-    "terminal.integrated.fontSize": 20
+    "terminal.integrated.fontSize": 20,
+    "cSpell.words": [
+        "todos"
+    ]
 }
