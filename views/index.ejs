@@ -1,3 +1,4 @@
+<!-- basic html boilerplate -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +19,15 @@
     <title>Document</title>
 </head>
 <body>
+<!-- h1 tag -->
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    
+    <!-- iterates through the items array and renders a span -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+        
+            <!-- renders a span depending on the result of the conditional -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -32,16 +38,18 @@
     <% } %>
     </ul>
 
+    <!-- renders what's left in the todo list -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- initiates a POST method on the endpoint /addTodo as its action -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    
     <script src='js/main.js'></script>
 </body>
 </html>
