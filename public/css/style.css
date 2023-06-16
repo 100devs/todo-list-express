@@ -1,6 +1,9 @@
+/* css rule for making the h1 element color red */
 h1{
     color: red;
 }
+
+/* completed class that makes an element color gray and has line-through */
 .completed{
     color: gray;
     text-decoration: line-through;
