@@ -9,10 +9,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    // these are the dependencies, user must do 'npm install' to install these dependencies
+    
+    //cors handles the cors error
     "cors": "^2.8.5",
+    
+    //we need this to be able to use the .env file and hide the confidential data of the project form the client
     "dotenv": "^8.2.0",
+    
+    //installs ejs
     "ejs": "^3.1.6",
+    
+    //installs express js
     "express": "^4.17.1",
+    
+    //installs mongo db
     "mongodb": "^3.6.5"
   }
 }
