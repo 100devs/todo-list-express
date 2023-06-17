@@ -1,26 +1,27 @@
+// setting variables for dependencies
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
-
+//sets up variable for the database
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
-
+//connects to mongoDB
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+// express methods being called 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+// get request from client and responding with an async function that insert the documents into an array then responding with the data in an ejs file
 app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
@@ -34,7 +35,7 @@ app.get('/',async (request, response)=>{
     // })
     // .catch(error => console.error(error))
 })
-
+// Creates a new document in the database
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -43,7 +44,7 @@ app.post('/addTodo', (request, response) => {
     })
     .catch(error => console.error(error))
 })
-
+// Updates the document (to-do object) in the database
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -60,7 +61,7 @@ app.put('/markComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+// Updates the document (to-do object) in the database 
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -77,7 +78,7 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+// deletes a document from the database
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
@@ -87,7 +88,7 @@ app.delete('/deleteItem', (request, response) => {
     .catch(error => console.error(error))
 
 })
-
+// sets up the port to run the server
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
