@@ -19,26 +19,26 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+    <ul class="todoItems"> <!-- creates a unordered list-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- loops through all the documents received from the database that was sent to view engine by the server using items variable-->
+        <li class="item"> <!-- creates a list item for each document in the prop sent by the server-->
+            <% if(items[i].completed === true) {%> <!-- checks if the value of completed key is true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- renders this line if true-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- renders this line if value of completed key is false-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- renders a delete icon-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- prints the number of item left to do sent by server using left variable-->
 
     <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+<!-- renderes the form element -->
+    <form action="/addTodo" method="POST"> 
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- input field-->
+        <input type="submit"> <!-- submit button-->
     </form>
     
 
