@@ -20,6 +20,8 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Loops through the items data and displays each item from the database -->
+    <!-- if an item has a class of completed it will be displayed with a strightrhough otherwise normal -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,6 +34,7 @@
     <% } %>
     </ul>
 
+    <!-- Displays the number of items left uncompleted -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
@@ -41,7 +44,7 @@
         <input type="submit">
     </form>
     
-
+    <!-- calls the main.js file -->
     <script src='js/main.js'></script>
 </body>
 </html>
