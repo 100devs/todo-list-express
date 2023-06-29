@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+      <body>
+        <h1>Todo List:</h1>
+        <ul class="todoItems">
+          <!-- Loops through the list of items and prints them -->
+          <% for(let i=0; i < items.length; i++) {%>
+          <li class="item">
+            <!-- if current item has property completed true, put it in a span with class completed so CSS applies striked-through and grey -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <span class="completed"><%= items[i].thing %></span>
+            <!-- otherwise, it's not completed so do not give completed class -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span><%= items[i].thing %></span>
+            <% } %>
+            <!-- can use only classes with font-awesome to get the wanted emoticon/shape -->
+            <span class="fa fa-trash"></span>
+          </li>
+          <% } %>
+        </ul>
+        <!-- left items was a number passed in the render command, comes directly from the count in the DB -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Add A Todo:</h2>
 
-    <h2>Add A Todo:</h2>
+        <form action="/addTodo" method="POST">
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <input type="submit" />
+        </form>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+        <script src="js/main.js"></script>
+      </body>
+    </html>
+  </body>
 </html>
