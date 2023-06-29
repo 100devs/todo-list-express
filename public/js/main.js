@@ -24,7 +24,7 @@ async function deleteItem() {
   const itemText = this.parentNode.childNodes[1].innerText;
   // puts the name of the item clicked (which is its inner text) in a var
   try {
-    // promise where we send a fetch request with method DELETE to the server at the deleteItem route, with an object where itemText is in the itemFromJS property.
+    // promise where we send a fetch request with method DELETE to the server at the deleteItem route, with an object where itemText is in the itemFromJS property converted to JSON
     const response = await fetch("deleteItem", {
       method: "delete",
       headers: { "Content-Type": "application/json" },
@@ -46,7 +46,7 @@ async function markComplete() {
   const itemText = this.parentNode.childNodes[1].innerText;
   // puts the name of the item clicked (which is its inner text) in a var
   try {
-    // promise where we send a fetch request with method PUT to the server at the markComplete route, with an object where itemText is in the itemFromJS property.
+    // promise where we send a fetch request with method PUT to the server at the markComplete route, with an object where itemText is in the itemFromJS property converted to JSON
     const response = await fetch("markComplete", {
       method: "put",
       headers: { "Content-Type": "application/json" },
@@ -68,7 +68,7 @@ async function markUnComplete() {
   const itemText = this.parentNode.childNodes[1].innerText;
   // puts the name of the item clicked (which is its inner text) in a var
   try {
-    // promise where we send a fetch request with method PUT to the server at the markUnComplete route, with an object where itemText is in the itemFromJS property.
+    // promise where we send a fetch request with method PUT to the server at the markUnComplete route, with an object where itemText is in the itemFromJS property converted to JSON
     const response = await fetch("markUnComplete", {
       method: "put",
       headers: { "Content-Type": "application/json" },
