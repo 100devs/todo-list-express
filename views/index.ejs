@@ -17,31 +17,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> <!-- main section for content being displayed-->
+    <h1>Todo List: </h1> <!--Main title displayed on page -->
+    <ul class="todoItems"> <!-- unordered list-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- use ejs to start a for loop-->
+        <li class="item"> <!-- creating a li item with class of item-->
+            <% if(items[i].completed === true) {%> <!-- using ejs check if the item is completed-->
+                <span class='completed'><%= items[i].thing %></span><!-- ejs creates a span inline element with a class-->
+            <% }else{ %> <!-- ejs for else-->
+                <span><%= items[i].thing %></span><!-- displays the name without class-->
+            <% } %>    <!-- ejs to close-->
+            <span class='fa fa-trash'></span><!-- creates span with trash-->
+        </li> <!-- end li-->
+    <% } %><!-- closes for loop-->
+    </ul><!-- closes ul-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- creates a second level header for the left to do with ejs to displaya variable showing how many task left to complete -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- create second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!-- creates a form with a method of post that goes to the to do route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- creates the text field-->
+        <input type="submit"> <!-- submit button-->
+    </form> <!-- close the form-->
     
 
-    <script src='js/main.js'></script>
-</body>
+    <script src='js/main.js'></script> <!-- links to main js folder-->
+</body> <!-- close body-->
 </html>
