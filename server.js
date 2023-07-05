@@ -1,8 +1,8 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') // making it possible to use express
+const app = express() // saving express call to app var
+const MongoClient = require('mongodb').MongoClient // making it possible to use mongodb
+const PORT = 2121 // setting the var to the port number
+require('dotenv').config() //allows us to look for variables in the env file 
 
 
 let db,
