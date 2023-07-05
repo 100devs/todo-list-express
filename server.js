@@ -23,17 +23,17 @@ app.use(express.json()) //Parses JSON content
 
 
 app.get('/',async (request, response)=>{ //starts a GET method when teh root route is passed in, sets up req and res parameters
-    const todoItems = await db.collection('todos').find().toArray() //sets a variable and awaits ALL items form teh todos collection
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //sets a variable and awaits a count of uncompleted items to later display in EJS
-    response.render('index.ejs', { items: todoItems, left: itemsLeft }) //rendering the EJS file and passing through the db items and the count remaining inside of an object
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-     .catch(error => console.error(error)) //log the error if there is one
+    // const todoItems = await db.collection('todos').find().toArray() //sets a variable and awaits ALL items form the todos collection
+    // const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //sets a variable and awaits a count of uncompleted items to later display in EJS
+    // response.render('index.ejs', { items: todoItems, left: itemsLeft }) //rendering the EJS file and passing through the db items and the count remaining inside of an object
+    db.collection('todos').find().toArray() //go to todo, find documents, make array
+    .then(data => { //array of documents is passed into data
+        db.collection('todos').countDocuments({completed: false})
+        .then(itemsLeft => {
+            response.render('index.ejs', { items: data, left: itemsLeft }) //items is data now: array of documents
+        })
+    })
+     .catch(error => console.error(error)) //
 })// close GET method
 
 app.post('/addTodo', (request, response) => {// starts a POST method when the add (addTodo) route is passed in
