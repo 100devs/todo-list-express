@@ -20,23 +20,28 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <!-- loops through items passed from server.js -->
+        <% for(let i=0; i < items.length; i++) {%>
+        <!-- creates an li with class 'item' on each iteration -->
         <li class="item">
+            <!-- if the item completed value is set to true a span with class 'completed' is created and populated with item thing value -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- else a generic span is added and populated with the item thing value -->
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- value of left passed in from server.js is appended to the h2 -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form that triggers a '/addTodo' POST (CREATE) request -->
     <form action="/addTodo" method="POST">
+        <!-- text input with the name 'todoItem' that can be used by the server's POST handler -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
