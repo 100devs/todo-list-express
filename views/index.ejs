@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!-- tell browser this document type is HTML -->
+<html lang="en"> <!-- start html tag, set language to english -->
+<head> <!-- start head tag to store metadata -->
+    <meta charset="UTF-8"> <!-- declare the character set to be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!-- set compatibility for Microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- set width of available viewing area to width of device screen-->
+    <title>Document</title> <!-- set document title (appears in browser tab) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">  <!-- connect to Font Awesome Icon Library -->
+    <link rel="stylesheet" href="css/style.css"> <!-- connect to style.css file in css folder-->
 </head>
-<body>
+<!-- <body>
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,32 +16,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> -->
+<body> <!-- start body tag for content -->
+    <h1>Todo List: </h1> <!-- created largest header tag for page title> -->
+    <ul class="todoItems"> <!-- create unordered list with class of todoItems -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- loop through array of items passed through form server.js -->
+        <li class="item"> <!-- create an list item with class of item -->
+            <% if(items[i].completed === true) {%> <!-- create conditional for items that have a completed property value of true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- if an item does have a completed property value of true, create a span with class of completed and insert the item's thing property value -->
+            <% }else{ %>  <!-- if an item does NOT have a completed property value of true: -->
+                <span><%= items[i].thing %></span> <!--  create a span and insert the item's thing property value -->
+            <% } %>     <!-- close conditional else statement -->   
+            <span class='fa fa-trash'></span> <!-- create a span with the trash icon from Font Awesome -->
+        </li>  <!-- end list item -->
+    <% } %> <!-- end for loop -->
+    </ul> <!-- end unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- create second largest header tag with a variable for count of uncompleted items passed in from server.js -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2>  <!-- create second largest header tag -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST">  <!-- create a form with action route of /addTodo for posting/creating a new document -->
+        <input type="text" placeholder="Thing To Do" name="todoItem">  <!-- create an input text field with a placeholder and a name -->
+        <input type="submit"> <!-- create a submit button-->
+    </form> <!-- end form -->
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script>  <!-- connection to client-side js file in js folder-->
 </body>
 </html>
