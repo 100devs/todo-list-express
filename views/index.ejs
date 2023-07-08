@@ -19,9 +19,9 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <ul class="todoItems"> <!--UL for list of to-do items created--!>
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <li class="item"> <!--For the entire length of the items available in todoItems, a new to-do list item is created and either marked as complete or simply listed. A delete button is also available for each item--!>
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -32,12 +32,13 @@
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--The leftover to-do items are lsited here--!>
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> 
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <form action="/addTodo" method="POST"> <!--This sends an endpoint of /addTodo with a request method of POST (create) to the server, the result from the server is the item inputted is added to the ul of todoItems
+                                                which creates a to-do list item NOT marked as completed. Also returns a console log of 'Todo added' then redirects the user back to the main page (seamless transition)
+        <input type="text" placeholder="Thing To Do" name="todoItem"> 
         <input type="submit">
     </form>
     
