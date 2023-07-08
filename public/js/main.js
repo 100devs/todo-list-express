@@ -14,7 +14,7 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete) //For each item which has the class of "completed" (to show its completed), the markUncomplete() method is added to it on a click.
 })
 
-async function deleteItem(){ //this function is called on every delete button on the to-do list.
+async function deleteItem(){ //this function is called on every delete button on the to-do list. It is asynchronous (runs independently)
     const itemText = this.parentNode.childNodes[1].innerText //The innerText (content) of the item at hand is stored in a variable.
     try{
         const response = await fetch('deleteItem', { 
