@@ -1,8 +1,8 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') //Express is installed and initialized
+const app = express() //express is stored to use.
+const MongoClient = require('mongodb').MongoClient //MongoDB is installed and initialized
+const PORT = 2121 //Port # created (this server is listening on localhost:2121
+require('dotenv').config() //dotenv file is read from. This contains sensitive information, most likely about the MongoDB client like password and user. 
 
 
 let db,
