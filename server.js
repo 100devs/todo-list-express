@@ -24,9 +24,9 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
 app.set('view engine', 'ejs')
 //configuring the public folder
 app.use(express.static('public'))
-//calling express to decode and encode URLs
+//calling express to use body parser
 app.use(express.urlencoded({ extended: true }))
-//calling express to use JSON
+//calling express to accept JSON data
 app.use(express.json())
 
 //method that listens and responds to a GET (READ) request on the root branch ('/')
