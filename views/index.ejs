@@ -17,13 +17,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+
+    <!-- loop through items array -->
+    <% for(let i=0; i < items.length; i++) {%> 
         <li class="item">
+            <!-- if item completed property is true, put into span with class completed  -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- otherwise if completed property is false, put into regular span -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -31,7 +37,7 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- displays count of todo items left to do -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
