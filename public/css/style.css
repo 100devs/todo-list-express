@@ -5,3 +5,4 @@ h1{
     color: gray;
     text-decoration: line-through;
 }
+/* When the toDo item is clicked (see main.js), the '.completed' style is implemented so the sentence gets a line through and the color of the displayed font turns grey. */
