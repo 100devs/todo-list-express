@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+    <!-- Link to font-awesome library -->
+    <link rel="stylesheet" href="css/style.css"> <!--Link to style.css stylesheet-->
 </head>
 <body>
     <!DOCTYPE html>
@@ -30,18 +31,19 @@
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
-    </ul>
+    </ul> 
+    <!--The above todoItems unordered list links to the database todo items and loops through them rendering each one in the DOM. If an item is "completed" and the user clicks on the item, it will display the "completed" styling. Else, it will just display the item. The final item is a trash can, linked to the font-awesome library.-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--This h2 displays the number of items left to do-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> 
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> 
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
-    
+    <!--This form uses the post method to add a ToDo item to the /addTodo section of the website, adding it to the database when the "submit" button is clicked-->
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> 
 </body>
 </html>
