@@ -8,31 +8,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<body> <!--main section for content displayed-->
+    <!DOCTYPE html> <!--this may be a typo-->
+<html lang="en"> <!--this may be a typo-->
+<head> <!--this may be a typo-->
+    <meta charset="UTF-8"> <!--this may be a typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--this may be a typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--this may be a typo-->
+    <title>Document</title> <!--this may be a typo-->
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body> <!--main section for content displayed-->
+    <h1>Todo List: </h1> <!--main title displayed on page-->
+    <ul class="todoItems"> <!--unordered list with class of todoItems-->
+    <% for(let i=0; i < items.length; i++) {%> <!--embedded javascript to start a FOR loop-->
+        <li class="item"> <!--create a list item with a class of Item-->
+            <% if(items[i].completed === true) {%> <!--EJS to check if item in an array with a completed property is true-->
+                <span class='completed'><%= items[i].thing %></span> <!--creating an inline element with a class and adding EJS to display name of the task-->
+            <% }else{ %> <!--EJS for else clause of the if statement-->
+                <span><%= items[i].thing %></span> <!--added EJS to display the name of the task with NO CLASS-->
+            <% } %> <!--EJS to close the else statement-->
+            <span class='fa fa-trash'></span> <!--inline element to display font awesome trash can-->
+        </li> <!--closing tag of list item-->
+    <% } %> <!--EJS closing for loop-->
+    </ul> <!--closing tag to ul-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--creating a header level 2 with text and using EJS to display number of tasks remaining-->
 
     <h2>Add A Todo:</h2>
 
