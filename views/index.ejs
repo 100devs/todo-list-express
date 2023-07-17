@@ -34,14 +34,14 @@
 
     <h2>Left to do: <%= left %></h2> <!--creating a header level 2 with text and using EJS to display number of tasks remaining-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--creating header level 2 displaying text-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--creating a form with a POST method that follows /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--create an input box that accepts text with default text inside of it before you type something. input bos is given namve for later reference-->
+        <input type="submit"> <!--give the form a submit button-->
+    </form> <!--close the form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--links to the main.js file in the js folder in the public folder-->
+</body> <!--closing body tag-->
+</html> <!--closing html tag-->
