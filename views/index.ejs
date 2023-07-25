@@ -1,25 +1,27 @@
+
 <!DOCTYPE html>
+<!-- Declare document language as 'en' for English. -->
 <html lang="en">
 <head>
+    <!-- Declare character encoding as 'UTF-8' - the only possible value. -->
     <meta charset="UTF-8">
+    <!-- Tell Microsoft browsers which version of Internet Explorer the document should be rendered as. -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Declare the width and initial scale (zoom level) of the viewport, as the full width of the device and 1.0 accordingly. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Declare the document title, used in the title bar, bookmarks, etc. -->
     <title>Document</title>
+    <!-- Link to the Font Awesome stylesheet so we may utilize it in our app. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link to our local stylesheet. -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Make header titled 'Todo List: '. -->
     <h1>Todo List: </h1>
+    <!-- Unordered list with a class of 'todoItems'. -->
     <ul class="todoItems">
+    <!-- Loop through every object in the 'items' array. -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,16 +34,20 @@
     <% } %>
     </ul>
 
+    <!-- Output the value of left into the page. -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- Form that will make a 'POST' request to '/addTodo' when submitted. -->
     <form action="/addTodo" method="POST">
+        <!-- Text input field with `placeholder` of `Thing To Do` and `name` of `todoItem`, which will become the key when the value is transmitted -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Submit button -->
         <input type="submit">
     </form>
     
-
+    <!-- Link to local JavaScript file -->
     <script src='js/main.js'></script>
 </body>
 </html>
