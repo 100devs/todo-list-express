@@ -20,9 +20,9 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%> <!-- Loops, listing the to-do actions obtained from database -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <% if(items[i].completed === true) {%> <!--Different styles for complete & uncomplete tasks-->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
@@ -36,7 +36,7 @@
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!-- Sends POST request to server; Creates new document in database -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
