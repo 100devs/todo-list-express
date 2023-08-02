@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +19,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
+    <h1>Todo List: </h1> 
     <ul class="todoItems">
+        <!-- runs a for loop checking items and gives a span for every item there is. each item is also run through a 
+        conditional to check and see if its completed or not so it can have the 
+    appropriate css. -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>

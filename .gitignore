@@ -1,2 +1,4 @@
-node_modules
+node_modules 
 .env
+
+//dont have to upload these. so that means you can put sensetive information into the env
