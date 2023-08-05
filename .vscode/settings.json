@@ -1,5 +1,6 @@
 {
     // "editor.fontSize": 42,
     "terminal.integrated.fontSize": 15
-
 }
+
+//Commented out the editor.fontSize in the project
