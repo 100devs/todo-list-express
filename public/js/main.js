@@ -14,6 +14,8 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+
+//delete function
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -33,6 +35,8 @@ async function deleteItem(){
     }
 }
 
+
+//mark as completed function for update
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -52,6 +56,7 @@ async function markComplete(){
     }
 }
 
+//function for mark as not completed
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{

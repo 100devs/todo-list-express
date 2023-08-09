@@ -20,8 +20,10 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- to loop through the items  -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- condition when if the todo is completed or not -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -36,6 +38,7 @@
 
     <h2>Add A Todo:</h2>
 
+    <!-- for data creations -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
