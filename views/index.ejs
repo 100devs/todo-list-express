@@ -20,8 +20,10 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- looping through the tasks -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- check for completed tasks -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -31,7 +33,7 @@
         </li>
     <% } %>
     </ul>
-
+<!--adding the number of tasks left-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
