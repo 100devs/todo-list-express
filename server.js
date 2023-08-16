@@ -5,14 +5,15 @@ const PORT = 2121 //assigning port to a constant variable
 require('dotenv').config() //enables use of env file
 
 
-let db, //declaring database variables
-    dbConnectionStr = process.env.DB_STRING, //assign connection string from value in env file
+//declaring database variables
+let db, 
+    dbConnectionStr = process.env.DB_STRING, 
     dbName = 'todo' //assigning variable to database in MongoDB
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) //connects to MongoDB connection management engine
     .then(client => {//runs when connected to database
         console.log(`Connected to ${dbName} Database`) //verifying that you connected to database
-        db = client.db(dbName) //assigning variable to database itself
+        db = client.db(dbName) 
     })
     
 app.set('view engine', 'ejs') //setting ejs as the viewing engine
@@ -50,21 +51,22 @@ app.post('/addTodo', (request, response) => { //
 })
 
 app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{//updating document that meets criteria usign request body 
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
 
     //setting completed property
         $set: {
             completed: true
           }
     },{
-        sort: {_id: -1}, //sorts by descendign id order and chooses first one
+        //sorts by descending id order and chooses first one
+        sort: {_id: -1}, 
         upsert: false //if no matching document found, no new document is inserted 
     })
     .then(result => {
         console.log('Marked Complete') //confirmation
         response.json('Marked Complete')//response when promise resolves
     })
-    .catch(error => console.error(error)) //prints error if rejected
+    .catch(error => console.error(error))
 
 })
 
@@ -76,14 +78,14 @@ app.put('/markUnComplete', (request, response) => {
             completed: false
           }
     },{
-        sort: {_id: -1}, //sorts by descending id order and chooses first one
-        upsert: false //if no matching document found, no new document is inserted 
+        sort: {_id: -1},
+        upsert: false 
     })
     .then(result => {
         console.log('Marked Complete') //confirmation 
         response.json('Marked Complete') //reponse when promise resolves
     })
-    .catch(error => console.error(error)) //prints error if rejected.
+    .catch(error => console.error(error))
 
 })
 
@@ -93,7 +95,7 @@ app.delete('/deleteItem', (request, response) => {
         console.log('Todo Deleted') //confirmation
         response.json('Todo Deleted') //response when promise resolves
     })
-    .catch(error => console.error(error)) //prints error if rejected
+    .catch(error => console.error(error))
 
 })
 
