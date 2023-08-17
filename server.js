@@ -20,7 +20,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-// Get request for the root route
+
 app.get('/',async (request, response)=>{
     // Create a variable that stores the promise(document) found in the todos collection and converts it to an array
     const todoItems = await db.collection('todos').find().toArray()
