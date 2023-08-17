@@ -1,21 +1,30 @@
+// App requires express
 const express = require('express')
+// Set a variable for express
 const app = express()
+// App requires mongodb
 const MongoClient = require('mongodb').MongoClient
+// Variable for port
 const PORT = 2121
+// App requires the env file for config
 require('dotenv').config()
 
-
+// Set variables for the mongo database using the env file as well as the database name
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
+// Connect to mongodb using your connection string
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+// Once connected, console log that we're connected to the database and set db to the database name
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
     
+// Set the render engine to use ejs
 app.set('view engine', 'ejs')
+// allows us to use the static files in our public folder
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -52,7 +61,7 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
-// Put / Update request
+// Put / Update request to mark complete
 app.put('/markComplete', (request, response) => {
     // Go to our todos collection and update the document with the text we sent from client side
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
@@ -60,47 +69,61 @@ app.put('/markComplete', (request, response) => {
         $set: {
             completed: true
           }
-    },{
+    },
+    // Set the property of the first document you find with the sorted collection
+    {
         sort: {_id: -1},
         upsert: false
     })
     .then(result => {
         // Console log Marked Completed
         console.log('Marked Complete')
-        // Respond with marked complete
+        // Respond with some json that says marked complete
         response.json('Marked Complete')
     })
     .catch(error => console.error(error))
 
 })
 
+// Put / Update request to mark not complete
 app.put('/markUnComplete', (request, response) => {
+    // Go to our todos collection and update the document with the text we sent from client side
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+        // Set the completed property to false
         $set: {
             completed: false
           }
-    },{
+    },
+    // Set the property of the first document you find with the sorted collection
+    {
         sort: {_id: -1},
         upsert: false
     })
     .then(result => {
+        // Console log Marked Completed
         console.log('Marked Complete')
+        // Respond with some json that says marked complete
         response.json('Marked Complete')
     })
     .catch(error => console.error(error))
 
 })
 
+// Delete request
 app.delete('/deleteItem', (request, response) => {
+    // Go to our todos collection and delete the document with the text we sent from client side
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
+        // Console log todo deleted
         console.log('Todo Deleted')
+        // respond with some json that says todo deleted
         response.json('Todo Deleted')
     })
     .catch(error => console.error(error))
 
 })
 
+// App will listen to the port and respond with what port server is running on
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
