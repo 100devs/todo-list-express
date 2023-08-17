@@ -1,4 +1,6 @@
+// Set a variable for the trash icon
 const deleteBtn = document.querySelectorAll('.fa-trash')
+// Set a variable for the span within the .item class item
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
@@ -34,17 +36,23 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    // Grab the todo text
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        // Make a fetch to the put method
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
+            // Send the itemText to the server side with the property itemFromJS
             body: JSON.stringify({
                 'itemFromJS': itemText
             })
           })
+        //   Wait for the response from the server
         const data = await response.json()
+        // Console log the data from the server
         console.log(data)
+        // refresh the page and make another get request
         location.reload()
 
     }catch(err){
