@@ -18,26 +18,35 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- An h1 that stores the title -->
     <h1>Todo List: </h1>
+    <!-- A list that has the class todoItems  -->
     <ul class="todoItems">
+        <!-- Loop through the items array which are the documents -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Within the list there will be a list item with the class item -->
         <li class="item">
+            <!-- If the current element has the completed property set to true, set the class to completed -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- If the current element doesn't have the completed property, only show the item itself -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- A trash icon -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!-- H2 that stores what's left to do and references the list to see how many items DON'T have the completed property set to true -->
     <h2>Left to do: <%= left %></h2>
-
+<!-- H2 letting users know to add to todo list -->
     <h2>Add A Todo:</h2>
-
+<!-- Form that routes to /addTodo with the post method -->
     <form action="/addTodo" method="POST">
+        <!-- Input that lets you add items with the name todoItem -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit button -->
         <input type="submit">
     </form>
     
