@@ -1,5 +1,5 @@
 {
-  "name": "cleawr",
+  "name": "todo-list-express",
   "version": "1.0.0",
   "description": "npm install add DB_STRING to .env file",
   "main": "index.js",
