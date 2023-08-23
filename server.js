@@ -1,7 +1,7 @@
 const express = require('express') //importing express
 const app = express() //assigning express to a constant variable
 const MongoClient = require('mongodb').MongoClient //importing MongoDB client to project
-const PORT = 10000 //assigning port to a constant variable
+const PORT = 2121 //assigning port to a constant variable
 require('dotenv').config() //enables use of env file
 
 
@@ -86,7 +86,6 @@ app.put('/markUnComplete', (request, response) => {
         response.json('Marked Complete') //reponse when promise resolves
     })
     .catch(error => console.error(error))
-
 })
 
 app.delete('/deleteItem', (request, response) => {
@@ -96,9 +95,7 @@ app.delete('/deleteItem', (request, response) => {
         response.json('Todo Deleted') //response when promise resolves
     })
     .catch(error => console.error(error))
-
 })
-
 
 //tells server what port to run in using declared PORT variable
 app.listen(process.env.PORT || PORT, ()=>{
