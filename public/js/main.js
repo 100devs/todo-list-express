@@ -1,6 +1,6 @@
 // declaring variables for DOM elements
-const deleteBtn = document.querySelectorAll('.fa-trash') //delete button 
-const item = document.querySelectorAll('.item span') //todo items 
+const deleteBtn = document.querySelectorAll('.fa-trash')
+const item = document.querySelectorAll('.item span') 
 const itemCompleted = document.querySelectorAll('.item span.completed') //todo items checked off/completed
 
 
