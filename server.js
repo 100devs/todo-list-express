@@ -27,18 +27,6 @@ app.get('/',async (request, response)=>{//handling get request on root route
     const itemsLeft = await db.collection('todos').countDocuments({completed: false}) //counting completed documents that have been completed:false
     response.render('index.ejs', { items: todoItems, left: itemsLeft })//rendering todoItems to ejs file and setting context
 
-
-
-    ////harder to read this way by using promises instead of async await////
-
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
 })
 
 app.post('/addTodo', (request, response) => { //
