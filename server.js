@@ -1,6 +1,6 @@
-const express = require('express') //importing express
-const app = express() //assigning express to a constant variable
-const MongoClient = require('mongodb').MongoClient //importing MongoDB client to project
+const express = require('express')
+const app = express()
+const MongoClient = require('mongodb').MongoClient 
 const PORT = 2121 //assigning port to a constant variable
 require('dotenv').config() //enables use of env file
 
