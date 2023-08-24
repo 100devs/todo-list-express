@@ -2,10 +2,10 @@
   "name": "todo-list-express",
   "version": "1.0.0",
   "description": "npm install add DB_STRING to .env file",
-  "main": "index.ejs",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
