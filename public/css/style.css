@@ -1,7 +1,12 @@
 h1{
+/* styling the h1 */
     color: red;
+    /* made the h1 the color red */
 }
 .completed{
+/* styling the completed todo item */
     color: gray;
+    /* text becomes gray */
     text-decoration: line-through;
+    /* text is crossed out */
 }
