@@ -1,47 +1,84 @@
 <!DOCTYPE html>
+<!-- telling the browser the document we are using is HTML -->
 <html lang="en">
+<!-- set the language to english -->
 <head>
+<!-- create head -->
     <meta charset="UTF-8">
+    <!-- using UTF-8 character set -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- creates compatibility with windows browsers -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- sets the width to whatever width of the deivce viewing -->
     <title>Document</title>
+    <!-- made the name in browser tab "Document" -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- links font awesome fonts and symbols -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- links our css directory with the style.css file -->
 </head>
+<!-- end head -->
 <body>
+<!-- creates body -->
     <!DOCTYPE html>
+    <!-- embeds the the html doc -->
 <html lang="en">
+<!-- embeds the language of english -->
 <head>
+<!-- embeds the head -->
     <meta charset="UTF-8">
+    <!-- embeds the character set -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- embeds the windows browser compatibility -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- embeds the device width viewport -->
     <title>Document</title>
+    <!-- embeds the title -->
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- creates the h1 titled "Todo List:" -->
     <ul class="todoItems">
+    <!-- creates an unordered list element with the class "todoItems" -->
     <% for(let i=0; i < items.length; i++) {%>
+    <!-- adds a for loop which is embedded because of the ejs format -->
         <li class="item">
+        <!-- adds an li element with the class of "item" -->
             <% if(items[i].completed === true) {%>
+            <!-- checks if an item in the items array is completed -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- adds a span element with the class of "completed" and if the span item is completed that assign the "completed" class to it -->
             <% }else{ %>
+            <!-- otherwise -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+                <!-- add the item without the "completed" class -->
+            <% } %>
+            <!-- end the for loop -->
             <span class='fa fa-trash'></span>
+            <!-- created a span element with the trash icon from Font Awesome -->
         </li>
+        <!-- ends the list item -->
     <% } %>
     </ul>
+    <!-- ends the unordered list -->
 
     <h2>Left to do: <%= left %></h2>
+    <!-- creates an h2 with and embedded JS block using the a variable called left  -->
 
     <h2>Add A Todo:</h2>
-
+    <!-- creates an h2 called "Add a Todo:" -->
     <form action="/addTodo" method="POST">
+    <!-- creates a form that will send a POST request to the addTodo router -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- creates the text input box where you write the todo item -->
         <input type="submit">
+        <!-- creates a submit button -->
     </form>
-    
+    <!-- end the form -->
 
     <script src='js/main.js'></script>
+    <!-- links the main.js file within the js directory -->
 </body>
+<!-- end embedded body -->
 </html>
+<!-- ends embedded html -->
