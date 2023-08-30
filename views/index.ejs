@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!--telling the browser what type of doc it is-->
+<html lang="en"> <!--opens our HTML tag and sets the language to english-->
+<head> <!--starting head tag to store metadata-->
+    <meta charset="UTF-8"> <!--indicates what character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--sets appropriate compatibility for ms browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sets width of available viewing area to width of device screen but allows scrolling up/down-->
+    <title>Document</title> <!--assigns title that appears on browser tag-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--links to the font awesome icon library-->
+    <link rel="stylesheet" href="css/style.css"> <!--links to our local style sheet within the css folder which is in the public folder, don't have to say-->
+</head> <!--closes the head tag-->
+<body> <!--typo?-->
+    <!DOCTYPE html> <!--typo?-->
+<html lang="en"><!--typo?-->
+<head><!--typo?-->
+    <meta charset="UTF-8"><!--typo?-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--typo?-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--typo?-->
+    <title>Document</title><!--typo?-->
+</head><!--typo?-->
+<body> <!--main section displaying content-->
+    <h1>Todo List: </h1> <!--main title displayed on this page-->
+    <ul class="todoItems"> <!--creates an unordered list and assigns class to the list-->
+    <% for(let i=0; i < items.length; i++) {%> <!--uses EJS to start a for loop-->
+        <li class="item"> <!--creates a list item with class of item-->
+            <% if(items[i].completed === true) {%> <!--EJS to check if item is true-->
+                <span class='completed'><%= items[i].thing %></span> <!--creating inline element with a class and adding EJS to display name of task-->
+            <% }else{ %> <!--EJS for else clause of if statement-->
+                <span><%= items[i].thing %></span> <!--adding EJS to display name of task with NO CLASS-->
+            <% } %>    <!--EJS to close if else statement-->
+            <span class='fa fa-trash'></span> <!--displays gont awesome icon of trash can in span-->
+        </li> <!--closing list item-->
+    <% } %> <!--EJS to close FOR loop-->
+    </ul> <!--closing unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--creates second level heading tag with text using EJS to display variable showing how many tasks left to complete -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--creates a second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--creates a form with POST method goes to addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--creates input box that accepts TEXT, default text inside Thing To Do and given a name for later reference-->
+        <input type="submit"> <!--gives form a submit button-->
+    </form> <!--closing the form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--links to js folder and the main.js file within it all within public folder which u don't have to specify-->
+</body><!--closes the body tag-->
+</html><!--closes the html tag-->
