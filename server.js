@@ -33,8 +33,11 @@ app.use(express.urlencoded({ extended: true }));
 //allows parsing of JSON data from clients into the the request.body to be readily used
 app.use(express.json());
 
+// get request handler function for the root url. async so that it can use await to wait for a promise. Takes a request and response variable for a incoming HTTP request and outgoing HTTP response
 app.get('/', async (request, response) => {
+  // retrieves data from the db todos collection and does not proceed until it is stored in the todoItems do to the await keyword
   const todoItems = await db.collection('todos').find().toArray();
+  // retrieves data from the db todos collection that is not completed and then renders the index.ejs template passing in both the todoItems and itemsLeft as variables
   const itemsLeft = await db
     .collection('todos')
     .countDocuments({ completed: false });
@@ -48,18 +51,21 @@ app.get('/', async (request, response) => {
   // })
   // .catch(error => console.error(error))
 });
-
+// sets up a route handler for a HTTP POST request to the /addTodo with two parameter one requesting and responding with HTTP
 app.post('/addTodo', (request, response) => {
+  // inserts a new document to the todo collection in the database. the thing with its value and completed is set to false. after it is inserted there is a console log and a redirect to the root url
   db.collection('todos')
     .insertOne({ thing: request.body.todoItem, completed: false })
     .then((result) => {
       console.log('Todo Added');
       response.redirect('/');
     })
+    //catches error and displays to console if one occurs
     .catch((error) => console.error(error));
 });
-
+// put/update request for the /markComplete route, includes a request and response variable
 app.put('/markComplete', (request, response) => {
+  // finds the thing value in the todo db and sets the completed value to true. it is then sorted in descending order based on id, upsert false means if no matching document is found it will not create a new one
   db.collection('todos')
     .updateOne(
       { thing: request.body.itemFromJS },
@@ -73,14 +79,17 @@ app.put('/markComplete', (request, response) => {
         upsert: false,
       }
     )
+    //console logs and responses with json as well marked complete
     .then((result) => {
       console.log('Marked Complete');
       response.json('Marked Complete');
     })
+    //catches an error if it occurs
     .catch((error) => console.error(error));
 });
-
+// put/update request for the /markUnComplete route, includes a request and response variable
 app.put('/markUnComplete', (request, response) => {
+  // finds the thing value in the todo db and sets the completed value to false. it is then sorted in descending order based on id, upsert false means if no matching document is found it will not create a new one
   db.collection('todos')
     .updateOne(
       { thing: request.body.itemFromJS },
@@ -94,23 +103,27 @@ app.put('/markUnComplete', (request, response) => {
         upsert: false,
       }
     )
+    //console logs and responses with json as well marked complete
     .then((result) => {
       console.log('Marked Complete');
       response.json('Marked Complete');
     })
+    //console logs an error if one occurs
     .catch((error) => console.error(error));
 });
-
+// sets up a a delete request handler for the /deleteitem endpoint with a req and res variable
 app.delete('/deleteItem', (request, response) => {
+  // accesses the db todos to find the thing value in the request body and deletes it. it then console log and sends JSON data that the todo was deleted
   db.collection('todos')
     .deleteOne({ thing: request.body.itemFromJS })
     .then((result) => {
       console.log('Todo Deleted');
       response.json('Todo Deleted');
     })
+    //console logs error if there is one
     .catch((error) => console.error(error));
 });
-
+// server is set to listen for app object to start the server. Port number is either the environment variable PORT or the PORT set as the default. A console.log logs what port is used once ran
 app.listen(process.env.PORT || PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
