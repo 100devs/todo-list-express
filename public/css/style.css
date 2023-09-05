@@ -1,7 +1,9 @@
-h1{
-    color: red;
+/* turns all h1 elements to red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+/* all the elements with the completed class will be a gray color and have a line through them */
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
