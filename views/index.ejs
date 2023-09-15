@@ -1,12 +1,17 @@
 <!DOCTYPE html>
+<!-- html 5 doctype -->
 <html lang="en">
+<!-- english language -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- tab title is document -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link the the syle sheet with a font link? -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- link to the style.css fyle in the css folder -->
 </head>
 <body>
     <!DOCTYPE html>
@@ -19,29 +24,43 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- main header is TodoLit -->
     <ul class="todoItems">
+        <!-- unordered list with the class of todoItems -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- for loop. counter at 0 it will stop when it gets to the lenght of the items array and add one to the counter each time -->
         <li class="item">
+            <!-- list item witht the class of item -->
             <% if(items[i].completed === true) {%>
+                <!-- conditional statment. if the element of whatever the counter is at from the items array has the class of completed the statement is truthy  -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- small piece of text. completed class. text is whatever is written in the items array at the element the counter is at -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
+                <!-- otherwise write text of the element that the counter is at in this span here  -->
             <% } %>    
             <span class='fa fa-trash'></span>
+            <!-- element with a class of fa fa trash -->
         </li>
     <% } %>
     </ul>
-
+    <!-- un ordered list -->
     <h2>Left to do: <%= left %></h2>
+    <!-- header left to do set equal to left -->
 
     <h2>Add A Todo:</h2>
+    <!-- header add a Todo -->
 
     <form action="/addTodo" method="POST">
+        <!-- form with the action to do and method post -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- input in the form with the type of text. a place holder in the input thing to do and a name of todoItem -->
         <input type="submit">
+        <!-- will be the submit button -->
     </form>
     
 
     <script src='js/main.js'></script>
+    <!-- script tag linking to the file main.js in the js folder -->
 </body>
 </html>
