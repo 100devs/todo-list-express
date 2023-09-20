@@ -1,47 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- EJS is a template language that let us generate HTML with JavaScript -->
+<!DOCTYPE html> <!-- To tell the browser what type of document -->
+<html lang="en"> <!-- Document language -->
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> <!-- Characters to use -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive -->
+    <title>Document</title> <!-- Document title -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- CDN (Content Delivery Network) to add icons -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to external CSS stylesheet on public folder -->
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <h1>Todo List: </h1> <!-- Heading level 1 as main headline of our site -->
+    <ul class="todoItems"> <!-- Creating an unordered list and assigning a class to the list -->
+        <% for(let i=0; i < items.length; i++) {%> <!-- for loop with EJS syntax. In EJS we use < %  % > to throw JavaScript, it's like a block of code on JavaScript-->
+            <li class="item"> <!-- List element with a class of item-->
+                <% if(items[i].completed===true) {%> <!-- Check if item in array of items has property completed set as 'true' -->
+                    <span class='completed'> <!-- span inline element with CSS class 'completed' to insert the item from array with some styling-->
+                        <%= items[i].thing %> <!-- < %= %> is used to plug a variable in EJS (kind of like a template literal in JS). We insert the value of the thing property for every item in the array -->
+                    </span>
+                    <% }else{ %> <!-- if item doesn't have property of completed set to 'true', we're going to add the item but without styling it with the CSS class of 'completed' -->
+                        <span>
+                            <%= items[i].thing %> <!-- "EJS variable" < %= %>. Insert value of thing property for every item on array-->
+                        </span>
+                        <% } %> <!-- Closing if statement block-->
+                            <span class='fa fa-trash'></span> <!-- Adding icon from CDN -->
+            </li>
+            <% } %> <!-- Closing for loop block-->
+    </ul> <!-- Closing tag for unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %> <!-- Heading level 2 element to display the items left to do. The EJS left "variable" comes from counting the documents on the collection that has the completed property as 'false'-->
+    </h2>
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Heading level 2 element as a headline for our form -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- Creating a form. The action attribute is the URL to process the form, and we define the HTTP method to submit the form as POST -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Input to user write todo item.  -->
+        <input type="submit"> <!-- Input element that browser render as a button, when the click event occurs it attempts to submit the form to the server -->
     </form>
-    
 
-    <script src='js/main.js'></script>
+
+    <script src='js/main.js'></script> <!-- Embed JavaScript code on public folder -->
 </body>
 </html>
