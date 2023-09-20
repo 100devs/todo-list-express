@@ -1,3 +1,5 @@
+// Client side JavaScript
+
 const deleteBtn = document.querySelectorAll('.fa-trash'); // Creating a variable and assigning to all elements with a class of 'fa-trashcan'
 const item = document.querySelectorAll('.item span'); // Creating a variable and assigning to all span elements that has a parent with a class of 'item'
 const itemCompleted = document.querySelectorAll('.item span.completed'); // Creating a variable and assigning to all span elements with a class of 'completed' inside a parent with 'item' class

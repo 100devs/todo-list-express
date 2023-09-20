@@ -12,7 +12,7 @@
 <body>
     <h1>Todo List: </h1> <!-- Heading level 1 as main headline of our site -->
     <ul class="todoItems"> <!-- Creating an unordered list and assigning a class to the list -->
-        <% for(let i=0; i < items.length; i++) {%> <!-- for loop with EJS syntax. In EJS we use < %  % > to throw JavaScript, it's like a block of code on JS-->
+        <% for(let i=0; i < items.length; i++) {%> <!-- for loop with EJS syntax. In EJS we use < %  % > to throw JavaScript, it's like a block of code on JavaScript-->
             <li class="item"> <!-- List element with a class of item-->
                 <% if(items[i].completed===true) {%> <!-- Check if item in array of items has property completed set as 'true' -->
                     <span class='completed'> <!-- span inline element with CSS class 'completed' to insert the item from array with some styling-->

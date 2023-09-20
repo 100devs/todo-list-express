@@ -1,11 +1,11 @@
 /* Rule to style h1 */
 /*h1 Selector for h1 on document */
 h1 {
-  color: red; /* Declaration of property color to property value of red. Setting the text color to red */
+  color: red; /* Declaration: property color to property value of red. Setting the text color to red */
 }
 
 /* Rule to style elements with class of completed */
 .completed {
-  color: gray; /* Declaration of property color to property value of gray. Setting the text color to gray */
-  text-decoration: line-through; /* Declaration of property text-decoration to property value of line-trhoug. Setting a line through the text */
+  color: gray; /* Declaration: property color to property value of gray. Setting the text color to gray */
+  text-decoration: line-through; /* Declaration: property text-decoration to property value of line-trhoug. Setting a line through the text */
 }
