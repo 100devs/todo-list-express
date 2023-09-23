@@ -19,23 +19,31 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- unordered list for displaying todo items  -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- list item representing a todo item  -->
         <li class="item">
+            <!-- Check if the todo item is completed  -->
             <% if(items[i].completed === true) {%>
+                <!-- display the items as completed  -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- display the item as not completed  -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %> 
+            <!-- icon for deleting the todo item     -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- display the no of items left to do  -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- form for adding a new todo item  -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
