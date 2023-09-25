@@ -1,4 +1,5 @@
 const express = require('express')
+const { list } = require('mongodb/lib/gridfs/grid_store')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
@@ -35,6 +36,7 @@ app.get('/', async (request, response) => {
     // .catch(error => console.error(error))
 })
 
+// Method to add item to todo list
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({ thing: request.body.todoItem, completed: false })
         .then(result => {
@@ -80,6 +82,7 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+// Method to delete item from todo list
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({ thing: request.body.itemFromJS })
         .then(result => {
