@@ -12,7 +12,6 @@ mporting Required Modules:
     require('dotenv').config(): This line loads environment variables from a .env file, if available. Environment variables are often used to store sensitive or configuration-related information.
 
 */
-//my explination is above on this code
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
@@ -29,11 +28,42 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
+    /*
+            Variable Declarations:
+
+        let db: This variable will be used to store a reference to the MongoDB database once the connection is established.
+
+        dbConnectionStr = process.env.DB_STRING: This line retrieves the MongoDB connection string from the environment variables. The connection string typically contains information like the database server's address, port, and authentication credentials. This string is usually stored in the .env file.
+
+        dbName = 'todo': This variable stores the name of the MongoDB database you want to connect to, which in this case is 'todo'.
+
+    Connecting to the Database:
+
+        MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }): This line initiates a connection to the MongoDB server using the MongoClient from the MongoDB Node.js driver. It takes two arguments:
+            dbConnectionStr: The MongoDB connection string, which specifies how and where to connect to the database.
+            { useUnifiedTopology: true }: This option is used to enable a more modern and unified topology engine for MongoDB.
+
+        .then(client => { ... }): This is a promise-based approach for handling the result of the connection attempt. When the connection is successfully established, the code inside the callback function is executed. In this case:
+
+            console.log(Connected to ${dbName} Database): This line simply logs a message indicating that the connection to the specified database was successful.
+
+            db = client.db(dbName): This line sets the db variable to the MongoDB database object, which allows you to interact with the 'todo' database in subsequent parts of your code.
+
+After this code snippet executes successfully, you'll have an active connection to the 'todo' database, and you can perform operations like inserting, updating, and querying data from that database using the db variable.
+    */
+
+
+
+
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+
+
+
+
 
 
 app.get('/',async (request, response)=>{
