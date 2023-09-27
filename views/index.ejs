@@ -45,3 +45,45 @@
     <script src='js/main.js'></script>
 </body>
 </html>
+
+
+<!--
+This EJS code appears to be a template for a web page, likely to be used as part of your to-do list application. Let's break down the structure and the key elements of this EJS template:
+
+    Document Structure:
+        The <!DOCTYPE html> declaration specifies the document type and version.
+        The <html> element is the root element of the HTML document.
+        The <head> section contains metadata and references to external resources (CSS and JavaScript files).
+        The <body> section contains the content that will be displayed in the web page.
+
+    <meta> Tags:
+        The <meta> tags define metadata about the HTML document, such as character encoding, viewport settings, and compatibility settings for Internet Explorer.
+
+    Title:
+        The <title> element sets the title of the web page, which appears in the browser's title bar or tab.
+
+    External CSS and Font Awesome:
+        The <link> elements reference external CSS files.
+            The first <link> references Font Awesome for icons.
+            The second <link> references a custom CSS file located at "css/style.css." This is likely used for styling the page.
+
+    Page Content:
+
+        The <h1> element displays the main heading "Todo List."
+
+        The <ul> element with the class "todoItems" is a list that will display the to-do items. It contains <li> elements that will be dynamically generated using server-side rendering (likely with EJS templating).
+
+        Inside the list items (<li> elements), there are:
+            Conditional statements <% ... %> used for server-side logic (likely EJS template tags).
+            <span> elements to display the to-do item's text.
+            An icon with the class "fa fa-trash" that likely represents a delete action.
+
+        The <h2> element with the text "Left to do: <%= left %>" is used to display the number of to-do items left to complete. The <%= left %> expression suggests that this value is dynamically inserted from server-side data.
+
+        Below that, there's a "Add A Todo:" heading and a form for adding new to-do items:
+            An <input> field with the name "todoItem" for entering a new to-do item.
+            A "Submit" button.
+
+    JavaScript:
+        The <script> element references an external JavaScript file located at "js/main.js." This JavaScript file is likely used for client-side scripting and handling user interactions on the page.
+-->
