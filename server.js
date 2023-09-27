@@ -129,8 +129,10 @@ Overall, this route handler is responsible for fetching data from a MongoDB coll
 */
 
 
-
-
+//This line sets up a POST request handler for the '/addTodo' endpoint using the app.post() method. This means that this handler will be invoked when a client (usually a form submission) sends a POST request to '/addTodo'.
+//The line uses the insertOne() method of the MongoDB collection 'todos' to insert a new document into the collection. The document being inserted has two fields: 'thing' and 'completed'. 'thing' is set to the value of request.body.todoItem, which is presumably taken from a form submission. 'completed' is initially set to false.
+//This block of code is a promise chain. After the insertion is successful, the .then() block is executed. It logs 'Todo Added' to the console and then redirects the client back to the root URL ('/') using response.redirect('/'). This typically refreshes the page and displays the updated list of to-do items, including the newly added item.
+//If there is any error during the insertion process, the .catch() block will be executed. It logs the error to the console, helping with debugging.
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -140,6 +142,14 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+
+/*
+This code line 153 -168 defines a route handler for handling HTTP PUT requests to the '/markComplete' endpoint in your Express.js application. Let's break down what this code does step by step:
+
+This line sets up a PUT request handler for the '/markComplete' endpoint using the app.put() method. This means that this handler will be invoked when a client sends a PUT request to '/markComplete'.
+
+This block of code is using the updateOne() method of the MongoDB collection 'todos' to update a document in the collection
+*/
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -173,6 +183,14 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))
 
 })
+/*
+This code on line 170 - 185 defines another route handler, similar to the previous one, but for marking a to-do item as uncompleted. Let's break down this code step by step:
+ line sets up a PUT request handler for the '/markUnComplete' endpoint using the app.put() method. This handler will be invoked when a client sends a PUT request to '/markUnComplete'.
+This block of code is quite similar to the previous one. It uses the updateOne() method of the MongoDB collection 'todos' to update a document in the collection. The update operation is defined as follows
+*/
+
+
+
 
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
@@ -183,7 +201,20 @@ app.delete('/deleteItem', (request, response) => {
     .catch(error => console.error(error))
 
 })
+//This code 195 - 203 defines a route handler for handling HTTP DELETE requests to the '/deleteItem' endpoint in your Express.js application. Let's break down what this code does step by step
+//line sets up a DELETE request handler for the '/deleteItem' endpoint using the app.delete() method. This means that this handler will be invoked when a client sends a DELETE request to '/deleteItem'.
+//This block of code uses the deleteOne() method of the MongoDB collection 'todos' to delete a single document from the collection. The document to delete is identified by the query criteria: { thing: request.body.itemFromJS }. It appears that the value to identify the document to delete is taken from the request.body.itemFromJS property.
+//This block of code is a promise chain. After the deletion operation is successful, the .then() block is executed. It logs 'Todo Deleted' to the console and sends a JSON response of 'Todo Deleted' back to the client.
+
+
 
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
+
+/*
+This line logs a message to the console indicating that the server is running and listening on a specific port. The ${PORT} part is replaced with the actual port number being used by the server.
+
+In summary, this code starts your Express.js server and makes it listen on a specified port, which can be provided through an environment variable (process.env.PORT) or a default value (PORT). It also logs a message to the console to indicate that the server is up and running.
+
+*/
