@@ -52,18 +52,36 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
 After this code snippet executes successfully, you'll have an active connection to the 'todo' database, and you can perform operations like inserting, updating, and querying data from that database using the db variable.
     */
 
-
-
-
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+/*
+This portion of code is configuring some settings and middleware for your Express.js application. Let's break down each line:
 
+    app.set('view engine', 'ejs'):
+        This line sets the view engine for your Express application to EJS (Embedded JavaScript). EJS is a template engine that allows you to embed JavaScript code within your HTML templates. It's commonly used for rendering dynamic web pages.
 
+    app.use(express.static('public')):
+        This line sets up a static file server using Express's built-in express.static middleware. It serves static files (such as HTML, CSS, JavaScript, images, etc.) from a directory named 'public'. In other words, any files placed in the 'public' directory will be accessible directly through your web application.
 
+    app.use(express.urlencoded({ extended: true })):
+        This middleware is used to parse incoming HTTP request bodies with a Content-Type of 'application/x-www-form-urlencoded'. This is commonly used when you submit HTML forms with data.
 
+    app.use(express.json()):
+        This middleware is used to parse incoming JSON data in the request body. It parses JSON data and makes it available in your route handlers as req.body.
 
+Here's what each of these settings/middleware does:
+
+    Setting the view engine to EJS allows you to render EJS templates in your application, making it easier to generate dynamic HTML content.
+
+    Serving static files from the 'public' directory enables you to serve CSS, JavaScript, images, and other assets directly to clients.
+
+    Parsing 'application/x-www-form-urlencoded' data with express.urlencoded is essential when you want to process form submissions sent from HTML forms.
+
+    Parsing JSON data with express.json() is useful when you expect JSON data in the request body, such as when working with RESTful APIs.
+
+*/
 
 
 app.get('/',async (request, response)=>{
