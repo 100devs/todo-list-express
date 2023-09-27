@@ -98,6 +98,39 @@ app.get('/',async (request, response)=>{
      .catch(error => console.error(error))
 })
 
+/*
+this code defines a route handler for the root URL ('/') in your Express.js application. Let's break down what this code does step by step:
+
+app.get('/', async (request, response) => {
+
+This line sets up a GET request handler for the root URL ('/') using the app.get() method. When a user accesses the root URL of your application in a web browser, this handler will be invoked.
+
+
+const todoItems = await db.collection('todos').find().toArray()
+
+This line uses await to fetch all documents from a MongoDB collection named 'todos' and store them in the todoItems variable. The .find().toArray() method fetches all documents as an array.
+
+
+const itemsLeft = await db.collection('todos').countDocuments({ completed: false })
+
+This line counts the number of documents in the 'todos' collection where the 'completed' field is set to false and stores the count in the itemsLeft variable.
+
+
+response.render('index.ejs', { items: todoItems, left: itemsLeft })
+
+This line renders an EJS template named 'index.ejs' and passes two variables to the template: items (containing the fetched to-do items) and left (containing the count of incomplete to-do items). These variables can be used within the 'index.ejs' template to dynamically generate HTML content based on the data.
+
+*/
+
+
+/*
+This part of the code is essentially doing the same thing as the earlier part but without the use of async/await. It uses promise chains (then and catch) to achieve the same result: fetching data from the 'todos' collection, counting the incomplete items, and rendering the 'index.ejs' template with the retrieved data.
+Overall, this route handler is responsible for fetching data from a MongoDB collection ('todos'), counting the number of incomplete to-do items, and rendering an EJS template ('index.ejs') with this data. The rendered template likely displays a list of to-do items and the number of incomplete items on the web page when a user accesses the root URL of your application.
+*/
+
+
+
+
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
