@@ -1,7 +1,9 @@
-h1{
-    color: red;
+/*Change color of the title*/
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+/*When the task is completed, turn font color to gray and cross it out*/
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
