@@ -1,6 +1,9 @@
+/* change title color */
 h1{
     color: red;
 }
+
+/* upon task completion, change font color to grey */
 .completed{
     color: gray;
     text-decoration: line-through;
