@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
+const PORT = 8000
 require('dotenv').config()
 
 
 let db,
     dbConnectionStr = process.env.DB_STRING,
-    dbName = 'todo'
+    dbName = 'todo-list'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
@@ -25,15 +25,17 @@ app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+    db.collection('todos').find().toArray()
+    .then(data => {
+        db.collection('todos').countDocuments({completed: false})
+        .then(itemsLeft => {
+            response.render('index.ejs', { items: data, left: itemsLeft })
+        })
+    })
+    .catch(error => console.error(error))
 })
+
+// '/addTodo' comes from the action on the form
 
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
