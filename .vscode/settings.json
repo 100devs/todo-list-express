@@ -1,4 +1,6 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
-}
+    "liveServer.settings.port": 5501
+} // {
+//     "editor.fontSize": 42,
+//     "terminal.integrated.fontSize": 62
+// }
