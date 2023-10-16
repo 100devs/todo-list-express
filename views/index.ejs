@@ -20,13 +20,18 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!--items is holding our array of data which is the objects/documents we got from the database-->
+        <!--now we are setting up a for loop to run # of times equal to #of objects in the items array-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!--this conditional is used to add the completed class to tasks that have been done already, if it doesn't have completed set to true, then it does not get the completed class-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!--the parent node of the span is the li-->
+            <!--the child node of the li is the span-->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
@@ -36,12 +41,14 @@
 
     <h2>Add A Todo:</h2>
 
+    <!--the action is the route for our post request -->
     <form action="/addTodo" method="POST">
+        <!--the name item is what tells us what to look for when the whole request body is sent -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!--brings in the client side javascript file which will be in the public folder-->
     <script src='js/main.js'></script>
 </body>
 </html>
