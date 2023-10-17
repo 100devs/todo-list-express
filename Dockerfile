@@ -11,6 +11,6 @@ COPY . /server
 
 EXPOSE 3000
 
-ARG DATABASE_URL
+ARG DB_STRING
 
 CMD [ "npm", "start" ]
