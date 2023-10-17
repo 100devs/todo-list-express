@@ -5,7 +5,7 @@ const app = express()
 //Connect to database
 const MongoClient = require('mongodb').MongoClient
 //Making a port variable
-const PORT = 2121
+const PORT = 3000
 //makes us able to use .env file
 require('dotenv').config()
 
