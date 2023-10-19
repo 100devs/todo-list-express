@@ -1,47 +1,61 @@
+<!-- Establish HTML doc -->
 <!DOCTYPE html>
+<!-- Establish language -->
 <html lang="en">
+<!-- Establish compatibilities and styles in the head -->
 <head>
+    <!-- Character compatibility set -->
     <meta charset="UTF-8">
+    <!-- Browser compatibility set -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Viewport options set -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tab title -->
     <title>Document</title>
+    <!-- Link to Font Awesome and public CSS stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<!-- Body -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Main header -->
     <h1>Todo List: </h1>
+    <!-- List of items to-do -->
     <ul class="todoItems">
+    <!-- Loop for displaying items in the to-do list -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Creates a list with a class of item -->
         <li class="item">
+            <!-- Add a span containing each element in the items array, and with a class of completed if the element's completed property is true -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- Else add the element in the items array without as a span without the class of completed -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- Span containing trash can icon from Font Awesome -->
             <span class='fa fa-trash'></span>
         </li>
+    <!-- End loop -->
     <% } %>
     </ul>
 
+    <!-- Items left to do, with value of left inserted -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Add a todo section -->
     <h2>Add A Todo:</h2>
 
+    <!-- Form to add a todo, linked to /addTodo route by action with a method of POST (Create in CRUD) -->
     <form action="/addTodo" method="POST">
+        <!-- Input type of text -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Submit button -->
         <input type="submit">
     </form>
     
-
+    <!-- Link main JavaScript script from public folder -->
     <script src='js/main.js'></script>
 </body>
 </html>
