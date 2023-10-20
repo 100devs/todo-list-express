@@ -1,7 +1,9 @@
-h1{
-    color: red;
+/* sets h1 color to red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+/* sets elements with class .completed to gray and decoration to line-through */
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }

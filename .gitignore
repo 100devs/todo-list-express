@@ -1,2 +1,4 @@
+# contains files and folders to ignore by git
+
 node_modules
 .env
