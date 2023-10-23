@@ -1,6 +1,9 @@
+/* specifies that the text color for all <h1> elements is set to 'red'  */
 h1{
     color: red;
 }
+/* rule specifies that all elements with the 'completed'class should have 
+text color set to gray and a line throught hte text to give it a strikethrough apperance */
 .completed{
     color: gray;
     text-decoration: line-through;

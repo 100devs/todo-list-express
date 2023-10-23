@@ -1,12 +1,19 @@
+//import 'express' module and assign it to the 'express' variable
 const express = require('express')
+//create an instance of the 'express' application and assign it to the 'app' variable
 const app = express()
+//Import mongoDB module and assign to the MongoClient variabel
 const MongoClient = require('mongodb').MongoClient
+//Define listen port
 const PORT = 2121
+//Import .env file that contains sensitive information
 require('dotenv').config()
 
-
+// declare db variable to store database
 let db,
+// Initialise dbConnetionStr with the value from .env file that contains the mongodb uri
     dbConnectionStr = process.env.DB_STRING,
+    // initialise dbName with a string of todo
     dbName = 'todo'
 
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
@@ -15,7 +22,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
         db = client.db(dbName)
     })
     
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs')``
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
