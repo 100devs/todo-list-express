@@ -1,47 +1,67 @@
+<!-- specifies document is written in HTML5 -->
 <!DOCTYPE html>
+<!-- primary language is english 'en' -->
 <html lang="en">
+<!--head section of document, typically includes metadata, styles and scripts  -->
 <head>
+    <!-- defines character encoding for the document as UTF-8 -->
     <meta charset="UTF-8">
+    <!-- specifies how IE should render the page -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ensures the page adapts the viewport settings for responsive design and sets initial zoom level to 1.0 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- sets title of webpage, typically displayed in the browser's title bar/tab -->
     <title>Document</title>
+    <!-- link to external stylesheet: footawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- link to stylesheet css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- top level heading normally serves as page's title/heading -->
     <h1>Todo List: </h1>
+    <!-- unordered list with class 'todoItems' -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+        <!-- loop through the items array and likely generate dynamic HTML content for each item within the loop   -->
+        <% for(let i=0; i < items.length; i++) {%>
+        <!-- creates a list item element with the class "item." Each list item represents a to-do item. -->
         <li class="item">
+            <!--  a conditional statement within the template. It checks if a specific item is marked as completed. -->
             <% if(items[i].completed === true) {%>
+                <!--  If the item is completed, it creates a span with the class "completed" and inserts the content of the to-do item (likely its description). -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- This part of the conditional statement handles the case where the item is not completed.  -->
             <% }else{ %>
+                <!--  It creates a regular span element and inserts the content of the to-do item (when it's not completed). -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- represents a "delete" button or icon from FA -->
             <span class='fa fa-trash'></span>
+        <!-- This closes the list item element.  -->
         </li>
+    <!-- This closes the list item element.  -->
     <% } %>
+    <!--  closes the unordered list of to-do items. -->
     </ul>
 
+    <!-- seond level heading, 'left' is a variable or data value tjat will be filled by the server/server side template engine.  -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <!-- <form> is a HTML element used to collect and submit user input -->
+    <!-- specifies form data will be sent to /addTodo URL when submitted. A "POST" request is typically used when you want to send data to the server, such as when adding a new to-do item. -->
+    <form action="/addTodo" method="POST"> 
+        <!-- <input>: allows users to enter text.
+        type="text": specifies that the input is a text field.
+        placeholder="Thing To Do": This is a placeholder text that provides a hint of what to enter
+        name="todoItem": This means that when the form is submitted, the data entered into the input field will be associated with the key "todoItem."-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- submit button -->
         <input type="submit">
     </form>
     
-
+    <!--  external JavaScript file -->
     <script src='js/main.js'></script>
 </body>
 </html>

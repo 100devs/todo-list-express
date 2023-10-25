@@ -1,2 +1,6 @@
+# .gitignore is a configuration file used in Git to specify which files and directories should be ignored or excluded from version control. 
+# Node modules can be quite numerous and can include large binary files. Since these modules can be easily reinstalled using a package manager (e.g., npm or yarn), there's no need to include them in version control. 
 node_modules
+
+# configuration file that may contain sensitive information like API keys, database connection strings, and other environment-specific variables.  Instead, developers use a .env file to store these values locally, and it's usually excluded from version control to keep this information private. Developers can then use tools like dotenv to load these variables into the application during development.
 .env
