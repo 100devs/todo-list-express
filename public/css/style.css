@@ -1,6 +1,8 @@
+/* the below make the h1 red */
 h1{
     color: red;
 }
+/* the below makes the tag with the class of completed gray with a line through it */
 .completed{
     color: gray;
     text-decoration: line-through;
