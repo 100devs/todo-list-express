@@ -19,7 +19,9 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- Unordered list with a class of `todoItems` -->
     <ul class="todoItems">
+    <!-- Loop through every object in the `items` array -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -31,17 +33,19 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- Output the value of left into the page -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Form that will make a `POST` request to `/addTodo` when submitted -->
     <form action="/addTodo" method="POST">
+        <!-- Text input field with `placeholder` of `Thing To Do` and `name` of `todoItem`, which will become the key when the value is transmitted -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Submit button -->
         <input type="submit">
     </form>
     
-
+    <!-- Link to local JavaScript file -->
     <script src='js/main.js'></script>
 </body>
 </html>
