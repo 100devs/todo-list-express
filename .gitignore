@@ -1,2 +1,3 @@
+# the following directories/files will not be pushed to github
 node_modules
 .env
