@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <%# Telling the browser what type of document will be rendered %>
+<html lang="en"> <%# html tag with language setting to English %>
+<head><%# Opening head tag %>
+    <meta charset="UTF-8"> <%# metadata tag with encoding type for characters %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <%#  %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <%#  %>
+    <title>Document</title> <%#  %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <%#  %>
+    <link rel="stylesheet" href="css/style.css"> <%#  %>
+</head> <%#  %>
+<body> <%# main section for content to be displayed %>
+    <!DOCTYPE html> <%# this may be a typo %>
+<html lang="en"> <%# this may be a typo %>
+<head> <%# this may be a typo %>
+    <meta charset="UTF-8"> <%# this may be a typo %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <%# this may be a typo %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <%# this may be a typo %>
+    <title>Document</title> <%# this may be a typo %>
+</head> <%# this may be a typo %>
+<body> <%# main section for content to be displayed %>
+    <h1>Todo List: </h1> <%# Main heading displayed %>
+    <ul class="todoItems"> <%# Creating a unordered list and assign a class called todoItems %>
+    <% for(let i=0; i < items.length; i++) {%> <%# ejs for a for loop %>
+        <li class="item"> <%# list item with a class of item %>
+            <% if(items[i].completed === true) {%> <%# conditional to check if the item is completed %>
+                <span class='completed'><%= items[i].thing %></span> <%# if the item is completed, make it a span (inline element) with the class of completed and display the name of the thing %>
+            <% }else{ %> <%# close the if statment, add else %>
+                <span><%= items[i].thing %></span> <%# just make the thing a span with no class %>
+            <% } %>    <%# close the else %>
+            <span class='fa fa-trash'></span> <%# span with class of fa fa-trash for the font-awesome image of a trashcan %>
+        </li> <%# close the list item %>
+    <% } %> <%# ejs to close the for loop %>
+    </ul> <%# closeing tag for unordered list %>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Number left to do: <%= left %></h2> <%# heading 2 tag for how many items are left to do using ejs %>
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <%# Another h2 header %>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <%# create a form with a POST method that points to the /addTodo route %>
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <%# creates an input text box for the todo item. Placeholder is the text that appears when the box is empty. Also names the input box todoItem so we can reference it later %>
+        <input type="submit"> <%# input tag for a submit button %>
+    </form> <%# closing form tag %>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <%# script tag to connect main.js file located inside the js folder that is inside the public folder right before the closing body tag %>
+</body> <%# closing body tag %>
+</html> <%# closing html tag %>
