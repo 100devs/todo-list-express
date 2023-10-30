@@ -1,18 +1,18 @@
 {
-  "name": "rap-name-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "rap-name-api", // The name of the node.js project
+  "version": "1.0.0", // The version of the project
+  "description": "", // Brief description of the project
+  "main": "index.js", // Specifies the entry point file of the project
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1" // Script defined for running tests; currently echoes an error message if no test is specified and exits with a status code of 1
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "mongodb": "^3.6.5"
+  "author": "", // Author of the project
+  "license": "ISC", // The type of license under which the project is distributed
+  "dependencies": { // List of all dependencies for the project along with their versions
+    "cors": "^2.8.5", // Dependency for handling Cross-Origin Resource Sharing (CORS) in Express
+    "dotenv": "^8.2.0", // Dependency for loading environment variables from a .env file
+    "ejs": "^3.1.6", // Dependency for the EJS templating engine
+    "express": "^4.17.1", // Dependency for the Express 
+    "mongodb": "^3.6.5" // Dependency for MongoDB
   }
 }

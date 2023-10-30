@@ -1,47 +1,72 @@
+<!-- Declaration to tell the browser to expect an HTML page -->
 <!DOCTYPE html>
+<!-- Start of the HTML document with he language set to english -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Beginning of the head section which contains metadata for the document -->
+  <head>
+    <!-- Character encoding for the document it UTF-8 -->
+    <meta charset="UTF-8" />
+    <!-- Tells the browser to use the latest version of IE's rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Sets the viewport for responsive design, ensuring the width is the device's width and initial zoom level is 1.0 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Link to include Font Awesome icons library using a Content Delivery Network (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Link to an external stylesheet named 'style.css' stored in the 'css' directory -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Title of the document, displayed in the browser's title bar/tab -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
+  </head>
+  <!-- Start of the body section of the document, and what will show up on the page -->
+  <body>
+    <!-- Heading h1 element -->
+    <h1>Todo List:</h1>
+    <!-- Unordered list with class "todoItems" -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+      <!-- EJS For loop iterating through the "items" array -->
+      <% for(let i=0; i < items.length; i++) {%>
+      <!-- EJS A list item is created with class "item" for each item in the "items" array -->
+      <li class="item">
+        <!-- EJS Conditional check for items with the "completed" class -->
+        <% if(items[i].completed === true) {%>
+        <!-- EJS If item has "completed" class, displays item in a span with class "completed" -->
+        <span class="completed"><%= items[i].thing %></span>
+        <!-- EJS Conditional check for items that are not "completed" -->
+        <% }else{ %>
+        <!-- EJS If item is not "completed", displays item in a span with no class-->
+        <span><%= items[i].thing %></span>
+        <!-- End of EJS conditional statement -->
+        <% } %>
+        <!-- EJS Add trash icon span to each list item -->
+        <span class="fa fa-trash"></span>
+        <!-- End of list item -->
+      </li>
+      <!-- End of EJS For loop -->
+      <% } %>
+      <!-- End of unordered list -->
     </ul>
 
+    <!-- Heading h2 element displays number of remaining todo items from server.js -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Heading h2 element -->
     <h2>Add A Todo:</h2>
 
+    <!-- Form for adding a new todo item via post method -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+      <!-- Text input for new todo item -->
+      <input type="text" placeholder="Thing To Do" name="todoItem" />
+      <!-- Submit button for adding new todo item -->
+      <input type="submit" />
+      <!-- End of form -->
     </form>
-    
 
-    <script src='js/main.js'></script>
-</body>
+    <!-- Link to the JavaScript file main.js for functionality -->
+    <script src="js/main.js"></script>
+    <!-- End of body section -->
+  </body>
+  <!-- End of HTML document -->
 </html>
