@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,62 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <html lang="en">
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <!-- make a h1 title -->
+        <h1>Todo List: </h1>
+        <!-- make a unordered list with class "todoItems" -->
+        <ul class="todoItems">
+            <!-- loop thru the unordered list and render different span content according to condition.
+            when the 'completed' property of one of the items is true, it will apply span in this format
+             "<span class='completed'>
+                            <%= items[i].thing %>
+                        </span>" ;
+                        otherwise, it will apply the other format for span.  
+            -->
+            <% for(let i=0; i < items.length; i++) {%>
+                <li class="item">
+                    <% if(items[i].completed===true) {%>
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                        </span>
+                        <% }else{ %>
+                            <span>
+                                <%= items[i].thing %>
+                            </span>
+                            <% } %>
+                                <span class='fa fa-trash'></span>
+                </li>
+                <% } %>
+        </ul>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <!-- render the value of left -->
+        <h2>Left to do: <%= left %>
+        </h2>
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <h2>Add A Todo:</h2>
+        <!-- make a form that will make a post request to "/addTodo" -->
+        <form action="/addTodo" method="POST">
+            <!-- set the type of input as text; set the input with a placeholder "Thing To Do"; set the name property of -->
+            <!-- input as "todoItem" which will be the key when the value is transmitted -->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!-- add a button to enable submit for the input -->
+            <input type="submit">
+        </form>
+
+        <!-- link local js file -->
+        <script src='js/main.js'></script>
+    </body>
+
+    </html>
