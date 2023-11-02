@@ -1,7 +1,10 @@
-h1{
+/* change h1 color to red */
+h1 {
     color: red;
 }
-.completed{
+
+/* make a class that will set the content color as red and text decoration with a line thru the content; this class will apply when condition is met */
+.completed {
     color: gray;
     text-decoration: line-through;
 }
