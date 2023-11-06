@@ -21,27 +21,21 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+app.get('/',async (req, res)=>{
+    const todoList = await db.collection('todo-list').find().toArray()
+    const taskLeft = await db.collection('todo-list').countDocuments({completed: false})
+
+    res.render(('index.ejs'), {todoItems: todoList, tasksLeft : taskLeft})
 })
 
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
+app.post('/addTodo', (req, res) => {
+    db.collection('todo-list').insertOne({task: req.body.todoItem, completed: false})
     .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
+        res.redirect('/')
     })
-    .catch(error => console.error(error))
+    .catch(err => {
+        console.log(err)
+    })
 })
 
 app.put('/markComplete', (request, response) => {

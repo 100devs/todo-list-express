@@ -15,24 +15,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+        <% for(let i=0; i < todoItems.length; i++) {%>
+            <li class="item">
+                <% if(todoItems[i].completed === true) {%>
+                    <span class='completed'><%= todoItems[i].task %></span>
+                <% }else{ %>
+                    <span><%= todoItems[i].task %></span>
+                <% } %>    
+                <span class='fa fa-trash'></span>
+            </li>
+        <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= tasksLeft %></h2>
 
     <h2>Add A Todo:</h2>
 
