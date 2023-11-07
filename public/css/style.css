@@ -1,6 +1,8 @@
+/* all h1 headings will have a font color of red.  */
 h1{
     color: red;
 }
+/* Change the completed class ites to have a text color of gray and a strikethrough text-decoration */
 .completed{
     color: gray;
     text-decoration: line-through;
