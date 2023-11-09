@@ -38,8 +38,8 @@ app.post('/addTodo', (req, res) => {
     })
 })
 
-app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markComplete', (req, res) => {
+    db.collection('todo-list').updateOne({task: req.body.todoName},{
         $set: {
             completed: true
           }
@@ -49,14 +49,14 @@ app.put('/markComplete', (request, response) => {
     })
     .then(result => {
         console.log('Marked Complete')
-        response.json('Marked Complete')
+        res.json('Marked Complete')
     })
     .catch(error => console.error(error))
 
 })
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+app.put('/markUnComplete', (req, res) => {
+    db.collection('todo-list').updateOne({task: req.body.todoName},{
         $set: {
             completed: false
           }
@@ -66,17 +66,38 @@ app.put('/markUnComplete', (request, response) => {
     })
     .then(result => {
         console.log('Marked Complete')
-        response.json('Marked Complete')
+        res.json('Marked Complete')
     })
     .catch(error => console.error(error))
 
 })
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+app.put('/updateTask', async(req, res) => {
+    await db.collection('todo-list').findOneAndUpdate(
+        {task: req.body.todoName},
+        {
+            $set : {
+                task: 'I was just updated'
+            }
+        },
+        {
+            sort: {_id: -1},
+            upsert: false
+        }
+    )
+    .then(result => {
+      console.log('Todo updated')
+      res.json(`Updating todo item`)
+
+     })
+    .catch(error => console.error(error))
+})
+
+app.delete('/deleteItem', (req, res) => {
+    db.collection('todo-list').deleteOne({task: req.body.todoName})
     .then(result => {
         console.log('Todo Deleted')
-        response.json('Todo Deleted')
+        res.json('Todo Deleted')
     })
     .catch(error => console.error(error))
 
