@@ -15,32 +15,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
-
-    <h2>Left to do: <%= left %></h2>
-
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <header class="header">
+        <div class="logo">
+          <i class="fas fa-check-double"></i>
+          <h1 class="page-name">Todo List</h1>
+        </div>
+      </header>
     
+    <main>
+        <p>No: of Todos: <%= tasksLeft %></p>
+    
+        <h4>Add Todo:</h4>
+    
+        <form action="/addTodo" method="POST" class="todoForm">
+            <input type="text" placeholder="Add Todo" name="todoItem" class="todoInput">
+            <input type="submit">
+        </form>
+
+        <ul class="todoItems">
+            <% for(let i=0; i < todoItems.length; i++) {%>
+                <li class="item">
+                    <% if(todoItems[i].completed === true) {%>
+                        <span class='completed'><%= todoItems[i].task %></span>
+                    <% }else{ %>
+                        <span><%= todoItems[i].task %></span>
+                    <% } %>
+                    <span class='fa fa-trash right'></span>
+                    <img src="img/pen.png"   alt="pen" class="pen right">
+                    <!-- <input type="checkbox" class="checkbox right">     -->
+                </li>
+            <% } %>
+        </ul>
+    </main>
+    
+    <footer></footer>
 
     <script src='js/main.js'></script>
 </body>

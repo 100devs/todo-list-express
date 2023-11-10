@@ -1,7 +1,145 @@
-h1{
-    color: red;
-}
+:root {
+    --primary-dark: #333;
+    --secondary-dark: #444;
+    --primary-light: #eee;
+    --secondary-light: #ddd;
+  }
+  
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    /* footer support */
+    position: relative;
+    min-height: 100%;
+  }
+
+  li{
+   list-style: none;
+   display: block;
+  }
+
+  body {
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    /* footer support */
+    margin-bottom: 48px;
+  }
+  /* header */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .fa-check-double {
+    font-size: 40px;
+  }
+
+  /* main */
+  main {
+    min-height: calc(100vh - 100px - 28px);
+    /* margin: 0 auto; */
+    margin: 0 auto;
+    text-align: center;
+    padding: 2rem 0;
+    /* border: 2px solid orange; */
+  }
+
 .completed{
     color: gray;
     text-decoration: line-through;
 }
+
+.todoForm{
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.todoForm input{
+  padding: 0.5rem;
+}
+
+.todoItems{
+    margin: 0 auto;
+    text-align: left;
+    /* border: 2px solid red; */
+    padding: 0.5rem;
+    width: 60%;
+    max-width: 500px;
+}
+
+.item{
+    padding: 5px 10px;
+    font-size: 1.1rem;
+    margin-bottom: 7px;
+    border: 2px solid var(--secondary-dark);
+}
+
+
+.item:hover{
+    background: var(--secondary-light);
+    cursor: pointer;
+}
+
+.right{
+    float: right;
+    cursor: pointer;
+    padding: 0 8px;
+}
+
+.pen{
+  width: 40px;
+}
+
+.pen:hover, 
+.fa-trash:hover {
+  transform: scale(1.2);
+}
+
+
+
+
+
+/* footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
+    font-size: 18px;
+  }
+  
+  .fa-github {
+    color: var(--primary-light);
+    font-size: 22px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
+  }
+
