@@ -7,17 +7,17 @@ Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
-Array.from(item).forEach((element)=>{
+Array.from(pen).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
-Array.from(itemCompleted).forEach((element)=>{
+Array.from(pen).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
-Array.from(pen).forEach((element) => {
-    element.addEventListener('click', updateTask)
-})
+// Array.from(pen).forEach((element) => {
+//     element.addEventListener('click', updateTask)
+// }) remember to work on the update 
 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
