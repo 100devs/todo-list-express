@@ -1,4 +1,5 @@
+//sets font size for code editor interface and terminal interface
 {
     "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "terminal.integrated.fontSize": 48
 }

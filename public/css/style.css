@@ -1,6 +1,13 @@
+/*
+css styles
+*/
+
 h1{
     color: red;
 }
+/*
+style applied to completed tasks
+*/
 .completed{
     color: gray;
     text-decoration: line-through;
