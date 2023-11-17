@@ -1,47 +1,55 @@
+<!-- Indicate latest HTML specifications are being followed.   -->
 <!DOCTYPE html>
+<!-- Language set to english in the opening 'html' tag with 'lang' attribute set to 'en' -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <!-- Character encoding set to UTF-8 -->
+    <meta charset="UTF-8" />
+    <!-- If IE is utilized, it indicates which version of IE the document should be rendered as-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Set viewport width to the width of the device with an initial scale or zoom of 1.0-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Document title visible in browser tab headings, bookmarks, etc -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
+    <!-- Link to font-awesome stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Link to server-side stylesheet-->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <h1>Todo List:</h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
+      <!-- When render method is executed by the server, ejs is passed'items', and 'left'  -->
+      <!-- Everything within the loop, iterating through each index value of 'items' is rendered each time the loop runs -->
+      <% for(let i=0; i < items.length; i++) {%>
+      <li class="item">
+        <!-- If completed equals true, add span element of class 'completed' with 'items[i].thing' as the innerHTML value -->
+        <% if(items[i].completed === true) {%>
+        <span class="completed"><%= items[i].thing %></span>
+        <% }else{ %>
+        <!-- If completed is false, add span element without class 'completed' with innerHTML set to 'items[i].thing' -->
+        <span><%= items[i].thing %></span>
+        <!-- Closure of for loop -->
+        <% } %>
+        <span class="fa fa-trash"></span>
+      </li>
+      <% } %>
     </ul>
-
+    <!-- Add the number of items left todo within the innerHTML of this h2 element -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Upon submit, form will send a POST request to '/addTodo' on the server -->
     <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+      <!-- Text input with initial placeholder 'Thing To Do', with input set to 'todoItem' in post request body when sent to server-->
+      <input type="text" placeholder="Thing To Do" name="todoItem" />
+      <!-- Form submit button which initiates POST request -->
+      <input type="submit" />
     </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+    <!-- Execute ./js/main.js -->
+    <script src="js/main.js"></script>
+  </body>
 </html>
