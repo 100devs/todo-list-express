@@ -1,47 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html> <!-- sole purpose is to prevent browser from switchign into 'quirks mode', ensures browser makes best-effor attempt at following specifications -->
+<html lang="en"> <!-- specifies what language html is written in -->
+<head> <!-- head element contains machine readable info (metadata) about the document -->
+    <meta charset="UTF-8"> <!-- tells browser what character encoding will be used, UTF-8 is most comm -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- providing HTTP header for doc, 'IE' part tells internet explorer to use the latest rendering engine available -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets width of viewport to width of device, our initial scale value means our viewport is displayed with no zoom/scale to begin with -->
+    <!-- -->
+    <title>Document</title> <!-- sets title of document -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- links a style sheet  -->
+    <link rel="stylesheet" href="css/style.css"> <!-- links our own style.css file -->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+<body> <!-- inside our body tag is where all of the content of our web page will go -->
+    <h1>Todo List: </h1> <!-- an h1 is the biggest header we can put on a page, it denotes the main heading of our page -->
+    <ul class="todoItems"> <!-- unordered list with class of 'todoItems'-->
+    <% for(let i=0; i < items.length; i++){ %> <!-- looping through our items list -->
+        <li class="item"> <!-- list item with class 'item' -->
+            <% if(items[i].completed === true){ %> <!-- if condition items is true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- then inject that item's 'thing' as our LI  -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- else, our items thing still ends up being our LI -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- this is an icon from the first stylesheet -->
         </li>
-    <% } %>
+    <% } %> <!-- ends our for loop -->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- h2 with our 'left' variable from our server.js -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- regular h2 heading -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- creating form, when submitted, it'll initiate a 'POST' request to the URL '/addTodo' -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- place for user to input text, we give it a name to be able to access it in our server.js -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Same as above, not sure why thereis two, probably a mistake -->
+        <input type="submit"> <!-- submit button -->
+    </form>
+        <input type="submit"> <!-- another submit button? -->
     </form>
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script>  <!-- links main.js file, allows us to run our client side js -->
+</body> <!-- closing our body tag -->
+</html> <!-- closing HTML -->
