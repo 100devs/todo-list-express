@@ -19,26 +19,26 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <ul class="todoItems"> 
+    <% for(let i=0; i < items.length; i++) {%> <!-- Iterate through our database items -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> <!--Conditional to carry out if our task was completed = true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- Insert span of completed for item at that iteration -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- If not true, do this -->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Insert what's remaining to complete -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Field to add tasks to our list -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- Form post with action that points to /addTodo code in our server.js and our method used which is POST (CRUD) -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Field -->
+        <input type="submit"> <!-- Submit button -->
     </form>
     
 
