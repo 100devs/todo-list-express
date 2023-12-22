@@ -1,6 +1,9 @@
+/* makes h1 red*/
 h1{
     color: red;
 }
+
+/*changes the 'completed' class to gray strikethrough text (li > span in ejs) */
 .completed{
     color: gray;
     text-decoration: line-through;
