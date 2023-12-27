@@ -1,4 +1,17 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.lineHeight": 1,
+    "notebook.output.lineHeight": 0,
+    "editor.cursorStyle": "line",
+    "editor.cursorWidth": 0,
+    "editor.suggestLineHeight": 8,
+    "editor.mouseWheelZoom": true,
+    "editor.comments.ignoreEmptyLines": true,
+    "editor.maxTokenizationLineLength": 20000,
+    "editor.lineHeight": 20,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorStyleInactive": "line",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorWidth": 0
 }
