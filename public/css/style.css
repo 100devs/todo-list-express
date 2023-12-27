@@ -4,4 +4,10 @@ h1{
 .completed{
     color: gray;
     text-decoration: line-through;
+    cursor: pointer;
 }
+
+.unCompleted{
+    cursor: pointer;
+}
+
