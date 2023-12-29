@@ -20,22 +20,26 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- a for loop that goes through all the items -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- an if conditional, that places an element with/without a completed class when nessescarry -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- adds the trashcan icon -->
             <span class='fa fa-trash'></span>
         </li>
+        <!-- ends the for loop -->
     <% } %>
     </ul>
-
+<!-- takes the calue from items left to be completed and updates it whenever there are more or less items to be completed -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- the form which adds a doccument to the database -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">

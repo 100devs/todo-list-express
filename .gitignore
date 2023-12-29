@@ -1,2 +1,3 @@
+# ignores the node modules and .env files
 node_modules
 .env
