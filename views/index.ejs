@@ -1,47 +1,75 @@
+<!-- comms w/ browser what document type will be shown -->
 <!DOCTYPE html>
+<!-- starting HTML tag, and setting lang as English -->
 <html lang="en">
+    <!-- head tag for metadata -->
 <head>
+    <!-- indicates which character set should be used -->
     <meta charset="UTF-8">
+    <!-- sets appropriate compatiblity for microsoft browsers -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- sets the WIDTH of available viewing area to the width of the device screen -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- indicates text for browser tab -->
     <title>Document</title>
+    <!-- establishes link to the font awesome icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- links to style.css file inside of css dir inside of public dir -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- closing head tag -->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<body><!-- main section for content displayed -->
+    <!DOCTYPE html> <!-- possible typo -->
+<html lang="en"><!-- possible typo -->
+<head><!-- possible typo -->
+    <meta charset="UTF-8"><!-- possible typo -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- possible typo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- possible typo -->
+    <title>Document</title><!-- possible typo -->
+</head><!-- possible typo -->
+<body> <!-- main section for content displayed -->
+    <!-- main title displayed on page -->
     <h1>Todo List: </h1>
+    <!-- creates unordered list and assigns class to the list -->
     <ul class="todoItems">
+        <!--  use EJS to start a for loop -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- creates a list item with a class of item -->
         <li class="item">
+            <!-- EJS to check if an item in an array with a completed prop is true -->
             <% if(items[i].completed === true) {%>
+                <!-- creating an inline element with a class and adding EJS to display the name of the task -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- EJS for the else clause of if...else statement -->
             <% }else{ %>
+                <!-- adding EJS to display the name of the task with No class -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+                <!-- EJS to close if...else statement -->
+            <% } %>
+            <!-- display fontawesome icon of trash can inside of span -->
             <span class='fa fa-trash'></span>
+            <!-- closing list item -->
         </li>
+        <!-- closing EJS for loop -->
     <% } %>
+    <!-- closing unordered list -->
     </ul>
-
+    <!-- creates a second level heading tag with text, uses EJS to display a var showing how many tasks are left to be completed -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- creates a second level heading with text -->
     <h2>Add A Todo:</h2>
-
+    <!-- creates a form with a POST method that goes to the /addTodo route -->
     <form action="/addTodo" method="POST">
+        <!-- creating a text input field; placeholder text; names the input field todoItem for future reference -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- gives the form a submit button  -->
         <input type="submit">
+        <!-- closes form -->
     </form>
     
-
+    <!-- links to main.js file in js dir inside of public dir -->
     <script src='js/main.js'></script>
+    <!-- closes body tag-->
 </body>
+<!-- closes html tag -->
 </html>
