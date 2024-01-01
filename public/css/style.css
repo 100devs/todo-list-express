@@ -1,7 +1,14 @@
+/* selects any h1 tag */
 h1{
+    /* forces text color Red */
     color: red;
+    /* closes selector */
 }
+/* selects items with completed class */
 .completed{
+    /* forces text color Gray */
     color: gray;
+    /* forces a line through text */
     text-decoration: line-through;
+    /* closes selector */
 }
