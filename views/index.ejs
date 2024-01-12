@@ -20,6 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- EJS for loop to add list items dynamically -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -31,11 +32,11 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- A dynamic variable using EJS -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- A from that submits the todo item via a POST request -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
