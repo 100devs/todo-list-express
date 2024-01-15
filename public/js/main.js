@@ -1,4 +1,4 @@
-const deleteBtn = document.querySelectorAll('.fa-trash') //creating a variable and assigning it to a selection of all elements with a CLASS of fa-trash
+const deleteBtn = document.querySelectorAll('.fa-trash') //creating a variable and assigning it to a selection of all elements with a CLASS of fa-trash aka the trash-can icon
 const item = document.querySelectorAll('.item span') //creating a variable and assigning it to a selection of all span tags within the parent that has a CLASS of item
 const itemCompleted = document.querySelectorAll('.item span.completed') //creating a variable and assigning it to a selection of spans with a class of "completed" inside of a parent with a class of "item"
 
@@ -15,7 +15,7 @@ Array.from(itemCompleted).forEach((element)=>{//creating an array from our selec
 })//close our loop
 
 async function deleteItem(){//declaring an asynchronous function that allows other code to run while it's doing it's thing in the background
-    const itemText = this.parentNode.childNodes[1].innerText//looks inside of the list item and grabs only the inner text within the list span.
+    const itemText = this.parentNode.childNodes[1].innerText// this = trashcan icon. parentNode is the <li>. childNodes is the <span> that has text inside it aka innerText
     try{//starting a try block that allows us to execute some code.
         const response = await fetch('deleteItem', {//creates a response variable that waits on a fetch to get data from the result of the deleteItem route
             method: 'delete', //sets the CRUD method for the route
@@ -40,7 +40,7 @@ async function markComplete(){//declaring asynchronous function
             method: 'put', //setting the CRUD method to "update" for the route
             headers: {'Content-Type': 'application/json'}, //specifying the type of content expected, which is JSON
             body: JSON.stringify({//declare the message content being passed, and stringify that content
-                'itemFromJS': itemText//setting the content of the body to the inner text of the list item, and naming it 'itemFromJS'
+                'itemFromJS': itemText//setting the content of the body to the innerText of the list item, and naming it 'itemFromJS'
             })//closing the body
           })//closing the object block
         const data = await response.json()//waiting on JSON from the response to be converted
