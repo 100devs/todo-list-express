@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html><!--Telling the broswer what type of document will be shown-->
+<html lang="en"><!--starting the HTML tag and saying that the language is English-->
+<head><!--starting the head tag to store our metadata-->
+    <meta charset="UTF-8"><!--indicates what character set should be used-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--Sets appropriate compatibility for Microsoft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--sets the WIDTH of available viewing area to the width of the device screen-->
+    <title>Document</title><!--sets the text that appears on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--Linking to the font-awesome icon library-->
+    <link rel="stylesheet" href="css/style.css"><!--linking to our local CSS page in the public folder-->
+</head><!--closing our head tag-->
+<body> <!--Main section for content displayed-->
+    <h1>Todo List: </h1> <!--Main title displayed on page-->
+    <ul class="todoItems"> <!--Creating an unordered list and assigned class to the list-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- <% is using EJS to start a for() loop to loop through the "items" array-->
+        <li class="item"> <!--Create a list item with a class of item-->
+            <% if(items[i].completed === true) {%> <!--EJS to check if an item in an array with a completed property is true-->
+                <span class='completed'><%= items[i].thing %></span> <!--Creating a span(inline-element) with a class and adding EJS to display the name of the task-->
+            <% }else{ %> <!--EJS for the Else clause of our if statement-->
+                <span><%= items[i].thing %></span><!--Adding EJS to display the name of the task with NO CLASS-->
+            <% } %>    <!--EJS to close the Else statement-->
+            <span class='fa fa-trash'></span><!--Display Font Awesome icon of trash can inside a span-->
+        </li><!--Closing our List Item-->
+    <% } %> <!--EJS closing For() Loop bracket-->
+    </ul><!--Closing our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--Creates a second level header tag with text and using EJS to display a variable showing how many tasks are left to complete. This variable is located in main.js as you can see below with the script tag referencing js/main.js-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--Just a second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--Create a form with a POST method that goes to the /addTodo route. POST means CREATE in CRUD-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--creates an input box that accepts text with default text inside of it before you type anything. Naming the input box to give it a unique value to reference it later.-->
+        <input type="submit"><!--Gives the form a submit button-->
+    </form> <!--Close the form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--Linking to the main.js file located in the public>js directory-->
+</body><!--Closing body tag-->
+</html><!--Closing html tag-->
