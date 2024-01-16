@@ -70,23 +70,30 @@ app.post('/addTodo', (request, response) => {
 
 //Specifying a route for any put requests made to the /markComplete path, the callback again is the function that is called anytime this specific http request is made at this specific endpoint.
 app.put('/markComplete', (request, response) => {
+    //We again access the collection "todos", call the updateOne method of the collection instance. The argument passed is used to filter the colelction down to the object with a thing property whose value is the item specified by the client who issued the request, when it finds the object, it will update the value for the property we specify in the object we pass as the second argument to the method, containing an embedded object $set, the property completed here is being changed to true. Marking that specific document as complete. 
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: true
           }
-    },{
+    },{//This third argument is the options argument object, Allows us to specify additional behaviors for the updateOne operation.
+        //sort will sort the documents using the specified property depending on the value of the property within the sort option. -1 will sort in descending order, while 1 will sort in ascending order.
         sort: {_id: -1},
+        //upsert option determines whether or not to create a document if it didn't exist. For example, if set to true, when we "updated" a document that didn't exist, it will then create that document and add it to the database.
         upsert: false
     })
     .then(result => {
+        //Handler for when we successfully updated the document, marking it as complete. First we log it to our server console.
         console.log('Marked Complete')
+        //then we respond with a json file to the client with the text "Marked Complete"
         response.json('Marked Complete')
-    })
+    })//handles any errors during the updating process.
     .catch(error => console.error(error))
 
 })
 
+//Specifies a route to handle put requests made to the /markUnComplete path, again with a callback function that will be called anytime a request is made of this specific type and to this specific endpoint.
 app.put('/markUnComplete', (request, response) => {
+    //again uses the updateOne method to do the same as the put route from above, this time setting the completed property to false, marking the item as uncomplete.
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
             completed: false
@@ -96,23 +103,29 @@ app.put('/markUnComplete', (request, response) => {
         upsert: false
     })
     .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+        console.log('Marked Uncompleted')
+        response.json('Marked Uncompleted')
     })
     .catch(error => console.error(error))
 
 })
 
+//Specifies a route for the delete http method made at the /deleteItem path and a callback that will be called each time this specific request is made.
 app.delete('/deleteItem', (request, response) => {
+    //calls the deleteOne() method passing in the filter argument to filter and find the document with a thing value of the current request body property value of itemFromJS
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
+        //When the operations have finished, the then handler will be called, logging to the console the item has been deleted successfully.
         console.log('Todo Deleted')
+        //additionally sending a json response to the client indicating the document has been successfully deleted.
         response.json('Todo Deleted')
-    })
+        //For deletes, we should send a 204 for both cases where we successfully delete and if the document didn't exist in the first place. These response headers are set for us automagically by express, but its nice to know what is happening behind the scenes. The reason a 204 is reasonable for both cases is because both cases result in the same thing, the document isnt in the database.
+    })//logs any errors in the case the deletion has failed.
     .catch(error => console.error(error))
 
 })
 
+//Binding our express server to either the env port if it exists, or the port we specified at the beginning of our propgram to be able to listen to requests from. The optional callback function will be called when the port has successfully been bound, here it is being used to log to the server console that we started the server.
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
