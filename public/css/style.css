@@ -1,7 +1,7 @@
 h1{
-    color: red;
+    color: red; /*setting color of h1 to red*/
 }
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray;/*setting color of completed to gray*/
+    text-decoration: line-through; /*line through after task is finished*/
 }
