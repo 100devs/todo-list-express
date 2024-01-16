@@ -20,9 +20,11 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- Using ejs syntax, we are creating a for loop that will loop for each one of the items we passed in, being held by the items property, and for each we will dynamically generate an li that has a span. There are two seperate paths in creating a span, if the property of completed is true on the current item, we will add a span with a class of completed, else we will just simply add the span. -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
+                <!-- Here we use the <%= syntax to be able to interpolate the current item's property of thing. Producing the value of the task itself into our generated span. -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
@@ -31,11 +33,11 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- We also passed in the items left, simply existing as left. We interpolate it into our Left to do h2. -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- we specify the action attribute of our form to send a post request, specified by the method attribute, to the /addTodo path, which we handle on the server's routes. -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
