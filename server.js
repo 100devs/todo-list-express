@@ -36,9 +36,16 @@ app.use(express.json())
 
 //Defining a route for a get request made to the root directory, specifies an arrow function, specifically an async one that allows us to write asynchronous code that looks synchronous
 app.get('/',async (request, response)=>{
+    //here we call the collection() method of the db instance, passing into it the specific collection we want to grab all the documents from, (since find has no arguments) and convert it to an array. We are also declaring and assigning to our todoItems variable the result. Returns a promise which will fulfill when the documents have successfully been fetched, to which we assign to the variable the array of documents themselves.
     const todoItems = await db.collection('todos').find().toArray()
+    //Another asynchronous function call which returns a promise. Calls the method of countDocuments on the collection instance, which gives the length of the collection, in otherwords the amount of documents in that specific collection.
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    //Although these two async function calls are being awaited, since they dont strictly depend on each other, we can pass them into a promise.all() and await that instead!
+
+    //we call the render() method on the response object, in which we pass the ejs file to render, and also passing the objects we have grabbed from the database into the ejs file to dynamically generate the html for this route, which then will be served as the response for this request, ending the request.
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
+
+    //Non async/await version, using promise chains.
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
@@ -49,15 +56,19 @@ app.get('/',async (request, response)=>{
     // .catch(error => console.error(error))
 })
 
+//Specifying a route for post requests made to the /addTodo path, specifies a callback which utilizes a promise chain.
 app.post('/addTodo', (request, response) => {
+    //again, we are accessing the todo collection using the collection() method which returns a collection object instance, calling the insertOne() method, in which we pass in the object we wish to store as a document within this collection. It sets the thing property value as the request body todoItem, which is being decoded by our middleware and existing as a property on the req.body object.
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
+        //once we have successfully added the document, we console log the result and send a response of a redirect to the root url, which essentially refreshes the page showing the client the updated html, which is handled by our route from above. With the new document added, another item is added to the object we input to the ejs file to do the rendering.
         console.log('Todo Added')
         response.redirect('/')
-    })
+    })//catches any errors in inserting the document. Logging it to the console so we, the developers, are able to handle it.
     .catch(error => console.error(error))
 })
 
+//Specifying a route for any put requests made to the /markComplete path, the callback again is the function that is called anytime this specific http request is made at this specific endpoint.
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
