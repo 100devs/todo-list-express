@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><!--tells browser to run in HTML-->
+<html lang="en"><!--that the language is english-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8"><!--to put it in coding standard-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--tells browser how to render the page-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--for mobile-->
+    <title>Document</title><!--title of the page-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--link and to connect to font awesome-->
+    <link rel="stylesheet" href="css/style.css"><!--link to your stylesheet css-->
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html><!--tells browser to run in HTML-->
+<html lang="en"><!--that the language is english-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8"><!--to put it in coding standard-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--tells browser how to render the page-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--For mobile-->
+    <title>Document</title><!--title of the page-->
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+    <h1>Todo List: </h1><!--most important phrase in the page-->
+    <ul class="todoItems"><!--unordered list of todoItems which we will use for the server-->
+    <% for(let i=0; i < items.length; i++) {%><!--a for loop to loop through all data in the db-->
+        <li class="item"><!--li with item class-->
+            <% if(items[i].completed === true) {%><!--check if item is completed and cross it off-->
+                <span class='completed'><%= items[i].thing %></span><!--create completed span class-->
+            <% }else{ %><!--if not completed-->
+                <span><%= items[i].thing %></span><!--just create regular span-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span><!--icon for trash-->
         </li>
-    <% } %>
+    <% } %><!--end of loop-->
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--to check how many items are left-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--h2 add a todo-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"><!--form for the post-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--input with the name todoItem-->
+        <input type="submit"><!--which is connected to server app.post-->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script><!--link to javascript-->
 </body>
 </html>
