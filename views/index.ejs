@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tab title -->
     <title>Document</title>
+    <!-- Font access -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Css file location-->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -20,8 +23,10 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- for loop that loops through items data responded by server.js-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!--If condition that checks if completed key equals true or false-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -32,10 +37,11 @@
     <% } %>
     </ul>
 
+    <!-- Data provided by the server side cound is displayed here, total documents marked complete-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Form that sends a post request to server-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">

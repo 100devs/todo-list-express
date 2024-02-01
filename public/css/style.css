@@ -1,6 +1,9 @@
-h1{
+/*Color all h1's red*/
+ h1{
     color: red;
 }
+
+/*Add line through to completed class and turn gray*/
 .completed{
     color: gray;
     text-decoration: line-through;
