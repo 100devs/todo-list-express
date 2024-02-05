@@ -1,3 +1,4 @@
+// Adding event listeners to all our delete and todo items
 const deleteBtn = document.querySelectorAll('.fa-trash')
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
@@ -14,6 +15,7 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+// Delete function using fetch and delete method passing the todo item's text
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -26,6 +28,7 @@ async function deleteItem(){
           })
         const data = await response.json()
         console.log(data)
+        // Reloading the page once the fetch is complete (item deleted)
         location.reload()
 
     }catch(err){
@@ -33,6 +36,7 @@ async function deleteItem(){
     }
 }
 
+// Mark complete function using fetch and put method passing the todo item's text
 async function markComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -45,6 +49,7 @@ async function markComplete(){
           })
         const data = await response.json()
         console.log(data)
+        // Reloading the page once the fetch is complete (database updated)
         location.reload()
 
     }catch(err){
@@ -52,6 +57,7 @@ async function markComplete(){
     }
 }
 
+// Mark uncomplete function using fetch and put method passing the todo item's text
 async function markUnComplete(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -64,6 +70,7 @@ async function markUnComplete(){
           })
         const data = await response.json()
         console.log(data)
+        // Reloading the page once the fetch is complete (database updated)
         location.reload()
 
     }catch(err){
