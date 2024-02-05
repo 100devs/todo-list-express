@@ -19,6 +19,7 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- List all our todo items from the database -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
@@ -31,11 +32,11 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- Getting the number of items left from the get request -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Form to add a new todo item -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
