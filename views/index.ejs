@@ -1,47 +1,49 @@
+<!-- Specifies the document type and version of HTML used in the webpage -->
 <!DOCTYPE html>
 <html lang="en">
+    <!-- contains all the information about the web page that will not be shown to the user -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Links the font awesome library for using icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Links the css file for web page styles -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Creates an element with h1 heading tag -->
     <h1>Todo List: </h1>
+    <!-- Creates an unordered list with the class "todoItems" -->
     <ul class="todoItems">
+        <!-- Iterates over the items array and create an HTML list for each item in the array -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- Checks if the item is completed then applies the appropraite class and styling to it -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- Adds a trash icon to the element for deleting -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- Creates an element with the h2 heading tag -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- Creates an elelment with the h2 heading tag -->
     <h2>Add A Todo:</h2>
-
+    <!-- Creates a form with method post that will be handled by the "/addTodo" route -->
     <form action="/addTodo" method="POST">
+        <!-- Creates an input -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Creates a button for submitting the form -->
         <input type="submit">
     </form>
     
-
+    <!-- Links the JavaScript file to the html that will be spitted out by this ejs file -->
     <script src='js/main.js'></script>
 </body>
 </html>

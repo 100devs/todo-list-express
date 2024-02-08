@@ -1,7 +1,12 @@
+/* Selects all the elements with the h1 tag */
 h1{
+    /* Set the color of the h1 tags to red */
     color: red;
 }
+/* Selects all the elements from html file with the "completed" class */
 .completed{
+    /* Sets the elements color to gray */
     color: gray;
+    /* Adds a line-through the text */
     text-decoration: line-through;
 }
