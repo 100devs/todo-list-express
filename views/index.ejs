@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,40 +9,55 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <html lang="en">
 
-    <h2>Left to do: <%= left %></h2>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
 
-    <h2>Add A Todo:</h2>
+    <body>
+        <!-- Todo List heading -->
+        <h1>Todo List: </h1>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <!-- List of todo items -->
+        <ul class="todoItems">
+            <% for(let i=0; i < items.length; i++) { %> <!-- Looping through each todo item -->
+                <li class="item">
+                    <% if(items[i].completed===true) { %> <!-- Checking if the todo item is completed -->
+                        <span class='completed'>
+                            <%= items[i].thing %>
+                        </span> <!-- Displaying completed todo item -->
+                        <% } else { %> <!-- If todo item is not completed -->
+                            <span>
+                                <%= items[i].thing %>
+                            </span> <!-- Displaying todo item -->
+                            <% } %>
+                                <span class='fa fa-trash'></span> <!-- Trash icon for deleting todo item -->
+                </li>
+                <% } %>
+        </ul>
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+        <!-- Number of todo items left to do -->
+        <h2>Left to do: <%= left %>
+        </h2>
+
+        <!-- Form to add a new todo item -->
+        <h2>Add A Todo:</h2>
+        <form action="/addTodo" method="POST"> <!-- Form submission to add a new todo item -->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!-- Input field for entering new todo item -->
+            <input type="submit"> <!-- Submit button to add the todo item -->
+        </form>
+
+
+
+        <script src='js/main.js'></script>
+    </body>
+
+    </html>

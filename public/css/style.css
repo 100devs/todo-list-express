@@ -1,7 +1,10 @@
-h1{
-    color: red;
+/* Styling for h1 element */
+h1 {
+    color: red; /* Setting text color to red */
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+/* Styling for completed todo items */
+.completed {
+    color: gray; /* Setting text color to gray */
+    text-decoration: line-through; /* Adding line-through decoration */
 }
