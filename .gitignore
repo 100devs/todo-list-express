@@ -1,2 +1,4 @@
 node_modules
 .env
+
+# contains files that shouldn't be uploaded to github. 
