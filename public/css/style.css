@@ -1,7 +1,10 @@
-h1{
-    color: red;
+/* h1 styling | color to red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+/* utility class to be applied to completed tasks. gray color to reduce the task brightness and text-decoration of line-through to have a cancel/completed effect */
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
