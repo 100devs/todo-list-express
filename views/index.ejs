@@ -19,6 +19,9 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!--Dynamically Render the to-do list based on the data received from the database-->
+    <!--Each item in the todo list is followed by a trash icon-->
+    <!--If an item is completed it will have a class of completed, CSS style is linethrough-->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
