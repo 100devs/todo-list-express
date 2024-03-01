@@ -18,15 +18,20 @@
     <title>Document</title>
 </head>
 <body>
+    <!--EJS is a templating language that renders HTML w/ JS functionality-->
     <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <ul class="todoItems">  
+    <!--Loop through items in the DB.-->    
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!--If the items are marked as true, add the item to the list in a span element with the class of completed that will be styled with css-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!--If the items are marked as true, add the item to the list in a span element-->    
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!--fa is used to add a trash icon-->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
@@ -35,7 +40,7 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!--Uses the /addTodo route to make a post request to add items to the DB-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
