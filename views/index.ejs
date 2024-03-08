@@ -1,3 +1,5 @@
+<!-- EJS is rendered HTML that is sent to the browser. It allows for some JS like actions to be intigrated into the html in the form of a template. -->
+<!-- Rather than commenting the entire document I'll focus on the interesting EJS elements -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,22 +22,31 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+<!-- Here is a loop which will run through the information pulled from the database and add as many items as necessary to the html -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+        <!-- Checking if an item is 'completed' -->
             <% if(items[i].completed === true) {%>
+            <!-- If the item is completed add the class completed' -->
                 <span class='completed'><%= items[i].thing %></span>
+        <!-- If the item is not completed do this instead -->
             <% }else{ %>
+            <!-- Add the items without the completed class -->
                 <span><%= items[i].thing %></span>
+            <!-- end of the else statement -->
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
+<!-- end of the loop -->
     <% } %>
     </ul>
 
+<!-- Add elements from the server defined as 'left' -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+<!-- Here is a form which sends a POST request to the server -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
