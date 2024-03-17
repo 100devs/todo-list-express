@@ -1,47 +1,67 @@
+<!-- define document type as HTML -->
 <!DOCTYPE html>
+<!-- define language as english -->
 <html lang="en">
+<!-- head holds metadata for page -->
 <head>
+    <!-- defines which keyboard is used-->
     <meta charset="UTF-8">
+    <!-- defines version of browser site is compatible with -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- makes asier to view on a cell-phone -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- defines title of page held in tab -->
     <title>Document</title>
+    <!-- links to font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- links to stylesheet rules -->
     <link rel="stylesheet" href="css/style.css">
+<!-- closes head element -->
 </head>
+<!-- element that holds all the content of the website -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- most important headline of the page -->
     <h1>Todo List: </h1>
+    <!-- unordered list to hold todo items -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
+        <!-- uses ejs to dynamically loop through all items sent from server.js get render request -->
+        <% for(let i=0; i < items.length; i++) {%>
+            <!-- list element with class of item -->
+            <li class="item">
+            <!-- if item has a completed value of true-->
+            <% if(items[i].completed === true) {%> 
+                <!-- populate with class of completed -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- if not -->
             <% }else{ %>
+                <!-- popuate without class of completed -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <!-- close else -->
+            <% } %>  
+            <!-- add trash icon span to end of item   -->
             <span class='fa fa-trash'></span>
+        <!-- close list item -->
         </li>
+    <!-- close ejs loop -->
     <% } %>
+    <!-- close unordered list -->
     </ul>
-
+    <!-- headline of 'left to do' with ejs variable left sent from server.js get render -->
     <h2>Left to do: <%= left %></h2>
-
+    <!-- headline of 'Add and Todo' -->
     <h2>Add A Todo:</h2>
-
+    <!-- form that when submitted makes a post/create request on the addTodo route -->
     <form action="/addTodo" method="POST">
+        <!-- takes text input, placeholder has text of Thing to do populating it when blank, name attaches to todoItem entered -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- makes a submit button -->
         <input type="submit">
+    <!-- Closes form -->
     </form>
     
-
+    <!-- links to javascript file -->
     <script src='js/main.js'></script>
+<!-- closes main body -->
 </body>
+<!-- closes html element -->
 </html>

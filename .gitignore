@@ -1,2 +1,4 @@
+# ignore all nodule_modules files when making a commit-- too big
 node_modules
+# ignore all env files when making a commit --hold secret data
 .env

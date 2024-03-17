@@ -1,4 +1,8 @@
+// make this big for students to see
 {
+    // editor font size is 42
     "editor.fontSize": 42,
+    // terminal font size it 62
     "terminal.integrated.fontSize": 62
+// close rule
 }
