@@ -1,7 +1,14 @@
+/* targets h1 element */
 h1{
+    /* make h1 assign a color of red*/
     color: red;
+/* close rule */
 }
+/* targets all element with completed class */
 .completed{
+    /* makes color grey */
     color: gray;
+    /*puts a line through text*/
     text-decoration: line-through;
+/* closes rule */
 }
