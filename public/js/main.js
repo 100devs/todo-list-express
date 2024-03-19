@@ -17,7 +17,7 @@ Array.from(itemCompleted).forEach((element) => {
 async function deleteItem() {
     const itemText = this.parentNode.childNodes[1].innerText //it's grabbing the thing we clicked on (parentnode = li, childnode = span) and grabbing the text
     try { //try & catch block is used for error-handling
-        const response = await fetch('deleteItem', { //we are sending na 'deleteItem' request to 'deleteItem' endpoint
+        const response = await fetch('deleteItem', { //we are sending a 'deleteItem' request to 'deleteItem' endpoint
             method: 'delete', //we are specifying that the HTTP method for the request is delete
             headers: { 'Content-Type': 'application/json' }, // we are telling server that the data that is being sent is in json format
             body: JSON.stringify({
@@ -34,18 +34,18 @@ async function deleteItem() {
 }
 
 async function markComplete() {
-    const itemText = this.parentNode.childNodes[1].innerText
-    try {
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
+    const itemText = this.parentNode.childNodes[1].innerText//it's grabbing the thing we clicked on (parentnode = li, childnode = span) and grabbing the text
+    try { //try & catch block is used for error-handling
+        const response = await fetch('markComplete', {//we are sending a 'markComplete' request to 'markComplete' endpoint
+            method: 'put', //we are specifying that the HTTP method for the request is put
+            headers: { 'Content-Type': 'application/json' }, //we are telling server that the data that is being sent is in json format
             body: JSON.stringify({
-                'itemFromJS': itemText
+                'itemFromJS': itemText // we are converting a javascript object into a json string. we are passing an item to be deleted with the key 'itemFromJS'
             })
         })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() //we are reading a response from a servet as json. It waits for the data to be received and parsed before proceding
+        console.log(data) //we console.log data to the console
+        location.reload() //we are reloading the page
 
     } catch (err) {
         console.log(err)
@@ -53,18 +53,18 @@ async function markComplete() {
 }
 
 async function markUnComplete() {
-    const itemText = this.parentNode.childNodes[1].innerText
-    try {
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
+    const itemText = this.parentNode.childNodes[1].innerText//it's grabbing the thing we clicked on (parentnode = li, childnode = span) and grabbing the text
+    try { //try & catch block is used for error-handling
+        const response = await fetch('markUnComplete', {//we are sending a 'markComplete' request to 'markComplete' endpoint
+            method: 'put', //we are specifying that the HTTP method for the request is put
+            headers: { 'Content-Type': 'application/json' }, //we are telling server that the data that is being sent is in json format
             body: JSON.stringify({
-                'itemFromJS': itemText
+                'itemFromJS': itemText // we are converting a javascript object into a json string. we are passing an item to be deleted with the key 'itemFromJS'
             })
         })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        const data = await response.json() //we are reading a response from a servet as json. It waits for the data to be received and parsed before proceding
+        console.log(data) //we console.log data to the console
+        location.reload() //we are reloading the page
 
     } catch (err) {
         console.log(err)
