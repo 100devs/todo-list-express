@@ -79,7 +79,7 @@ app.put('/markUnComplete', (request, response) => {
 })
 
 app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({ thing: request.body.itemFromJS })
+    db.collection('todos').deleteOne({ thing: request.body.itemFromJS }) //we are going to the database, we find 'todos' collection, and we are going to update an element that we have send to the server from a client-side
         .then(result => {
             console.log('Todo Deleted')
             response.json('Todo Deleted')
@@ -90,4 +90,4 @@ app.delete('/deleteItem', (request, response) => {
 
 app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${PORT}`)
-})
+}) //we are starting the Express.js server and making it listen for incoming HTTP requests on a specified port
