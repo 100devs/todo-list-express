@@ -45,17 +45,17 @@ app.post('/addTodo', (request, response) => {//When a client accesses your appli
 })
 
 app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
-        $set: {
+    db.collection('todos').updateOne({ thing: request.body.itemFromJS }, { //we are going to the database, we find 'todos' collection, and we are going to update an element that we have send to the server from a client-side
+        $set: { //we are setting 'completed' property to true
             completed: true
         }
     }, {
-        sort: { _id: -1 },
-        upsert: false
+        sort: { _id: -1 }, //we are sorting the results by an id in descending order
+        upsert: false //if we don't find a document per criteria specified, we are not going to insert anything
     })
         .then(result => {
             console.log('Marked Complete')
-            response.json('Marked Complete')
+            response.json('Marked Complete') //we are responding back to our client-side. The client side will refresh, make a get request back to the server and then ejs template will update with the changes we have made.
         })
         .catch(error => console.error(error))
 
@@ -63,12 +63,12 @@ app.put('/markComplete', (request, response) => {
 
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({ thing: request.body.itemFromJS }, {
-        $set: {
+        $set: {//we are setting 'completed' property to false
             completed: false
         }
     }, {
-        sort: { _id: -1 },
-        upsert: false
+        sort: { _id: -1 }, //we are sorting the results by an id in descending order
+        upsert: false //if we don't find a document per criteria specified, we are not going to insert anything
     })
         .then(result => {
             console.log('Marked Complete')

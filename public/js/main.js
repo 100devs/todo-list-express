@@ -25,7 +25,7 @@ async function deleteItem() {
             })
         })
         const data = await response.json() //we are reading a response from a servet as json. It waits for the data to be received and parsed before proceding
-        console.log(data) //we are console.log data to the console
+        console.log(data) //we console.log data to the console
         location.reload() //we are reloading the page
 
     } catch (err) {
