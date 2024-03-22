@@ -16,7 +16,7 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // connect me
     }) // end of then method code block
 
 // Setting up middleware    
-app.set('view engine', 'ejs')   // sets EJS as the rederer
+app.set('view engine', 'ejs')   // sets EJS as the renderer
 app.use(express.static('public'))   // sets up public folder for static assets
 app.use(express.urlencoded({ extended: true })) // tells express to decode and encode URLs when the header and content match (supports arrays and objects)
 app.use(express.json()) // parses JSON content from incoming requests
