@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  </head>
+
+  <body>
     <h1>Todo List: </h1>
+    <!-- create an unordered list -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+
+      <!-- Make a for loop to iterate through the "items" array, which is the todoItems array from our server.js file -->
+      <% for(let i=0; i < items.length; i++) {%>
+
+        <!-- Create a list element for every element in the items array. Give each list element a class of "item" -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+
+          <!-- If the item's completed property is set to true- create a span element inside of the <li> and give it a class of "completed". Render the item's thing property inside the span -->
+          <% if(items[i].completed===true) {%>
+            <span class='completed'>
+              <%= items[i].thing %>
+            </span>
+
+            <!-- If the item does not have a completed property of true, create the span and render the item's thing property inside of it, but do not add the "completed class" -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+              <span>
+                <%= items[i].thing %>
+              </span>
+              <% } %>
+
+                <!-- create a span for each item element and give it a class of "fa fa-trash"  -->
+                <span class='fa fa-trash'></span>
         </li>
-    <% } %>
+        <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+
+    <!-- Create an h2 element, next to it render the value of "itemsLeft" from our server.js file -->
+    <h2>Left to do: <%= left %>
+    </h2>
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+    <!-- Create a form, set its action (the URI/route/endpoint) it's being sent to- to "/addTodo" and it's method (the HTTP method) to "POST"-->
 
+    <form action="/addTodo" method="POST">
+
+      <!-- Create an input element of type "text." Give it a placeholder that reads "thing to do" and a name of "todoItem" which will be attached to the request body -->
+      <input type="text" placeholder="Thing To Do" name="todoItem">
+
+      <!-- Create another input element of type "submit" which will submit the form -->
+      <input type="submit">
+    </form>
+
+    <!-- script tag to include/point to our javascript file  -->
     <script src='js/main.js'></script>
-</body>
-</html>
+  </body>
+
+  </html>
