@@ -1,2 +1,1 @@
-npm install
-add DB_STRING to .env file
+Commented out all code with explanations of what's going on

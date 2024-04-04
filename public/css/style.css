@@ -1,6 +1,10 @@
+/*This css file will be grabbed by any page rendered by the ejs*/
+
+/*color the font red for any h1 element*/
 h1{
     color: red;
 }
+/*color any font gray with a line through it for any element with the class completed*/
 .completed{
     color: gray;
     text-decoration: line-through;

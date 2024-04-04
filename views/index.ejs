@@ -1,3 +1,4 @@
+<!-- This is the template that of html that ejs starts with and then inserts new html code into and then renders it and passes it with responses(res.render())-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,18 +21,22 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!--ejs for loop which builds list items per each document in the collection-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!--ejs condition, if the current document in the collection's completed key has a value of true, add a span to this list item with a class of 'completed'-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- else add a span with no class value-->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!--add a span with 2 class values which will be rendered as a trash can icon-->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!--plugin from the server.js app.get 'left' variables value-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
