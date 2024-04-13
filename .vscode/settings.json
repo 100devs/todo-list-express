@@ -1,4 +1,5 @@
-{
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
-}
+//sets font for vs code and terminal to make it larger 
+// {
+//     "editor.fontSize": 42,
+//     "terminal.integrated.fontSize": 62
+// }
