@@ -20,6 +20,7 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- iterates through array of every entry in db. if complete/not complete, render accordingly -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -27,15 +28,18 @@
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!--button to delete todo task-->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!--represents how many items are left to do-->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!--accepts whatever is written in form to a /addTodo POST request to add a todo item to database-->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
