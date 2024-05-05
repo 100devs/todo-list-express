@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+      <body>
+        <h1>Todo List:</h1>
+        <ul class="todoItems">
+          <!-- iterating through items and for every item in database it makes a list item and checking if is completed or not render accordingly -->
+          <% for(let i=0; i < items.length; i++) {%>
+          <li class="item">
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <span class="completed"><%= items[i].thing %></span>
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span><%= items[i].thing %></span>
+            <% } %>
+            <!-- theres a button to delete to-do task -->
+            <span class="fa fa-trash"></span>
+          </li>
+          <% } %>
+        </ul>
+        <!-- represents how many items are left to do -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Add A Todo:</h2>
+        <!-- this form submits a post method what every is written in form to add item to database -->
+        <form action="/addTodo" method="POST">
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <input type="submit" />
+        </form>
 
-    <h2>Add A Todo:</h2>
-
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+        <script src="js/main.js"></script>
+      </body>
+    </html>
+  </body>
 </html>
