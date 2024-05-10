@@ -1,6 +1,8 @@
+/* selects h1 tags in ejs file and makes them all red*/ 
 h1{
     color: red;
 }
+/* when a class of completed is added to an item, css will make the text color gray and put a line through the text */
 .completed{
     color: gray;
     text-decoration: line-through;

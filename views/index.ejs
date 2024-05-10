@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- 1 to 10 shows document type, keyboard type, sets content to be the size of the users device, finishes by linking style sheet files-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,40 +8,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body> <!-- lines 11 through 19 are duplicate lines of code, leaving them in for merge. -->
     <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">git s
     <title>Document</title>
 </head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+<body> <!-- main container for html --> 
+    <h1>Todo List: </h1> <!-- main heading of page -->
+    <ul class="todoItems"> <!-- start of an unordered list and assign class of todo items to the list-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- lines 23 to 32 are embedded javaScript to proccess a loop & create li todos -->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+            <% if(items[i].completed === true) {%> <!-- slash through completed task -->
+                <span class='completed'><%= items[i].thing %></span> 
+            <% }else{ %> 
+                <!-- display task to complete -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+            <% } %>    <!-- ejs to close the loop -->
+            <span class='fa fa-trash'></span> <!-- trash icon from font awesome span-->
         </li>
     <% } %>
-    </ul>
+    </ul> <!-- end of unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- counter that shows tasks left to do -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading for the space to add something to the list -->
 
+    <!-- Spot to add text and button to submit the text -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!-- link the javaSript file in main js folder -->
     <script src='js/main.js'></script>
 </body>
 </html>
