@@ -19,29 +19,29 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <ul class="todoItems"> <!--I think this class doesn't do anything and is just there in case we need it later -->
+    <% for(let i=0; i < items.length; i++) {%> <!--Loop through the to do list items (which is an array) based on the array length from the db-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> <!-- if the item in the db's completed property is true -->
+                <span class='completed'><%= items[i].thing %></span> <!--then put it in the DOM and if it a class of completed (grey color/strikethrough)-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- otherwise just put it in the DOM as is-->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- put a trash can icon at the end-->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- left is a property that comes from the server side js get request. It counts the # of items in the database where the completed property is false-->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!-- this form submission will be heard by the API code on the server that hears post requests that has the addToDo route-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- link to your client side js, just like I would in an html file-->
 </body>
 </html>
