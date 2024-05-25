@@ -1,14 +1,19 @@
+<!-- Declaring document type and the language -->
 <!DOCTYPE html>
 <html lang="en">
+<!-- Head contains the metadata, title that appears on the tab and links to stylesheets -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Icons from Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- Our content we see will be generated within this body tag -->
 <body>
+    <!-- why
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,30 +23,38 @@
     <title>Document</title>
 </head>
 <body>
+    -->
+    <!-- Heading #1 in level of importance, unordered list containing list items -->
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Javascript inserted into the HTML using EJS.
+        Javascript variables and objects pulled from the GET request in the server.js file.
+        For loop iterating through each item in the unordered list -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if current item is completed we load the value of the variable 'thing' in a span tag within the class 'completed' -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- if current item is not completed we load the value of the variable 'thing' in a span tag -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- Font Awesome icon for trashcan -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- Heading #2 in level of importance contains the value of the variable 'left' -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- Send inputs (todoItem) within the form tag to server.js file -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+<!-- Link to script files we want loaded after the HTML and CSS -->
     <script src='js/main.js'></script>
 </body>
 </html>
