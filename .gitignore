@@ -1,2 +1,3 @@
+# add the below files to not be pushed to GitHub
 node_modules
 .env
