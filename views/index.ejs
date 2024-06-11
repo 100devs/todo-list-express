@@ -1,47 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+<!DOCTYPE html><!--telling browser what type of document this is-->
+<html lang="en"><!--opening the html tag and setting default language is english -->
+<head><!--opening the head tag-->
+    <meta charset="UTF-8"><!--declaring what character set to use-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!--sets compatibility with ms browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!--sets default width viewing area to device screen-->
+    <title>Document</title><!--displays title on browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--link tag to allow use of font-awesome icon library-->
+    <link rel="stylesheet" href="css/style.css"><!--tag to link to local css in public folder-->
+</head><!--closing head tag-->
+<body> <!-- may have been put in as a mistake -->
+    <!DOCTYPE html><!-- may have been put in as a mistake -->
+<html lang="en"><!-- may have been put in as a mistake -->
+<head><!-- may have been put in as a mistake -->
+    <meta charset="UTF-8"><!-- may have been put in as a mistake -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"><!-- may have been put in as a mistake -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- may have been put in as a mistake -->
+    <title>Document</title><!-- may have been put in as a mistake -->
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<body><!-- Main section for content-->
+    <h1>Todo List: </h1><!--creates a level 1 heading with text-->
+    <ul class="todoItems"><!--creates an unordered list with a class attribute-->
+    <% for(let i=0; i < items.length; i++) {%><!--a For Loop using ejs-->
+        <li class="item"><!--creates a list item with a class attribute-->
+            <% if(items[i].completed === true) {%><!--using EJS an If statement that checks whether an item has a .completed property. if it does equal true the code block will execute-->
+                <span class='completed'><%= items[i].thing %></span><!--if the statement above is true then a span with a class attribute is created using and using EJS a db item in this case, a 'task' with a .thing property as the content-->
+            <% }else{ %><!--EJS for else part of If statement-->
+                <span><%= items[i].thing %></span><!--using EJS to display task with thing property w/o a class attribute-->
+            <% } %><!--closing EJS else statement-->    
+            <span class='fa fa-trash'></span><!--creates an span element with a class attribute to display a trash can icon-->
+        </li><!--closing list item tag-->
+    <% } %><!--closing EJS for loop-->
+    </ul><!--closing unordered list tag-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2><!--creates a level 2 heading with text and creates an EJS variable -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2><!--creates a level 2 heading with text-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"><!--creates a form with an action attribute with an add/todo route value and a method attribute with Post value-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--creates a text input field which also dislays default text using the placeholder attribute
+        it also has a name attribute which names the input field for later reference -->
+        <input type="submit"><!--gives the form a submit button-->
+    </form><!--closing form tag-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script><!--links the client side javascript in public folder-->
+</body><!--closing body tag-->
+</html><!--closing html tag-->
