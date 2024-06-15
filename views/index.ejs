@@ -20,13 +20,15 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- Loops through array of `items` and creates an <li> element based on current item having a property completed, rendering different styles based on the class of the span -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- Adds a span element (a trash icon) to each <li> item -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
@@ -36,6 +38,7 @@
 
     <h2>Add A Todo:</h2>
 
+    <!-- Form makes a POST request to `/addTodo` endpoint when submitted -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
