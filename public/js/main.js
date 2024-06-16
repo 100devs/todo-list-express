@@ -33,40 +33,40 @@ async function deleteItem() { // declaring an asynchronous function
     } //closing the catch block
 } // closing the deleteItem function
 
-async function markComplete() {
-    const itemText = this.parentNode.childNodes[1].innerText
-    try {
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+async function markComplete() { // declaring an asynchronous function
+    const itemText = this.parentNode.childNodes[1].innerText // looks inside of list item and grabs ONLY the inner text within the list span.
+    try { // starting a  try block to do something
+        const response = await fetch('markComplete', { //creates a response variable that waits on a fetch to get data from the markComplete route
+            method: 'put', // setting the CRUD method to 'update' for the route
+            headers: { 'Content-Type': 'application/json' }, //specifying the type of content expected , here it's json
+            body: JSON.stringify({ //declare the message content being passed and stringify the content
+                'itemFromJS': itemText //setting the content of the body to the inner text of the list item, and naming it 'itemFromJS'
+            }) //closing the body
+        }) //closing the response object which has fetch
+        const data = await response.json() //waiting on JSON from the response to be converted
+        console.log(data) //log the result to the console
+        location.reload() //reloads the page to update what is displayed
 
-    } catch (err) {
-        console.log(err)
-    }
-}
+    } catch (err) { // if an error occurs, pass the error into the catch block
+        console.log(err) // log the error into the console
+    } //closing the catch block
+} // closing the markComplete function
 
-async function markUnComplete() {
-    const itemText = this.parentNode.childNodes[1].innerText
-    try {
-        const response = await fetch('markUnComplete', {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                'itemFromJS': itemText
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+async function markUnComplete() { // declaring an asynchronous function
+    const itemText = this.parentNode.childNodes[1].innerText // looks inside of list item and grabs ONLY the inner text within the list span.
+    try { // starting a  try block to do something
+        const response = await fetch('markUnComplete', { //creates a response variable that waits on a fetch to get data from the markUnComplete route
+            method: 'put', // setting the CRUD method to 'update' for the route
+            headers: { 'Content-Type': 'application/json' }, //specifying the type of content expected , here it's json
+            body: JSON.stringify({ //declare the message content being passed and stringify the content
+                'itemFromJS': itemText //setting the content of the body to the inner text of the list item, and naming it 'itemFromJS'
+            }) //closing the body
+        }) //closing the response object which has fetch
+        const data = await response.json() //waiting on JSON from the response to be converted
+        console.log(data) //log the result to the console
+        location.reload() //reloads the page to update what is displayed
 
-    } catch (err) {
-        console.log(err)
-    }
-}
+    } catch (err) { // if an error occurs, pass the error into the catch block
+        console.log(err) // log the error into the console
+    } //closing the catch block
+} // closing the markComplete function
