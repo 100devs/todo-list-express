@@ -20,22 +20,26 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- for every item, create an li -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- if its completed, set class to completed -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!-- end of conditional block, add trash can to the item  -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
+    <!-- end of for loop -->
     </ul>
-
+    <!-- put the number of uncompleted items in the dom -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form that calls the addTodo API -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
