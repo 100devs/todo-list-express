@@ -20,23 +20,24 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- loop through todo items -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <% if(items[i].completed === true) {%> 
+                <span class='completed'><%= items[i].thing %></span> <!-- add completed class if item is completed-->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <span><%= items[i].thing %></span> <!-- else, no class -->
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <span class='fa fa-trash'></span> <!-- delete button, styled as a trashcan -->
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- here is where the count of incomplete tasks will be printed -->
 
     <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
+    <form action="/addTodo" method="POST"> <!-- submission form for new todo-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
