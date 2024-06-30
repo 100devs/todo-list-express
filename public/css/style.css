@@ -4,4 +4,4 @@ h1{
 .completed{
     color: gray;
     text-decoration: line-through;
-}
+} /* if to-do list item has been clicked and had class of 'completed' added to it text color changes to gray and has a line put through it */

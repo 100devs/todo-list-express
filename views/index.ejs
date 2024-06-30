@@ -8,37 +8,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<body> <!-- typo -->
+    <!DOCTYPE html> <!-- typo -->
+<html lang="en"> <!-- typo -->
+<head> <!-- typo -->
+    <meta charset="UTF-8"> <!-- typo -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- typo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- typo -->
+    <title>Document</title> <!-- typo -->
+</head> <!-- typo -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <h1>Todo List: </h1> <!-- Main title -->
+    <ul class="todoItems"> <!-- unordered list with class of 'todoItems'-->
+    <% for(let i=0; i < items.length; i++) {%> <!-- EJS for loop -->
+        <li class="item"> <!-- create list item with class of 'item' -->
+            <% if(items[i].completed === true) {%> <!-- conditional evaluating if 'completed' property of current item has value of 'true' -->
+                <span class='completed'><%= items[i].thing %></span> <!-- create span with class 'completed' and insert value of item's 'thing' property (to-do task)-->
+            <% }else{ %> <!-- EJS for else of if/else statement -->
+                <span><%= items[i].thing %></span> <!-- create span without class and insert to-do task-->
+            <% } %> <!-- EJS to close else statement -->
+            <span class='fa fa-trash'></span> <!-- create span containing trash icon -->
+        </li> 
+    <% } %> <!-- closing bracket of EJS for loop -->
+    </ul> 
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- heading containing value of 'left' property value from server response object -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- heading for form where you can add a todo item -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+    <form action="/addTodo" method="POST"> <!-- create form with /addTodo route and request type specified as POST-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- create text input for typing in new to-do item; add name so we can reference text value later in JS files -->
+        <input type="submit"> <!-- create input for submitting form -->
     </form>
     
 
