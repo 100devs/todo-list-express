@@ -1,47 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- declares doctype -->
+<!DOCTYPE html> 
+<!-- tells what language -->
+<html lang="en"> 
+    <!-- start head element -->
+<head> 
+    <!-- tells what characterset  -->
+    <meta charset="UTF-8"> 
+    <!-- says whats compatible -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <!-- tells viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- title of document -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- stylesheet for font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+    <!-- link to stylesheets -->
+    <link rel="stylesheet" href="css/style.css"> 
 </head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
+<!-- starts body -->
+<body> 
+    <!-- title element -->
+    <h1>Todo List: </h1> 
+    <!-- unordered list with todoitems class -->
+    <ul class="todoItems"> 
+        <!-- ejs loop starting with 0 and ending with length of items array -->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+        <!-- each list item -->
+        <li class="item"> 
+            <!-- if item is completed -->
+            <% if(items[i].completed === true) {%> 
+                <!-- completed class with item thing -->
+                <span class='completed'><%= items[i].thing %></span> 
             <% }else{ %>
-                <span><%= items[i].thing %></span>
+                <!-- item without completed class -->
+                <span><%= items[i].thing %></span> 
             <% } %>    
-            <span class='fa fa-trash'></span>
+            <!-- trash can  -->
+            <span class='fa fa-trash'></span> 
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <!-- left to do. assuming left is a number -->
+    <h2>Left to do: <%= left %></h2> 
+    <!-- left to do  -->
+    <h2>Add A Todo:</h2> 
 
-    <h2>Add A Todo:</h2>
+    <!-- form that calls addTodo -->
+    <form action="/addTodo" method="POST"> 
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="text" placeholder="Thing To Do" name="todoItem"> 
+        <!-- text input -->
+        <input type="submit"> 
+        <!-- submit button -->
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> 
+    <!-- calls js main file -->
 </body>
 </html>
