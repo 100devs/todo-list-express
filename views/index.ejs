@@ -19,9 +19,11 @@
 </head>
 <body>
     <h1>Todo List: </h1>
-    <ul class="todoItems">
+    <ul class="todoItems"> 
+        <!-- EJS for loop to loop through the Mondgo DB array and standardize what sametic info will be in each li reflecting the properties the object  -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- conditional language that will include different classes based on the item.complete value that will dictate what the design of that li will be -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
@@ -35,7 +37,7 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- form that includes that route and post method to link the form to the create request in severside JS -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
