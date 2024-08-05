@@ -4,37 +4,32 @@ const MongoClient = require('mongodb').MongoClient
 const PORT = 2121
 require('dotenv').config()
 
-
+//Define database, get personal DB string from .env file, create database
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
+//connect to mongodb
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
     .then(client => {
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
-    
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
+
+
+app.set('view engine', 'ejs') //use ejs for dynamic html rendering
+app.use(express.static('public')) //set public folder for templates, css, js
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-
+//Homepage rendering, get items from todos database
 app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
 })
 
+//create todo in database
 app.post('/addTodo', (request, response) => {
     db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
     .then(result => {
@@ -44,6 +39,7 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+//Put request to mark complete available items in todos
 app.put('/markComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -61,6 +57,7 @@ app.put('/markComplete', (request, response) => {
 
 })
 
+//Put request to undo marked complete item in database
 app.put('/markUnComplete', (request, response) => {
     db.collection('todos').updateOne({thing: request.body.itemFromJS},{
         $set: {
@@ -78,6 +75,7 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+//Delete item from database
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
@@ -88,6 +86,7 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+//Sets up server PORT
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
