@@ -20,22 +20,26 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+    <!-- loop in every elements received from the database -->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- display every element as an li into the dom -->
         <li class="item">
+            <!-- if the element has the propriety of completed set to true is going to add the class completed to it -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- else is not going to put any class -->
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+    <!-- display documents left from the database -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form to add a new todo using a post method -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
