@@ -20,6 +20,9 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+
+         <!-- To avoid error, we simply use if-else, 
+            empty object is handled in if block -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -35,6 +38,7 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
+     
 
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">

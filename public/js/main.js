@@ -1,4 +1,6 @@
+//delete button
 const deleteBtn = document.querySelectorAll('.fa-trash')
+
 const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
@@ -14,6 +16,8 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+
+//an aynch function for deleting an item
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{

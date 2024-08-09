@@ -1,6 +1,9 @@
+/* make h1 as a color red */
 h1{
     color: red;
 }
+
+/* giving it color gray and line-through decoration */
 .completed{
     color: gray;
     text-decoration: line-through;
