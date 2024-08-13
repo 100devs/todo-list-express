@@ -1,7 +1,12 @@
-h1{
-    color: red;
+/* CSS - Used to provide style for page */
+
+/* Elements with the h1 tag have a font colour of red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+/* Elements with the completed class have their font colour set to gray and are struck-through */
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }

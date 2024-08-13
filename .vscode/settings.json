@@ -1,4 +1,5 @@
+// Leon's way of making his font's bigger for streaming
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+  "editor.fontSize": 42,
+  "terminal.integrated.fontSize": 62
 }
