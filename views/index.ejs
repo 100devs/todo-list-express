@@ -1,47 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Head tag - holds meta data -->
 <head>
+    <!-- What is the document encoded in -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Helps with accessibility -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- A poor choice of a title -->
     <title>Document</title>
+    <!-- Using font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link to my personal stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- The body - holds the visible content -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Main header of the page -->
     <h1>Todo List: </h1>
+    <!-- A ul to hold the items - ul as unordered (so bullet points not numbers) -->
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+        <!-- Uses EJS to generate the items. <% %> means 'this is JS but won't output something visible -->
+        <!-- A for loop, iterates through each item in the list. Starts at 0 as arrays are 0 indexed -->
+        <% for(let i=0; i < items.length; i++) {%> 
+            <!-- Each li has the class of item for styling/js use -->
+            <li class="item">
+                <!-- If the item is completed -->
+                <% if(items[i].completed === true) {%>
+                    <!-- Then show the name of the item in a span tag with the completed class (for styling/js) -->
+                    <!-- <%= %> means this will be shown on the page -->
+                    <span class='completed'><%= items[i].thing %></span>
+                    <!-- If the item is not completed -->
             <% }else{ %>
+                <!-- Just show the name of the item normally -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+                <!-- End of the if statement loop -->
+                <% } %>    
+                <!-- Add a span with the trash icon  -->
             <span class='fa fa-trash'></span>
         </li>
+        <!-- End of the for loop -->
     <% } %>
     </ul>
 
+    <!-- Use EJS to show the count of how many items are left -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- A section to add a todo item to the list -->
     <h2>Add A Todo:</h2>
 
+    <!-- A form, action of /addTodo as that is the endpoint that the API is listening for this POST request -->
     <form action="/addTodo" method="POST">
+        <!-- Has an input box -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Uses an input tag to make a submit button. Is an alternate to just a simple <button> tag -->
         <input type="submit">
+        <!-- The end of the form -->
     </form>
     
-
+<!-- Connect my JS file - done at the end because then the page has fully loaded -->
     <script src='js/main.js'></script>
+<!-- That's the end of the body -->
 </body>
+<!-- And that's the end of the html document. -->
 </html>
