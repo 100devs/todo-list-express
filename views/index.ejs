@@ -19,6 +19,7 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- display the todo list that already saved in th database -->
     <ul class="todoItems">
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
@@ -32,10 +33,11 @@
     <% } %>
     </ul>
 
+    <!-- check for the todo that are left to incomplete -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+ <!-- add new todo the  -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
