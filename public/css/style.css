@@ -1,7 +1,13 @@
-h1{
+/* Styling sheet for index.ejs */
+
+
+h1 {
     color: red;
 }
-.completed{
+
+.completed {
     color: gray;
     text-decoration: line-through;
 }
+
+/* Styles for buttons, and other elements are missing */
