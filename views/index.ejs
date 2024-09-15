@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!--Telling the browser what type of document will be shown-->
+<html lang="en"> <!--Saying that the language is english-->
+<head> <!--Starting the head tag to store our metadata-->
+    <meta charset="UTF-8"> <!--indiacte what character set should be used.-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--Sets appropriate compatability for Micrsft browsers-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--sets the width of available viewing area to width of the device screen-->
+    <title>Document</title> <!--Assign a title that appears on the browser tab.-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--Creats a link to the font Awesome Icon library-->
+    <link rel="stylesheet" href="css/style.css"> <!--Creates a link to the local stylesheet in the public foler-->
+</head> <!--Closing the head tag-->
+<body>  <!--main section for content dispayed-->
+    <!DOCTYPE html> <!--This may be a typo-->
+<html lang="en">  <!--This may be a typo-->
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <meta charset="UTF-8">  <!--This may be a typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!--This may be a typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!--This may be a typo-->
+    <title>Document</title>  <!--This may be a typo-->
+</head>  <!--This may be a typo-->
+<body> <!--This may be a typo-->
+    <h1>Todo List: </h1> <!--Main title on page-->
+    <ul class="todoItems"> <!--Create unordered list and assign class to do list-->
+    <% for(let i=0; i < items.length; i++) {%> <!--Use ejs to start  a for loop-->
+        <li class="item"> <!--Create list item with a class item-->
+            <% if(items[i].completed === true) {%> <!--Use EJS to check if an item in an array with a completed property is true-->
+                <span class='completed'><%= items[i].thing %></span> <!--Creating an inline element with a class and adding EJS to dispaly the name of a task-->
+            <% }else{ %> <!--Use EJS for the Else clause of our if stetement-->
+                <span><%= items[i].thing %></span> <!--Adding EJS to display the name of the task with NO CLASS-->
+            <% } %>  <!--EJS To close our if statement-->  
+            <span class='fa fa-trash'></span> <!--Display font awesome Icon of trash can inside span-->
+        </li><!--Closing or list item-->
+    <% } %> <!--EJS to close our for loop-->
+    </ul> <!--Closing our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--Creates a second level heading tag wit text and using EJS to display a variable showing how many task are left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--Create a second level header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--Create a form with a POST method that goes to the /addTodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--Created an input box that accepts
+        text with default text inside of it brfore you type anything.The input box is given a name for later refernce-->
+        <input type="submit"> <!--Gives the form a Submit button-->
+    </form> <!--Closing the form tag-->
     
-
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--links to the main.js folder in the public folder-->
+</body> <!--Closing the boby tag-->
+</html> <!--Closing the html tag-->
