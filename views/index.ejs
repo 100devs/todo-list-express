@@ -20,19 +20,19 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
+    <% for(let i=0; i < items.length; i++) {%>  <!-- loops through every element in the items arr and creates a new li and span for each item-->
         <li class="item">
-            <% if(items[i].completed === true) {%>
+            <% if(items[i].completed === true) {%> <!-- if item has a key value pair of completed true, it is assigned class completed-->
                 <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+            <% }else{ %> <!-- if item has a key value pair of completed false, it is created without class-->
+                <span><%= items[i].thing %></span> 
             <% } %>    
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--Displays number of items left to do based on variable left items-->
 
     <h2>Add A Todo:</h2>
 
