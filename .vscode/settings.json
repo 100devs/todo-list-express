@@ -1,4 +1,6 @@
-{
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
-}
+// makes the font in vscode really big
+
+// {
+//     "editor.fontSize": 42,
+//     "terminal.integrated.fontSize": 62
+// }

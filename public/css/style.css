@@ -1,6 +1,8 @@
+/* sets the font color for h1 elements */
 h1{
     color: red;
 }
+/* sets the text color and toggles strikethrough styling for elements with the "completed" class */
 .completed{
     color: gray;
     text-decoration: line-through;
