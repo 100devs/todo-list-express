@@ -20,10 +20,14 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- run a loop over each item in the collection array -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- check if item to collection has a completed value of true -->
             <% if(items[i].completed === true) {%>
+                <!-- render item and apply completed class -->
                 <span class='completed'><%= items[i].thing %></span>
+                <!-- if it isn't completed insert value as normal -->
             <% }else{ %>
                 <span><%= items[i].thing %></span>
             <% } %>    
@@ -31,11 +35,11 @@
         </li>
     <% } %>
     </ul>
-
+    <!-- show how many items are left to do -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form with an action of "/addTodo" and method of POST -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
