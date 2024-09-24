@@ -1,5 +1,8 @@
+<!-- specifies doctype, so the browser knows how to render the document -->
 <!DOCTYPE html>
+<!-- the language is english -->
 <html lang="en">
+<!-- this is content that the user cannot see. It specifies the character encoding, the rendering engine to be used by Internet Explorer, the scaling and width of the page, the title of the page (seen at the top of the tab in broswer), and links two stylesheets  -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- the body tag includes everything that will be seen by the user. however, I believe this may be a typo because there is not an accompanying closing body tag, and the doctype, html, and head tags are repeated again. -->
 <body>
     <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +22,14 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- the most prominent text on page, the main heading -->
     <h1>Todo List: </h1>
+    <!-- an unordered list -->
     <ul class="todoItems">
+    <!-- an ejs loop that creates an li element when i is less than the length of the items variable -->
+        <!-- if the completed property is true, the span containing the item's thing should have a class of 'completed' -->
+        <!-- otherwise, just add the span without the class -->
+        <!-- and add a trash can at the end of the line -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
             <% if(items[i].completed === true) {%>
@@ -32,16 +42,20 @@
     <% } %>
     </ul>
 
+    <!-- heading that dynamically tells user how many items are left to do -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- heading that indicates user can add a todo item -->
     <h2>Add A Todo:</h2>
 
+    <!-- a form that will be processed by the /addTodo URI using the http method of POST. The data will be sent as a request body -->
+        <!-- two inputs within the form. the first allows the user to add text as a todo item on their list. When the second input is clicked, the form submits -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
     
-
+    <!-- this file uses script from main.js -->
     <script src='js/main.js'></script>
 </body>
 </html>

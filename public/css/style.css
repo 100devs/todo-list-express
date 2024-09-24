@@ -1,6 +1,8 @@
+/* type selector styling h1 font color red */
 h1{
     color: red;
 }
+/* class selector styling font color gray with a line through the text */
 .completed{
     color: gray;
     text-decoration: line-through;
