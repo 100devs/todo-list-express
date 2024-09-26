@@ -1,7 +1,12 @@
+/*h1 selector*/
 h1{
+    /*makes the header 1 red text */
     color: red;
 }
+/* This is a class for the span */
 .completed{
+    /*color of where the class is will be gray text */
     color: gray;
+    /* when the itemComplete is done the text will have a line through it */
     text-decoration: line-through;
 }

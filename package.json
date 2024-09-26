@@ -1,18 +1,32 @@
 {
+ // name of the database
   "name": "rap-name-api",
+//the version of the database
   "version": "1.0.0",
+//the description is blank
   "description": "",
+  //I'm not sure what the index.js
   "main": "index.js",
+//scripts
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+//author is blank
   "author": "",
+//license type
   "license": "ISC",
+//lists the different dependencies we added
   "dependencies": {
+    //cors dependencies was add it so it doesn't mess us up
+  
     "cors": "^2.8.5",
+  //dot env  dependencies added
     "dotenv": "^8.2.0",
+  //ejs dependency added
     "ejs": "^3.1.6",
+  //express dependency added
     "express": "^4.17.1",
+  //mongodb dependency added
     "mongodb": "^3.6.5"
   }
 }
