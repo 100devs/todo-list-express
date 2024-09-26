@@ -1,7 +1,14 @@
 h1{
-    color: red;
+    color: blue;
 }
 .completed{
     color: gray;
     text-decoration: line-through;
+}
+.deleted{
+    display: none;
+    list-style: none;
+}
+span{
+    cursor: pointer;
 }

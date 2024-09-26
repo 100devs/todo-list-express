@@ -18,30 +18,33 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
+    <h1>Todo List: </h1> 
+    <ul class="todoItems"> 
+    <% for(let i=0; i < items.length; i++) {%> 
+        <li class="item"> 
+            <% if(items[i].completed === true) {%> 
+                <span class='completed'><%= items[i].todo %></span> 
+                <% }else if(items[i].deleted === true){%>
+                <span.parentNode class="deleted"><%= items[i].todo %></span>
+                <% }else{ %>
+                    <span><%= items[i].todo %></span> 
+                    <% } %>    
+                    <!--An item in the Todo List-->
+            <span class='fa fa-trash'></span> 
         </li>
     <% } %>
     </ul>
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--A heading for the number of tasks left to do -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--A heading to add a new task -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
+    <form action="/addTodo" method="POST"> <!--a form that calls the POST method linking to the addTodo route in order to add a task to the db-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--An input box to write in your new task, with the placeholder text "Thing To Do" -->
         <input type="submit">
     </form>
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!--This links to the client side JS file -->
 </body>
 </html>
