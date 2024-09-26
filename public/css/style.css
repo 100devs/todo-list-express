@@ -1,6 +1,8 @@
 h1{
     color: red;
 }
+
+/*whenever an item is completed, style it gray & strikethrough*/
 .completed{
     color: gray;
     text-decoration: line-through;
