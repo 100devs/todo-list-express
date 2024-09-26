@@ -1,7 +1,66 @@
-h1{
-    color: red;
+html {
+    box-sizing: border-box;
 }
 .completed{
     color: gray;
     text-decoration: line-through;
+}
+.headerStyling {
+    background-image: linear-gradient(rgb(217, 220, 221) 0px, rgb(217, 220, 221) 60px, rgb(218, 113, 130) 62px,rgb(217,220,221) 65px);
+    margin-bottom: 0;
+    height: 34.5px;
+    text-align: center;
+    font-size: 2.4rem;
+    line-height: 1px;
+    letter-spacing: .05ch;
+    font-family:  "Notable",Verdana;
+    color: #325bba;
+    padding: 40px 20px 0 20px;
+  }
+  .headerStyling::before {
+    left: 15px;
+    transform: skew(-5deg) rotate(-5deg);
+  }
+  
+  .headerStyling::after {
+    right: 15px;
+    transform: skew(5deg) rotate(5deg);
+  }
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main {
+    width: 340px;
+    min-height: 300px;
+    box-shadow: 0 5px 14px rgba(0,0,0,.7);
+    background-image: repeating-linear-gradient(rgb(217, 220, 221) 0px, rgb(217, 220, 221) 24px, teal 25px);
+}
+h2 {
+    padding: 50px;
+    font-family: "Galindo",Verdana;
+    text-align: center;
+    color:rgb(121, 52, 138);  
+}
+main h2 {
+    color:rgb(218, 113, 130);
+}
+li {
+    padding: 2px 0 2px 20px;
+    font-family: 'Over the Rainbow', handwriting;
+    font-size: 1.4rem;
+}
+form {
+    display: flex;
+    justify-content: center;
+    margin-top: -2rem;
+}
+form * {
+    font-family: "Galindo",Verdana;
+}
+#addButton {
+    padding: .5rem;
+    font-size: 2rem;
+    color:rgb(218, 113, 130);
 }
