@@ -18,30 +18,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
+    <h1>Todo List: </h1> <!-- h1 is the most important of headings there should be only one per page -->
+    <ul class="todoItems"> <!-- the start of an unordered list with a class of todoItems  -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- this is the javascript that is embeded; we're intiating a for loop  -->
+        <li class="item"><!-- this is a list item with the class of item-->
+            <% if(items[i].completed === true) {%> <!-- if something in the item array with key of i has a completed that is true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- add  the text of the items.thing into this span (meant for a small bit of text) and give it class completed -->
+            <% }else{ %> <!-- if something in the item array with key of i has a completed of anything except true -->
+                <span><%= items[i].thing %></span><!-- add  the text of the items.thing into this span (meant for a small bit of text) -->
             <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <span class='fa fa-trash'></span> <!-- another span with class of fa fa-trash (very likely to give an icon using font awesome) -->
+        </li> <!-- end the list item -->
+    <% } %> <!-- end the embedded javascrip -->
+    </ul><!-- end the unordered list -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- h2 is second most important heading, the embedded java script receives JSON from server which includes a count of items in the db with complete  == false -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- h2 is the second most important heading-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- create a form use method of post (create) and run it through route /addToDo -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- create a form feild which accepts text and initially says thing to do and sends it with the name todoItem-->
+        <input type="submit"> <!--a submit button -->
+    </form> <!-- closing form tag -->
     
 
-    <script src='js/main.js'></script>
+    <script src='js/main.js'></script> <!-- where to find the client side js -->
 </body>
 </html>
