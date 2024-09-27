@@ -1,19 +1,27 @@
+//Select all the delete buttons
 const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+//select all list items with span class
+const item = document.querySelectorAll('.item')
+//select all the completed items
+const itemCompleted = document.querySelectorAll('.done')
 
+//Add event listener to all delete buttons
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
 
+//Add eventlistener to each item so that it can turn "completed" on clicking
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
 })
 
+//Add eventlistener to each item so that it can turn "Incompleted" on clicking
+console.log(itemCompleted)
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+//Define the function for deleting an item
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
     try{
@@ -33,8 +41,10 @@ async function deleteItem(){
     }
 }
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+
+//Define the function for marking an item as "complete"
+async function markComplete(e){
+    const itemText = e.target.innerText
     try{
         const response = await fetch('markComplete', {
             method: 'put',
@@ -52,8 +62,11 @@ async function markComplete(){
     }
 }
 
-async function markUnComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
+//Define the function for marking an item as "Incomplete"
+async function markUnComplete(e){
+    const itemText = e.target.innerText
+    console.log(e.target.innerText)
+    console.log("itemText")
     try{
         const response = await fetch('markUnComplete', {
             method: 'put',
@@ -70,3 +83,4 @@ async function markUnComplete(){
         console.log(err)
     }
 }
+
