@@ -1,18 +1,18 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
+const deleteBtn = document.querySelectorAll('.fa-trash') //setting html items as js variables
+const item = document.querySelectorAll('.item span')//setting html items as js variables
 const itemCompleted = document.querySelectorAll('.item span.completed')
-
+//setting html items as js variables
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
-})
+}) //adding event listeners
 
 Array.from(item).forEach((element)=>{
     element.addEventListener('click', markComplete)
-})
+}) //adding event listeners
 
 Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
-})
+}) //adding event listeners
 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
