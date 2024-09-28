@@ -1,47 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!--shows the browser the type of document the file is-->
+<html lang="en"> <!--opening the html tag and setting the html language to english-->
+<head> <!--opening the head, contains the info for the browser, store our metadata -->
+    <meta charset="UTF-8"> <!--setting the encoding type for our character set to be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--indicating compatibility, tells microsoft which internet explerer version to render the page as-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--tells the browser that the veiwing area should be equal to the width of the device that is being used-->
+    <title>Document</title> <!--Shows what is displayed in the broswer tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!--provides the font awesome library, without having to have the entire font awesome icon library downloaded, used for the rubbish bin-->
+    <link rel="stylesheet" href="css/style.css"> <!--links to the css style sheet which is in the public, css folder-->
+</head> <!--closes the head tag-->
+<body> <!--What is displayed on the page-->
+    <!DOCTYPE html> <!--This is probably a typo-->
+<html lang="en"> <!--This is probably a typo-->
+<head> <!--This is probably a typo-->
+    <meta charset="UTF-8"> <!--This is probably a typo-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--This is probably a typo-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--This is probably a typo-->
+    <title>Document</title> <!--This is probably a typo-->
+</head> <!--This is probably a typo-->
+<body> <!--What is displayed on the page-->
+    <h1>Todo List: </h1> <!--Main heading and title of page-->
+    <ul class="todoItems"> <!--Opening of unorded list with a class assigned-->
+    <% for(let i=0; i < items.length; i++) {%> <!--ejs for loop which takes each item from the database array and checks ot see if it is completed, after each item it will display a rubbish bin-->
+        <li class="item"> <!--list item of the unordered list with a class of item-->
+            <% if(items[i].completed === true) {%> <!--ejs if statement part of a conditional, checks to see if a taks is completed-->
+                <span class='completed'><%= items[i].thing %></span> <!--creating a span with a class, inside is ejs which places in the name of the task with the calss of completed-->
+            <% }else{ %> <!--ejs for the else part of the if statement-->
+                <span><%= items[i].thing %></span> <!--ejs to dsiplay the task in a span without the class of completed -->
+            <% } %>  <!--ejs closing if else statament-->
+            <span class='fa fa-trash'></span> <!--dispaly font awesome icon of rubbish bin with a class, the event listener is in the js file not here-->
+        </li> <!--closing list item-->
+    <% } %> <!--ejs to close the for loop-->
+    </ul> <!--closing the unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!--secondary heading with ejs to show number of items left to complete-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!--another secondary header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!--opening a form with a post method (create) whcih goes the route in the action (/addTodo). Use the route to ensure that the input goes to the correct part of the server which is listening and handling theis post method. Links the user side to the server side-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!--creates an text input box which has the placeholder "things to do" and a name which is used to create an ID for the box. if you had more than 1 input box then it would make it easier to identify. -->
+        <input type="submit"> <!--Creates a submit button which enters the text in the previous box-->
+    </form> <!--closing the form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!--linking the main js file located in the publick folder in the js folder-->
+</body> <!--closing body-->
+</html><!--closing the entire file html tag-->
