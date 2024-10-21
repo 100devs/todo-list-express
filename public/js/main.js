@@ -1,7 +1,8 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const deleteBtn = document.querySelectorAll('.fa-trash') //delete button is linked to the class of fa trash
+const item = document.querySelectorAll('.item span') //item span is linked to the class of item
+const itemCompleted = document.querySelectorAll('.item span.completed') //commpleted class on items is linked to the class commpleted
 
+//take informatin turns into array and loops through to listen for a click and follows with function
 Array.from(deleteBtn).forEach((element)=>{
     element.addEventListener('click', deleteItem)
 })
@@ -14,9 +15,13 @@ Array.from(itemCompleted).forEach((element)=>{
     element.addEventListener('click', markUnComplete)
 })
 
+
+//
 async function deleteItem(){
+    //node that points to the item that was clicked for deletion
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //makes a fetch for deleted item
         const response = await fetch('deleteItem', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
@@ -24,6 +29,7 @@ async function deleteItem(){
               'itemFromJS': itemText
             })
           })
+        //assigns data response in json format
         const data = await response.json()
         console.log(data)
         location.reload()
@@ -34,8 +40,10 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+    //node to item clicked
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //makes a fetch for markComplete item
         const response = await fetch('markComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -43,6 +51,7 @@ async function markComplete(){
                 'itemFromJS': itemText
             })
           })
+          //assigns data response in json format
         const data = await response.json()
         console.log(data)
         location.reload()
@@ -53,8 +62,10 @@ async function markComplete(){
 }
 
 async function markUnComplete(){
+    //node to item clicked
     const itemText = this.parentNode.childNodes[1].innerText
     try{
+        //makes a fetch for markUnComplete item
         const response = await fetch('markUnComplete', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -62,6 +73,7 @@ async function markUnComplete(){
                 'itemFromJS': itemText
             })
           })
+          //assigns data response in json format
         const data = await response.json()
         console.log(data)
         location.reload()
