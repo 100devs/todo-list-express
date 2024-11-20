@@ -1,6 +1,9 @@
+/* Add red color to all h1 element */
 h1{
     color: red;
 }
+
+/* Add color and text decoration to the complete class element */
 .completed{
     color: gray;
     text-decoration: line-through;
