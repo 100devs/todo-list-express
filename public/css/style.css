@@ -1,6 +1,9 @@
+/* Set h1 text color to red */
 h1{
     color: red;
 }
+
+/* Set styling for elements with the 'completed' class to have strikethroughs and gray text color */
 .completed{
     color: gray;
     text-decoration: line-through;

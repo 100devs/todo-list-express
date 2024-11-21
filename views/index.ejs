@@ -1,47 +1,63 @@
+<!-- Specify that this is an HTML document -->
 <!DOCTYPE html>
+<!-- Specify that the language we're using is English -->
 <html lang="en">
+<!-- Create a section that stores important information and metadata about this document -->
 <head>
+    <!-- Specify that we're using a specific set of unicode text characters -->
     <meta charset="UTF-8">
+    <!-- Ensure compatibility with older versions of Internet Explorer -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Set the viewport width to the user's device width -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Set the name that will appear on the browser tab -->
     <title>Document</title>
+    <!-- Import icons from FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Link our css stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
+<!-- Start the document body, where all the viewable parts of our HTML are written -->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Create a header for our to-do list -->
     <h1>Todo List: </h1>
+    <!-- Create an unordered list with the class 'todoItems' -->
     <ul class="todoItems">
+    <!-- Loop through the list of 'items' rendered from the root directory GET request in server.js)-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!-- Create a list item with the class 'item' -->
         <li class="item">
+            <!-- For each item, if the completed status is 'true', -->
             <% if(items[i].completed === true) {%>
+                <!-- Create a span with the class 'completed' and set the inner text to the text of the item at that index -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- Otherwise, -->
             <% }else{ %>
+                <!-- Create a span with no class and set the inner text to the text of the item at that index -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- Create a trash can icon using FontAwesome -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
 
+    <!-- Create a header that displays the itemsLeft value from the root directory GET request in server.js -->
     <h2>Left to do: <%= left %></h2>
 
+    <!-- Create a header for the section where users can add their own todos -->
     <h2>Add A Todo:</h2>
 
+    <!-- Create a form that, when submitted, makes a POST request to our server.js that is handled by the app.post route with the endpoint '/addTodo' -->
     <form action="/addTodo" method="POST">
+        <!-- Create a text input area with a placeholder of 'Thing To Do' withe a name 'todoItem' that we can reference in our serverside code -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Create a button for the user to submit the new todo -->
         <input type="submit">
     </form>
     
-
+    <!-- Link our client-side JavaScript -->
     <script src='js/main.js'></script>
 </body>
 </html>
