@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- tells the browser what type of document will be shown -->
+<html lang="en"> <!-- opens an html tag and tells the browser the language will be english -->
+<head> <!-- opens a tag to include metadata (details that are not displayed page elements) -->
+    <meta charset="UTF-8"> <!-- tells the browser what character set will be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets compatability for microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- sets the width of the DOM to the width of the device screen used to view the page -->
+    <title>Document</title> <!-- Sets a name for the webpage posted on the browser tab -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- links the Font Awesome library for the icons we are using -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Links the styling from the css file in the public folder so it can be applied to this document -->
+</head> <!-- closes the head tag -->
+<body> <!-- creates a main section for content displayed -->
+    <h1>Todo List: </h1> <!-- Main title displayed on page -->
+    <ul class="todoItems"> <!-- creates a section for an unordered list with a styling class -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- ejs that starts looping through an items object from the database -->
+        <li class="item"> <!-- a list item with a styling class -->
+            <% if(items[i].completed === true) {%> <!-- ejs that checks completed property of item -->
+                <span class='completed'><%= items[i].thing %></span> <!-- insert an inline element containing the todo item with specific styling class -->
+            <% }else{ %> <!-- an alternative for the conditional in ejs -->
+                <span><%= items[i].thing %></span> <!-- insert the todo item without the completed styling class -->
+            <% } %>     <!-- close out else conditional in ejs -->
+            <span class='fa fa-trash'></span> <!-- creates a Font Awesome trash can icon to trigger an event listener -->
+        </li> <!-- close the list item -->
+    <% } %> <!-- close the ejs loop code block -->
+    </ul> <!-- close the unordered list section of the body -->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- use ejs variable display the number of todos left uncompleted with a 2nd level heading -->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- creates a 2nd level heading for the form used to add an item -->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- creates a form with a POST method to add items with a /addTodo route -->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- creates a field with default text for user to enter a todo item. the name is for storing in the request sent to the db request.body.todoItem -->
+        <input type="submit"> <!-- creates a submit button for the form that will trigger an event listener -->
+    </form> <!-- closes form section -->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- connects to the client side javascript (main.js in the public folder) that enables us to interact with this page -->
+</body> <!-- closes body tag -->
+</html> <!-- closes html tag -->
