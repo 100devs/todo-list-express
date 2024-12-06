@@ -1,47 +1,57 @@
+<!-- set doctype to HTML, prevents browser from Quirks Mode -->
 <!DOCTYPE html>
+<!-- set language to english -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
+    <!-- head of the document -->
+    <head>
+        <!-- set the character encoding to UTF 8 -->
+        <meta charset="UTF-8" />
+        <!-- compatability for internet explorer (not needed anymore, unless you're supporting IE8 or 9) -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!--optimizes this site for mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- title of the document -->
+        <title>Document</title>
+        <!-- font awesome icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        />
+        <!-- local style.css -->
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!-- h1 tag for the todo list -->
+        <h1>Todo List:</h1>
+        <!-- the list of the todo items -->
+        <ul class="todoItems">
+            <!-- using EJS, loop through the items array -->
+            <% for(let i=0; i < items.length; i++) {%>
+            <li class="item">
+                <!-- add the completed class if an item is completed -->
+                <% if(items[i].completed === true) {%>
+                <span class="completed"><%= items[i].thing %></span>
+                <% }else{ %>
+                <!-- otherwise render it without the completed class -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+                <% } %>
+                <!-- and add the trash icon to all the items -->
+                <span class="fa fa-trash"></span>
+            </li>
+            <% } %>
+        </ul>
+        <!-- render the items that we haven't finished yet (the "left" object from the server) -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Left to do: <%= left %></h2>
+        <h2>Add A Todo:</h2>
 
-    <h2>Add A Todo:</h2>
+        <!-- add todos, with a POST method on the /addTodo route -->
+        <form action="/addTodo" method="POST">
+            <input type="text" placeholder="Thing To Do" name="todoItem" />
+            <input type="submit" />
+        </form>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+        <!-- add the main.js file -->
+        <script src="js/main.js"></script>
+    </body>
 </html>

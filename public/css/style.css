@@ -1,7 +1,9 @@
-h1{
+/* set the H1 text color to red */
+h1 {
     color: red;
 }
-.completed{
+/* set the completed items to gray, and strike a line through the text */
+.completed {
     color: gray;
     text-decoration: line-through;
 }
