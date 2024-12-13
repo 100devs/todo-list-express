@@ -1,7 +1,12 @@
-h1{
-    color: red;
+/* CSS styles for the todo app  */
+
+/* makes the title red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+/* shows completed todos with a strikethrough in grayshows completed todos with a strikethrough in gray */
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
