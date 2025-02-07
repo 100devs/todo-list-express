@@ -1,47 +1,107 @@
+<!-- declare version of HTML -->
 <!DOCTYPE html>
+<!-- specify language -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+  <!-- set up metadata and links to assets -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta name="author" content="Danielle Andrews" />
+    <meta name="description" content="todo list" />
+    <meta
+      name="keywords"
+      content="todo, todos, task list, todo list"
+    />
 
-    <h2>Left to do: <%= left %></h2>
+    <title>ToDo List</title>
 
-    <h2>Add A Todo:</h2>
+    <script
+      src="https://kit.fontawesome.com/940af2685d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../public/favicon.ico"
+    />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+    <!-- link to client-side JS here so it runs after the page loads -->
+    <script defer src="js/main.js"></script>
+  </head>
+  <!-- everything that shows up in the DOM is inside the body -->
+  <body>
+    <header>
+      <h1 class="title">Todo List</h1>
+    </header>
+    <main>
+      <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+      <div class="paperContainer">
+        <div class="paperContent">
+          <h2 class="todosLeft">
+            <% if ( left < 1 ) { %>
+            <span>All Done!</span>
+            <% } else { %>
+            <span><%= left %> Todos Left</span>
+            <% } %>
+          </h2>
 
-    <script src='js/main.js'></script>
-</body>
+          <ul class="todoItems">
+            <!-- EJS here for dynamically creating HTML based on data from database -->
+            <% for(let i=0; i < items.length; i++) {%>
+            <li class="item">
+              <% if(items[i].completed === true) {%>
+              <span class="completed"><%= items[i].thing %></span>
+              <% }else{ %>
+              <span><%= items[i].thing %></span>
+              <% } %>
+              <span class="fa fa-trash"></span>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="addTodoContainer">
+        <h2 class="addTodo">Add Todo:</h2>
+        <!-- form sends a request to the server to add a todo item -->
+        <form action="/addTodo" method="POST">
+          <input
+            type="text"
+            placeholder="Thing To Do"
+            name="todoItem"
+          />
+          <!-- <input type="submit" /> -->
+          <button type="submit" id="addTaskBtn">Add Task</button>
+        </form>
+      </div>
+    </main>
+    <footer>
+      <p>
+        ©
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        |
+        <span id="footer-span">
+          Crafted with <i class="fa-solid fa-heart"></i> by </span
+        >DrAcula27 |
+      </p>
+      <a href="https://github.com/DrAcula27" target="_blank">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <p>|</p>
+      <a
+        href="https://www.linkedin.com/in/daniellerandrews/"
+        target="_blank"
+      >
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </footer>
+  </body>
 </html>
