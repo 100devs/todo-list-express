@@ -1,6 +1,9 @@
+/* make the heading red */
 h1{
     color: red;
 }
+
+/* text with a completed task will be colored gray and have a line thru it */
 .completed{
     color: gray;
     text-decoration: line-through;

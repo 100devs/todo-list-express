@@ -1,2 +1,4 @@
+# ensure node_modules is not sent to github (a lot of data and it already exists in browsers environment)
 node_modules
+# ensure any of your environment variables are excluded from being pushed to github (could contain private info)
 .env

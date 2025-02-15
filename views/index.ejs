@@ -18,30 +18,46 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- Create To-Do List with basic HTML in an ejs file -->
     <h1>Todo List: </h1>
     <ul class="todoItems">
+        <!-- Since we know that we will need to iterate thru a fetched array (items) embed js code into html template using <% JS %> -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- for each item checked from prior array, see if its completed -->
             <% if(items[i].completed === true) {%>
+                <!-- if its completed, give it the completed class (for styling) and add as a list item -->
+                <!-- insertion done via use of <%= variable %> -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!-- for all items that fail the completed check -->
             <% }else{ %>
+                <!-- simply put it in the list as a list item (no class), also via <%= variable %> -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+                <!-- Close the if/else check -->
+            <% } %>
+             <!--add a delete button  -->
             <span class='fa fa-trash'></span>
         </li>
+    <!-- close the for loop -->
     <% } %>
     </ul>
 
+    <!-- take rendered left variable, and insert it within the Left to do heading -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
 
+    <!-- set up a form to submit new tasks -->
+     <!-- /addTodo tells it which endpoint to use, POST tells it which method to use -->
     <form action="/addTodo" method="POST">
+        <!-- input text content of task, provide 'hint', label with a name for use in backend -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- create button to submit entirety of form's inputs -->
         <input type="submit">
     </form>
     
 
+    <!-- link to public functionality page -->
     <script src='js/main.js'></script>
 </body>
 </html>

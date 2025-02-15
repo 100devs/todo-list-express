@@ -1,4 +1,6 @@
+// tryna mess with us
+
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 14
 }
