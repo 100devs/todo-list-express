@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+<!DOCTYPE html> <!-- telling the browser what type of document will be shown -->
+<html lang="en"> <!-- starting our html tag and setting it to english language-->
+<head> <!-- start of our header tag to store our metadata -->
+    <meta charset="UTF-8"> <!-- indicates what character set should be used -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- sets appropriate compatibility for microsoft browsers -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- this is for our media queries or for mobile devices / sets the WIDTH of available viewing area to the width of the device screen -->
+    <title>Document</title> <!-- naming what is shown on the browser tab-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- linking the font awesome file library with an href-->
+    <link rel="stylesheet" href="css/style.css"> <!-- link tag to link to the local stylesheet file in the public folder -->
+</head> <!-- closing tag for our head tag-->
+<body><!-- main section -->
+    <h1>Todo List: </h1> <!-- Main Heading-->
+    <ul class="todoItems"><!-- Create unordered list and assign a class to the list -->
+    <% for(let i=0; i < items.length; i++) {%> <!-- ejs syntax with a for loop -->
+        <li class="item"> <!-- creating a list item with a class of item-->
+            <% if(items[i].completed === true) {%> <!-- Use ejs with a conditionals to check if an item in an array with a completed property is true -->
+                <span class='completed'><%= items[i].thing %></span> <!-- creating an inline element to our ejs if the conditional is true and adding a class of completed to the completed task -->
+            <% }else{ %> <!-- ejs for the else statement of our conditional-->
+                <span><%= items[i].thing %></span> <!-- putting the task on our ejs span tag and displaying it without a class-->
+            <% } %> <!-- end of our ejs conditional-->
+            <span class='fa fa-trash'></span> <!-- Create/display the trash can icon inside span-->
+        </li> <!-- closing tag for the list item -->
+    <% } %> <!-- ejs closing tag of our for loop -->
+    </ul> <!-- closing tag of our unordered list-->
 
-    <h2>Left to do: <%= left %></h2>
+    <h2>Left to do: <%= left %></h2> <!-- Heading 2 showing the text and ejs to show the remaining value of variable left-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Add A Todo:</h2> <!-- Create a secomd header-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <form action="/addTodo" method="POST"> <!-- creating a form, connecting it to the server that has a route of /addTodo and a post method-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"> <!-- Creating an input field, specifically for text with a placeholder. todoItem is used for later reference like connecting it to our collection database-->
+        <input type="submit"> <!-- input field that gives a form a submit button-->
+    </form> <!-- closing tag of form-->
     
 
-    <script src='js/main.js'></script>
-</body>
-</html>
+    <script src='js/main.js'></script> <!-- linking my js file with a source-->
+</body> <!-- closing tag of the body-->
+</html> <!-- closing tag of the whole html-->
