@@ -1,4 +1,3 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+    "postman.settings.dotenv-detection-notification-visibility": false
 }

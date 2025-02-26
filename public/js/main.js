@@ -3,6 +3,21 @@ const item = document.querySelectorAll('.item span')
 const itemCompleted = document.querySelectorAll('.item span.completed')
 
 Array.from(deleteBtn).forEach((element)=>{
+<<<<<<< HEAD
+    element.addEventListener('click', deleteItem) //smurf for delete
+})
+
+Array.from(item).forEach((element)=>{
+    element.addEventListener('click', markComplete) //smurf for update
+})
+
+Array.from(itemCompleted).forEach((element)=>{
+    element.addEventListener('click', markUnComplete) //smurf for update
+})
+
+async function deleteItem(){
+    const itemText = this.parentNode.childNodes[1].innerText //get current form value
+=======
     element.addEventListener('click', deleteItem)
 })
 
@@ -16,6 +31,7 @@ Array.from(itemCompleted).forEach((element)=>{
 
 async function deleteItem(){
     const itemText = this.parentNode.childNodes[1].innerText
+>>>>>>> 8247adf50f08bd10000a520d0c12dd01ccaa776b
     try{
         const response = await fetch('deleteItem', {
             method: 'delete',
@@ -34,9 +50,15 @@ async function deleteItem(){
 }
 
 async function markComplete(){
+<<<<<<< HEAD
+    const itemText = this.parentNode.childNodes[1].innerText //grab thing we just clicked on
+    try{
+        const response = await fetch('markComplete', { //convert itemText to JSON and send to server
+=======
     const itemText = this.parentNode.childNodes[1].innerText
     try{
         const response = await fetch('markComplete', {
+>>>>>>> 8247adf50f08bd10000a520d0c12dd01ccaa776b
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
