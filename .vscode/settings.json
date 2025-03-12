@@ -1,4 +1,5 @@
-{
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
-}
+// commented out original code, which increases font size. would be in .gitignore 
+// {
+//     "editor.fontSize": 42,
+//     "terminal.integrated.fontSize": 62
+// }

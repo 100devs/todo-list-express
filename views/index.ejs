@@ -19,14 +19,19 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+    <!-- parent node -->
     <ul class="todoItems">
+        <!-- iterating over array for num of items in array and increment by 1 -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- items holds array of objects. if property is true then build span with completed class...-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                <!-- otherwise render span without completed class  -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- add trash can icon to the end of either span above -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
@@ -36,6 +41,7 @@
 
     <h2>Add A Todo:</h2>
 
+    <!-- form action linked to post request  -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
