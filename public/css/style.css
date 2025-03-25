@@ -1,7 +1,11 @@
-h1{
-    color: red;
+/* sets the color of the h1 selector to red */
+h1 {
+  color: red;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+
+/* sets the color of any elements that have the class .completed to gray
+  and applies a line-through to the same elements */
+.completed {
+  color: gray;
+  text-decoration: line-through;
 }
