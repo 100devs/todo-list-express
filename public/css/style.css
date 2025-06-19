@@ -1,7 +1,7 @@
 h1{
-    color: red;
+    color: red;  /* set h1 text color to red */
 }
 .completed{
-    color: gray;
-    text-decoration: line-through;
+    color: gray;    /* turn the text color gray for the completed item*/
+    text-decoration: line-through;   /* strike through the completed item */
 }
