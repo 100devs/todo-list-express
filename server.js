@@ -85,7 +85,8 @@ app.put('/markUnComplete', (request, response) => {
     .catch(error => console.error(error))   // catch and log error 
 
 })
-
+// CRUD - Delete
+// 1. delete an item `deleteOne`
 app.delete('/deleteItem', (request, response) => {
     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
     .then(result => {
