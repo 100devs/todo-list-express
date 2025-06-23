@@ -1,0 +1,138 @@
+/* VARIABLES & BASE */
+:root {
+  --clr-bg-start: #f0f4f8;
+  --clr-bg-end:   #d9e2ec;
+  --clr-accent:   #ff7e67;
+  --clr-text:     #102a43;
+  --clr-muted:    #486581;
+  --radius:       1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+  color: var(--clr-text);
+  background: linear-gradient(160deg, var(--clr-bg-start), var(--clr-bg-end));
+}
+
+/* CENTER LAYOUT */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* WRAPPER CARD */
+body > div.wrapper {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* HEADINGS */
+h1 {
+  font-size: 2.25rem;
+  text-align: center;
+  color: var(--clr-accent);
+  margin-bottom: 0.5rem;
+}
+h2 {
+  font-size: 1.25rem;
+  text-align: center;
+  color: var(--clr-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* TASK LIST */
+#tasks {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+#tasks li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  background: rgba(255,255,255,0.4);
+  border-radius: var(--radius);
+  transition: background 0.3s;
+}
+#tasks li:hover {
+  background: rgba(255,255,255,0.6);
+}
+#tasks input[type="checkbox"] {
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--clr-accent);
+  margin-right: 1rem;
+}
+#tasks label {
+  word-break: break-word;
+}
+.delete img {
+  width: 1.2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.delete img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* FORM */
+form label {
+  font-size: 0.9rem;
+  color: var(--clr-muted);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+form div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+form input[type="text"] {
+  padding: 0.6rem 0.8rem;
+  border: none;
+  border-radius: 1rem 0 0 1rem;
+  background: rgba(255,255,255,0.7);
+
+  &:hover {
+    outline: none;
+  }
+}
+form button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 0 1rem 1rem 0;
+  background: radial-gradient(#000, #000);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+form button:hover {
+  background: radial-gradient(#000, #c9c9c9 152%);
+}
+
+@media (width < 450px) {
+  body {
+    padding: 0 !important;
+  }
+  .wrapper {
+    height: 100% !important;
+    border-radius: 0 !important;
+  }
+}
