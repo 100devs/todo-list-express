@@ -1,3 +1,16 @@
+/*
+  This package.json defines the basic information and dependencies of the "rap-name-api" project.
+  - "name", "version", and "description" describe the project.
+  - "main" points to the entry file, which in this case is "index.js".
+  - "scripts" defines a test script placeholder.
+  - "dependencies" lists all the required npm packages for the app to run:
+      - express: web framework
+      - mongodb: connects to the MongoDB database
+      - ejs: renders HTML templates
+      - dotenv: loads environment variables from a .env file
+      - cors: enables Cross-Origin Resource Sharing
+  This file is essential for installing and managing everything the app needs to function.
+*/
 {
   "name": "rap-name-api",
   "version": "1.0.0",

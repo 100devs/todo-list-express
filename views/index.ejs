@@ -1,47 +1,54 @@
+<!-- define the HTML document structure -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!-- Metadata and browser compatibility-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title shown in browser tab -->
     <title>Document</title>
+
+    <!-- Link to the CSS stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Main heading of the page-->
     <h1>Todo List: </h1>
+
+<!-- unordered list that will display all todo items -->
     <ul class="todoItems">
+        <!-- loop through each item in the items array passed from server -->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- check if the current item is completed -->
             <% if(items[i].completed === true) {%>
+            <!-- if completed, add 'completed class to style to style it different' -->
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+            <!-- if not completed, just show the item -->
                 <span><%= items[i].thing %></span>
             <% } %>    
+            <!-- trash icon to trigger delete -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!-- show how many items are left to complete -->
     <h2>Left to do: <%= left %></h2>
-
+<!-- section to add a new todo item -->
     <h2>Add A Todo:</h2>
-
+<!-- form that sends a POST request to /addTodo -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
+        <input type="submit"> 
     </form>
     
-
+<!-- Link to the Javascript file that handles user interaction -->
     <script src='js/main.js'></script>
 </body>
 </html>
