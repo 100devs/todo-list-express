@@ -21,18 +21,18 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
-    // db.collection('todos').find().toArray()
-    // .then(data => {
-    //     db.collection('todos').countDocuments({completed: false})
-    //     .then(itemsLeft => {
-    //         response.render('index.ejs', { items: data, left: itemsLeft })
-    //     })
-    // })
-    // .catch(error => console.error(error))
+app.get('/',/*async*/ (request, response)=>{
+    // const todoItems = await db.collection('todos').find().toArray()
+    // const itemsLeft = await db.collection('todos').countDocuments({completed: false})
+    // response.render('index.ejs', { items: todoItems, left: itemsLeft })
+    db.collection('todos').find().toArray()
+    .then(data => {
+        db.collection('todos').countDocuments({completed: false})
+        .then(itemsLeft => {
+            response.render('index.ejs', { items: data, left: itemsLeft })
+        })
+    })
+    .catch(error => console.error(error))
 })
 
 app.post('/addTodo', (request, response) => {
@@ -44,42 +44,54 @@ app.post('/addTodo', (request, response) => {
     .catch(error => console.error(error))
 })
 
+// Mark a todo as complete
 app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+
+    // FILTER: find the todo whose "thing" text matches what the browser sent us.
+    //    main.js sent it as { itemFromJS: 'the text' } in the request body.
+    db.collection('todos').updateOne({thing: request.body.itemFromJS}, 
+        { 
         $set: {
-            completed: true
+            completed: true // set completed -> true
           }
-    },{
+    },
+    { // prefer newest match; don’t create if missing
         sort: {_id: -1},
         upsert: false
     })
     .then(result => {
         console.log('Marked Complete')
-        response.json('Marked Complete')
+        response.json('Marked Complete') // reply to the client
     })
     .catch(error => console.error(error))
 
 })
-
+// Mark a todo as NOT complete
 app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
+    db.collection('todos').updateOne(
+
+         // Find the doc by its text again.
+        {thing: request.body.itemFromJS},{
         $set: {
-            completed: false
+            completed: false // set completed -> false
           }
-    },{
+    },{ // prefer newest match; don’t create if missing
         sort: {_id: -1},
         upsert: false
     })
     .then(result => {
         console.log('Marked Complete')
-        response.json('Marked Complete')
+        response.json('Marked Complete') // reply to the client
     })
     .catch(error => console.error(error))
 
 })
 
+// Delete a todo
 app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+
+    // Remove exactly ONE document whose "thing" matches the text we got from the browser.
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) 
     .then(result => {
         console.log('Todo Deleted')
         response.json('Todo Deleted')
@@ -88,6 +100,9 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
+// Start server (use provider’s PORT if available)
 app.listen(process.env.PORT || PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
 })
+
+
