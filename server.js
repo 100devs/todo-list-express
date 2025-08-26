@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const MongoClient = require('mongodb').MongoClient
+const { MongoClient, ObjectId } = require('mongodb')
 const PORT = 2121
 require('dotenv').config()
 
@@ -19,7 +19,6 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
 
 app.get('/',async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
@@ -78,8 +77,21 @@ app.put('/markUnComplete', (request, response) => {
 
 })
 
+
+// app.delete('/deleteItem', (request, response) => {
+//     db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+//     .then(result => {
+//         console.log('Todo Deleted')
+//         response.json('Todo Deleted')
+//     })
+//     .catch(error => console.error(error))
+
+// })
+
 app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
+    db.collection('todos').deleteOne({_id: new ObjectId(request.body.id)},
+    { $set: { hidden: true } }
+    )
     .then(result => {
         console.log('Todo Deleted')
         response.json('Todo Deleted')

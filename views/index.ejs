@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,15 +7,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 </head>
 <body>
     <h1>Todo List: </h1>
@@ -40,6 +31,58 @@
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
     </form>
+    
+
+    <script src='js/main.js'></script>
+</body>
+</html> -->
+
+
+<!-- ------------------ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   <h1>Todo List</h1>
+    <ul class="todoItems">
+    <% for (let i = 0; i < items.length; i++) { %>
+    
+    <!-- Skip tasks that are soft-deleted (hidden: true) -->
+    <% if (!items[i].hidden) { %> 
+      
+      <!-- Each todo item with a data-id attribute for JS actions -->
+      <li class="item" data-id="<%= items[i]._id %>">
+        
+        <!-- If task is completed, add 'completed' class for styling -->
+        <% if (items[i].completed == true) { %>
+          <span class="completed"><%= items[i].thing %></span>
+        <% } else { %>
+          <!-- Otherwise, show normal task text -->
+          <span><%= items[i].thing %></span>
+        <% } %>
+        
+        <!-- Trash icon for soft-delete; click handled in JS -->
+        <span class="fa fa-trash"></span>
+      </li>
+
+    <% } %>
+    <% } %>
+    </ul>
+
+   <h2>Left todo: <%= left %></h2>
+
+   <form action="/addTodo" method="POST">
+    <input type="text" placeholder="thing to do" name="todoItem">
+    <input type="submit" >
+   </form>
     
 
     <script src='js/main.js'></script>
