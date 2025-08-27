@@ -1,6 +1,9 @@
+/* All <h1> headings will have red text */
 h1{
     color: red;
 }
+/* Elements with the class "completed" will have gray text
+   and a line through them, typically used to show something is finished or crossed out */
 .completed{
     color: gray;
     text-decoration: line-through;
