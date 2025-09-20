@@ -1,7 +1,13 @@
+/*Select all h1 elements*/
 h1{
+/*Set text color of h1 elements to red*/
     color: red;
 }
+
+/*Select elements with the class "completed"*/
 .completed{
+/*Set text color of elements of class "completed" to gray*/
     color: gray;
+/*Add a line-through text decoration to elements of class "completed"*/
     text-decoration: line-through;
 }
