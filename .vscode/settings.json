@@ -1,4 +1,6 @@
 {
+    //Set VSCode editor font size to 42
     "editor.fontSize": 42,
+    //Set VSCode terminal font size to 62
     "terminal.integrated.fontSize": 62
 }

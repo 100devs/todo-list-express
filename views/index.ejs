@@ -1,47 +1,66 @@
+<!--Tell browser this document is html5 to render it consistently across different browsers-->
 <!DOCTYPE html>
+<!--html tag with an attribute language set to english-->
 <html lang="en">
+<!--head tag, section for metadata that will not be displaed but machines can read, specify character set, page description, keywords, author, viewport settings etc-->
 <head>
+    <!--Meta tag with charset attribute telling browser to use utf8 for character encoding-->
     <meta charset="UTF-8">
+    <!--Meta tag helps compatibility with older internet explorer browsers-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--Meta tag to establish zoom level upon loading and the vw unit for css pixels-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--title tag to establish the name of the web page-->
     <title>Document</title>
+    <!--Link to font awesome stylesheet to use icon images-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!--Link to our static internal css stylesheet in the public folder-->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<!--Body tag for the content of the page to be rendered-->
 <body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <!--header tag with highest importance-->
     <h1>Todo List: </h1>
+    <!--start of an unordered list with class attribute named "todoItems"-->
     <ul class="todoItems">
+    <!--ejs syntax to start a for loop, looping through the items array called "items" that was sent by the server's get response through the main page route, creating what is inside the tags for each of the elements in the array-->
     <% for(let i=0; i < items.length; i++) {%>
+        <!--tag for a "list item" in our unordered list, with the class item-->
         <li class="item">
+            <!--ejs syntax for if statement, if the item at index "i" has a property of completed whose value is true, add this tag-->
             <% if(items[i].completed === true) {%>
+                <!--span tag with a class of completed containing the text content stored in property "thing" from the array "items"  -->
                 <span class='completed'><%= items[i].thing %></span>
+            <!--ejs syntax for else statement, if the item at index "i" has a property of completed whose value is false, add this tag-->
             <% }else{ %>
+                <!--span tag containing the text content stored in property "thing" from the array "items"  -->
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <!--end of ejs for loop-->
+            <% } %>
+            <!--span tag with class fa fa-trash, referring to classes defined in font awesome stylesheet that will render the trash can icon-->    
             <span class='fa fa-trash'></span>
         </li>
+    <!--end of ejs for loop-->
     <% } %>
     </ul>
 
+    <!--header 2 tag for text header of secondary importance, using ejs to insert what is stored in the property "left" sent by the server-->
     <h2>Left to do: <%= left %></h2>
 
+    <!--header 2 tag for text header of secondary importance-->
     <h2>Add A Todo:</h2>
 
+    <!--form tag to start a form, the action attribute tells the browser what route to send the form to and the method attribute tells the browser what type of request to send-->
     <form action="/addTodo" method="POST">
+        <!--tag to create an input tag, we are making a text input with placeholder text inside, and giving it a name attribute that the server will be looking for to receive the text content-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!--tag to create a special button to submit the form-->
         <input type="submit">
     </form>
     
-
+    <!--script tag to link our static js file from our public folder-->
     <script src='js/main.js'></script>
+<!--end of the body-->
 </body>
+<!--end of the html document-->
 </html>
