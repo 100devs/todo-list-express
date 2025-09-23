@@ -4,44 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!--link to font awesome style sheet-->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!DOCTYPE html>
+    <!-- <!DOCTYPE html> ///This is a typo
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+</head> /// This is a typo -->
 
-    <h2>Left to do: <%= left %></h2>
+<body> <!--main section for content displayed-->
+    <h1>Todo List: </h1> <!--Main heading-->
+    <ul class="todoItems"> <!--unordered list with class todoItems-->
+    <% for(let i=0; i < items.length; i++) {%> <!--for loop using EJS-->
+        <li class="item"> <!--create li with class item-->
+            <% if(items[i].completed === true) {%> <!--EJS if statement to check if item is marked completed true-->
+                <span class='completed'><%= items[i].thing %></span><!--creating span with class completed and adding EJS to display task-->
+            <% }else{ %><!--EJS for else statement-->
+                <span><%= items[i].thing %></span><!--adding a span with the task-->
+            <% } %>    <!--EJS to close else statement-->
+            <span class='fa fa-trash'></span><!--creating a span to display tras icon from font awesome-->
+        </li><!--end of li item-->
+    <% } %><!--closing EJS for the for loop-->
+    </ul><!--closing unordered list-->
 
-    <h2>Add A Todo:</h2>
+    <h2>Left to do: <%= left %></h2><!--creates a second heading and using EJS to display number of tasks left to complete-->
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
+    <h2>Add A Todo:</h2><!--second heading-->
+
+    <form action="/addTodo" method="POST"><!--form tag with POST(create) method that goes to the /addtodo route-->
+        <input type="text" placeholder="Thing To Do" name="todoItem"><!--create input box to grab our tasks named todoItem-->
+        <input type="submit"><!--submit button-->
+    </form><!--End of form-->
     
 
-    <script src='js/main.js'></script>
-</body>
+    <script src='js/main.js'></script><!--link to script with our main.js file-->
+</body><!--End of main section for content displayed-->
 </html>
