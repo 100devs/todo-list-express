@@ -1,27 +1,46 @@
+// load and include your modules (express and mongodb) using the "require" function
 const express = require('express')
+const { MongoClient } = require('mongodb');
+
+// create an express application instance, the foundation for building a web app
 const app = express()
-const MongoClient = require('mongodb').MongoClient
+
+// declare an environment variable, in this instance port 2121
 const PORT = 2121
+
+// load the .env package to store sensitive data in the application
 require('dotenv').config()
 
 
+// declare and assign the database connection string, hidden in the env file
 let db,
     dbConnectionStr = process.env.DB_STRING,
     dbName = 'todo'
 
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
+// connect the server to the mongodb database, using the above variable holding the connection string
+MongoClient.connect(dbConnectionStr)
     .then(client => {
+        // log the string that confirms the database name and the connection status
         console.log(`Connected to ${dbName} Database`)
         db = client.db(dbName)
     })
+    // console log any error
+    .catch(err => console.error(err))
     
+// set the view engine to "ejs" in order to render templates using ejs
 app.set('view engine', 'ejs')
+
+// use the built in middleware function "use" to serve static files in express app
 app.use(express.static('public'))
+
+// use the middleware function to parse URL-encoded form data as a JS object in req.body
 app.use(express.urlencoded({ extended: true }))
+
+// use middleware function for the app to read JSON data sent from client (like POST or PUT requests) and to make it available in the req.body
 app.use(express.json())
 
 
-app.get('/',async (request, response)=>{
+app.get('/', async (request, response)=>{
     const todoItems = await db.collection('todos').find().toArray()
     const itemsLeft = await db.collection('todos').countDocuments({completed: false})
     response.render('index.ejs', { items: todoItems, left: itemsLeft })
@@ -88,6 +107,6 @@ app.delete('/deleteItem', (request, response) => {
 
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
+app.listen(process.env.PORT || PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
