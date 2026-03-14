@@ -1,7 +1,20 @@
-h1{
-    color: red;
+h1{ /*selecting the h1 element in the EJS file*/
+    color: red; /*sets the text colour of the h1 to red */
+} /*closing the selector*/
+.completed{ /*selecting any element with the completed class*/
+    color: gray; /*sets the text colour to gray*/
+    text-decoration: line-through; /*applies a strike through styling to the text*/
+} /*closing the selector*/
+.deleted{ 
+    display: none !important;
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+li:hover{
+    cursor: pointer;
+}
+body{
+    background: rgb(70, 255, 224);
+}
+
+li {
+    width: 20%;
 }
