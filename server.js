@@ -50,7 +50,7 @@ app.put('/markComplete', (request, response) => { // starts a put request to upd
             completed: true // replaces the value "false" with "true"
           }
     },{
-        sort: {_id: -1}, // sorts the data in descending order (biggest to smallest)
+        sort: {_id: -1}, // tells the request to grab the first item in database with the correct value
         upsert: false // makes sure if the sort function above has nothing to filter, nothing is done
     })
     .then(result => { // do the below code after the code above is finished
