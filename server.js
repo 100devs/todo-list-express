@@ -81,14 +81,14 @@ app.put('/markUnComplete', (request, response) => { // listens for PUT requests 
     .catch(error => console.error(error)) // if there's an error, log it to the console
 })
 
-app.delete('/deleteItem', (request, response) => {
-    db.collection('todos').deleteOne({thing: request.body.itemFromJS})
-    .then(result => {
-        console.log('Todo Deleted')
-        response.json('Todo Deleted')
+// 5th route: delete a todo
+app.delete('/deleteItem', (request, response) => { // listens for DELETE requests to the '/deleteItem' endpoint
+    db.collection('todos').deleteOne({thing: request.body.itemFromJS}) // delete a todo from the "todos" collection, find it by its 'thing' field
+    .then(result => { // if the deletion is successful
+        console.log('Todo Deleted') // log a message to the console
+        response.json('Todo Deleted') // send a JSON response to close out the request
     })
-    .catch(error => console.error(error))
-
+    .catch(error => console.error(error)) // if there's an error, log it to the console
 })
 
 app.listen(process.env.PORT || PORT, ()=>{
