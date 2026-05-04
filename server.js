@@ -17,10 +17,10 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }) // connect to
         db = client.db(dbName) // assign the database to the db variable
     })
     
-app.set('view engine', 'ejs')
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+app.set('view engine', 'ejs') // set the view engine (templating language) to ejs
+app.use(express.static('public')) // telling express to serve static files from the 'public' directory
+app.use(express.urlencoded({ extended: true })) // lets express read URLs & params
+app.use(express.json()) // lets express parse JSON in the request body
 
 
 app.get('/',async (request, response)=>{
