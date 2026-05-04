@@ -36,22 +36,21 @@ async function deleteItem(){ // event handler to delete a todo
     }
 }
 
-async function markComplete(){
-    const itemText = this.parentNode.childNodes[1].innerText
-    try{
-        const response = await fetch('markComplete', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                'itemFromJS': itemText
+async function markComplete(){ // event handler to mark a todo as complete
+    const itemText = this.parentNode.childNodes[1].innerText // get the text of the todo item
+    try{ // try to mark the todo as complete
+        const response = await fetch('markComplete', { // make a request to the server to mark the todo as complete
+            method: 'put', // use the PUT method
+            headers: {'Content-Type': 'application/json'}, // set the content type to JSON
+            body: JSON.stringify({ // stringify the data to be sent
+                'itemFromJS': itemText // include the todo item text
             })
-          })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-
-    }catch(err){
-        console.log(err)
+        })
+        const data = await response.json() // parse the response as JSON (get it & transform it)
+        console.log(data) // log the response data
+        location.reload() // reload the page (refresh)
+    }catch(err){ // if there's an error
+        console.log(err) // log the error
     }
 }
 
