@@ -91,6 +91,7 @@ app.delete('/deleteItem', (request, response) => { // listens for DELETE request
     .catch(error => console.error(error)) // if there's an error, log it to the console
 })
 
-app.listen(process.env.PORT || PORT, ()=>{
-    console.log(`Server running on port ${PORT}`)
+// Start the server, listen on the specified port (use the environment variable or the default port)
+app.listen(process.env.PORT || PORT, ()=>{ // listen for incoming requests
+    console.log(`Server running on port ${PORT}`) // log a message to the console
 })
