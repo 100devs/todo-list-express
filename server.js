@@ -37,13 +37,14 @@ app.get('/',async (request, response)=>{ // sets the path we're listening on to 
     // .catch(error => console.error(error))
 })
 
-app.post('/addTodo', (request, response) => {
-    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false})
-    .then(result => {
-        console.log('Todo Added')
-        response.redirect('/')
+// 2nd route: add a new todo
+app.post('/addTodo', (request, response) => { // listens for POST requests to the '/addTodo' endpoint
+    db.collection('todos').insertOne({thing: request.body.todoItem, completed: false}) // insert a new todo into the "todos" collection
+    .then(result => { // if the insertion is successful
+        console.log('Todo Added') // log a message to the console
+        response.redirect('/') // redirect the user to the home page (refresh the page)
     })
-    .catch(error => console.error(error))
+    .catch(error => console.error(error)) // if there's an error, log it to the console
 })
 
 app.put('/markComplete', (request, response) => {
