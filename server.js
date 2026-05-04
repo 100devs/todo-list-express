@@ -64,21 +64,21 @@ app.put('/markComplete', (request, response) => { // listens for PUT requests to
     .catch(error => console.error(error)) // if there's an error, log it to the console
 })
 
-app.put('/markUnComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            completed: false
-          }
+// 4th route: mark a todo as incomplete (same logic as marking complete, but the opposite)
+app.put('/markUnComplete', (request, response) => { // listens for PUT requests to the '/markUnComplete' endpoint
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ // update a todo in the "todos" collection, find it by its 'thing' field
+        $set: { // set the completed field to false
+            completed: false // mark the todo as incomplete
+        }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, // sort by _id in descending order
+        upsert: false // don't create a new document if this one doesn't exist
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+    .then(result => { // if the update is successful
+        console.log('Marked Complete') // log a message to the console
+        response.json('Marked Complete') // send a JSON response to close out the request
     })
-    .catch(error => console.error(error))
-
+    .catch(error => console.error(error)) // if there's an error, log it to the console
 })
 
 app.delete('/deleteItem', (request, response) => {
