@@ -22,11 +22,11 @@ app.use(express.static('public')) // telling express to serve static files from 
 app.use(express.urlencoded({ extended: true })) // lets express read URLs & params
 app.use(express.json()) // lets express parse JSON in the request body
 
-
-app.get('/',async (request, response)=>{
-    const todoItems = await db.collection('todos').find().toArray()
-    const itemsLeft = await db.collection('todos').countDocuments({completed: false})
-    response.render('index.ejs', { items: todoItems, left: itemsLeft })
+// first route: get all todos and count the number of incomplete todos
+app.get('/',async (request, response)=>{ // sets the path we're listening on to "/", makes it async & declares request & response arguments
+    const todoItems = await db.collection('todos').find().toArray() // get all todos from "todos" collection & converts them to an array (they're objects on Mongo)
+    const itemsLeft = await db.collection('todos').countDocuments({completed: false}) // gets all of the incomplete todos (the ones with completed: false)
+    response.render('index.ejs', { items: todoItems, left: itemsLeft }) // render the index.ejs template with the todo items and the number of incomplete items
     // db.collection('todos').find().toArray()
     // .then(data => {
     //     db.collection('todos').countDocuments({completed: false})
