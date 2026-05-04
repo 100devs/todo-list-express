@@ -47,21 +47,21 @@ app.post('/addTodo', (request, response) => { // listens for POST requests to th
     .catch(error => console.error(error)) // if there's an error, log it to the console
 })
 
-app.put('/markComplete', (request, response) => {
-    db.collection('todos').updateOne({thing: request.body.itemFromJS},{
-        $set: {
-            completed: true
-          }
+// 3rd route: mark a todo as complete
+app.put('/markComplete', (request, response) => { // listens for PUT requests to the '/markComplete' endpoint
+    db.collection('todos').updateOne({thing: request.body.itemFromJS},{ // update a todo in the "todos" collection, find it by its 'thing' field
+        $set: { // set the completed field to true
+            completed: true // mark the todo as complete
+        }
     },{
-        sort: {_id: -1},
-        upsert: false
+        sort: {_id: -1}, // sort by _id in descending order
+        upsert: false // don't create a new document if this one doesn't exist
     })
-    .then(result => {
-        console.log('Marked Complete')
-        response.json('Marked Complete')
+    .then(result => { // if the update is successful
+        console.log('Marked Complete') // log a message to the console
+        response.json('Marked Complete') // send a JSON response to close out the request
     })
-    .catch(error => console.error(error))
-
+    .catch(error => console.error(error)) // if there's an error, log it to the console
 })
 
 app.put('/markUnComplete', (request, response) => {
