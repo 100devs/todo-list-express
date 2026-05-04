@@ -1,8 +1,8 @@
-const express = require('express')
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-const PORT = 2121
-require('dotenv').config()
+const express = require('express') // import express into the project
+const app = express() // create an instance of express
+const MongoClient = require('mongodb').MongoClient // import mongo db into the project
+const PORT = 2121 // set the port for the server to listen for requests
+require('dotenv').config() // load environment variables from .env file
 
 
 let db,
