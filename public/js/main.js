@@ -1,17 +1,17 @@
-const deleteBtn = document.querySelectorAll('.fa-trash')
-const item = document.querySelectorAll('.item span')
-const itemCompleted = document.querySelectorAll('.item span.completed')
+const deleteBtn = document.querySelectorAll('.fa-trash') // grab all trash can icons (returns a NodeList)
+const item = document.querySelectorAll('.item span') // grab all todo items (returns a NodeList)
+const itemCompleted = document.querySelectorAll('.item span.completed') // grab all completed todo items (returns a NodeList)
 
-Array.from(deleteBtn).forEach((element)=>{
-    element.addEventListener('click', deleteItem)
+Array.from(deleteBtn).forEach((element)=>{ // convert the NodeList of delete buttons to an array
+    element.addEventListener('click', deleteItem) // add a click event listener to each delete button that calls deleteItem
 })
 
-Array.from(item).forEach((element)=>{
-    element.addEventListener('click', markComplete)
+Array.from(item).forEach((element)=>{ // convert the NodeList of todo items to an array
+    element.addEventListener('click', markComplete) // add a click event listener to each todo item that calls markComplete
 })
 
-Array.from(itemCompleted).forEach((element)=>{
-    element.addEventListener('click', markUnComplete)
+Array.from(itemCompleted).forEach((element)=>{ // convert the NodeList of completed todo items to an array
+    element.addEventListener('click', markUnComplete) // add a click event listener to each completed todo item that calls markUnComplete
 })
 
 async function deleteItem(){
