@@ -19,28 +19,35 @@
 </head>
 <body>
     <h1>Todo List: </h1>
+   <!-- // this create a unorder list that our DB data will goes in -->
     <ul class="todoItems">
+    <!--for loop that goes trough every item from DB -->
     <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+        <!-- list that our that data will go in -->
+        <li class="item"> 
+            <!-- condition to check if item is completed if it is it will add a class completed to the span -->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
                 <span><%= items[i].thing %></span>
-            <% } %>    
+            <% } %>
+            <!--"fa fa-trash" is a name of an icon(trash) -->
             <span class='fa fa-trash'></span>
         </li>
     <% } %>
     </ul>
-
+<!-- "<%= left %>" makes the text goes left -->
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+    <!-- form that have method of POST that post new data to the DB with a fetch url of /addTodo -->
     <form action="/addTodo" method="POST">
+        <!-- input of data that will be sent and giving it a name attribute that the server will be looking for to receive the text content-->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+       <!-- the button that will sent the form -->
         <input type="submit">
     </form>
-    
+
 
     <script src='js/main.js'></script>
 </body>
