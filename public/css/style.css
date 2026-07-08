@@ -1,7 +1,11 @@
-h1{
-    color: red;
-}
-.completed{
-    color: gray;
-    text-decoration: line-through;
-}
+/* This file is an external stylesheet containing CSS code */
+
+h1{ /* Targets every h1 element */
+    color: red; /* Set the color of the text to red */
+} /* end of style declaration for the h1 selector */
+
+
+.completed{ /* Targets the .completed class */
+    color: gray;  /* Set the color of the text to gray */
+    text-decoration: line-through; /* Apply a strikethrough effect to the text */
+} /* end of style declaration for the .completed class */

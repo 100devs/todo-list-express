@@ -1,0 +1,62 @@
+<%# This file render the data from server %>
+<!DOCTYPE html> <%#Declare this is an HTML5 document%>
+<html lang="en"> <%# Opens HTML document, set language to english %>
+<head> <%# Opens head section%>
+    <meta charset="UTF-8"> <%#Sets character encoding to UTF-8 which supports all characters/symbols)%>
+    
+    <%# Tells Internet Explorer to use the latest rendering engine%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%# Makes the page responsive on mobile devices%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><%#Sets the browser tab title%>
+    <%#Links Font Awesome CSS library (for icons like the trash icon)%>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <%# %>
+    <link rel="stylesheet" href="css/style.css">
+</head><%#Closes head section %>
+<body><%# Closes body section %>
+
+<%#line 20 - line 29 are duplicate section %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo List: </h1><%#Set to do list as main heading with h1 size%>
+    <ul class="todoItems"><%#Use unordered list container for todo items%>
+    <%#Starts a JS for loop, Loops through the items array %>
+    <% for(let i=0; i < items.length; i++) {%>
+        <li class="item"> <%#creates a list item for each todo%>
+            <%#Checks if current item is marked as completed%>
+            <% if(items[i].completed === true) {%>
+        <%#If completed, displays the todo text in a span with 'completed' class%>
+                <span class='completed'><%= items[i].thing %></span>
+        <%#If NOT completed, displays the todo text in a regular span (no class)%>
+            <% }else{ 
+                %><span><%= items[i].thing %></span>
+            <% } %> 
+        <%#Displays a trash can icon for deleting%>       
+            <span class='fa fa-trash'></span>
+        </li><%#closes the list item%>
+    <% } %><%#closes the for loop%>
+    </ul><%#Closes the unordered list%>
+    <%#Displays count of remaining todos with h2 %>
+    <h2>Left to do: <%= left %></h2>
+    <%#Heading for the add todo form%>
+    <h2>Add A Todo:</h2>
+
+    <%#form that submit to /addTodo route with POST method%>
+    <form action="/addTodo" method="POST">
+        <%#Text input field for new todo%>
+        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <input type="submit"><%#submit button for the form%>
+    </form><%#closes the form%>
+    <%#Links external JavaScript file%>
+    <script src='js/main.js'></script>
+<%#Closes body and html tags%>
+</body>
+</html>

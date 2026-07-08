@@ -1,18 +1,18 @@
-{
-  "name": "rap-name-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
+{ //Open JSON object
+  "name": "rap-name-api", //declares project name
+  "version": "1.0.0",    //declares project version
+  "description": "",    //describe what the project is generally
+  "main": "index.js",   //the main file that runs once the package get required
+  "scripts": { //defines custom commands you can run with npm run
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "mongodb": "^3.6.5"
-  }
-}
+  },//close the scripts section
+  "author": "",// generally contain author name but empty here
+  "license": "ISC", //list license type is ISC which is permissive open-source license
+  "dependencies": { //lists packages the app needs to run
+    "cors": "^2.8.5", //allows your api to be accessed from different domain
+    "dotenv": "^8.2.0",//loads environment variable from .env file, to hide sensitive data 
+    "ejs": "^3.1.6",//allow JS to be embed in HTML templates 
+    "express": "^4.17.1", //web app framework to handle rounting, requests, responses
+    "mongodb": "^3.6.5" //connects app to MongoDB database, used to store and retrieve the to do items
+  }//closes dependencies section
+}//closes the entire JSON object

@@ -1,4 +1,7 @@
+// This file contains settings set for the project workspace
 {
+    // Sets the font size in the code editor to 42px
     "editor.fontSize": 42,
+    // Set the font size in the terminal to 62px
     "terminal.integrated.fontSize": 62
 }
