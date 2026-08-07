@@ -20,11 +20,17 @@
 <body>
     <h1>Todo List: </h1>
     <ul class="todoItems">
+<!--        whenever we see items it is our 'data' getting passed through
+        this loop runs 3 times as there are 3 objects in our array, i goes up by 1-->
     <% for(let i=0; i < items.length; i++) {%>
         <li class="item">
+            <!-- the conditional is for the items to join the completed class the else would keep it the same, it gets a
+             gray line across the item in css if this condition is false-->
             <% if(items[i].completed === true) {%>
                 <span class='completed'><%= items[i].thing %></span>
             <% }else{ %>
+                    <!--            'items[0].thing' would give us the first thing in the database which is oatmilk.
+                    the next object would give us the next object-->
                 <span><%= items[i].thing %></span>
             <% } %>    
             <span class='fa fa-trash'></span>
@@ -35,7 +41,7 @@
     <h2>Left to do: <%= left %></h2>
 
     <h2>Add A Todo:</h2>
-
+<!-- Hears the post request from the route -->
     <form action="/addTodo" method="POST">
         <input type="text" placeholder="Thing To Do" name="todoItem">
         <input type="submit">
