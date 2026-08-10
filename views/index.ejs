@@ -32,14 +32,25 @@
     <% } %>
     </ul>
 
+<!-- Displays the number of to-do items that are still incomplete -->
     <h2>Left to do: <%= left %></h2>
 
+<!-- Displays a heading for adding a new to-do item -->
     <h2>Add A Todo:</h2>
 
+
+
+<!-- Creates a form that sends the new to-do item to the server -->
     <form action="/addTodo" method="POST">
+        <!-- Creates a text box where the user can type a new to-do item -->
         <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Creates a button that submits the new to-do item -->
         <input type="submit">
     </form>
+
+ 
+
+
     
 
     <script src='js/main.js'></script>
