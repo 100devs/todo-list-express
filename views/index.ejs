@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
-            <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
-            <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <!--Standard head block-->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!--Primary heading for to-do list-->
+        <h1>Todo List: </h1>
+        <!--Unordered list of to-do items-->
+        <ul class="todoItems">
+        <!--LI's created from data from the database, items being todoItems, left being itemsLeft, as declared in server.js-->
+        <% for(let i=0; i < items.length; i++) {%>
+            <li class="item">
+                <!--Span differs by the completed class, based on if the item's completed property is true-->
+                <% if(items[i].completed === true) {%>
+                    <span class='completed'><%= items[i].thing %></span>
+                <% }else{ %>
+                    <span><%= items[i].thing %></span>
+                <% } %>    
+                <!--Each LI includes trash icon for deletion purposes-->
+                <span class='fa fa-trash'></span>
+            </li>
+        <% } %>
+        </ul>
 
-    <h2>Left to do: <%= left %></h2>
+        <!--Secondary heading to display how many tasks still are not completed-->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+        <!--Another secondary heading indication method for adding a to-do item-->
+        <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
-
-    <script src='js/main.js'></script>
-</body>
+        <!--Form that links to the POST request on the server using the /addTodo route-->
+        <form action="/addTodo" method="POST">
+            <!--Simple text input for adding a to-do item in the form of a string-->
+            <input type="text" placeholder="Thing To Do" name="todoItem">
+            <!--Submit input for sending the form data to the server-->
+            <input type="submit">
+        </form>
+        
+        
+        <script src='js/main.js'></script>
+    </body>
 </html>
